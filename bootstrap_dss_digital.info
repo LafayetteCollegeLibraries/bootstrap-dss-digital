@@ -1,0 +1,41 @@
+name = The Digital Scholarship Services Theme
+description = The Lafayette College Libraries Digital Scholarship Services Bootstrap Sub-theme
+core = 7.x
+base theme = bootstrap_lafayette_lib_dss
+
+; Regions
+regions[navigation]     = 'Navigation'
+
+; For styling the Simple Search block
+regions[simple_search]	  = 'Simple Search'
+
+; For the advanced search modeless dialog (implements the Bootstrap "modal" feature)
+; Refactor?
+regions[search_modal]     = 'Advanced Search Modal'
+
+; For offering Shibboleth, OAuth2...
+regions[auth]	  = 'Authentication'
+; For sharing content over Facebook, Twitter, Google...
+regions[share]	  = 'Content Sharing'
+; For the contact form modal
+regions[contact]  = 'Contact Interface'
+
+regions[header]         = 'Top Bar'
+regions[highlighted]    = 'Highlighted'
+regions[help]           = 'Help'
+regions[content]        = 'Content'
+regions[sidebar_first]  = 'Primary'
+regions[sidebar_second] = 'Secondary'
+regions[footer]         = 'Footer'
+regions[hidden]         = 'Hidden'
+
+; JavaScripts
+scripts[] = 'js/bootstrap_helper.js'
+scripts[] = 'js/advanced_search_modal.js'
+scripts[] = 'js/sharethis_helper.js'
+
+; Stylesheets
+stylesheets[all][] = css/style.css
+stylesheets[all][] = css/islandora_solr.css
+stylesheets[all][] = css/modal.css
+stylesheets[all][] = css/sharethis.css
