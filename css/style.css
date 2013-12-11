@@ -431,7 +431,11 @@ header#page-header {
     margin-bottom: inherit;
 }
 
+.islandora-page-metadata-wrapper {
 
+    background-color: #ffffff;
+    padding: 8px;
+}
 
 /**
  * The <div> container for the simple search block button
