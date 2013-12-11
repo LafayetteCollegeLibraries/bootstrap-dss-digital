@@ -21,6 +21,12 @@ div.main-container {
     /* margin-top: 1.9%; */
 }
 
+.islandora-solr-facet-pages-wrapper {
+
+    background-color: #ffffff;
+    padding: 8px;
+}
+
 header#navbar {
 
     background-color: #ffffff;
@@ -83,6 +89,11 @@ div.navbar-header h2 {
 .well section {
 
     margin-top: 6px;
+}
+
+.well section#block-islandora-solr-facet-pages-islandora-solr-facet-pages {
+
+    background-color: #ffffff;
 }
 
 .well .block {
@@ -419,6 +430,8 @@ header#page-header {
 
     margin-bottom: inherit;
 }
+
+
 
 /**
  * The <div> container for the simple search block button
