@@ -12,6 +12,7 @@
 require_once dirname(__FILE__) . '/includes/blocks.inc';
 require_once dirname(__FILE__) . '/includes/forms.inc';
 require_once dirname(__FILE__) . '/includes/menus.inc';
+require_once dirname(__FILE__) . '/includes/dssMods.inc';
 
 /**
  * Preprocess variables for page.tpl.php
@@ -146,6 +147,15 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
   $registry['hybridauth_widget']['file'] = 'template';
+
+  // The Book solution pack provides no theme suggestions
+  $registry['islandora_book_book']['path'] = drupal_get_path('theme', 'bootstrap_dss_digital');
+  $registry['islandora_book_book']['template'] = 'templates/islandora-book';
+
+  $registry['islandora_book_page']['path'] = drupal_get_path('theme', 'bootstrap_dss_digital');
+  $registry['islandora_book_page']['template'] = 'templates/islandora-page';
+
+  //dpm($registry);
 }
 
 /**
@@ -165,3 +175,53 @@ function hybridauth_theme($existing, $type, $theme, $path) {
     ),
 }
 */
+
+//module_load_include('inc', 'bootstrap_dss_digital', 'includes/dssMods');
+
+function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables) {
+
+  $object = $variables['object'];
+
+  // Refactor
+  // Retrieve the MODS Metadata
+  try {
+
+    $mods_str = $object['MODS']->content;
+
+    $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
+    //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
+
+    dpm($mods_str);
+
+    $mods_object = new DssMods($mods_str);
+  } catch (Exception $e) {
+    
+    drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
+  }
+
+  $variables['mods_object'] = isset($mods_object) ? $mods_object->mods : array();
+}
+
+function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {
+
+  $object = $variables['object'];
+
+  // Refactor
+  // Retrieve the MODS Metadata
+  try {
+
+    $mods_str = $object['MODS']->content;
+
+    $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
+    //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
+
+    //dpm($mods_str);
+
+    $mods_object = new DssMods($mods_str);
+  } catch (Exception $e) {
+    
+    drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
+  }
+
+  $variables['mods_object'] = isset($mods_object) ? $mods_object->mods : array();
+}
