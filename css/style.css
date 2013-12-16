@@ -474,6 +474,11 @@ header#page-header {
     padding: 8px;
 }
 
+.islandora-basic-collection-thumb {
+
+    text-align: center;
+}
+
 /**
  * Islandora Solr module
  *
@@ -499,6 +504,28 @@ dl.solr-fields {
 dd.solr-value {
 
     padding-left: 68px;
+}
+
+/**
+ * Islandora Book Solution Pack
+ *
+ */
+
+.islandora-book-pages-grid dl {
+
+    display: inline-block;
+    margin: 1.5em 1.84%;
+    min-height: 180px;
+    min-width: 100px;
+    vertical-align: top;
+    width: 20%;
+    text-align: center;
+}
+
+.islandora-book-pages {
+
+    background-color: #ffffff;
+    padding: 8px;
 }
 
 /**

@@ -225,3 +225,34 @@ function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables)
 
   $variables['mods_object'] = isset($mods_object) ? $mods_object->mods : array();
 }
+
+function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables) {
+
+  // View Links.
+  $display = (empty($_GET['display'])) ? 'grid' : $_GET['display'];
+  $grid_active = ($display == 'grid') ? 'active' : '';
+  $list_active = ($display == 'active') ? 'active' : '';
+
+  $query_params = drupal_get_query_parameters($_GET);
+
+  $variables['view_links'] = array(
+				   array(
+					 'title' => 'Grid view',
+					 'href' => url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
+					 'attributes' => array(
+							       'class' => "islandora-view-grid $grid_active",
+							       ),
+					 'query' => $query_params + array('display' => 'grid'),
+					 ),
+				   array(
+					 'title' => 'List view',
+					 'href' => url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
+					 'attributes' => array(
+							       'class' => "islandora-view-list $list_active",
+							       ),
+					 'query' => $query_params + array('display' => 'list'),
+					 ),
+				   );
+
+  dpm($variables);
+}
