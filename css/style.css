@@ -210,7 +210,8 @@ div.modal-container.container {
 
     position: fixed;
     top: 0px;
-    width: 97%;
+    width: 97.54%;
+    z-index: 10000;
 }
 
 .affix-top {
@@ -399,7 +400,8 @@ header#page-header {
     text-decoration: none;
 }
 
-.main-container section.span9 section.block {
+.main-container section.block-aggregator,
+.main-container section.block-nodeblock {
 
     background-color: #ffffff;
     margin-top: 8px;
@@ -407,6 +409,11 @@ header#page-header {
     width: 360px;
     float: left;
     padding: 8px;
+}
+
+.main-container section.block-aggregator .block-title {
+
+    text-align: center;
 }
 
 .main-container section.span9 section#block-nodeblock-7 h2.block-title {
@@ -435,6 +442,22 @@ header#page-header {
 
     background-color: #ffffff;
     padding: 8px;
+}
+
+/**
+ * Bootstrap carousel for page--front Node
+ *
+ */
+
+.carousel-caption {
+
+    padding: 4px;
+}
+
+.carousel-caption h2 {
+
+    font-size: large;
+    color: #ffffff;
 }
 
 /**

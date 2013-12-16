@@ -58,14 +58,16 @@
 	    });
 	*/
 
-	$('.navbar-inner').affix({
-		
-		offset: {
-		    
-		    top: $('.navbar-inner').offset().top,
-		}
-	    });
+	if($('.navbar-inner').length > 0) {
 
+	    $('.navbar-inner').affix({
+		    
+		    offset: {
+			
+			top: $('.navbar-inner').offset().top,
+			    }
+		});
+	}
 
 	$('.dropdown-submenu').on('show.bs.dropdown', function(e) {
 		

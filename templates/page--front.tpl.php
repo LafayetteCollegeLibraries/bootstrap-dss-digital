@@ -109,19 +109,22 @@
     <div class="item active">
       <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921">
       <div class="carousel-caption">
-   <p>East Asia Image Collections</p>
+   <h2>East Asia Image Collections</h2>
+   <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
       </div>
     </div>
     <div class="item">
       <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921">
    <div class="carousel-caption">
-   <p>East Asia Image Collections</p>
+   <h2>East Asia Image Collections</h2>
+   <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
    </div>
    </div>
    <div class="item">
       <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921">
    <div class="carousel-caption">
-   <p>East Asia Image Collections</p>
+   <h2>East Asia Image Collections</h2>
+   <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
    </div>
    </div>
    </div>
