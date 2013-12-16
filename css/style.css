@@ -438,6 +438,10 @@ header#page-header {
     margin-bottom: inherit;
 }
 
+/**
+ * DSS Islandora East Asia Image Collections Solution Pack
+ *
+ */
 .islandora-page-metadata-wrapper {
 
     background-color: #ffffff;
@@ -458,6 +462,43 @@ header#page-header {
 
     font-size: large;
     color: #ffffff;
+}
+
+/**
+ * Islandora Basic Collection Solution Pack
+ *
+ */
+.islandora-basic-collection-wrapper {
+
+    background-color: #ffffff;
+    padding: 8px;
+}
+
+/**
+ * Islandora Solr module
+ *
+ */
+#islandora-solr-top,
+.islandora-solr-content {
+
+    background-color: #ffffff;
+    padding: 8px;
+}
+
+dl.solr-thumb {
+
+    width: 200px;
+    text-align: center;
+}
+
+dl.solr-fields {
+
+    width: 72%;
+}
+
+dd.solr-value {
+
+    padding-left: 68px;
 }
 
 /**
