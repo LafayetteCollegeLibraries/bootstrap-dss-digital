@@ -9,8 +9,12 @@
     // Following the Drupal.theme implementation
     // Please see https://drupal.org/node/304258
     Drupal.theme.prototype.bootstrapDssLdr = function() {
-	
+
+
+
 	$('.nav-collapse').on('show.bs.collapse', function() {
+
+		$('.nav-collapse .nav').show();
 
 		//$('.navbar-inner-container').addClass('opened').insertAfter($('.navbar-collapse-toggle'));
 		$('.navbar-inner-container').addClass('opened');
@@ -19,11 +23,36 @@
 
 	    }).on('hide.bs.collapse', function() {
 
+		    // Refactor, terrible hack
+		    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion) ) {
+
+			$('.nav-collapse .nav').hide();
+		    }
+
 		    //$('.navbar-inner-container').removeClass('opened').insertBefore($('.auth-share-simple-search-container'));
 		    $('.navbar-inner-container').removeClass('opened');
 		    $('.navbar-inner-container').insertBefore($('.auth-share-simple-search-container'));
 
 		});
+
+	// Trigger the collapse for ...
+	
+	// Refactor, terrible hack
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion) ) {
+
+	    //$('.navbar-inner-container').insertAfter($('.navbar-collapse-toggle'));
+	    //$('.navbar-inner-container').insertAfter($('.navbar-inner'));
+
+	    //$('div.navbar-collapse-toggle').css('float', 'right');
+	    //$('div.nav-collapse nav ul.menu').css('width', '100%');
+
+	    $('div.navbar-collapse-toggle div .btn-navbar').show();
+	    $('.nav-collapse').collapse('toggle');
+
+	    $('.nav-collapse .nav').hide();
+	    $('.nav-collapse .nav li').addClass('collapsed');
+	}
+	
 	
 	// Work-around: The collapse widget appears to be broken
 	$('.navbar-toggle').click(function() {
@@ -40,7 +69,6 @@
 			});
 
 		$('.collapse').collapse('toggle');
-
 
 	    });
 

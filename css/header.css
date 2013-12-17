@@ -64,22 +64,6 @@ div.modal-container.container {
     border: 2px solid;
 }
 
-.breadcrumb {
-
-    width: 60%;
-    float: left;
-}
-
-#breadcrumb-container {
-
-    height: 36px;
-}
-
-#copyright-container {
-
-    width: 12%;
-    float:right;
-}
 
 .nav.nav-tabs,
 .node.node-page {
@@ -87,27 +71,6 @@ div.modal-container.container {
     clear:both;
 }
 
-.footer-menu-item {
-
-    padding: 0px 24px;
-    /*
-    float: left;
-    */
-    display:inline;
-
-    text-align: center;
-    border-right: 1px solid;
-}
-
-.footer-menu-item.last {
-
-    border-right: none;
-}
-
-.footer-menu-divider {
-
-    margin-left: 20%;
-}
 
 .affix {
 
