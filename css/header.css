@@ -3,52 +3,7 @@
  * remove this comment and start adding your styles to this file.
  */
 
-/**
- * Navbar styling
- *
- */
-.navbar-static-width {
 
-    /* width: 740px; */
-    /* width: 1256px; */
-    width: 1324px;
-}
-
-.navbar .logo {
-
-    margin-top: 0.7%;
-    margin-left: 5%;
-    margin-right: 1%;
-}
-
-header#navbar {
-
-    background-color: #ffffff;
-}
-
-div.navbar-header {
-
-    /*
-    text-align: center;
-    */
-    text-align: right;
-}
-
-div.navbar-header h2 {
-
-    /*
-    margin-right: 50%;
-    */
-    margin-right: 10%;
-    font-size: x-large;
-}
-
-.navbar-inner {
-
-    /*
-      width: 100%
-      */
-}
 
 div.container {
 

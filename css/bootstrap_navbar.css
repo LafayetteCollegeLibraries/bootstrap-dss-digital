@@ -6,10 +6,83 @@
  *
  */
 
-.nav-collapse.in .nav li {
+/**
+ * Navbar styling
+ *
+ */
+
+.navbar-static-width-min {
+
+    /* width: 732px; */
+    width: 686px;
+}
+
+.navbar-static-width {
+
+    /* width: 740px; */
+    /* width: 1256px; */
+    /* width: 1324px; */
+
+    width: 1340px;
+}
+
+.navbar .logo {
+
+    margin-top: 0.7%;
+    margin-left: 5%;
+    margin-right: 1%;
+}
+
+header#navbar {
+
+    background-color: #ffffff;
+}
+
+div.navbar-header {
+
+    /*
+    text-align: center;
+    */
+    text-align: right;
+}
+
+div.navbar-header h2 {
+
+    /*
+    margin-right: 50%;
+    */
+    margin-right: 10%;
+    font-size: x-large;
+}
+
+.navbar-inner {
+
+    /*
+      width: 100%
+      */
+}
+
+.nav-collapse {
+
+    /* display: none; */
+}
+
+.navbar-inner-container.opened .nav-collapse {
+
+    display: block;
+}
+
+.nav-collapse.in .nav li.collapsed {
 
     width: 100%;
     border-left: 0px;
+}
+
+.nav-collapse.in .nav li {
+/* html.js body.html header#navbar.navbar div.navbar-inner div.navbar-inner-container div.nav-collapse nav ul.menu li.first { */
+
+    /* width: 100%; */
+    /* border-left: 0px; */
 }
 
 .navbar-inner-container.opened {

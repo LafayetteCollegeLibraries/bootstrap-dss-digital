@@ -9,34 +9,21 @@
     // Following the Drupal.theme implementation
     // Please see https://drupal.org/node/304258
     Drupal.theme.prototype.bootstrapDssLdr = function() {
+	
+	$('.nav-collapse').on('show.bs.collapse', function() {
 
-	//$('.collapse').collapse('toggle');
-	// For navbar toggle
-	//$('.collapse').on('show', function() {
-	$('.navbar-collapse-toggle a.btn').click(function() {
+		//$('.navbar-inner-container').addClass('opened').insertAfter($('.navbar-collapse-toggle'));
+		$('.navbar-inner-container').addClass('opened');
+		$('.navbar-inner-container').insertAfter($('.navbar-collapse-toggle'));
 
-		//$('.navbar-collapse-toggle').appendTo($('.navbar-inner-container'));
 
-		// Refactor
-		//if( $('.navbar-collapse').hasClass('in')) {
-		if($('.navbar-collapse-toggle + .navbar-inner-container').length > 0) {
+	    }).on('hide.bs.collapse', function() {
 
-		    $('.navbar-inner-container').insertBefore($('.navbar-collapse-toggle'));
+		    //$('.navbar-inner-container').removeClass('opened').insertBefore($('.auth-share-simple-search-container'));
 		    $('.navbar-inner-container').removeClass('opened');
-		} else {
+		    $('.navbar-inner-container').insertBefore($('.auth-share-simple-search-container'));
 
-		    $('.navbar-inner-container').insertAfter($('.navbar-collapse-toggle'));
-		    $('.navbar-inner-container').addClass('opened');
-		}
-	    });
-
-	/*
-	.on('hide', function() {
-
-		//$('.navbar-collapse-toggle').prependTo($('.navbar-inner-container'));
-		$('.navbar-inner-container').prependTo($('.navbar-collapse-toggle'));
-	    });
-	*/
+		});
 	
 	// Work-around: The collapse widget appears to be broken
 	$('.navbar-toggle').click(function() {
@@ -142,12 +129,18 @@
 	*/
 
 	// Refactor
-	var maxWidth = 1322;
+	/* var maxWidth = 1322; */
+	var maxWidth = 1340;
+
+	/* var minWidth = 692; */
+	var minWidth = 726;
+
 	var responsiveWidth = 964;
+	/* var responsiveWidth = 1340; */
 	
 	if($( window ).width() <= maxWidth ) {
 
-	    $('header#navbar').addClass('navbar-static-width');
+	    //$('header#navbar').addClass('navbar-static-width');
 	}
 
 	$(window).resize(function() {
@@ -161,14 +154,25 @@
 
 			$('header#navbar').addClass('navbar-static-width');
 			$('.auth-share-simple-search-container').removeClass('collapsed');
+			$('.nav-collapse .nav li').removeClass('collapsed');
+		  
 		    } else {
 
 			$('header#navbar').removeClass('navbar-static-width');
 			$('.auth-share-simple-search-container').addClass('collapsed');
+			$('.nav-collapse .nav li').addClass('collapsed');
 		    }
 		} else {
 		    
 		    $('header#navbar').removeClass('navbar-static-width');
+		}
+
+		if( $( window ).width() < minWidth ) {
+
+		    $('header#navbar').addClass('navbar-static-width-min');
+		} else {
+
+		    $('header#navbar').removeClass('navbar-static-width-min');
 		}
 		
 		if($( window ).width() <= 754 ) {

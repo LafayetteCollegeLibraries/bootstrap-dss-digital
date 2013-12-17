@@ -89,11 +89,13 @@
 
 <div class="navbar-collapse-toggle">
 <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</a>
+<div data-toggle="collapse" data-target=".nav-collapse">
+  <a class="btn btn-navbar" >
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  </a>
+  <span class="btn-navbar">Menu</span>
 </div>
 
   </div>
