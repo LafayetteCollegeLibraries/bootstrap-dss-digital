@@ -13,17 +13,38 @@
 
 @media only screen 
 and (min-device-width : 768px) 
-and (max-device-width : 1024px) div.navbar-collapse-toggle {
+and (max-device-width : 1024px) {
 
-    float: left;
+    div.navbar-collapse-toggle {
+
+	/*
+	border: 1px solid white;
+	float: left;
+	*/
+    }
 }
 
 @media only screen 
 and (min-device-width : 768px) 
-and (max-device-width : 1024px) div.nav-collapse nav ul.menu {
+and (max-device-width : 1024px) {
 
-    width: 100%;
+    div.nav-collapse nav ul.menu {
+
+	width: 100%;
+    }
 }
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+    div.auth-share-simple-search-container {
+
+	width: 54%;
+	/* border: 1px solid white; */
+    }
+}
+
 
 .navbar-static-width-min {
 
@@ -126,6 +147,8 @@ div.navbar-header h2 {
 
     /* width: 64%; */
 }
+
+
 
 .auth-share-simple-search-container.collapsed {
 

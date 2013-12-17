@@ -175,53 +175,59 @@
 
 		console.log( $( window ).width());
 
-		if($( window ).width() <= maxWidth ) {
+		// Refactor, terrible hack
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion) ) {
 
-		    // Atrocious; refactor
-		    if( $( window ).width() > responsiveWidth ) {
+		} else {
 
-			$('header#navbar').addClass('navbar-static-width');
-			$('.auth-share-simple-search-container').removeClass('collapsed');
-			$('.nav-collapse .nav li').removeClass('collapsed');
+		    if($( window ).width() <= maxWidth ) {
+
+			// Atrocious; refactor
+			if( $( window ).width() > responsiveWidth ) {
+
+			    $('header#navbar').addClass('navbar-static-width');
+			    $('.auth-share-simple-search-container').removeClass('collapsed');
+			    $('.nav-collapse .nav li').removeClass('collapsed');
 		  
+			} else {
+			    
+			    $('header#navbar').removeClass('navbar-static-width');
+			    $('.auth-share-simple-search-container').addClass('collapsed');
+			    $('.nav-collapse .nav li').addClass('collapsed');
+			}
 		    } else {
-
+			
 			$('header#navbar').removeClass('navbar-static-width');
-			$('.auth-share-simple-search-container').addClass('collapsed');
-			$('.nav-collapse .nav li').addClass('collapsed');
 		    }
-		} else {
-		    
-		    $('header#navbar').removeClass('navbar-static-width');
-		}
 
-		if( $( window ).width() < minWidth ) {
+		    if( $( window ).width() < minWidth ) {
 
-		    $('header#navbar').addClass('navbar-static-width-min');
-		} else {
-
-		    $('header#navbar').removeClass('navbar-static-width-min');
-		}
-		
-		if($( window ).width() <= 754 ) {
-
-		    // Refactor
-		    if($('#navbar .navbar-header h1 a').text() != 'DSS') {
-
-			$(document).data('Drupal.theme.bootstrap.dss', $('#navbar .navbar-header h1 a').text());
-			$('#navbar .navbar-header h1 a').text('DSS');
+			$('header#navbar').addClass('navbar-static-width-min');
+		    } else {
+			
+			$('header#navbar').removeClass('navbar-static-width-min');
 		    }
 		    
-		    //$('header#navbar').addClass('navbar-static-width');
-		} else {
+		    if($( window ).width() <= 754 ) {
+			
+			// Refactor
+			if($('#navbar .navbar-header h1 a').text() != 'DSS') {
 
-		    //$(document).data('Drupal.theme.bootstrap.dss', $('#navbar .navbar-header h1 a').text());
-		    if($('#navbar .navbar-header h1 a').text() == 'DSS') {
-
-			$('#navbar .navbar-header h1 a').text( $(document).data('Drupal.theme.bootstrap.dss'));
-		    }
+			    $(document).data('Drupal.theme.bootstrap.dss', $('#navbar .navbar-header h1 a').text());
+			    $('#navbar .navbar-header h1 a').text('DSS');
+			}
 		    
-		    //$('header#navbar').removeClass('navbar-static-width');
+			//$('header#navbar').addClass('navbar-static-width');
+		    } else {
+			
+			//$(document).data('Drupal.theme.bootstrap.dss', $('#navbar .navbar-header h1 a').text());
+			if($('#navbar .navbar-header h1 a').text() == 'DSS') {
+			    
+			    $('#navbar .navbar-header h1 a').text( $(document).data('Drupal.theme.bootstrap.dss'));
+			}
+		    
+			//$('header#navbar').removeClass('navbar-static-width');
+		    }
 		}
 	    });
 	

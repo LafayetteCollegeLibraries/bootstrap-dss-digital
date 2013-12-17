@@ -373,16 +373,7 @@ header#page-header {
     text-decoration: none;
 }
 
-.main-container section.block-aggregator,
-.main-container section.block-nodeblock {
 
-    background-color: #ffffff;
-    margin-top: 8px;
-    margin-right: 8px;
-    width: 360px;
-    float: left;
-    padding: 8px;
-}
 
 .main-container section.block-aggregator .block-title {
 
