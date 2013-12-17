@@ -50,7 +50,8 @@
         </div><!-- /.nav-collapse collapse -->
       <?php endif; ?>
 
-   <div class="auth-share-simple-search-container container">
+   <!-- <div class="auth-share-simple-search-container container"> -->
+   <div class="auth-share-simple-search-container">
 
    <?php if (!empty($page['simple_search'])): ?>
 

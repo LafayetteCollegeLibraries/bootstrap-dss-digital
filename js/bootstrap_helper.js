@@ -102,8 +102,8 @@
 
 	// Refactor
 	var maxWidth = 1322;
-	var responsiveWidth = 932;
-
+	var responsiveWidth = 964;
+	
 	if($( window ).width() <= maxWidth ) {
 
 	    $('header#navbar').addClass('navbar-static-width');
@@ -111,15 +111,19 @@
 
 	$(window).resize(function() {
 
+		console.log( $( window ).width());
+
 		if($( window ).width() <= maxWidth ) {
 
 		    // Atrocious; refactor
 		    if( $( window ).width() > responsiveWidth ) {
 
 			$('header#navbar').addClass('navbar-static-width');
+			$('.auth-share-simple-search-container').removeClass('collapsed');
 		    } else {
 
 			$('header#navbar').removeClass('navbar-static-width');
+			$('.auth-share-simple-search-container').addClass('collapsed');
 		    }
 		} else {
 		    
