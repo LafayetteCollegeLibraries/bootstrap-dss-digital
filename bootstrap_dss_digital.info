@@ -36,6 +36,9 @@ scripts[] = 'js/sharethis_helper.js'
 
 ; Stylesheets
 stylesheets[all][] = css/style.css
+stylesheets[all][] = css/header.css
+stylesheets[all][] = css/dss_digital.css
+stylesheets[all][] = css/bootstrap_navbar.css
 stylesheets[all][] = css/islandora_solr.css
 stylesheets[all][] = css/islandora_book.css
 stylesheets[all][] = css/modal.css

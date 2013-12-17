@@ -4,6 +4,11 @@
    *
    */
 
+#islandora-solr-simple-search-form div a, #auth-control-container > a, #share-control-container > a {
+
+    cursor: pointer;
+}
+
 div#advanced-search-modal.shown {
 
     top: 152px;

@@ -111,34 +111,7 @@ div.modal-backdrop.fade.in {
     z-index: -10000;
 }
 
-.auth-share-simple-search-container {
 
-    float: right;
-    width: 380px;
-}
-
-div.auth-share-container.container {
-
-    /*
-    width: 11%;
-    */
-
-    /*
-    width: 32%;
-    float: right;
-    */
-    width: 380px;
-    margin-top: 0px;
-}
-
-div.auth-icon,
-div.share-icon {
-
-    border: 2px solid;
-    height: 40px;
-    width: 40px;
-    margin: auto;
-}
 
 div.modal-container.container {
 

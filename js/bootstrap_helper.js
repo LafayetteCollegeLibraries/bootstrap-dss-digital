@@ -60,19 +60,94 @@
 
 	if($('.navbar-inner').length > 0) {
 
-	    $('.navbar-inner').affix({
+	$('.navbar-inner').affix({
+		
+		offset: {
 		    
-		    offset: {
-			
-			top: $('.navbar-inner').offset().top,
-			    }
-		});
+		    top: $('.navbar-inner').offset().top,
+		}
+	    });
 	}
 
-	$('.dropdown-submenu').on('show.bs.dropdown', function(e) {
-		
+	//$('.dropdown-submenu').dropdown('toggle').click(function(e) {
+	/*
+	$('.dropdown-menu li .dropdown-menu').dropdown('toggle').click(function(e) {
+
 		e.preventDefault();
+		$(this).dropdown();
 	    });
+	*/
+
+	/*
+	$('.dropdown-menu li .dropdown-menu').each(function(i, e) {
+
+		console.log( $(e));
+		$(e).addClass('dropdown-submenu');
+
+		$(e).dropdown('toggle').parent().click(function(e) {
+
+			e.preventDefault();
+			$(this).dropdown();
+		    });
+	    });
+	*/
+
+	//$('.dropdown-submenu').dropdown('toggle');
+	/*
+	$('.dropdown-submenu').on('show.bs.dropdown', function(e) {
+
+		console.log('trace');
+	    });
+	*/
+
+	// Refactor
+	var maxWidth = 1322;
+	var responsiveWidth = 932;
+
+	if($( window ).width() <= maxWidth ) {
+
+	    $('header#navbar').addClass('navbar-static-width');
+	}
+
+	$(window).resize(function() {
+
+		if($( window ).width() <= maxWidth ) {
+
+		    // Atrocious; refactor
+		    if( $( window ).width() > responsiveWidth ) {
+
+			$('header#navbar').addClass('navbar-static-width');
+		    } else {
+
+			$('header#navbar').removeClass('navbar-static-width');
+		    }
+		} else {
+		    
+		    $('header#navbar').removeClass('navbar-static-width');
+		}
+		
+		if($( window ).width() <= 754 ) {
+
+		    // Refactor
+		    if($('#navbar .navbar-header h1 a').text() != 'DSS') {
+
+			$(document).data('Drupal.theme.bootstrap.dss', $('#navbar .navbar-header h1 a').text());
+			$('#navbar .navbar-header h1 a').text('DSS');
+		    }
+		    
+		    //$('header#navbar').addClass('navbar-static-width');
+		} else {
+
+		    //$(document).data('Drupal.theme.bootstrap.dss', $('#navbar .navbar-header h1 a').text());
+		    if($('#navbar .navbar-header h1 a').text() == 'DSS') {
+
+			$('#navbar .navbar-header h1 a').text( $(document).data('Drupal.theme.bootstrap.dss'));
+		    }
+		    
+		    //$('header#navbar').removeClass('navbar-static-width');
+		}
+	    });
+	
     }
 
     // Ensure that the execution of all bootstrap functionality lies within a modular, Drupal-compliant context

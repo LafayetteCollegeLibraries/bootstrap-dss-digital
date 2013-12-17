@@ -2,13 +2,11 @@
 
   <div class="navbar-header">
 
-   <!-- <h2><?php print empty($site_name) ? 'Digital Collections at Lafayette College' : $site_name ?></h2> -->
-
    <!-- Refactor into hook_preprocess_page -->
    <h2><?php print l('Skillman Library', 'http://library.lafayette.edu/'); ?> at <?php print l('Lafayette College', 'http://www.lafayette.edu/'); ?></h2>
-   
+
    <?php if(!empty($title)): ?>
-    <h1><?php print $title; ?></h1>
+     <h1><?php print l($title, $front_page); ?></h1>
    <?php endif; ?>
   </div>
 
@@ -22,7 +20,8 @@
       </a>
     </div>
 
-    <div class="container">
+    <!-- <div class="container navbar-inner-container"> -->
+    <div class="navbar-inner-container">
 
       <?php if (!empty($site_name)): ?>
         <h1 id="site-name">
@@ -31,6 +30,7 @@
       <?php endif; ?>
 
       <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
+
         <div class="nav-collapse collapse">
           <nav role="navigation">
             <?php if (!empty($primary_nav)): ?>
@@ -44,6 +44,11 @@
             <?php if (!empty($page['navigation'])): ?>
               <?php print render($page['navigation']); ?>
             <?php endif; ?>
+</div><!-- /.nav-collapse -->
+
+          </nav><!-- /.navigation -->
+        </div><!-- /.nav-collapse collapse -->
+      <?php endif; ?>
 
    <div class="auth-share-simple-search-container container">
 
@@ -58,12 +63,11 @@
        <div id="auth-control-container" class="modal-control-container container">
 
         <?php if (!empty($page['auth'])): ?>
-   
-	  <div class="auth-icon"><span class="icon-large icon-user"></span></div>
-	  <div class="auth-link"><?php print $auth_anchor; ?></div>
+
+	  <!-- <div class="auth-icon"><img src="/sites/all/themes/bootstrap_dss_islandora_dev/files/UserIcon.png" /></div> -->
+	  <?php print $auth_anchor; ?>
         <?php else: ?>
 
-          <!-- By default $user_picture is <span class="icon-large icon-user"></span> -->
           <div class="auth-icon"><?php print $user_picture; ?></div>
           <div class="auth-link"><?php print $logout_anchor; ?></div>
         <?php endif; ?>
@@ -74,20 +78,24 @@
 
        <div id="share-control-container" class="modal-control-container container">
 
-         <div class="share-icon"><i class="icon-large icon-share"></i></div>
+         <!-- <div class="share-icon"><img src="/sites/all/themes/bootstrap_dss_islandora_dev/files/ShareIcon.png" /></div> -->
          <?php print $share_anchor; ?>
        </div><!-- /#share-control-container -->
      </div><!-- /.share-container -->
 
   </div><!-- /.auth-share-container -->
-  </div>
+  </div><!-- /.auth-share-simple-search-container -->
 
+<div class="navbar-collapse-toggle">
+<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</a>
 </div>
 
-          </nav>
-        </div>
-      <?php endif; ?>
-    </div>
+  </div>
   </div>
 
 </header>
@@ -99,9 +107,9 @@
 
    <!-- Indicators -->
    <ol class="carousel-indicators">
-   <li data-target="#carousel-featured-collection" data-slide-to="0" class="active"></li>
-   <li data-target="#carousel-featured-collection" data-slide-to="1"></li>
-   <li data-target="#carousel-featured-collection" data-slide-to="2"></li>
+     <li data-target="#carousel-featured-collection" data-slide-to="0" class="active"></li>
+     <li data-target="#carousel-featured-collection" data-slide-to="1"></li>
+     <li data-target="#carousel-featured-collection" data-slide-to="2"></li>
    </ol>
 
   <!-- Wrapper for slides -->
@@ -117,24 +125,24 @@
       <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921">
    <div class="carousel-caption">
    <h2>East Asia Image Collections</h2>
-   <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+     <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
    </div>
    </div>
    <div class="item">
-      <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921">
+     <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921">
    <div class="carousel-caption">
-   <h2>East Asia Image Collections</h2>
-   <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+     <h2>East Asia Image Collections</h2>
+     <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
    </div>
    </div>
    </div>
 
    <!-- Controls -->
    <a class="left carousel-control" href="#carousel-featured-collection" data-slide="prev">
-   <span class="glyphicon glyphicon-chevron-left"></span>
+     <span class="glyphicon glyphicon-chevron-left"></span>
    </a>
    <a class="right carousel-control" href="#carousel-featured-collection" data-slide="next">
-   <span class="glyphicon glyphicon-chevron-right"></span>
+     <span class="glyphicon glyphicon-chevron-right"></span>
    </a>
    </div>
 
@@ -152,9 +160,9 @@
       <aside class="span3" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
-    <?php endif; ?>  
+    <?php endif; ?>
 
-    <section class="<?php print _bootstrap_content_span($columns); ?>">  
+    <section class="<?php print _bootstrap_content_span($columns); ?>">
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted hero-unit"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
@@ -234,4 +242,3 @@
 <footer class="footer container">
   <?php print render($page['footer']); ?>
 </footer>
-

@@ -19,9 +19,10 @@
         <div class="modal-body">
 
           <?php print render($content); ?>
+	  <button id="share-modal-help" class="btn btn-default" data-content="Share help message." data-placement="bottom" data-toggle="popover" data-container="#share-modal" type="button"><i class="icon-question-sign" title="Click for more information"></i></button>
         </div>
 
-	<button id="share-modal-help" title="trace" class="btn btn-default" data-content="Share help message." data-placement="bottom" data-toggle="popover" data-container="body" type="button" title="Test"><i class="icon-question-sign" title="Click for more information"></i></button>
+
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->

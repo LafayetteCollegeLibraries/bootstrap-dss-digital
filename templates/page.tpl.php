@@ -2,15 +2,13 @@
 
   <div class="navbar-header">
 
-   <!-- <h2><?php print empty($site_name) ? 'Digital Collections at Lafayette College' : $site_name ?></h2> -->
-
    <!-- Refactor into hook_preprocess_page -->
    <h2><?php print l('Skillman Library', 'http://library.lafayette.edu/'); ?> at <?php print l('Lafayette College', 'http://www.lafayette.edu/'); ?></h2>
-   
+
    <?php if(!empty($title)): ?>
-    <h1><?php print $title; ?></h1>
+     <h1><?php print l($title, $front_page); ?></h1>
    <?php endif; ?>
-  </div>
+  </div><!-- /.navbar-header -->
 
   <div class="navbar-inner">
 
@@ -22,7 +20,7 @@
       </a>
     </div>
 
-    <div class="container">
+    <div class="container navbar-inner-container">
 
       <?php if (!empty($site_name)): ?>
         <h1 id="site-name">
@@ -31,7 +29,8 @@
       <?php endif; ?>
 
       <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
-        <div class="nav-collapse collapse">
+
+	<div class="nav-collapse collapse">
           <nav role="navigation">
             <?php if (!empty($primary_nav)): ?>
               <?php print render($primary_nav); ?>
@@ -58,12 +57,10 @@
        <div id="auth-control-container" class="modal-control-container container">
 
         <?php if (!empty($page['auth'])): ?>
-   
-	  <div class="auth-icon"><span class="icon-large icon-user"></span></div>
-	  <div class="auth-link"><?php print $auth_anchor; ?></div>
+
+	  <?php print $auth_anchor; ?>
         <?php else: ?>
 
-          <!-- By default $user_picture is <span class="icon-large icon-user"></span> -->
           <div class="auth-icon"><?php print $user_picture; ?></div>
           <div class="auth-link"><?php print $logout_anchor; ?></div>
         <?php endif; ?>
@@ -74,13 +71,21 @@
 
        <div id="share-control-container" class="modal-control-container container">
 
-         <div class="share-icon"><i class="icon-large icon-share"></i></div>
+         <!-- <div class="share-icon"><img src="/sites/all/themes/bootstrap_dss_islandora_dev/files/ShareIcon.png" /></div> -->
          <?php print $share_anchor; ?>
        </div><!-- /#share-control-container -->
      </div><!-- /.share-container -->
 
   </div><!-- /.auth-share-container -->
-  </div>
+  </div><!-- /.auth-share-simple-search-container -->
+
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+  </button>
 
 </div>
 
@@ -108,9 +113,9 @@
       <aside class="span3" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
-    <?php endif; ?>  
+    <?php endif; ?>
 
-    <section class="<?php print _bootstrap_content_span($columns); ?>">  
+    <section class="<?php print _bootstrap_content_span($columns); ?>">
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted hero-unit"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
@@ -190,4 +195,3 @@
 <footer class="footer container">
   <?php print render($page['footer']); ?>
 </footer>
-
