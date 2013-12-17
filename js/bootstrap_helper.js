@@ -10,10 +10,51 @@
     // Please see https://drupal.org/node/304258
     Drupal.theme.prototype.bootstrapDssLdr = function() {
 
+	//$('.collapse').collapse('toggle');
+	// For navbar toggle
+	//$('.collapse').on('show', function() {
+	$('.navbar-collapse-toggle a.btn').click(function() {
+
+		//$('.navbar-collapse-toggle').appendTo($('.navbar-inner-container'));
+
+		// Refactor
+		//if( $('.navbar-collapse').hasClass('in')) {
+		if($('.navbar-collapse-toggle + .navbar-inner-container').length > 0) {
+
+		    $('.navbar-inner-container').insertBefore($('.navbar-collapse-toggle'));
+		    $('.navbar-inner-container').removeClass('opened');
+		} else {
+
+		    $('.navbar-inner-container').insertAfter($('.navbar-collapse-toggle'));
+		    $('.navbar-inner-container').addClass('opened');
+		}
+	    });
+
+	/*
+	.on('hide', function() {
+
+		//$('.navbar-collapse-toggle').prependTo($('.navbar-inner-container'));
+		$('.navbar-inner-container').prependTo($('.navbar-collapse-toggle'));
+	    });
+	*/
+	
 	// Work-around: The collapse widget appears to be broken
 	$('.navbar-toggle').click(function() {
 
+		// For navbar toggle
+		$('.in').on('show.bs.collapse', function() {
+
+			//$('.navbar-collapse-toggle').appendTo($('.navbar-inner-container'));
+			$('.navbar-inner-container').appendTo($('.navbar-collapse-toggle'));
+		    }).on('hide.bs.collapse', function() {
+
+			    //$('.navbar-collapse-toggle').prependTo($('.navbar-inner-container'));
+			    $('.navbar-inner-container').prependTo($('.navbar-collapse-toggle'));
+			});
+
 		$('.collapse').collapse('toggle');
+
+
 	    });
 
 	// For the popovers

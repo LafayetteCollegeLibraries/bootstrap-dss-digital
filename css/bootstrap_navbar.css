@@ -1,9 +1,20 @@
+/**
+ * @file
+ * Styling rules specific to the navbar implementation (to be refactored for the base theme)
+ *
+ * @author griffinj@lafayette.edu goodnowt@lafayette.edu
+ *
+ */
 
 .nav-collapse.in .nav li {
 
     width: 100%;
-    border: left;
-    
+    border-left: 0px;
+}
+
+.navbar-inner-container.opened {
+
+    height: auto;
 }
 
 .auth-share-simple-search-container {
