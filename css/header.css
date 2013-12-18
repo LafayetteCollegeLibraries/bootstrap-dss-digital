@@ -26,10 +26,7 @@ div.modal-backdrop.fade.in {
     z-index: -10000;
 }
 
-.region-simple-search {
 
-    width: 248px;
-}
 
 
 
@@ -48,16 +45,7 @@ div.modal-container.container {
     float: left;
 }
 
-.modal-container.container,
-.modal-control-container.container {
 
-    /*
-    width: 48px;
-    */
-
-    width: 64px;
-    text-align:center;
-}
 
 .dss-logo {
 
@@ -418,36 +406,7 @@ div.auth-icon, div.share-icon {
 
 
 
-/* set color of hyperlinks in banner and navbar */
 
-html.js body.html header#navbar.navbar div.navbar-header h2 a {
-
-	color:#EEEEEE;
-}
-html.js body.html header#navbar.navbar div.navbar-header h1 a{
-
-	color:#EEEEEE;
-}
-
-/* html.js body.html header#navbar.navbar div.navbar-inner div.container div nav div.auth-share-simple-search-container div.auth-share-container div.auth-container div#auth-control-container.modal-control-container a{ */
-
-#auth-control-container.modal-control-container a div.auth-icon span {
-
-	color:#DDDDDD;
-}
-
-/* html.js body.html header#navbar.navbar div.navbar-inner div.container div nav div.auth-share-simple-search-container div.auth-share-container div.share-container div#share-control-container.modal-control-container a{ */
-#share-control-container.modal-control-container a div.share-icon span {
-
-	color:#DDDDDD;
-}
-
-/* html.js body.html header#navbar.navbar div.navbar-inner div.container div nav div.auth-share-simple-search-container div.region section#block-islandora-solr-simple.block form#islandora-solr-simple-search-form div a{ */
-
-#islandora-solr-simple-search-form div a {
-
-	color:#DDDDDD;
-}
 
 /* set height, background size, and font color of banner */
 

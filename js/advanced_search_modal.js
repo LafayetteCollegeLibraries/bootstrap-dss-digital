@@ -611,6 +611,12 @@
           .removeClass('in')
           .attr('aria-hidden', true);
 
+	  // Hide any nested popover widgets
+	  this.$element.find('[data-toggle="popover"]').each(function(i,e) {
+
+		  $(e).popover('hide');
+	      });
+
 	  //$.support.transition && this.$element.hasClass('fade') ? this.hideWithTransition() : this.hideModal();
 	  //this.hideWithTransition();
 	  this.hideModal();

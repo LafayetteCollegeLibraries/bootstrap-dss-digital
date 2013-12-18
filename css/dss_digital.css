@@ -2,4 +2,78 @@
  *
  */
    
-   
+/* set color for background of all pages */
+
+body{
+	
+	background-color:#FFFFFF;
+}
+
+/* style breadcrumbs, contact, and copyright */
+
+.breadcrumb {
+
+	background-color: #F5F5F5;
+	border: none;
+}
+
+/* set color of hyperlinks in breadcrumbs, contact, and copyright */
+
+.breadcrumb a {
+
+	color:#1A98DB;
+}
+
+/* style contact link border */
+
+html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container div#page-site-links-container div#contact-container.breadcrumb{
+	
+	border-top-right-radius:0px;
+	border-bottom-right-radius:0px; 
+}
+
+/* style copyright link broder */
+
+html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container div#page-site-links-container div#copyright-container.breadcrumb{
+	
+	border-top-left-radius:0px;
+	border-bottom-left-radius:0px;
+}
+
+/* style footer */
+
+#block-menu-menu-footer-menu {
+	
+	background-color:#F5F5F5;
+	border:none;
+}
+
+/* set color of footer hyperlinks */
+
+#block-menu-menu-footer-menu a {
+	
+	color:#1A98DB;
+}
+
+/* style blog RSS and contact blocks */
+
+.main-container section.block-aggregator, .main-container section.block-nodeblock {
+	
+	background-color:#F5F5F5;
+	width:47%;
+	border-radius:4px;
+}
+
+/* placement of blog RSS block */
+
+html.js body.html div.main-container div.row-fluid section.span12 section#block-aggregator-feed-2.block {
+	
+	float: left;
+}
+
+/* placement of contact block */
+
+html.js body.html div.main-container div.row-fluid section.span12 section#block-nodeblock-7.block{
+	
+	float:right;
+}

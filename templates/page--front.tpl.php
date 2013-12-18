@@ -53,39 +53,23 @@
    <!-- <div class="auth-share-simple-search-container container"> -->
    <div class="auth-share-simple-search-container">
 
-   <?php if (!empty($page['simple_search'])): ?>
+     <?php if (!empty($page['simple_search'])): ?>
 
-     <?php print render($page['simple_search']); ?>
-   <?php endif; ?>
+       <?php print render($page['simple_search']); ?>
+     <?php endif; ?>
 
-   <div class="auth-share-container container">
+     <div class="auth-share-container container">
 
-     <div class="auth-container modal-container container">
-       <div id="auth-control-container" class="modal-control-container container">
+       <?php print $auth_container; ?>
+       <?php print $share_container; ?>
 
-        <?php if (!empty($page['auth'])): ?>
+       <?php if (isset($simple_share_mobile_container)): ?>
 
-	  <!-- <div class="auth-icon"><img src="/sites/all/themes/bootstrap_dss_islandora_dev/files/UserIcon.png" /></div> -->
-	  <?php print $auth_anchor; ?>
-        <?php else: ?>
+         <?php print $simple_share_mobile_container; ?>
+       <?php endif; ?>
 
-          <div class="auth-icon"><?php print $user_picture; ?></div>
-          <div class="auth-link"><?php print $logout_anchor; ?></div>
-        <?php endif; ?>
-       </div><!-- /#auth-control-container -->
-     </div><!-- /.auth-container -->
-
-     <div class="share-container modal-container container">
-
-       <div id="share-control-container" class="modal-control-container container">
-
-         <!-- <div class="share-icon"><img src="/sites/all/themes/bootstrap_dss_islandora_dev/files/ShareIcon.png" /></div> -->
-         <?php print $share_anchor; ?>
-       </div><!-- /#share-control-container -->
-     </div><!-- /.share-container -->
-
-  </div><!-- /.auth-share-container -->
-  </div><!-- /.auth-share-simple-search-container -->
+     </div><!-- /.auth-share-container -->
+   </div><!-- /.auth-share-simple-search-container -->
 
 <div class="navbar-collapse-toggle">
 <!-- .btn-navbar is used as the toggle for collapsed navbar content -->

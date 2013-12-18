@@ -11,6 +11,32 @@
  *
  */
 
+
+
+.affix {
+
+    position: fixed;
+    top: 0px;
+    width: 97.54%;
+    z-index: 10000;
+}
+
+.affix-top {
+
+    /*
+    position: fixed;
+    */
+    /*
+    top: 22%;
+    */
+}
+
+.affix-bottom {
+
+    position: absolute;
+    top: 0px;
+}
+
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) {
@@ -45,6 +71,17 @@ and (max-device-width : 1024px) {
     }
 }
 
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+    div.auth-share-simple-search-container {
+
+	width: 54%;
+	/* border: 1px solid white; */
+    }
+}
+
 
 .navbar-static-width-min {
 
@@ -61,12 +98,17 @@ and (max-device-width : 1024px) {
     width: 1340px;
 }
 
+/**
+ * The DSS logo
+ */
+
 .navbar .logo {
 
     margin-top: 0.7%;
     margin-left: 5%;
     margin-right: 1%;
 }
+
 
 header#navbar {
 
@@ -133,6 +175,11 @@ div.navbar-header h2 {
     width: 372px;
 }
 
+.block-islandora-solr {
+
+    width: 240px;
+}
+
 .navbar-inner-container {
 
     clear: none;
@@ -148,8 +195,6 @@ div.navbar-header h2 {
     /* width: 64%; */
 }
 
-
-
 .auth-share-simple-search-container.collapsed {
 
     width: 62%;
@@ -163,6 +208,26 @@ div.navbar-header h2 {
     /* width: 34%; */
 
     width: 33%;
+}
+
+.modal-container.container,
+.modal-control-container.container {
+
+    /*
+    width: 48px;
+    */
+
+    width: 64px;
+    text-align:center;
+}
+
+/**
+ * Refactor
+ */
+
+div.auth-share-container.container {
+
+    width: 144px !important;
 }
 
 div.auth-share-container.container {
@@ -186,8 +251,9 @@ div.auth-share-container.container {
     float: left;
 }
 
-div.auth-icon,
-div.share-icon {
+.auth-icon,
+.share-icon,
+.simple-search-icon {
 
     /* border: 2px solid; */
     height: 40px;
@@ -252,6 +318,23 @@ html.js body.html header#navbar.navbar div.navbar-inner div.logo-container a img
 #islandora-solr-simple-search-form div a {
 
 	margin-left:49px;
+}
+
+/* set color of hyperlinks in banner and navbar */
+
+#navbar.navbar div.navbar-header a {
+
+	color:#EEEEEE;
+}
+
+.modal-control-container a div span {
+
+	color:#DDDDDD;
+}
+
+#islandora-solr-simple-search-form div a {
+
+	color:#DDDDDD;
 }
 
 /**

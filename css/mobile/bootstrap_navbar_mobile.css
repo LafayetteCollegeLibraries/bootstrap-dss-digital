@@ -1,0 +1,92 @@
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+
+    div.navbar-header h2 {
+	
+	display: none;
+    }
+
+    div.navbar-header h1 a {
+
+	font-size: x-large;
+    }
+
+    .navbar .logo {
+
+	margin-left: inherit;
+    }
+
+
+/**
+ * Refactor: disable the simple search block for smartphones
+ */
+
+
+    .region-simple-search {
+
+	display: none;
+    }
+
+
+/**
+ * Refactor: remove the navbar padding for smartphones
+ */
+
+    .navbar-inner {
+
+	padding-left: 0px;
+	padding-right: 0px;
+    }
+
+    .modal-container.container,
+    .modal-control-container.container {
+
+	margin: 0 2px;
+	width: auto;
+    }
+
+    .modal-control-container div span {
+
+	font-size: 0.88em;
+    }
+
+    .logo-container a img {
+
+	height: 50px;
+    }
+
+/**
+ * For dev
+ *
+ */
+
+    div.navbar-collapse-toggle div span.btn-navbar {
+
+	display: none !important;
+    }
+
+    div.simple-search-icon img {
+
+	height: 32px;
+    }
+
+    body {
+
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    body > * {
+
+        padding-left: 20px;
+	padding-right: 20px;
+    }
+
+    header {
+
+	padding-left: inherit;
+	padding-right: inherit;
+    }
+}

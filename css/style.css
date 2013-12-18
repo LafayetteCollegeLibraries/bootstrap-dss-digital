@@ -179,29 +179,7 @@ div.modal-container.container {
     margin-left: 20%;
 }
 
-.affix {
 
-    position: fixed;
-    top: 0px;
-    width: 97.54%;
-    z-index: 10000;
-}
-
-.affix-top {
-
-    /*
-    position: fixed;
-    */
-    /*
-    top: 22%;
-    */
-}
-
-.affix-bottom {
-
-    position: absolute;
-    top: 0px;
-}
 
 #block-menu-menu-footer-menu {
 

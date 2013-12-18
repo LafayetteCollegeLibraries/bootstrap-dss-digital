@@ -9,6 +9,17 @@
     cursor: pointer;
 }
 
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+    div#advanced-search-modal.shown {
+	
+	left: inherit;
+	margin: auto;
+    }
+}
+
 div#advanced-search-modal.shown {
 
     top: 152px;
@@ -94,9 +105,25 @@ div#contact.shown div.modal-dialog div.modal-content div.modal-body section#bloc
     max-height: none;
 }
 
+/**
+ * Bootstrap Popover widgets
+ *
+ */
+
 .popover.bottom .arrow {
 
     left: 86%;
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+    .popover.bottom .arrow {
+
+	left: 50%;
+	z-index: 20000;
+    }
 }
 
 .close {

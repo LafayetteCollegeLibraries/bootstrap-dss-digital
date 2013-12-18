@@ -116,13 +116,13 @@
 
 	if($('.navbar-inner').length > 0) {
 
-	$('.navbar-inner').affix({
+	    $('.navbar-inner').affix({
 		
-		offset: {
+		    offset: {
 		    
-		    top: $('.navbar-inner').offset().top,
-		}
-	    });
+			top: $('.navbar-inner').offset().top,
+			    }
+		});
 	}
 
 	//$('.dropdown-submenu').dropdown('toggle').click(function(e) {

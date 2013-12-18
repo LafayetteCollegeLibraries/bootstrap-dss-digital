@@ -62,6 +62,27 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 							      'fragment' => ' ',
 							      'external' => TRUE));
 
+  $browser = browscap_get_browser();
+  $is_smartphone_browser = $browser['ismobiledevice'] && preg_match('/iPhone|(?:Android.*?Mobile)|(?:Windows Phone)/', $browser['useragent']);
+
+  dpm($browser);
+
+  // Different images must be passed based upon the browser type
+
+  // Shouldn't be parsing the string itself; refactor
+  if($is_smartphone_browser) {
+
+    $variables['dss_logo_image'] = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/dss_logo_mobile.png',
+						     'alt' => t('digital scholarship services logo'),
+						     'attributes' => array()));
+  } else {
+
+    // Work-around for the logo image
+    $variables['dss_logo_image'] = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/dss_logo.png',
+						     'alt' => t('digital scholarship services logo'),
+						     'attributes' => array()));
+  }
+
   // The "Log In" link
   //$variables['auth_anchor'] = l(t('Log In'), '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
   /*
@@ -116,10 +137,56 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     $variables['breadcrumb'] = '<ul class="breadcrumb"><li>' . l(t('Home'), $variables['front_page']) . '</li></ul>';
   }
 
-  // Work-around for the logo image
-  $variables['dss_logo_image'] = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/dss_logo.png',
-						   'alt' => t('digital scholarship services logo'),
-						   'attributes' => array()));
+  // A search button must be passed if this is being viewed with a mobile browser
+  if($is_smartphone_browser) {
+
+    $simple_search_mobile = '<a><div class="simple-search-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/simple_search_mobile_icon.png" /><span>Search</span></div></a>';
+    unset($variables['page']['simple_search']);
+    $variables['simple_share_mobile_container'] = '<div class="modal-container container"><div class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
+  }
+  
+  // Refactor
+  $auth_container = '
+     <div class="auth-container modal-container container">
+       <div id="auth-control-container" class="modal-control-container container">';
+
+  /*
+    <?php if (!empty($page['auth'])): ?>
+
+    <!-- <div class="auth-icon"><img src="/sites/all/themes/bootstrap_dss_islandora_dev/files/UserIcon.png" /></div> -->
+    <?php print $auth_anchor; ?>
+    <?php else: ?>
+    
+    <div class="auth-icon"><?php print $user_picture; ?></div>
+    <div class="auth-link"><?php print $logout_anchor; ?></div>
+    <?php endif; ?>
+   */
+
+  if(!empty($variables['page']['auth'])) {
+
+    $auth_container .= $variables['auth_anchor'];
+  } else {
+    
+    $auth_container .= '
+      <div class="auth-icon">' . $variables['user_picture'] . '</div>
+      <div class="auth-link">' . $variables['logout_anchor'] . '</div>';
+  }
+
+  $auth_container .= '
+       </div><!-- /#auth-control-container -->
+     </div><!-- /.auth-container -->';
+
+  $variables['auth_container'] = $auth_container;
+
+  $share_container = '
+     <div class="share-container modal-container container">
+       <div id="share-control-container" class="modal-control-container container">
+
+         ' . $variables['share_anchor'] . '
+       </div><!-- /#share-control-container -->
+     </div><!-- /.share-container -->';
+
+  $variables['share_container'] = $share_container;
 
   // Carousel
   $variables['carousel'] = '
@@ -183,12 +250,8 @@ function bootstrap_dss_digital_preprocess_hybridauth_widget(&$vars) {
   $i = 0;
   foreach (hybridauth_get_enabled_providers() as $provider_id => $provider_name) {
 
-    //$vars['providers'][$i] .= preg_replace('/(<\/span>)/', "</span><span>&nbsp;$provider_name</span>", $vars['providers'][$i]);
-    //if(preg_match('/<span class="sharethis-anchor-wrapper"><\/span>/', $vars['providers'][$i])) {
-
-    $vars['providers'][$i] = preg_replace('/(<\/span>)/', "</span><span>&nbsp;$provider_name</span>", $vars['providers'][$i]);
+    //$vars['providers'][$i] = preg_replace('/(<\/span>)/', "</span><span>&nbsp;$provider_name</span>", $vars['providers'][$i]);
     $i++;
-      //}
   }
 }
 
