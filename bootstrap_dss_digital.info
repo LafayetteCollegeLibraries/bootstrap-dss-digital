@@ -40,6 +40,7 @@ stylesheets[all][] = css/style.css
 stylesheets[all][] = css/header.css
 stylesheets[all][] = css/bootstrap_navbar.css
 stylesheets[all][] = css/mobile/bootstrap_navbar_mobile.css
+stylesheets[all][] = css/mobile/modal_mobile.css
 
 stylesheets[all][] = css/lafayette_lib_dss_page.css
 

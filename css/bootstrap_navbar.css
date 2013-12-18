@@ -37,52 +37,6 @@
     top: 0px;
 }
 
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-
-    div.navbar-collapse-toggle {
-
-	/*
-	border: 1px solid white;
-	float: left;
-	*/
-    }
-}
-
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-
-    div.nav-collapse nav ul.menu {
-
-	width: 100%;
-    }
-}
-
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-
-    div.auth-share-simple-search-container {
-
-	width: 54%;
-	/* border: 1px solid white; */
-    }
-}
-
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-
-    div.auth-share-simple-search-container {
-
-	width: 54%;
-	/* border: 1px solid white; */
-    }
-}
-
-
 .navbar-static-width-min {
 
     /* width: 732px; */
@@ -177,7 +131,7 @@ div.navbar-header h2 {
 
 .block-islandora-solr {
 
-    width: 240px;
+    width: 244px;
 }
 
 .navbar-inner-container {

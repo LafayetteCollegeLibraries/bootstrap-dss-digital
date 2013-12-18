@@ -70,7 +70,8 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
   // Different images must be passed based upon the browser type
 
   // Shouldn't be parsing the string itself; refactor
-  if($is_smartphone_browser) {
+  //if($is_smartphone_browser) {
+  if(TRUE) {
 
     $variables['dss_logo_image'] = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/dss_logo_mobile.png',
 						     'alt' => t('digital scholarship services logo'),
@@ -138,11 +139,13 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
   }
 
   // A search button must be passed if this is being viewed with a mobile browser
-  if($is_smartphone_browser) {
+  //if($is_smartphone_browser) {
+  // Dev
+  if(TRUE) {
 
-    $simple_search_mobile = '<a><div class="simple-search-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/simple_search_mobile_icon.png" /><span>Search</span></div></a>';
+    $simple_search_mobile = '<a><div class="simple-search-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/simple_search_mobile_icon.png" /><span>Search</span></div></a>' . render($variables['page']['simple_search']);
     unset($variables['page']['simple_search']);
-    $variables['simple_share_mobile_container'] = '<div class="modal-container container"><div class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
+    $variables['simple_share_mobile_container'] = '<div class="modal-container container"><div id="simple-search-control-container" class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
   }
   
   // Refactor

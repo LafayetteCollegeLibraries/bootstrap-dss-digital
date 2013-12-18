@@ -52,8 +52,7 @@
 	    $('.nav-collapse .nav').hide();
 	    $('.nav-collapse .nav li').addClass('collapsed');
 	}
-	
-	
+
 	// Work-around: The collapse widget appears to be broken
 	$('.navbar-toggle').click(function() {
 
@@ -72,48 +71,17 @@
 
 	    });
 
-	// For the popovers
+	/**
+	 * Popover widgets
+	 *
+	 */
 	$('#share-modal-help').popover();
 	$('#auth-modal-help').popover();
 
-	// For the header
-	//$('#navbar').affix({
-	/*
-	$('.navbar-header').affix({
-
-		offset: {
-
-		    top: 30,
-			bottom: 5
-
-		}
-	    });
-	*/
-
-	/*
-	$('#navbar-header').on('activate.bs.scrollspy', function () {
-
-		console.log('trace');
-	    });
-	*/
-
-	/*
-	$('.navbar-inner').affix({
-		
-		offset: {
-
-		    top: $('.navbar-inner').offset().top,
-		    
-			/*
-		    bottom: function() {
-
-			return $('.navbar-inner').offset().top;
-		    }
-			* /
-		}
-	    });
-	*/
-
+	/**
+	 * Affixed navbar
+	 *
+	 */
 	if($('.navbar-inner').length > 0) {
 
 	    $('.navbar-inner').affix({
@@ -125,36 +93,10 @@
 		});
 	}
 
-	//$('.dropdown-submenu').dropdown('toggle').click(function(e) {
-	/*
-	$('.dropdown-menu li .dropdown-menu').dropdown('toggle').click(function(e) {
-
-		e.preventDefault();
-		$(this).dropdown();
-	    });
-	*/
-
-	/*
-	$('.dropdown-menu li .dropdown-menu').each(function(i, e) {
-
-		console.log( $(e));
-		$(e).addClass('dropdown-submenu');
-
-		$(e).dropdown('toggle').parent().click(function(e) {
-
-			e.preventDefault();
-			$(this).dropdown();
-		    });
-	    });
-	*/
-
-	//$('.dropdown-submenu').dropdown('toggle');
-	/*
-	$('.dropdown-submenu').on('show.bs.dropdown', function(e) {
-
-		console.log('trace');
-	    });
-	*/
+	/**
+	 * Work-arounds handling feature requests for the responsive navbar
+	 *
+	 */
 
 	// Refactor
 	/* var maxWidth = 1322; */
@@ -230,6 +172,40 @@
 		    }
 		}
 	    });
+
+	/**
+	 * Handling for the simple search widget for smartphone browsing
+	 *
+	 */
+	//if( /Android.*(?:Mobile)|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion)) {
+	if( /Android.*(?:Mobile)|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion) || $(window).width() <= 320 ) {
+
+	    $('#simple-search-control-container a').click(function(e) {
+
+		    if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu #islandora-solr-simple-search-form').length ) {
+
+			$('#simple-search-item').remove();
+			$('#navbar .navbar-inner .navbar-collapse-toggle div').click();
+			$('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav .menu li').show();
+		    } else {
+
+			$simpleSearchMenuItem = $('<li id="simple-search-item" class="first leaf active btn"></li>').append($('#islandora-solr-simple-search-form').clone());
+
+			$('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu').children('li').hide();
+			$('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu').prepend($simpleSearchMenuItem.show());
+
+			$('#navbar .navbar-inner .navbar-collapse-toggle div').click();
+		    }
+		});
+
+	    $('.nav-collapse').click(function(e) {
+
+		    if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu #islandora-solr-simple-search-form').length ) {
+
+			$('#simple-search-control-container a').click();
+		    }
+		});
+	}
 	
     }
 

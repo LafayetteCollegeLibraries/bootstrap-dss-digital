@@ -290,6 +290,10 @@
       this.widthOffset = parseInt(this.options.widthOffset);
       this.heightOffset = parseInt(this.options.heightOffset);
       this.anchorAlign = this.options.anchorAlign;
+
+      // Should not be parsing this string for the user agent
+      // Refactor
+      this.isSmartPhoneAgent = /Android.*?(?:Mobile)|iPhone|Windows Mobile/i.test(navigator.userAgent) || ($(window).width() == 320 && $(window).height == 480) || ($(window).width() == 480 && $(window).height == 320);
   };
 
   /**
@@ -415,7 +419,14 @@
 	      */
 
 	      that.$element.css('top', Math.floor( ($target.offset().top - $target[0].offsetWidth / 4) + that.heightOffset));
-	      that.$element.css('left', Math.floor( ($target.offset().left - that.shownWidth + $target.width() + $target[0].offsetWidth / 4) + that.widthOffset));
+
+	      if(that.isSmartPhoneAgent) {
+
+		  that.$element.css('left', 'auto');
+	      } else {
+
+		  that.$element.css('left', Math.floor( ($target.offset().left - that.shownWidth + $target.width() + $target[0].offsetWidth / 4) + that.widthOffset));
+	      }
 	  } else {
 
 	      // Ensure that the widget is always appended directly underneath the navbar

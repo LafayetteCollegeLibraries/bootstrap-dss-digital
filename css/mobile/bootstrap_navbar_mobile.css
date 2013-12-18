@@ -1,7 +1,81 @@
 
+/**
+ * Tablet-specific styling
+ *
+ */
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+    div.navbar-collapse-toggle {
+
+	/*
+	border: 1px solid white;
+	float: left;
+	*/
+    }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+    div.nav-collapse nav ul.menu {
+
+	width: 100%;
+    }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+    div.auth-share-simple-search-container {
+
+	width: 54%;
+	/* border: 1px solid white; */
+    }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+    div.auth-share-simple-search-container {
+
+	width: 54%;
+        /* border: 1px solid white; */
+    }
+}
+
+/**
+ * Smartphone-specific styling
+ *
+ */
+
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+
+    #simple-search-item {
+
+	width: 100%;
+	border-left: 0px;
+    }
+
+    #simple-search-item #islandora-solr-simple-search-form {
+
+	/* width: 184%; */
+	width: 71.5%;
+	margin-left: auto;
+	margin-right: auto;
+    }
+
+    #simple-search-item #islandora-solr-simple-search-form div a {
+
+	margin-left: auto;
+    }
 
     div.navbar-header h2 {
 	
@@ -19,9 +93,9 @@ and (max-device-width : 480px) {
     }
 
 
-/**
- * Refactor: disable the simple search block for smartphones
- */
+    /**
+     * Refactor: disable the simple search block for smartphones
+     */
 
 
     .region-simple-search {
@@ -30,9 +104,9 @@ and (max-device-width : 480px) {
     }
 
 
-/**
- * Refactor: remove the navbar padding for smartphones
- */
+    /**
+     * Refactor: remove the navbar padding for smartphones
+     */
 
     .navbar-inner {
 
@@ -57,10 +131,10 @@ and (max-device-width : 480px) {
 	height: 50px;
     }
 
-/**
- * For dev
- *
- */
+    /**
+     * For dev
+     *
+     */
 
     div.navbar-collapse-toggle div span.btn-navbar {
 
@@ -86,7 +160,7 @@ and (max-device-width : 480px) {
 
     header {
 
-	padding-left: inherit;
-	padding-right: inherit;
+	padding-left: 0px;
+	padding-right: 0px;
     }
 }
