@@ -180,13 +180,20 @@
 	//if( /Android.*(?:Mobile)|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion)) {
 	if( /Android.*(?:Mobile)|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion) || $(window).width() <= 320 ) {
 
+	    // Avoid race conditions
+	    // Decouple into a widget
+	    $(document).data('bootstrapDssDigital.mobileSearch', false);
+
 	    $('#simple-search-control-container a').click(function(e) {
 
 		    if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu #islandora-solr-simple-search-form').length ) {
+			//if( $(document).data('bootstrapDssDigital.mobileSearch') ) {
 
 			$('#simple-search-item').remove();
 			$('#navbar .navbar-inner .navbar-collapse-toggle div').click();
 			$('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav .menu li').show();
+
+			$(document).data('bootstrapDssDigital.mobileSearch', false);
 		    } else {
 
 			$simpleSearchMenuItem = $('<li id="simple-search-item" class="first leaf active btn"></li>').append($('#islandora-solr-simple-search-form').clone());
@@ -194,15 +201,27 @@
 			$('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu').children('li').hide();
 			$('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu').prepend($simpleSearchMenuItem.show());
 
-			$('#navbar .navbar-inner .navbar-collapse-toggle div').click();
+			$('#navbar .navbar-inner .navbar-collapse-toggle .btn-navbar').click();
+
+			$(document).data('bootstrapDssDigital.mobileSearch', true);
 		    }
 		});
 
-	    $('.nav-collapse').click(function(e) {
+	    $('.navbar-collapse-toggle .btn-navbar').click(function(e) {
 
-		    if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu #islandora-solr-simple-search-form').length ) {
+		    //if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu #islandora-solr-simple-search-form').length ) {
 
-			$('#simple-search-control-container a').click();
+		    // html.js body.html header#navbar.navbar div.navbar-inner div.navbar-inner-container div.nav-collapse
+		    if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse.in').length ) {
+		    //if( $(document).data('bootstrapDssDigital.mobileSearch')  ) {
+
+			$(document).data('bootstrapDssDigital.mobileSearch', false);
+
+			$('#simple-search-control-container a:visible').click();
+
+			//$('#simple-search-item').remove();
+			//$('#navbar .navbar-inner .navbar-collapse-toggle div').click();
+			//$('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav .menu li').show();
 		    }
 		});
 	}

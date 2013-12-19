@@ -146,6 +146,18 @@ and (max-device-width : 480px) {
 	height: 32px;
     }
 
+    /**
+     * Placement of blocks for smartphones
+     *
+     * Overrides for dss_digital
+     */
+
+    html.js body.html div.main-container div.row-fluid section.span12 section#block-aggregator-feed-2.block,
+    html.js body.html div.main-container div.row-fluid section.span12 section#block-nodeblock-7.block {
+	
+	float: none !important;
+    }
+
     body {
 
         padding-left: 0px;
