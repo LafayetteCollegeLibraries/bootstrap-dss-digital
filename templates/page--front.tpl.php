@@ -6,7 +6,7 @@
    <h2><?php print l('Skillman Library', 'http://library.lafayette.edu/'); ?> at <?php print l('Lafayette College', 'http://www.lafayette.edu/'); ?></h2>
 
    <?php if(!empty($title)): ?>
-     <h1><?php print l($title, $front_page); ?></h1>
+																			<h1><?php print l('Digital Scholarship Services', '', array('absolute' => TRUE)); ?></h1>
    <?php endif; ?>
   </div>
 
@@ -50,7 +50,7 @@
         </div><!-- /.nav-collapse collapse -->
       <?php endif; ?>
 
-   <!-- <div class="auth-share-simple-search-container container"> -->
+<div class="auth-share-search-navbar-container">
    <div class="auth-share-simple-search-container">
 
      <?php if (!empty($page['simple_search'])): ?>
@@ -72,20 +72,18 @@
    </div><!-- /.auth-share-simple-search-container -->
 
 <div class="navbar-collapse-toggle">
+
 <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-<div data-toggle="collapse" data-target=".nav-collapse">
-  <a class="btn btn-navbar" >
-  <span class="icon-bar"></span>
-  <span class="icon-bar"></span>
-  <span class="icon-bar"></span>
-  </a>
-  <span class="btn-navbar">Menu</span>
-</div>
-
+  <div data-toggle="collapse" data-target=".nav-collapse">
+    <span id="btn-navbar-menu-toggle" class="btn-navbar"><?php print $menu_toggle_image; ?></span>
+    <span id="btn-navbar-caption" class="btn-navbar">Menu</span>
   </div>
-  </div>
+</div><!-- /.navbar-collapse-toggle -->
 
-</header>
+</div><!-- /.auth-share-search-navbar-container -->
+</div><!-- /.navbar-inner -->
+
+</header><! --/.navbar -->
 
 <div class="main-container container">
 
@@ -94,9 +92,7 @@
   </div><!-- /.carousel-container -->
 
   <header role="banner" id="page-header">
-    <?php if (!empty($site_slogan)): ?>
-      <p class="lead"><?php print $site_slogan; ?></p>
-    <?php endif; ?>
+   <p class="lead"><?php print l($title, current_path()); ?></p>
 
     <?php print render($page['header']); ?>
   </header> <!-- /#header -->

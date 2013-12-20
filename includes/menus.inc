@@ -43,21 +43,29 @@ function bootstrap_dss_digital_menu_link__main_menu(&$variables) {
       $element['#localized_options']['attributes']['data-target'] = '#';
     }
   }
- // Issue #1896674 - On primary navigation menu, class 'active' is not set on active menu item.
- // @see http://drupal.org/node/1896674
- if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']) || $element['#localized_options']['language']->language == $language_url->language)) {
-   $element['#attributes']['class'][] = 'active';
- }
- $output = l($element['#title'], $element['#href'], $element['#localized_options']);
 
- // Ensure that buttons are only created for the top-level lists
- if(empty($element['#original_link']['depth']) ||
-    (empty($element['#below']) && $element['#original_link']['depth'] == '1') || $element['#original_link']['plid'] == '0') {
+  // Issue #1896674 - On primary navigation menu, class 'active' is not set on active menu item.
+  // @see http://drupal.org/node/1896674
+  if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']) || $element['#localized_options']['language']->language == $language_url->language)) {
 
-   $element['#attributes']['class'][] = 'btn';
- }
+    /**
+     * @author griffinj
+     * This is not desirable for the theme implementation
+     *
+     */
+    //$element['#attributes']['class'][] = 'active';
+  }
+
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+
+  // Ensure that buttons are only created for the top-level lists
+  if(empty($element['#original_link']['depth']) ||
+     (empty($element['#below']) && $element['#original_link']['depth'] == '1') || $element['#original_link']['plid'] == '0') {
+    
+    $element['#attributes']['class'][] = 'btn';
+  }
  
- return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
   }
 
 function bootstrap_dss_digital_menu_tree__menu_footer_menu(&$variables) {

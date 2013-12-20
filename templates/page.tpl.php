@@ -6,9 +6,9 @@
    <h2><?php print l('Skillman Library', 'http://library.lafayette.edu/'); ?> at <?php print l('Lafayette College', 'http://www.lafayette.edu/'); ?></h2>
 
    <?php if(!empty($title)): ?>
-     <h1><?php print l($title, $front_page); ?></h1>
+																			<h1><?php print l('Digital Scholarship Services', '', array('absolute' => TRUE)); ?></h1>
    <?php endif; ?>
-  </div><!-- /.navbar-header -->
+  </div>
 
   <div class="navbar-inner">
 
@@ -20,7 +20,8 @@
       </a>
     </div>
 
-    <div class="container navbar-inner-container">
+    <!-- <div class="container navbar-inner-container"> -->
+    <div class="navbar-inner-container">
 
       <?php if (!empty($site_name)): ?>
         <h1 id="site-name">
@@ -30,7 +31,7 @@
 
       <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
 
-	<div class="nav-collapse collapse">
+        <div class="nav-collapse collapse">
           <nav role="navigation">
             <?php if (!empty($primary_nav)): ?>
               <?php print render($primary_nav); ?>
@@ -43,66 +44,53 @@
             <?php if (!empty($page['navigation'])): ?>
               <?php print render($page['navigation']); ?>
             <?php endif; ?>
+</div><!-- /.nav-collapse -->
 
-   <div class="auth-share-simple-search-container container">
+          </nav><!-- /.navigation -->
+        </div><!-- /.nav-collapse collapse -->
+      <?php endif; ?>
 
-   <?php if (!empty($page['simple_search'])): ?>
+   <!-- <div class="auth-share-simple-search-container container"> -->
+   <div class="auth-share-simple-search-container">
 
-     <?php print render($page['simple_search']); ?>
-   <?php endif; ?>
+     <?php if (!empty($page['simple_search'])): ?>
 
-   <div class="auth-share-container container">
+       <?php print render($page['simple_search']); ?>
+     <?php endif; ?>
 
-     <div class="auth-container modal-container container">
-       <div id="auth-control-container" class="modal-control-container container">
+     <div class="auth-share-container container">
 
-        <?php if (!empty($page['auth'])): ?>
+       <?php print $auth_container; ?>
+       <?php print $share_container; ?>
 
-	  <?php print $auth_anchor; ?>
-        <?php else: ?>
+       <?php if (isset($simple_share_mobile_container)): ?>
 
-          <div class="auth-icon"><?php print $user_picture; ?></div>
-          <div class="auth-link"><?php print $logout_anchor; ?></div>
-        <?php endif; ?>
-       </div><!-- /#auth-control-container -->
-     </div><!-- /.auth-container -->
+         <?php print $simple_share_mobile_container; ?>
+       <?php endif; ?>
 
-     <div class="share-container modal-container container">
+     </div><!-- /.auth-share-container -->
+   </div><!-- /.auth-share-simple-search-container -->
 
-       <div id="share-control-container" class="modal-control-container container">
-
-         <!-- <div class="share-icon"><img src="/sites/all/themes/bootstrap_dss_islandora_dev/files/ShareIcon.png" /></div> -->
-         <?php print $share_anchor; ?>
-       </div><!-- /#share-control-container -->
-     </div><!-- /.share-container -->
-
-  </div><!-- /.auth-share-container -->
-  </div><!-- /.auth-share-simple-search-container -->
-
-  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-  </button>
-
+<div class="navbar-collapse-toggle">
+<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+<div data-toggle="collapse" data-target=".nav-collapse">
+  <span id="btn-navbar-menu-toggle" class="btn-navbar"><?php print $menu_toggle_image; ?></span>
+  <span id="btn-navbar-caption" class="btn-navbar">Menu</span>
 </div>
 
-          </nav>
-        </div>
-      <?php endif; ?>
-    </div>
+  </div>
   </div>
 
 </header>
 
 <div class="main-container container">
 
+  <div class="carousel-container">
+    <?php print $carousel; ?>
+  </div><!-- /.carousel-container -->
+
   <header role="banner" id="page-header">
-    <?php if (!empty($site_slogan)): ?>
-      <p class="lead"><?php print $site_slogan; ?></p>
-    <?php endif; ?>
+   <p class="lead"><?php print l($title, current_path()); ?></p>
 
     <?php print render($page['header']); ?>
   </header> <!-- /#header -->
@@ -120,7 +108,7 @@
         <div class="highlighted hero-unit"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
 
-<div id="breadcrumb-container">
+    <div id="breadcrumb-container">
       <?php if (!empty($breadcrumb)): ?>
 
 	<?php print $breadcrumb; ?>
@@ -131,7 +119,8 @@
       <div id="contact-container" class="breadcrumb" ><?php print $contact_anchor; ?></div>
       <div id="copyright-container" class="breadcrumb" ><?php print l('Copyright Information', 'copyright'); ?></div>
       </div>
-</div>
+    </div>
+
 
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>

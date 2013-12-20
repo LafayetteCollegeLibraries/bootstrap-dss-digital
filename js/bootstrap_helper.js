@@ -103,10 +103,13 @@
 	var maxWidth = 1340;
 
 	/* var minWidth = 692; */
-	var minWidth = 726;
+	/* var minWidth = 726; */
+	var minWidth = 1340;
 
-	var responsiveWidth = 964;
 	/* var responsiveWidth = 1340; */
+	/* var responsiveWidth = 964; */
+	var responsiveWidth = 0;
+
 	
 	if($( window ).width() <= maxWidth ) {
 
@@ -122,6 +125,7 @@
 
 		} else {
 
+		    /*
 		    if($( window ).width() <= maxWidth ) {
 
 			// Atrocious; refactor
@@ -141,14 +145,23 @@
 			
 			$('header#navbar').removeClass('navbar-static-width');
 		    }
+		    */
+		    if($( window ).width() <= maxWidth ) {
+			
+			$('.auth-share-simple-search-container').addClass('collapsed');
+			$('.nav-collapse .nav li').addClass('collapsed');
 
+		    }
+
+		    /*
 		    if( $( window ).width() < minWidth ) {
 
 			$('header#navbar').addClass('navbar-static-width-min');
 		    } else {
 			
-			$('header#navbar').removeClass('navbar-static-width-min');
+		        $('header#navbar').removeClass('navbar-static-width-min');
 		    }
+		    */
 		    
 		    if($( window ).width() <= 754 ) {
 			
@@ -190,8 +203,17 @@
 			//if( $(document).data('bootstrapDssDigital.mobileSearch') ) {
 
 			$('#simple-search-item').remove();
-			$('#navbar .navbar-inner .navbar-collapse-toggle div').click();
+			$('.nav-collapse').collapse('toggle');
+
 			$('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav .menu li').show();
+
+			if($(document).data('bootstrapDssDigital.nestedTrigger', true)) {
+
+			    $(document).data('bootstrapDssDigital.nestedTrigger', false);
+			    $('.nav-collapse').collapse('toggle');
+			}
+
+			//$('#navbar .navbar-inner .navbar-collapse-toggle .btn-navbar').click();
 
 			$(document).data('bootstrapDssDigital.mobileSearch', false);
 		    } else {
@@ -209,19 +231,17 @@
 
 	    $('.navbar-collapse-toggle .btn-navbar').click(function(e) {
 
-		    //if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu #islandora-solr-simple-search-form').length ) {
-
-		    // html.js body.html header#navbar.navbar div.navbar-inner div.navbar-inner-container div.nav-collapse
-		    if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse.in').length ) {
-		    //if( $(document).data('bootstrapDssDigital.mobileSearch')  ) {
-
+		    if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse.in').length && $('#navbar.navbar div.navbar-inner div.navbar-inner-container div.nav-collapse nav ul.menu #simple-search-item').length ) {
 			$(document).data('bootstrapDssDigital.mobileSearch', false);
+			$(document).data('bootstrapDssDigital.nestedTrigger', true);
 
 			$('#simple-search-control-container a:visible').click();
 
 			//$('#simple-search-item').remove();
 			//$('#navbar .navbar-inner .navbar-collapse-toggle div').click();
 			//$('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav .menu li').show();
+
+			$('.nav-collapse').collapse('show');
 		    }
 		});
 	}

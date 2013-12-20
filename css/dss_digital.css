@@ -77,3 +77,9 @@ html.js body.html div.main-container div.row-fluid section.span12 section#block-
 	
 	float:right;
 }
+
+/* reset margin above DSS logo in navbar */
+.navbar .logo {
+	
+	margin-top:1px;
+}

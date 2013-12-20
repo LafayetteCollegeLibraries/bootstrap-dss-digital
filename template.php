@@ -65,13 +65,11 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
   $browser = browscap_get_browser();
   $is_smartphone_browser = $browser['ismobiledevice'] && preg_match('/iPhone|(?:Android.*?Mobile)|(?:Windows Phone)/', $browser['useragent']);
 
-  dpm($browser);
-
   // Different images must be passed based upon the browser type
 
   // Shouldn't be parsing the string itself; refactor
-  //if($is_smartphone_browser) {
-  if(TRUE) {
+  if($is_smartphone_browser) {
+    //if(TRUE) {
 
     $variables['dss_logo_image'] = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/dss_logo_mobile.png',
 						     'alt' => t('digital scholarship services logo'),
@@ -132,18 +130,15 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     $variables['user_picture'] = drupal_render($user_view['user_picture']);
   }
 
-  // Ensure that "home" always exists for the breadcrumbs
-  if(empty($variables['breadcrumb'])) {
+  dpm($variables['breadcrumb']);
 
-    $variables['breadcrumb'] = '<ul class="breadcrumb"><li>' . l(t('Home'), $variables['front_page']) . '</li></ul>';
-  }
 
   // A search button must be passed if this is being viewed with a mobile browser
-  //if($is_smartphone_browser) {
+  if($is_smartphone_browser) {
   // Dev
-  if(TRUE) {
+  //if(TRUE) {
 
-    $simple_search_mobile = '<a><div class="simple-search-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/simple_search_mobile_icon.png" /><span>Search</span></div></a>' . render($variables['page']['simple_search']);
+    $simple_search_mobile = '<a><div class="simple-search-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/SearchIcon.png" /><span>Search</span></div></a>' . render($variables['page']['simple_search']);
     unset($variables['page']['simple_search']);
     $variables['simple_share_mobile_container'] = '<div class="modal-container container"><div id="simple-search-control-container" class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
   }
@@ -238,8 +233,19 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
    </a>
    </div>';
     
+  // Adding the tabs for certain nodes
+  /*
+  $eastasia_tabs = quicktabs_load('east_asia_image_collections');
+  $mdl_tabs = quicktabs_load('marquis_de_lafayette_prints_coll');
 
+  $variables['tabs'] = array('eastasia_tabs' => theme('quicktabs', (array) $eastasia_tabs),
+			     'mdl_tabs' => theme('quicktabs', (array) $mdl_tabs));
+  */
 
+  $variables['menu_toggle_image'] = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/MenuIcon.png',
+						      'alt' => t('mobile menu'),
+						      'attributes' => array()));
+  
 }
 
 /**
@@ -381,3 +387,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
   dpm($variables);
 }
 
+function bootstrap_dss_digital_breadcrumb($vars) {
+
+  dpm('trace');
+  dpm($vars);
+}
