@@ -60,8 +60,9 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 .main-container section.block-aggregator, .main-container section.block-nodeblock {
 	
 	background-color:#F5F5F5;
-	width:47%;
 	border-radius:4px;
+	width:47%;
+	margin-bottom: 10px;
 }
 
 /* placement of blog RSS block */
@@ -78,8 +79,9 @@ html.js body.html div.main-container div.row-fluid section.span12 section#block-
 	float:right;
 }
 
-/* reset margin above DSS logo in navbar */
+/* reset margins above and to left of DSS logo in navbar */
 .navbar .logo {
 	
 	margin-top:1px;
+	margin-left:0%;
 }

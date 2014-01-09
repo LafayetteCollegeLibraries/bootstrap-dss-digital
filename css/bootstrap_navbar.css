@@ -109,11 +109,15 @@ div.navbar-header h2 {
     border-left: 0px;
 }
 
-.nav-collapse.in .nav li {
-/* html.js body.html header#navbar.navbar div.navbar-inner div.navbar-inner-container div.nav-collapse nav ul.menu li.first { */
+/**
+ * Responsive menu items
+ *
+ */
 
-    /* width: 100%; */
-    /* border-left: 0px; */
+.nav-collapse.in .nav li {
+
+    width: 100%;
+    border-left: 0px;
 }
 
 .navbar-inner-container.opened {
@@ -124,9 +128,12 @@ div.navbar-header h2 {
 .auth-share-simple-search-container {
 
     /* float: right; */
-    float: left;
     /* width: 380px; */
+
+    /*
+    float: left;
     width: 372px;
+    */
 }
 
 .block-islandora-solr {
@@ -137,9 +144,12 @@ div.navbar-header h2 {
 .navbar-inner-container {
 
     clear: none;
+    overflow: visible;
+
     /* display: block; */
     /* display: inline-block; */
-    height: 0px;
+
+    /* height: 0px; */
 
     /*
     margin-left: 198px;
@@ -149,19 +159,44 @@ div.navbar-header h2 {
     /* width: 64%; */
 }
 
+.navbar-inner-container.tablet {
+
+    /* overflow: hidden; */
+}
+
+.navbar-inner-container.desktop {
+
+    overflow: visible;
+}
+
+/**
+ * Islandora Simple Search
+ *
+ */
+
+#block-islandora-solr-simple {
+
+    display: none;
+}
+
+.auth-share-search-navbar-container {
+
+    float: right;
+}
+
 .auth-share-simple-search-container.collapsed {
 
-    width: 62%;
+    /* width: 62%; */
 }
 
 /* #navbar.navbar div.navbar-inner div.container { */
 .auth-share-simple-search-container {
 
-    display: block;
+    /* display: block; */
+
     /* width: 68%; */
     /* width: 34%; */
-
-    width: 33%;
+    /* width: 33%; */
 }
 
 .modal-container.container,
@@ -181,7 +216,7 @@ div.navbar-header h2 {
 
 div.auth-share-container.container {
 
-    width: 144px !important;
+    /* width: 144px !important; */
 }
 
 div.auth-share-container.container {
@@ -200,7 +235,8 @@ div.auth-share-container.container {
     margin-top: 0px;
     */
 
-    width: 128px;
+    /* width: 128px; */
+
     margin-top: 0px;
     float: left;
 }
@@ -281,7 +317,7 @@ html.js body.html header#navbar.navbar div.navbar-inner div.logo-container a img
 	color:#EEEEEE;
 }
 
-.modal-control-container a div span {
+.modal-control-container div span {
 
 	color:#DDDDDD;
 }
@@ -311,7 +347,37 @@ div.share-icon {
     width: 32px;
 }
 
+#simple-search-control-container {
 
+    cursor: pointer;
+}
+
+.menu-toggle-container {
+
+    /* display: inline-block; */
+    /* width: inherit; */
+    float: right;
+}
+
+#menu-toggle-control-container {
+
+    display: inline-block;
+    float:left;
+}
+
+#menu-toggle-icon {
+
+    cursor: pointer;
+
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    padding: 0px 0px 0px 0px;
+    text-shadow: none;
+    margin-top:4px;
+
+    width: 52%;
+}
 
 /* adjust margin above menu buttons */
 

@@ -393,7 +393,12 @@ html.js body.html header#navbar.navbar div.navbar-inner div.container div nav di
 .navbar .nav > li.btn{
 
 	padding:0px;
-	width:124px;
+
+	/*
+	  width:124px;
+	  */
+	/* griffinj */
+	width: 98px;
 }
 
 /* style and set size of divs around login and share icons */

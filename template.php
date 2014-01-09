@@ -96,7 +96,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 											      ));
   */
 
-  $variables['auth_anchor'] = '<a data-toggle="lafayette-dss-modal" data-target="#auth-modal" data-width-offset="0px" data-height-offset="30px"><div class="auth-icon"><img src="/sites/all/themes/bootstrap_lafayette_lib_dss/files/UserIcon.png" /><span>Log In</span></div></a>';
+  $variables['auth_anchor'] = '<a data-toggle="lafayette-dss-modal" data-target="#auth-modal" data-width-offset="0px" data-height-offset="30px"><div class="auth-icon navbar-icon"><img src="/sites/all/themes/bootstrap_lafayette_lib_dss/files/UserIcon.png" /><span>Log In</span></div></a>';
 
   // The "Log Out" link
   $variables['logout_anchor'] = l(t('Log Out'), 'user/logout');
@@ -116,7 +116,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 						       ));
   */
 
-  $variables['share_anchor'] = '<a data-toggle="lafayette-dss-modal" data-target="#share-modal" data-width-offset="10px" data-height-offset="28px"><div class="share-icon"><img src="/sites/all/themes/bootstrap_lafayette_lib_dss/files/ShareIcon.png" /><span>Share</span></div></a>';
+  $variables['share_anchor'] = '<a data-toggle="lafayette-dss-modal" data-target="#share-modal" data-width-offset="10px" data-height-offset="28px"><div class="share-icon navbar-icon"><img src="/sites/all/themes/bootstrap_lafayette_lib_dss/files/ShareIcon.png" /><span>Share</span></div></a>';
 
   // Render thumbnails for authenticated users
   // By default, use a glyphicon
@@ -130,19 +130,18 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     $variables['user_picture'] = drupal_render($user_view['user_picture']);
   }
 
-  dpm($variables['breadcrumb']);
-
-
   // A search button must be passed if this is being viewed with a mobile browser
-  if($is_smartphone_browser) {
-  // Dev
-  //if(TRUE) {
 
-    $simple_search_mobile = '<a><div class="simple-search-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/SearchIcon.png" /><span>Search</span></div></a>' . render($variables['page']['simple_search']);
-    unset($variables['page']['simple_search']);
-    $variables['simple_share_mobile_container'] = '<div class="modal-container container"><div id="simple-search-control-container" class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
-  }
-  
+  $search_icon = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/SearchIcon.png',
+				   'alt' => t('search the site'),
+				   'attributes' => array()));
+
+  $simple_search_mobile = '<a data-toggle="lafayette-dss-modal" data-target="#advanced-search-modal"><div class="simple-search-icon">' . $search_icon . '<span>Search</span></div></a>' . render($variables['page']['simple_search']);
+  unset($variables['page']['simple_search']);
+  //$variables['simple_share_mobile_container'] = '<div class="modal-container container"><div id="simple-search-control-container" class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
+  $variables['search_container'] = '<div class="modal-container container"><div id="simple-search-control-container" class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
+
+
   // Refactor
   $auth_container = '
      <div class="auth-container modal-container container">
@@ -185,6 +184,25 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
      </div><!-- /.share-container -->';
 
   $variables['share_container'] = $share_container;
+
+  $menu_toggle_image = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/MenuIcon.png',
+					 'alt' => t('mobile menu'),
+					 'attributes' => array()));
+
+  $variables['menu_toggle_image'] = $menu_toggle_image;
+
+  $menu_toggle_container = '
+
+       <div id="menu-toggle-control-container" class="modal-control-container container">
+<div class="navbar-collapse-toggle">
+<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+  <div data-toggle="collapse" data-target=".nav-collapse">
+    <div id="menu-toggle-icon" class="navbar-icon btn-navbar">' . $menu_toggle_image . '<span id="btn-navbar-caption" class="">Menu</span></div>
+  </div>
+</div><!-- /.navbar-collapse-toggle -->
+</div>';
+
+  $variables['menu_toggle_container'] = $menu_toggle_container;
 
   // Carousel
   $variables['carousel'] = '
@@ -242,9 +260,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 			     'mdl_tabs' => theme('quicktabs', (array) $mdl_tabs));
   */
 
-  $variables['menu_toggle_image'] = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/MenuIcon.png',
-						      'alt' => t('mobile menu'),
-						      'attributes' => array()));
+
   
 }
 

@@ -10,32 +10,110 @@
     // Please see https://drupal.org/node/304258
     Drupal.theme.prototype.bootstrapDssLdr = function() {
 
-
-
 	$('.nav-collapse').on('show.bs.collapse', function() {
 
-		$('.nav-collapse .nav').show();
+		//$('.nav-collapse .nav').show();
 
 		//$('.navbar-inner-container').addClass('opened').insertAfter($('.navbar-collapse-toggle'));
-		$('.navbar-inner-container').addClass('opened');
-		$('.navbar-inner-container').insertAfter($('.navbar-collapse-toggle'));
+		//$('.navbar-inner-container').addClass('opened');
 
+		//$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
 
 	    }).on('hide.bs.collapse', function() {
 
 		    // Refactor, terrible hack
 		    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion) ) {
 
-			$('.nav-collapse .nav').hide();
+			//$('.nav-collapse .nav').hide();
 		    }
 
 		    //$('.navbar-inner-container').removeClass('opened').insertBefore($('.auth-share-simple-search-container'));
-		    $('.navbar-inner-container').removeClass('opened');
-		    $('.navbar-inner-container').insertBefore($('.auth-share-simple-search-container'));
+		    //$('.navbar-inner-container').removeClass('opened');
+
+		    //$('.navbar-inner-container').insertBefore($('.auth-share-simple-search-container'));
+
 
 		});
 
-	// Trigger the collapse for ...
+	/**
+	 * @author griffinj
+	 * Ensure that the navbar collapse is triggered
+	 *
+	 */
+	$('#menu-toggle-icon').click(function(e) {
+
+		//$('.nav-collapse').collapse();
+		$('.nav-collapse').collapse('toggle');
+		
+		console.log('trace');
+	    });
+
+	/**
+	 * Global handler for smartphone devices
+	 * Refactor?
+	 *
+	 */
+	var smartPhoneHandler = function($) {
+
+	    // Ensure that the menu items are displayed in a format appropriate to smartphone and tablet devices
+	    if($( window ).width() <= 480) {
+
+		/*
+		$('.navbar-inner-container').removeClass('tablet');
+		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
+		*/
+		$('.navbar-inner-container').removeClass('tablet').insertAfter($('.menu-toggle-container'));
+	    } else if($( window ).width() <= 1024) {
+
+		$('.navbar-inner-container').removeClass('desktop');
+		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
+		$('.navbar-inner-container').addClass('tablet');
+	    } else {
+
+		$('.navbar-inner-container').insertBefore($('.auth-share-simple-search-container'));
+		$('.navbar-inner-container').addClass('desktop');
+	    }
+
+	    // Adjust the DSS link in response to the size of the browser
+	    if($( window ).width() <= 754 ) {
+
+		// Refactor
+		if($('#navbar .navbar-header h1 a').text() != 'DSS') {
+
+		    $(document).data('Drupal.theme.bootstrap.dss', $('#navbar .navbar-header h1 a').text());
+		    $('#navbar .navbar-header h1 a').text('DSS');
+		}
+	    } else {
+
+		if($('#navbar .navbar-header h1 a').text() == 'DSS') {
+
+		    $('#navbar .navbar-header h1 a').text( $(document).data('Drupal.theme.bootstrap.dss'));
+		}
+	    }
+
+	    // Adjust the page title in response to the size of the browser
+	    if($( window ).width() <= 502 ) {
+
+		// Refactor
+		if($('#navbar .navbar-header h2').is(':visible')) {
+
+		    $('#navbar .navbar-header h2').hide();
+		}
+	    } else {
+
+		if(!$('#navbar .navbar-header h2').is(':visible')) {
+
+		    $('#navbar .navbar-header h2').show();
+		}
+	    }
+	}
+
+	$(window).resize(function() {
+
+		smartPhoneHandler($);
+	    });
+
+	smartPhoneHandler($);
 	
 	// Refactor, terrible hack
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion) ) {
@@ -46,16 +124,19 @@
 	    //$('div.navbar-collapse-toggle').css('float', 'right');
 	    //$('div.nav-collapse nav ul.menu').css('width', '100%');
 
+	    /*
 	    $('div.navbar-collapse-toggle div .btn-navbar').show();
 	    $('.nav-collapse').collapse('toggle');
 
 	    $('.nav-collapse .nav').hide();
 	    $('.nav-collapse .nav li').addClass('collapsed');
+	    */
 	}
 
 	// Work-around: The collapse widget appears to be broken
 	$('.navbar-toggle').click(function() {
 
+		/*
 		// For navbar toggle
 		$('.in').on('show.bs.collapse', function() {
 
@@ -68,6 +149,7 @@
 			});
 
 		$('.collapse').collapse('toggle');
+		*/
 
 	    });
 
@@ -97,6 +179,20 @@
 	 * Work-arounds handling feature requests for the responsive navbar
 	 *
 	 */
+
+	if($( window ).width() <= 1156 ) {
+
+	    if( $( window ).width() > 1024) {
+
+		$('.menu-toggle-container').css('height', 0);
+	    } else {
+
+		$('.menu-toggle-container').height('height', '54px');
+	    }
+	} else {
+
+	    $('.menu-toggle-container').height('height', '54px');
+	}
 
 	// Refactor
 	/* var maxWidth = 1322; */
@@ -148,8 +244,8 @@
 		    */
 		    if($( window ).width() <= maxWidth ) {
 			
-			$('.auth-share-simple-search-container').addClass('collapsed');
-			$('.nav-collapse .nav li').addClass('collapsed');
+			//$('.auth-share-simple-search-container').addClass('collapsed');
+			//$('.nav-collapse .nav li').addClass('collapsed');
 
 		    }
 
@@ -163,6 +259,7 @@
 		    }
 		    */
 		    
+		    /*
 		    if($( window ).width() <= 754 ) {
 			
 			// Refactor
@@ -183,6 +280,7 @@
 		    
 			//$('header#navbar').removeClass('navbar-static-width');
 		    }
+		    */
 		}
 	    });
 
@@ -197,6 +295,7 @@
 	    // Decouple into a widget
 	    $(document).data('bootstrapDssDigital.mobileSearch', false);
 
+	    /*
 	    $('#simple-search-control-container a').click(function(e) {
 
 		    if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse nav ul.menu #islandora-solr-simple-search-form').length ) {
@@ -228,7 +327,9 @@
 			$(document).data('bootstrapDssDigital.mobileSearch', true);
 		    }
 		});
+	    */
 
+	    /*
 	    $('.navbar-collapse-toggle .btn-navbar').click(function(e) {
 
 		    if( $('#navbar .navbar-inner .navbar-inner-container .nav-collapse.in').length && $('#navbar.navbar div.navbar-inner div.navbar-inner-container div.nav-collapse nav ul.menu #simple-search-item').length ) {
@@ -244,6 +345,7 @@
 			$('.nav-collapse').collapse('show');
 		    }
 		});
+	    */
 	}
 	
     }

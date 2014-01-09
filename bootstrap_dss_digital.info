@@ -30,11 +30,19 @@ regions[footer]         = 'Footer'
 regions[hidden]         = 'Hidden'
 
 ; JavaScripts
+
+; Bootstrap core (performance)
+scripts[] = 'js/bootstrap.min.js'
+
 scripts[] = 'js/bootstrap_helper.js'
 scripts[] = 'js/advanced_search_modal.js'
 scripts[] = 'js/sharethis_helper.js'
 
 ; Stylesheets
+
+; Bootstrap core (modified in order to avoid locally compiling LESS)
+stylesheets[all][] = css/bootstrap.min.css
+
 ; Base theme
 stylesheets[all][] = css/style.css
 stylesheets[all][] = css/header.css

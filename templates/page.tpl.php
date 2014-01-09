@@ -50,44 +50,38 @@
         </div><!-- /.nav-collapse collapse -->
       <?php endif; ?>
 
-   <!-- <div class="auth-share-simple-search-container container"> -->
    <div class="auth-share-simple-search-container">
 
      <?php if (!empty($page['simple_search'])): ?>
 
        <?php print render($page['simple_search']); ?>
      <?php endif; ?>
-
-     <div class="auth-share-container container">
-
-       <?php print $auth_container; ?>
-       <?php print $share_container; ?>
-
-       <?php if (isset($simple_share_mobile_container)): ?>
-
-         <?php print $simple_share_mobile_container; ?>
-       <?php endif; ?>
-
-     </div><!-- /.auth-share-container -->
    </div><!-- /.auth-share-simple-search-container -->
 
-<div class="navbar-collapse-toggle">
-<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-<div data-toggle="collapse" data-target=".nav-collapse">
-  <span id="btn-navbar-menu-toggle" class="btn-navbar"><?php print $menu_toggle_image; ?></span>
-  <span id="btn-navbar-caption" class="btn-navbar">Menu</span>
-</div>
+  <div class="menu-toggle-container container">
 
-  </div>
-  </div>
+    <?php if (isset($menu_toggle_container)): ?>
 
-</header>
+      <?php print $menu_toggle_container; ?>
+
+      <div class="auth-share-container container">
+
+        <?php print $search_container; ?>
+
+        <?php print $auth_container; ?>
+        <?php print $share_container; ?>
+
+      </div><!-- /.auth-share-container -->
+
+
+
+    <?php endif; ?>
+  </div><!-- /.menu-toggle-container -->
+</div><!-- /.navbar-inner -->
+
+</header><! --/.navbar -->
 
 <div class="main-container container">
-
-  <div class="carousel-container">
-    <?php print $carousel; ?>
-  </div><!-- /.carousel-container -->
 
   <header role="banner" id="page-header">
    <p class="lead"><?php print l($title, current_path()); ?></p>

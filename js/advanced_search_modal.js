@@ -361,41 +361,45 @@
 
 	  that.$element.find('form').submit(function(e) {
 
-		  e.preventDefault();
+		  // @todo Refactor for a specific DOM class
+		  if($(this).attr('id') != 'islandora-dss-solr-advanced-search-form') {
 
-		  $(document).data('LafayetteDssModal.lastForm', $(this));
-		  /*
-		    $(document).data('LafayetteDssModal.lastForm.Id', $(this).attr('id'));
-		  */
+		      e.preventDefault();
 
-		  if(!$(this).find('.required').filter(function(i, e) {
+		      $(document).data('LafayetteDssModal.lastForm', $(this));
+		      /*
+			$(document).data('LafayetteDssModal.lastForm.Id', $(this).attr('id'));
+		      */
 
-			      return $(this).val() == '';
-			  }).length) {
+		      if(!$(this).find('.required').filter(function(i, e) {
 
-			      $.post($(this).attr('action'), $(this).serialize(), function(data, textStatus) {
+				  return $(this).val() == '';
+			      }).length) {
 
+			  $.post($(this).attr('action'), $(this).serialize(), function(data, textStatus) {
+				  
+				  that.hide();
+			      }).fail(function(data) {
+				      
+				      console.log('error');
 				      that.hide();
-				  }).fail(function(data) {
-			      
-					  console.log('error');
-					  that.hide();
-				      });
-		  } else {
-
-		      $('<div class="alert alert-block alert-error"><a href="#" data-dismiss="alert" class="close">×</a><h4 class="element-invisible">Error message</h4><ul><li>Your Name field is required.</li><li>Your E-Mail Address field is required.</li><li>Subject field is required.</li><li>Message field is required.</li></ul></div>').hide().prependTo($(this).prev())
-			  .show($.extend('slide', { direction: 'down' }, function() {
-			  //.show($.extend('drop', options, function() {
-
-					  setTimeout(function() {
+				  });
+		      } else {
+			  
+			  $('<div class="alert alert-block alert-error"><a href="#" data-dismiss="alert" class="close">×</a><h4 class="element-invisible">Error message</h4><ul><li>Your Name field is required.</li><li>Your E-Mail Address field is required.</li><li>Subject field is required.</li><li>Message field is required.</li></ul></div>').hide().prependTo($(this).prev())
+			      .show($.extend('slide', { direction: 'down' }, function() {
+					  //.show($.extend('drop', options, function() {
 					  
+					  setTimeout(function() {
+						  
 						  //$(document).data('LafayetteDssModal.lastForm').parent().find('.alert').hide('scale');
 						  $(document).data('LafayetteDssModal.lastForm').parent().find('.alert').hide('slide', { direction: 'up' });
 						  //$(document).data('LafayetteDssModal.lastForm').parent().find('.alert').hide('drop', { direction: 'up' });
 					      }, 1500 );
 					  //}}));
-				  }));
-
+				      }));
+			  
+		      }	      
 		  }
 	      });
 
