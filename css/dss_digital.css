@@ -61,8 +61,9 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 	
 	background-color:#F5F5F5;
 	border-radius:4px;
-	width:47%;
+	width:44%;
 	margin-bottom: 10px;
+	padding:1%;
 }
 
 /* placement of blog RSS block */
@@ -70,6 +71,7 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 html.js body.html div.main-container div.row-fluid section.span12 section#block-aggregator-feed-2.block {
 	
 	float: left;
+	margin-right:1%
 }
 
 /* placement of contact block */
@@ -77,6 +79,7 @@ html.js body.html div.main-container div.row-fluid section.span12 section#block-
 html.js body.html div.main-container div.row-fluid section.span12 section#block-nodeblock-7.block{
 	
 	float:right;
+	margin-left:1%;
 }
 
 /* reset margins above and to left of DSS logo in navbar */
