@@ -62,16 +62,22 @@
 		$('.navbar-inner-container').removeClass('tablet');
 		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
 		*/
+
+		/*
+		 * Attempting to resolve this solely through CSS
+
 		$('.navbar-inner-container').removeClass('tablet').insertAfter($('.menu-toggle-container'));
+		 */
 	    } else if($( window ).width() <= 1024) {
 
-		$('.navbar-inner-container').removeClass('desktop');
+		
+		//$('.navbar-inner-container').removeClass('desktop');
 		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
-		$('.navbar-inner-container').addClass('tablet');
+		//$('.navbar-inner-container').addClass('tablet');
 	    } else {
 
 		$('.navbar-inner-container').insertBefore($('.auth-share-simple-search-container'));
-		$('.navbar-inner-container').addClass('desktop');
+		//$('.navbar-inner-container').addClass('desktop');
 	    }
 
 	    // Adjust the DSS link in response to the size of the browser
