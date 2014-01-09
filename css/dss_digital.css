@@ -44,15 +44,17 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 
 #block-menu-menu-footer-menu {
 	
-	background-color:#F5F5F5;
 	border:none;
+	width:100%;
+	background-image: linear-gradient(to bottom, #545454, #333333);
+	margin-top:1%;
 }
 
 /* set color of footer hyperlinks */
 
 #block-menu-menu-footer-menu a {
 	
-	color:#1A98DB;
+	color:#DDDDDD;
 }
 
 /* style blog RSS and contact blocks */
