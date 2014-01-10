@@ -87,8 +87,48 @@ html.js body.html div.main-container div.row-fluid section.span12 section#block-
 /* reset margins above and to left of DSS logo in navbar */
 .navbar .logo {
 	
-	margin-top:1px;
+	margin-top:2px;
 	margin-left:0%;
+	margin-right:25px;
+}
+
+/* style LC log-in logo and link */
+
+#shib_login_url {
+	
+    margin-top: 1px;
+}
+
+.hybridauth-icon-hybridauth-32-lafayette {
+
+    margin-left: 2px;
+}
+
+#shib_login_url a {
+
+    margin-left: 2px;
+    font-weight: inherit;
+}
+
+/* set top margin of nav icons */
+
+div.modal-container.container {
+
+    margin-top: 3px;
+}
+
+/* fix width and top margin of menu nav icon */
+
+#menu-toggle-icon {
+    margin-top: 3px;
+    width: inherit;
+}
+
+/* set font-color of log out text */
+
+html.js body#thmr_undefined.html header#navbar.navbar div.navbar-inner div.menu-toggle-container div.auth-share-container div.auth-container div#auth-control-container.modal-control-container div.auth-link a {
+	
+    color:#DDDDDD;
 }
 
 /**

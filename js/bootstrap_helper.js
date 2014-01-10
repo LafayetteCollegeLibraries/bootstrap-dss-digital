@@ -58,12 +58,18 @@
 	     * @see DSSSM-313
 	     *
 	     */
-	    if($( window ).width() <= 459) {
+	    if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion) ) {
 
-		$('.navbar-inner').addClass('navbar-fixed-width');
-	    } else {
+		//if($( window ).width() <= 510) {
+		//if($( window ).width() <= 494) {
+		//if($( window ).width() <= 459) {
+		if($( window ).width() <= 478) {
 
-		$('.navbar-inner').removeClass('navbar-fixed-width');
+		    $('.navbar-inner').addClass('navbar-fixed-width');		    
+		} else {
+
+		    $('.navbar-inner').removeClass('navbar-fixed-width');
+		}
 	    }
 
 	    // Ensure that the menu items are displayed in a format appropriate to smartphone and tablet devices

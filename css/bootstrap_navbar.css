@@ -54,7 +54,8 @@
 
 .navbar-fixed-width {
 
-    width: 418px;
+    /* width: 418px; */
+    width: 438px;
 }
 
 /**
@@ -395,5 +396,5 @@ div.share-icon {
 
 .navbar .nav {
 
-	margin-bottom:7px;
+    margin-bottom:7px;
 }
