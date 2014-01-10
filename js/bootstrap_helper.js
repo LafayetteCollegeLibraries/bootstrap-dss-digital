@@ -44,8 +44,6 @@
 
 		//$('.nav-collapse').collapse();
 		$('.nav-collapse').collapse('toggle');
-		
-		console.log('trace');
 	    });
 
 	/**
@@ -59,16 +57,17 @@
 	    if($( window ).width() <= 480) {
 
 		/*
-		$('.navbar-inner-container').removeClass('tablet');
-		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
+		  $('.navbar-inner-container').removeClass('tablet');
 		*/
+
+		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
 
 		/*
 		 * Attempting to resolve this solely through CSS
 
 		$('.navbar-inner-container').removeClass('tablet').insertAfter($('.menu-toggle-container'));
 		 */
-	    } else if($( window ).width() <= 1024) {
+	    } else if($( window ).width() < 1024) {
 
 		
 		//$('.navbar-inner-container').removeClass('desktop');

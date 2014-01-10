@@ -8,22 +8,9 @@
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) {
 
-    div.navbar-collapse-toggle {
+    div.auth-share-simple-search-container {
 
-	/*
-	border: 1px solid white;
-	float: left;
-	*/
-    }
-}
-
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-
-    div.nav-collapse nav ul.menu {
-
-	width: 100%;
+	width: 54%;
     }
 }
 
@@ -34,18 +21,6 @@ and (max-device-width : 1024px) {
     div.auth-share-simple-search-container {
 
 	width: 54%;
-	/* border: 1px solid white; */
-    }
-}
-
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-
-    div.auth-share-simple-search-container {
-
-	width: 54%;
-        /* border: 1px solid white; */
     }
 }
 
@@ -60,14 +35,13 @@ and (max-device-width : 480px) {
 
     #simple-search-item {
 
-	width: 100%;
+	/* width: 100%; */
 	border-left: 0px;
     }
 
     #simple-search-item #islandora-solr-simple-search-form {
 
-	/* width: 184%; */
-	width: 71.5%;
+	/* width: 71.5%; */
 	margin-left: auto;
 	margin-right: auto;
     }
