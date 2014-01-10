@@ -94,21 +94,6 @@ div.modal-container.container {
     text-align: center;
 }
 
-.hybridauth-icon-hybridauth-24-lafayette {
-
-    background-image: url('../files/lafayette_shib.png');
-}
-
-.hybridauth-icon-hybridauth-32-lafayette {
-
-    background-image: url('../files/lafayette_shib_32_grayscale.png');
-}
-
-.hybridauth-widget li {
-
-    float: left;
-    clear: left;
-}
 
 #advanced-search-anchor-wrapper {
 
@@ -439,11 +424,3 @@ html.js body.html header#navbar.navbar div.navbar-header h2 {
 	margin-top:38px;
 }
 
-/* set background image and its styling for LC logo in login menu */
-
-.hybridauth-icon-hybridauth-32-lafayette {
-
-	background-image: url("../files/lafayette_seal.png");
-	background-repeat: no-repeat;
-	background-size: 100% auto;
-}

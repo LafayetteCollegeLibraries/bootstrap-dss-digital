@@ -185,6 +185,21 @@ div.navbar-header h2 {
     display: none;
 }
 
+.hybridauth-widget li {
+
+    float: left;
+    clear: left;
+}
+
+/* set background image and its styling for LC logo in login menu */
+
+.hybridauth-icon-hybridauth-32-lafayette {
+
+	background-image: url("../files/LCIcon.png");
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+}
+
 .auth-share-search-navbar-container {
 
     float: right;

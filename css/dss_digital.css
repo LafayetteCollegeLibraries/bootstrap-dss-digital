@@ -50,6 +50,19 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 	margin-top:1%;
 }
 
+.footer.container {
+	
+	width:100%;
+	padding-left:0px;
+}
+
+/* center text in footer */
+
+html.js body#thmr_undefined.html footer.footer div.region section#block-menu-menu-footer-menu.block ul.menu {
+	
+	margin-left:0px;
+}
+
 /* set color of footer hyperlinks */
 
 #block-menu-menu-footer-menu a {
@@ -130,6 +143,28 @@ html.js body#thmr_undefined.html header#navbar.navbar div.navbar-inner div.menu-
 	
     color:#DDDDDD;
 }
+
+/* style title at top of pages */
+
+.lead {
+	
+	font-size:36px; 
+}
+
+/* suppress extra title on large sub-collection pages */
+
+html.js body#thmr_undefined.html div.main-container div.row-fluid section.span12 section#block-quicktabs-east-asia-image-collections.block h2.block-title {
+	
+	display:none;
+}
+
+html.js body#thmr_undefined.html div.main-container div.row-fluid section.span12 section#block-quicktabs-marquis-de-lafayette-prints-coll.block h2.block-title {
+	
+	display:none;
+}
+
+
+
 
 /**
  * @author griffinj
