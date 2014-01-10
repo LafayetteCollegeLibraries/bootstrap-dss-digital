@@ -53,6 +53,19 @@
 	 */
 	var smartPhoneHandler = function($) {
 
+	    /**
+	     * This ensures that the responsive navbar is set at a fixed pixel width when resized below 480
+	     * @see DSSSM-313
+	     *
+	     */
+	    if($( window ).width() <= 459) {
+
+		$('.navbar-inner').addClass('navbar-fixed-width');
+	    } else {
+
+		$('.navbar-inner').removeClass('navbar-fixed-width');
+	    }
+
 	    // Ensure that the menu items are displayed in a format appropriate to smartphone and tablet devices
 	    if($( window ).width() <= 480) {
 
