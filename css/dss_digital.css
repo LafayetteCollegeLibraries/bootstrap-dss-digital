@@ -90,3 +90,26 @@ html.js body.html div.main-container div.row-fluid section.span12 section#block-
 	margin-top:1px;
 	margin-left:0%;
 }
+
+/**
+ * @author griffinj
+ * Resolving DSSSM-308
+ */
+
+body {
+
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+body > * {
+
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+header {
+
+    padding-left: 0px;
+    padding-right: 0px;
+}
