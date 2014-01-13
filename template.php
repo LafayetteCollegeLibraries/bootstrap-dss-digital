@@ -260,8 +260,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 			     'mdl_tabs' => theme('quicktabs', (array) $mdl_tabs));
   */
 
-
-  
+  dpm($variables['page']['content']);
 }
 
 /**
@@ -299,9 +298,27 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 }
 */
 
+function bootstrap_dss_digital_preprocess_islandora_basic_collection(&$variables) {
+
+
+  dpm('trace4');
+  dpm($variables);
+
+}
+
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
   $registry['hybridauth_widget']['file'] = 'template';
+  $registry['islandora_basic_collection_wrapper']['preprocess functions'] = array('bootstrap_dss_digital_preprocess_islandora_basic_collection');
+
+  //dpm($registry['islandora_basic_collection_wrapper']);
+  /*
+    'islandora_basic_collection_wrapper' => array(
+      'file' => 'theme/theme.inc',
+      'template' => 'theme/islandora-basic-collection-wrapper',
+      'variables' => array('islandora_object' => NULL),
+  */
+
 }
 
 /**
@@ -321,6 +338,8 @@ function hybridauth_theme($existing, $type, $theme, $path) {
     ),
 }
 */
+
+
 
 //module_load_include('inc', 'bootstrap_dss_digital', 'includes/dssMods');
 
@@ -406,5 +425,11 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 function bootstrap_dss_digital_breadcrumb($vars) {
 
   dpm('trace');
+  dpm($vars);
+}
+
+function bootstrap_dss_digital_link($vars) {
+  
+  dpm('trace2');
   dpm($vars);
 }

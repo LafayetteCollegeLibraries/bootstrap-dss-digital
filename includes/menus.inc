@@ -100,7 +100,11 @@ function bootstrap_dss_digital_menu_link__menu_footer_menu(&$variables) {
  * Implements template_preprocess_menu_tree()
  *
  */
+
+/*
 function bootstrap_dss_digital_preprocess_menu_link(&$variables) {
 
   //dpm($variables);
 }
+*/
+

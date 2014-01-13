@@ -54,6 +54,7 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 	
 	width:100%;
 	padding-left:0px;
+	padding-right:0px;
 }
 
 /* center text in footer */
@@ -68,6 +69,41 @@ html.js body#thmr_undefined.html footer.footer div.region section#block-menu-men
 #block-menu-menu-footer-menu a {
 	
 	color:#DDDDDD;
+}
+
+/* set color of menu item borders in footer */
+
+.footer-menu-item {
+	
+	border-color:#DDDDDD;
+}
+
+/* get rid of margin to left of links in footer */
+
+html.js body.html footer.footer div.region section#block-menu-menu-footer-menu.block ul.menu {
+	
+	margin-left:0px;
+}
+
+/* style hover effect for links in footer */
+
+.footer-menu-item {
+	
+	padding-left:0px;
+	padding-right:0px;
+	margin-left:0px;
+}
+
+#block-menu-menu-footer-menu a {
+	
+	padding-left:24px;
+	padding-right:24px;
+}
+
+#block-menu-menu-footer-menu a:hover, #block-menu-menu-footer-menu a:focus {
+	
+	background-color:#DDDDDD;
+	color:#545454;
 }
 
 /* style blog RSS and contact blocks */

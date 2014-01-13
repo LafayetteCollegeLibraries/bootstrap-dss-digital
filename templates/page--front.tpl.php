@@ -68,8 +68,8 @@
 
         <?php print $search_container; ?>
 
-        <?php print $auth_container; ?>
         <?php print $share_container; ?>
+        <?php print $auth_container; ?>
 
       </div><!-- /.auth-share-container -->
 
