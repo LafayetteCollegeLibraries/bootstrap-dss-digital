@@ -298,7 +298,7 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 }
 */
 
-function bootstrap_dss_digital_preprocess_islandora_basic_collection($variables) {
+function bootstrap_dss_digital_process_islandora_basic_collection($variables) {
 
   // View Links.
   $display = (empty($_GET['display'])) ? 'grid' : $_GET['display'];
@@ -313,8 +313,12 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection($variables)
 
   $object = $variables['islandora_object'];
 
+  /*
   $variables['view_links_workaround'] = l('Grid view', url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
 					  array('attributes' => array('class' => "islandora-view-grid $grid_active",)));
+  */
+
+  dpm('trace5');
 
 
 }

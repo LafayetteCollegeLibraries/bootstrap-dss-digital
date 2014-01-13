@@ -185,17 +185,32 @@ html.js body#thmr_undefined.html header#navbar.navbar div.navbar-inner div.menu-
 
 .lead {
 	
-	font-size:36px; 
+	font-size:42px; 
 }
 
 /* suppress extra title on large sub-collection pages */
 
-html.js body#thmr_undefined.html div.main-container div.row-fluid section.span12 section#block-quicktabs-east-asia-image-collections.block h2.block-title {
+html.js body.html div.main-container div.row-fluid section.span12 section#block-quicktabs-east-asia-image-collections.block h2.block-title {
 	
 	display:none;
 }
 
-html.js body#thmr_undefined.html div.main-container div.row-fluid section.span12 section#block-quicktabs-marquis-de-lafayette-prints-coll.block h2.block-title {
+html.js body.html div.main-container div.row-fluid section.span12 section#block-quicktabs-marquis-de-lafayette-prints-coll.block h2.block-title {
+	
+	display:none;
+}
+
+html.js body.html div.main-container div.row-fluid section.span12 article#node-19.node div.field div.field-items div.field-item h2 {
+	
+	display:none;
+}
+
+html.js body.html div.main-container div.row-fluid section.span12 article#node-21.node div.field div.field-items div.field-item h2{
+	
+	display:none;
+}
+
+html.js body.html div.main-container div.row-fluid section.span12 article#node-20.node div.field div.field-items div.field-item h2{
 	
 	display:none;
 }
