@@ -319,7 +319,7 @@
 	  var options = $.extend(options, { direction: 'up' });
 
 	  // Adjust the z-index in order to avoid overlapping issues
-	  that.$element.css('z-index', Math.floor( new Date().getTime() / 10000 % 2 * 1000  ));
+	  that.$element.css('z-index', Math.floor( new Date().getTime() / 10000 % 2 * 100000  ));
 
 	  // Possible recursion
 	  var e = $.Event('show');
@@ -445,6 +445,8 @@
 	  //transition ?
 	  //that.$element.one($.support.transition.end, function () { that.$element.focus().trigger('shown') }) :
 	  that.$element.focus().trigger('shown');
+
+	  that.$element.insertAfter($('.navbar-inner'));
 
 	  //that.$element.show('drop', {direction: 'up'}, 500, function() {
 	  that.$element.show({effect: 'slide', direction: 'up', duration: 500, complete: function() {

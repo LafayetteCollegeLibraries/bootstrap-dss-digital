@@ -5,9 +5,7 @@
    <!-- Refactor into hook_preprocess_page -->
    <h2><?php print l('Skillman Library', 'http://library.lafayette.edu/'); ?> at <?php print l('Lafayette College', 'http://www.lafayette.edu/'); ?></h2>
 
-   <?php if(!empty($title)): ?>
-																			<h1><?php print l('Digital Scholarship Services', '', array('absolute' => TRUE)); ?></h1>
-   <?php endif; ?>
+    <h1><?php print l('Digital Scholarship Services', '', array('absolute' => TRUE)); ?></h1>
   </div>
 
   <div class="navbar-inner">
