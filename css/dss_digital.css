@@ -134,6 +134,7 @@ html.js body.html div.main-container div.row-fluid section.span12 section#block-
 }
 
 /* reset margins above and to left of DSS logo in navbar */
+
 .navbar .logo {
 	
 	margin-top:2px;
@@ -197,6 +198,32 @@ html.js body#thmr_undefined.html div.main-container div.row-fluid section.span12
 html.js body#thmr_undefined.html div.main-container div.row-fluid section.span12 section#block-quicktabs-marquis-de-lafayette-prints-coll.block h2.block-title {
 	
 	display:none;
+}
+
+/* style projects grid */
+
+.project-grid-item {
+	
+	background-color:#F5F5F5;
+	padding:10px;
+	margin-bottom:20px;
+	border:1px solid;
+	border-color:#AAAAAA;
+	border-radius:2px;
+}
+
+/* style people divs */
+
+.contact-profile {
+	
+	background-color:#F5F5F5;
+	padding:10px;
+	margin-bottom:20px;
+	border:1px solid;
+	border-color:#AAAAAA;
+	border-radius:2px;
+	width:500px;
+	height:304px;
 }
 
 

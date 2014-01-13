@@ -298,20 +298,34 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 }
 */
 
-function bootstrap_dss_digital_preprocess_islandora_basic_collection(&$variables) {
+function bootstrap_dss_digital_preprocess_islandora_basic_collection($variables) {
 
+  // View Links.
+  $display = (empty($_GET['display'])) ? 'grid' : $_GET['display'];
+  $grid_active = ($display == 'grid') ? 'active' : '';
+  $list_active = ($display == 'active') ? 'active' : '';
 
-  dpm('trace4');
-  dpm($variables);
+  /*
+    $variables['view_links_workaround'] = l('Grid view', url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
+                                           array('attributes' => array('class' => "islandora-view-grid $grid_active",),
+					  'query' => $query_params + array('display' => 'grid')));
+  */
+
+  $object = $variables['islandora_object'];
+
+  $variables['view_links_workaround'] = l('Grid view', url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
+					  array('attributes' => array('class' => "islandora-view-grid $grid_active",)));
+
 
 }
 
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
   $registry['hybridauth_widget']['file'] = 'template';
+
+  // Work-around
   $registry['islandora_basic_collection_wrapper']['preprocess functions'] = array('bootstrap_dss_digital_preprocess_islandora_basic_collection');
 
-  //dpm($registry['islandora_basic_collection_wrapper']);
   /*
     'islandora_basic_collection_wrapper' => array(
       'file' => 'theme/theme.inc',
@@ -418,8 +432,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 					 'query' => $query_params + array('display' => 'list'),
 					 ),
 				   );
-
-  dpm($variables);
 }
 
 function bootstrap_dss_digital_breadcrumb($vars) {
@@ -428,8 +440,3 @@ function bootstrap_dss_digital_breadcrumb($vars) {
   dpm($vars);
 }
 
-function bootstrap_dss_digital_link($vars) {
-  
-  dpm('trace2');
-  dpm($vars);
-}
