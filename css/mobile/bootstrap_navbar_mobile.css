@@ -51,14 +51,15 @@ and (max-device-width : 480px) {
 	margin-left: auto;
     }
 
-    div.navbar-header h2 {
+    /* Refactor */
+    .navbar-header h2 {
 	
-	/* display: none; */
+	font-size: medium !important;
     }
 
     div.navbar-header h1 a {
 
-	font-size: x-large;
+	font-size: large;
     }
 
     .navbar .logo {
@@ -150,21 +151,9 @@ and (max-device-width : 480px) {
 	padding-right: 0px;
     }
 
+    /* Work-around */
     #menu-toggle-control-container {
 
 	width: 36px;
-    }
-
-    /*
-      Work-around */
-    #menu-toggle-icon img {
-
-	float: left;
-	clear: right;
-    }
-
-    #menu-toggle-icon #btn-navbar-caption {
-
-	float: left;
     }
 }
