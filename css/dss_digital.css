@@ -251,7 +251,16 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	padding-bottom:3px;
 }
 
+.carousel-caption-heading {
+	
+	margin-top:3px;
+	font-size: 20px;
+}
 
+.carousel-caption-text {
+	
+	margin-top:2px;
+}
 
 /* style carousel small nav buttons */
 

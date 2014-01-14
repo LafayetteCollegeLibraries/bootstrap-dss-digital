@@ -224,42 +224,42 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
             </div>
             </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
             <div class="carousel-caption">
                  <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
             <div class="carousel-caption">
                  <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
             <div class="carousel-caption">
                  <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
             <div class="carousel-caption">
                  <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
             </div>
         </div>
     </div>
