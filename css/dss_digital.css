@@ -14,7 +14,9 @@ body{
 .breadcrumb {
 
 	background-color: #F5F5F5;
-	border: none;
+	border: 1px solid;
+	border-color:#AAAAAA;
+	border-radius:2px;
 }
 
 /* set color of hyperlinks in breadcrumbs, contact, and copyright */
@@ -29,7 +31,8 @@ body{
 html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container div#page-site-links-container div#contact-container.breadcrumb{
 	
 	border-top-right-radius:0px;
-	border-bottom-right-radius:0px; 
+	border-bottom-right-radius:0px;
+	border-right:none;
 }
 
 /* style copyright link border */
@@ -253,7 +256,7 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 
 .carousel-caption-heading {
 	
-	margin-top:3px;
+	margin-top:5px;
 	font-size: 20px;
 }
 
@@ -276,8 +279,58 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 .carousel-control {
 	
 	margin-top:0px;
-	top:5px;
+	top:0px;
+	left:0px;
+	border:none;
+	height:27%;
+	background:none;
 }
+
+.carousel-control.right {
+	
+	right:0px;
+}
+
+.carousel-control > img {
+	
+	height:100%;
+}
+
+.carousel-control.left > img {
+	
+	float:left;
+}
+
+.carousel-control.right > img {
+	
+	float:right;
+}
+
+/* style search window */
+
+.block-islandora-solr {
+    width: 100%;
+}
+
+/* set width of search selection fields */
+
+div.controls {
+	
+	width:220px;
+}
+
+form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-terms div div.control-group {
+
+    width: 220px;
+}
+
+/* html.js body.html header#navbar.navbar div#advanced-search-modal.lafayette-dss-modal div.modal-dialog div.modal-content div.modal-body section#block-islandora-solr-dss-advanced.block form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-terms div.islandora-solr-advanced-term fieldset#edit-terms-0-field-wrapper.form-wrapper div.fieldset-wrapper div.control-group, html.js body.html header#navbar.navbar div#advanced-search-modal.lafayette-dss-modal div.modal-dialog div.modal-content div.modal-body section#block-islandora-solr-dss-advanced.block form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-terms div.islandora-solr-advanced-term fieldset#edit-terms-1-field-wrapper.form-wrapper div.fieldset-wrapper div.control-group, html.js body.html header#navbar.navbar div#advanced-search-modal.lafayette-dss-modal div.modal-dialog div.modal-content div.modal-body section#block-islandora-solr-dss-advanced.block form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-terms div.islandora-solr-advanced-term fieldset#edit-terms-0-field-wrapper--2.form-wrapper div.fieldset-wrapper div.control-group {
+	
+	width:220px;
+} */
+
+
+
 
 
 

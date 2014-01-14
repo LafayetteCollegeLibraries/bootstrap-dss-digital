@@ -102,11 +102,13 @@
 	    if($( window ).width() <= 754 ) {
 
 		// Refactor
+		/*
 		if($('#navbar .navbar-header h1 a').text() != 'DSS') {
 
 		    $(document).data('Drupal.theme.bootstrap.dss', $('#navbar .navbar-header h1 a').text());
 		    $('#navbar .navbar-header h1 a').text('DSS');
 		}
+		*/
 	    } else {
 
 		if($('#navbar .navbar-header h1 a').text() == 'DSS') {
@@ -121,13 +123,13 @@
 		// Refactor
 		if($('#navbar .navbar-header h2').is(':visible')) {
 
-		    $('#navbar .navbar-header h2').hide();
+		    //$('#navbar .navbar-header h2').hide();
 		}
 	    } else {
 
 		if(!$('#navbar .navbar-header h2').is(':visible')) {
 
-		    $('#navbar .navbar-header h2').show();
+		    //$('#navbar .navbar-header h2').show();
 		}
 	    }
 	}

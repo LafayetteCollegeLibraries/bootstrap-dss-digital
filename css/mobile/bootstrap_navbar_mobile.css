@@ -53,7 +53,7 @@ and (max-device-width : 480px) {
 
     div.navbar-header h2 {
 	
-	display: none;
+	/* display: none; */
     }
 
     div.navbar-header h1 a {
@@ -148,5 +148,23 @@ and (max-device-width : 480px) {
 
 	padding-left: 0px;
 	padding-right: 0px;
+    }
+
+    #menu-toggle-control-container {
+
+	width: 36px;
+    }
+
+    /*
+      Work-around */
+    #menu-toggle-icon img {
+
+	float: left;
+	clear: right;
+    }
+
+    #menu-toggle-icon #btn-navbar-caption {
+
+	float: left;
     }
 }
