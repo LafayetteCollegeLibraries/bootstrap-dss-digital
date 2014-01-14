@@ -143,3 +143,8 @@ and (max-device-width : 1024px) {
     text-decoration: underline;
     opacity: 1;
 }
+
+body div.popover {
+
+    z-index: 500000;
+}

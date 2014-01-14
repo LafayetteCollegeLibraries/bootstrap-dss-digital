@@ -183,6 +183,7 @@
 	 * Popover widgets
 	 *
 	 */
+	$('#search-modal-help').popover();
 	$('#share-modal-help').popover();
 	$('#auth-modal-help').popover();
 
