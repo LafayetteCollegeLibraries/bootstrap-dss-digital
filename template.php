@@ -208,48 +208,67 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
   $variables['carousel'] = '
 
    <!-- Carousel -->
-   <div id="carousel-featured-collection" class="carousel slide" data-ride="carousel">
-
-   <!-- Indicators -->
-   <ol class="carousel-indicators">
-     <li data-target="#carousel-featured-collection" data-slide-to="0" class="active"></li>
-     <li data-target="#carousel-featured-collection" data-slide-to="1"></li>
-     <li data-target="#carousel-featured-collection" data-slide-to="2"></li>
-   </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921">
-      <div class="carousel-caption">
-        <h2>East Asia Image Collections</h2>
-          <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
-      </div>
+<div id="carousel-featured-collection" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-featured-collection" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-featured-collection" data-slide-to="1"></li>
+        <li data-target="#carousel-featured-collection" data-slide-to="2"></li>
+        <li data-target="#carousel-featured-collection" data-slide-to="3"></li>
+        <li data-target="#carousel-featured-collection" data-slide-to="4"></li>
+        <li data-target="#carousel-featured-collection" data-slide-to="5"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <div class="carousel-caption">
+                <p>East Asia Image Collections</p> 
+                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+            </div>
+            </div>
+        <div class="item">
+            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <div class="carousel-caption">
+                 <p>East Asia Image Collections</p> 
+                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <div class="carousel-caption">
+                 <h2>East Asia Image Collections</h2> 
+                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <div class="carousel-caption">
+                 <h2>East Asia Image Collections</h2> 
+                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <div class="carousel-caption">
+                 <h2>East Asia Image Collections</h2> 
+                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <div class="carousel-caption">
+                 <h2>East Asia Image Collections</h2> 
+                <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+            </div>
+        </div>
     </div>
-    <div class="item">
-      <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921">
-      <div class="carousel-caption">
-        <h2>East Asia Image Collections</h2>
-        <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
-      </div>
-    </div>
-    <div class="item">
-      <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921">
-      <div class="carousel-caption">
-        <h2>East Asia Image Collections</h2>
-        <p>Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
-      </div>
-    </div>
-   </div>
-
-   <!-- Controls -->
-   <a class="left carousel-control" href="#carousel-featured-collection" data-slide="prev">
-     <span class="glyphicon glyphicon-chevron-left"></span>
-   </a>
-   <a class="right carousel-control" href="#carousel-featured-collection" data-slide="next">
-     <span class="glyphicon glyphicon-chevron-right"></span>
-   </a>
-   </div>';
+    <!-- Controls --> <a class="left carousel-control" href="#carousel-featured-collection" data-slide="prev">                                                                                                                 
+    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselLeft.png" alt="carousel left nav button" />
+   </a>  <a class="right carousel-control" href="#carousel-featured-collection" data-slide="next">                                                                                                                
+    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselRight.png" alt="carousel right nav button" />
+   </a> 
+</div>';
     
   // Adding the tabs for certain nodes
   /*
