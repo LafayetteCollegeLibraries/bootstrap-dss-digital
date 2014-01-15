@@ -154,6 +154,7 @@ and (max-device-width : 480px) {
     /* Work-around */
     #menu-toggle-control-container {
 
+	margin-top: 1px;
 	width: 36px;
     }
 }
