@@ -221,45 +221,45 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.tiff" alt="Geisha dances to samisen by Tamagawa near Tokyo" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
-            </div>
-            </div>
-        <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
-            <div class="carousel-caption">
-                <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <a class="carousel-caption-heading" href="projects/eastasia">East Asia Image Collections</a>
+                <a class="carousel-caption-text" href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/eastasia&CISOPTR=1938">Geisha dances to samisen by Tamagawa near Tokyo</a>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
             <div class="carousel-caption">
-                 <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <a class="carousel-caption-heading" href="projects/spa">Swift Poems Project</a> 
+                <a class="carousel-caption-text" href="projects/spa">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</a>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.tif" alt="1811 ledger of loan records for John Bowes" />
             <div class="carousel-caption">
-                 <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <a class="carousel-caption-heading" href="projects/eastonlibrary">Easton Library Company Database</a> 
+                <a class="carousel-caption-text" href="projects/eastonlibrary">1811 ledger of loan records for John Bowes</a>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.tiff" alt="May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon" />
             <div class="carousel-caption">
-                 <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <a class="carousel-caption-heading" href="projects/newspaper">Lafayette Newspaper</a> 
+                <a class="carousel-caption-text" href="http://cdm.lafayette.edu/cdm4/document.php?CISOROOT=/newspaper&CISOPTR=9423">May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon</a>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.tiff" alt="General Lafayette visiting George Washington at Mt. Vernon" />
             <div class="carousel-caption">
-                 <p class="carousel-caption-heading">East Asia Image Collections</p> 
-                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <a class="carousel-caption-heading" href="projects/lafayetteprints">Marquis de Lafayette Prints Collection</a> 
+                <a class="carousel-caption-text" href="cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/mdl-prints&CISOPTR=1970">General Lafayette visiting George Washington at Mt. Vernon</a>
+            </div>
+        </div>
+        <div class="item">
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.tiff" alt="1896 portrait of football team on steps of Pardee Hall" />
+            <div class="carousel-caption">
+                <a class="carousel-caption-heading" href="projects/historicalphotos">Historical Photograph Collection</a> 
+                <a class="carousel-caption-text" href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=%2Fcap&CISOPTR=1180">1896 portrait of football team on steps of Pardee Hall</a>
             </div>
         </div>
     </div>
