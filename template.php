@@ -320,7 +320,7 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 function bootstrap_dss_digital_process_islandora_basic_collection($variables) {
 
   // View Links.
-  $display = (empty($_GET['display'])) ? 'grid' : $_GET['display'];
+  $display = (empty($_GET['display'])) ? 'list' : $_GET['display'];
   $grid_active = ($display == 'grid') ? 'active' : '';
   $list_active = ($display == 'active') ? 'active' : '';
 
