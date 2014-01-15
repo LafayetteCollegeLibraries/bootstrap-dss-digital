@@ -221,7 +221,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.tiff" alt="Geisha dances to samisen by Tamagawa near Tokyo" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.png" alt="Geisha dances to samisen by Tamagawa near Tokyo" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading">East Asia Image Collections</p>
                 <p class="carousel-caption-text">Geisha dances to samisen by Tamagawa near Tokyo</p>
@@ -235,28 +235,28 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.tif" alt="1811 ledger of loan records for John Bowes" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.png" alt="1811 ledger of loan records for John Bowes" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading">Easton Library Company Database</p> 
                 <p class="carousel-caption-text">1811 ledger of loan records for John Bowes</p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.tiff" alt="May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.png" alt="May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading">Lafayette Newspaper</p> 
                 <p class="carousel-caption-text">May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon</p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.tiff" alt="General Lafayette visiting George Washington at Mt. Vernon" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.png" alt="General Lafayette visiting George Washington at Mt. Vernon" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading">Marquis de Lafayette Prints Collection</p> 
                 <p class="carousel-caption-text">General Lafayette visiting George Washington at Mt. Vernon</p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.tiff" alt="1896 portrait of football team on steps of Pardee Hall" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.png" alt="1896 portrait of football team on steps of Pardee Hall" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading">Historical Photograph Collection</p> 
                 <p class="carousel-caption-text">1896 portrait of football team on steps of Pardee Hall</p>
