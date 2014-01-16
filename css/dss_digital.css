@@ -144,7 +144,7 @@ html.js body.html div.main-container div.row-fluid section.span12 section#block-
 	
 	margin-top:2px;
 	margin-left:0%;
-	margin-right:25px;
+	margin-right:40px;
 }
 
 /* style LC log-in logo and link */
@@ -407,9 +407,81 @@ form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-ter
 	margin-right:11px;
 	margin-top:16px;
 	background:#F5F5F5;
+	background-image: url("../files/TooltipIcon.png");
+	background-position: center;
 	border:1px solid #AAAAAA;
 	border-radius:2px;
 	box-shadow:none;
+}
+
+/* style LC icon in log-in */
+
+.hybridauth-icon-hybridauth-32-lafayette {
+    background-image: url("../files/LCIconForWindow.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    opacity: 1;
+    border-radius: 3px;
+}
+
+/* reset icon opacity in log in */
+
+.hybridauth-icon-hybridauth-32 {
+
+    opacity: 1;
+}
+
+.hybridauth-icon-hybridauth-32:hover {
+	
+	opacity:.75;
+}
+
+/* style tooltip button in share window */
+
+#share-modal-help {
+	
+	background: none repeat scroll 0 0 #F5F5F5;
+	background-image: url("../files/TooltipIcon.png");
+	background-position: center;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    box-shadow: none;
+    width:40px;
+}
+
+/* style tooltip button in log in window */
+
+#auth-modal-help {
+	
+	background: none repeat scroll 0 0 #F5F5F5;
+	background-image: url("../files/TooltipIcon.png");
+	background-position: center;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    box-shadow: none;
+    width:40px;
+}
+
+/* style Facebook icon in share */
+
+html.js body.html header#navbar.navbar div#share-modal.lafayette-dss-modal div.modal-dialog div.modal-content div.modal-body section#block-sharethis-sharethis-block.block div.sharethis-wrapper span.st_facebook_large span.stButton span.stLarge{
+	
+	background-image: url("../files/facebook.png") !important;
+}
+
+/* style Twitter icon in share */
+
+html.js body.html header#navbar.navbar div#share-modal.lafayette-dss-modal div.modal-dialog div.modal-content div.modal-body section#block-sharethis-sharethis-block.block div.sharethis-wrapper span.st_twitter_large span.stButton span.stLarge{
+	
+	background-image: url("../files/twitter.png") !important;
+}
+
+/* style all icons in share */
+
+.sharethis-wrapper > span {
+    
+    height:32px;
+    margin-bottom:2px;
 }
 
 

@@ -317,30 +317,27 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 }
 */
 
-function bootstrap_dss_digital_process_islandora_basic_collection($variables) {
-
-  // View Links.
-  $display = (empty($_GET['display'])) ? 'list' : $_GET['display'];
-  $grid_active = ($display == 'grid') ? 'active' : '';
-  $list_active = ($display == 'active') ? 'active' : '';
+function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper($variables) {
 
   /*
-    $variables['view_links_workaround'] = l('Grid view', url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
-                                           array('attributes' => array('class' => "islandora-view-grid $grid_active",),
-					  'query' => $query_params + array('display' => 'grid')));
+  $page_number = (empty($_GET['page'])) ? 0 : $_GET['page'];
+  $page_size = (empty($_GET['pagesize'])) ? variable_get('islandora_basic_collection_page_size', '10') : $_GET['pagesize'];
+  $islandora_object = $variables['islandora_object'];
+  list($total_count, $results) = islandora_basic_collection_get_member_objects($islandora_object, $page_number, $page_size);
+
+  $collection_content = theme('islandora_basic_collection', array(
+								  'islandora_object' => $islandora_object,
+								  'collection_results' => $results,
+								  ));
+
+  $variables['collection_content'] = $collection_content;
   */
 
-  $object = $variables['islandora_object'];
+  
 
-  /*
-  $variables['view_links_workaround'] = l('Grid view', url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
-					  array('attributes' => array('class' => "islandora-view-grid $grid_active",)));
-  */
-
-  dpm('trace5');
-
-
+  //dpm($variables);
 }
+
 
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
