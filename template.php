@@ -220,35 +220,35 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.png" alt="Geisha dances to samisen by Tamagawa near Tokyo" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.jpg" alt="Geisha dances to samisen by Tamagawa near Tokyo" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/eastasia">East Asia Image Collections</a></p>
-                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/eastasia&CISOPTR=1938">Geisha dances to samisen by Tamagawa near Tokyo</a></p>
+                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/eastasia&CISOPTR=1698&CISOBOX=1&REC=14">Japan Ministry of Justice Employees Labor Union March</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.png" alt="1811 ledger of loan records for John Bowes" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.jpg" alt="1811 ledger of loan records for John Bowes" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/eastonlibrary">Easton Library Company Database</a></p>
-                <p class="carousel-caption-text"><a href="projects/eastonlibrary">1811 ledger of loan records for John Bowes</a></p>
+                <p class="carousel-caption-text"><a href="projects/eastonlibrary">Ledger of loan records for Abraham Bachman</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.png" alt="May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.jpg" alt="May 11, 1956 issue" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/newspaper">Lafayette Newspaper</a></p> 
-                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/document.php?CISOROOT=/newspaper&CISOPTR=9423&CISOSHOW=9417">May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon</a></p>
+                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/document.php?CISOROOT=/newspaper&CISOPTR=9423&CISOSHOW=9417">May 11, 1956 issue</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.png" alt="General Lafayette visiting George Washington at Mt. Vernon" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.jpg" alt="General Lafayette visiting George Washington at His Home" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/lafayetteprints">Marquis de Lafayette Prints Collection</a></p> 
-                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/mdl-prints&CISOPTR=1970&CISOBOX=1&REC=8">General Lafayette visiting George Washington at Mt. Vernon</a></p>
+                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/mdl-prints&CISOPTR=1970&CISOBOX=1&REC=8">General Lafayette visiting George Washington at His Home</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.png" alt="1896 portrait of football team on steps of Pardee Hall" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.jpg" alt="1896 portrait of football team on steps of Pardee Hall" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/historicalphotos">Historical Photograph Collection</a></p> 
                 <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/cap&CISOPTR=1180">1896 portrait of football team on steps of Pardee Hall</a></p>
@@ -256,9 +256,9 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
         </div>
     </div>
     <!-- Controls --> <a class="left carousel-control" href="#carousel-featured-collection" data-slide="prev">                                                                                                                 
-    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselLeft.png" alt="carousel left nav button" />
+    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselLeft.jpg" alt="carousel left nav button" />
    </a>  <a class="right carousel-control" href="#carousel-featured-collection" data-slide="next">                                                                                                                
-    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselRight.png" alt="carousel right nav button" />
+    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselRight.jpg" alt="carousel right nav button" />
    </a> 
 </div>';
     
@@ -332,11 +332,24 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper($va
   $pid = $islandora_object->id;
   dpm($pid);
 
-  drupal_load('module', 'dss_eastasia');
+  if(preg_match('/eastAsia/', $pid)) {
 
-  
-  
-  preg_match('/eastAsia/', $pid, $m);
+    //drupal_load('module', 'dss_eastasia');
+    try {
+
+      $mods_str = $object['MODS']->content;
+
+      $mods_str = preg_replace('/<\?xml version="1.0"\?>/', '', $mods_str);
+      $mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
+
+      //$mods_object = new DssMods($mods_str);
+    } catch (Exception $e) {
+    
+      drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
+    }
+
+    //$mods = new EastAsiaMods();
+  }
 
   // For rendering non-grid content
   drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.base.css');

@@ -260,9 +260,19 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	font-size: 20px;
 }
 
+.carousel-caption-heading > a {
+	
+	color:#DDDDDD;
+}
+
 .carousel-caption-text {
 	
 	margin-top:2px;
+}
+
+.carousel-caption-text > a {
+	
+	color:#DDDDDD;
 }
 
 /* style carousel small nav buttons */
@@ -288,7 +298,12 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	opacity:0.35;
 }
 
-.carousel-control:focus, .carousel-control:hover {
+.carousel-control:focus {
+	
+	opacity:.35;
+}
+
+.carousel-control:hover {
 	
 	opacity:0.75;
 }
