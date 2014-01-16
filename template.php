@@ -216,50 +216,42 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
         <li data-target="#carousel-featured-collection" data-slide-to="2"></li>
         <li data-target="#carousel-featured-collection" data-slide-to="3"></li>
         <li data-target="#carousel-featured-collection" data-slide-to="4"></li>
-        <li data-target="#carousel-featured-collection" data-slide-to="5"></li>
     </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.png" alt="Geisha dances to samisen by Tamagawa near Tokyo" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading">East Asia Image Collections</p>
-                <p class="carousel-caption-text">Geisha dances to samisen by Tamagawa near Tokyo</p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/carousel_test_1400_240.png" alt="Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921" />
-            <div class="carousel-caption">
-                <p class="carousel-caption-heading">Swift Poems Project</p> 
-                <p class="carousel-caption-text">Crown Prince Hirohito in England at Tomb of Unknown Soldier, 1921</p>
+                <p class="carousel-caption-heading"><a href="projects/eastasia">East Asia Image Collections</a></p>
+                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/eastasia&CISOPTR=1938">Geisha dances to samisen by Tamagawa near Tokyo</a></p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.png" alt="1811 ledger of loan records for John Bowes" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading">Easton Library Company Database</p> 
-                <p class="carousel-caption-text">1811 ledger of loan records for John Bowes</p>
+                <p class="carousel-caption-heading"><a href="projects/eastonlibrary">Easton Library Company Database</a></p>
+                <p class="carousel-caption-text"><a href="projects/eastonlibrary">1811 ledger of loan records for John Bowes</a></p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.png" alt="May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading">Lafayette Newspaper</p> 
-                <p class="carousel-caption-text">May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon</p>
+                <p class="carousel-caption-heading"><a href="projects/newspaper">Lafayette Newspaper</a></p> 
+                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/document.php?CISOROOT=/newspaper&CISOPTR=9423&CISOSHOW=9417">May 11, 1956 headline announcing commencement speech by vice-president Richard Nixon</a></p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.png" alt="General Lafayette visiting George Washington at Mt. Vernon" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading">Marquis de Lafayette Prints Collection</p> 
-                <p class="carousel-caption-text">General Lafayette visiting George Washington at Mt. Vernon</p>
+                <p class="carousel-caption-heading"><a href="projects/lafayetteprints">Marquis de Lafayette Prints Collection</a></p> 
+                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/mdl-prints&CISOPTR=1970&CISOBOX=1&REC=8">General Lafayette visiting George Washington at Mt. Vernon</a></p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.png" alt="1896 portrait of football team on steps of Pardee Hall" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading">Historical Photograph Collection</p> 
-                <p class="carousel-caption-text">1896 portrait of football team on steps of Pardee Hall</p>
+                <p class="carousel-caption-heading"><a href="projects/historicalphotos">Historical Photograph Collection</a></p> 
+                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/cap&CISOPTR=1180">1896 portrait of football team on steps of Pardee Hall</a></p>
             </div>
         </div>
     </div>
@@ -333,9 +325,18 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper($va
   $variables['collection_content'] = $collection_content;
   */
 
-  
+  dpm($variables);
 
-  //dpm($variables);
+  $islandora_object = $variables['islandora_object'];
+  
+  $pid = $islandora_object->id;
+  dpm($pid);
+
+  drupal_load('module', 'dss_eastasia');
+
+  
+  
+  preg_match('/eastAsia/', $pid, $m);
 
   // For rendering non-grid content
   drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.base.css');
