@@ -336,6 +336,10 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper($va
   
 
   //dpm($variables);
+
+  // For rendering non-grid content
+  drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.base.css');
+  drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.theme.css');
 }
 
 

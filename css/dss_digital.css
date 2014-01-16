@@ -94,7 +94,7 @@ html.js body.html footer.footer div.region section#block-menu-menu-footer-menu.b
 	
 	padding-left:0px;
 	padding-right:0px;
-	margin-left:0px;
+	margin-left:-4px;
 }
 
 #block-menu-menu-footer-menu a {
@@ -363,6 +363,8 @@ form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-ter
 	
 	margin-right:11px;
 	background:#F5F5F5;
+	background-image:url("../files/PlusIcon.png");
+	background-position:center;
 	border:1px solid #AAAAAA;
 	border-radius:2px;
 	box-shadow:none;
@@ -373,9 +375,19 @@ form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-ter
 .islandora-solr-search-remove {
 	
 	background:#F5F5F5;
+	background-image:url("../files/MinusIcon.png");
+	background-position:center;
 	border:1px solid #AAAAAA;
 	border-radius:2px;
 	box-shadow:none;
+}
+
+.islandora-solr-search-remove:hover {
+	
+	background:#F5F5F5;
+	background-image:url("../files/MinusIcon.png");
+	background-position:center;
+	opacity:1;
 }
 
 /* style search return button */
@@ -414,7 +426,7 @@ form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-ter
 	box-shadow:none;
 }
 
-/* style LC icon in log-in */
+/* style LC icon in log in */
 
 .hybridauth-icon-hybridauth-32-lafayette {
     background-image: url("../files/LCIconForWindow.png");
@@ -422,6 +434,20 @@ form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-ter
     background-size: 100% auto;
     opacity: 1;
     border-radius: 3px;
+}
+
+/* style Facebook icon in log in */
+
+.hybridauth-facebook-hybridauth-32 {
+	
+	background-image: url("../files/facebook.png");
+}
+
+/* style Twitter icon in log in */
+
+.hybridauth-twitter-hybridauth-32 {
+	
+	background: url("../files/twitter.png");
 }
 
 /* reset icon opacity in log in */
