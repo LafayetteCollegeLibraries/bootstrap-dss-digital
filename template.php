@@ -256,9 +256,9 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
         </div>
     </div>
     <!-- Controls --> <a class="left carousel-control" href="#carousel-featured-collection" data-slide="prev">                                                                                                                 
-    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselLeft.jpg" alt="carousel left nav button" />
+    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselLeft.png" alt="carousel left nav button" />
    </a>  <a class="right carousel-control" href="#carousel-featured-collection" data-slide="next">                                                                                                                
-    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselRight.jpg" alt="carousel right nav button" />
+    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselRight.png" alt="carousel right nav button" />
    </a> 
 </div>';
     
@@ -337,7 +337,7 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper($va
     //drupal_load('module', 'dss_eastasia');
     try {
 
-      $mods_str = $object['MODS']->content;
+      $mods_str = $islandora_object['MODS']->content;
 
       $mods_str = preg_replace('/<\?xml version="1.0"\?>/', '', $mods_str);
       $mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
