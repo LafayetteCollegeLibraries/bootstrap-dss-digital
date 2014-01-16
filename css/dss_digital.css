@@ -26,6 +26,12 @@ body{
 	color:#1A98DB;
 }
 
+.breadcrumb a:hover {
+	
+	color:#005580;
+	text-decoration:underline;
+}
+
 /* style contact link border */
 
 html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container div#page-site-links-container div#contact-container.breadcrumb{
@@ -239,6 +245,7 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	background-color:#F5F5F5;
 	padding:10px;
 	margin-bottom:20px;
+	margin-left:3%;
 	border:1px solid;
 	border-color:#AAAAAA;
 	border-radius:2px;
@@ -282,6 +289,12 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	top:auto;
 	bottom:4%;
 	right:1%;
+	padding:2px;
+}
+
+.carousel-indicators:hover {
+	
+	cursor:pointer;
 }
 
 /* style carousel nav icons */
@@ -525,7 +538,83 @@ html.js body.html header#navbar.navbar div#share-modal.lafayette-dss-modal div.m
     margin-bottom:2px;
 }
 
+/* style links to people profiles */
 
+.profile-button {
+	
+	background:#DDDDDD;
+	border-radius:2px;
+	border:1px solid;
+	border-color:#AAAAAA;
+	padding:6px;
+	margin-left:5px;
+	display:none;
+}
+
+.contact-profile > p {
+	
+	margin-bottom:15px;
+}
+
+/* style browsing tabs for larger collections */
+
+ul.quicktabs-tabs > li {
+	
+	border-right:1px solid #AAAAAA;
+	padding:5px 8px;
+	margin-left:-4px;
+}
+
+ul.quicktabs-tabs > li:hover {
+	
+	background:#DDDDDD;
+}
+
+ul.quicktabs-tabs > li > a:focus {
+	
+	color:#1A98DB;
+	text-decoration:none;
+}
+
+ul.quicktabs-tabs > li.active.first {
+	
+	border-left:1px solid #AAAAAA;
+}
+
+/* style EAIC sub collection divs */
+
+.east-asia-sub-collection {
+	
+	background:#F5F5F5;
+	border:1px solid #AAAAAA;
+	border-radius:2px;
+	margin:10px;
+}
+
+.east-asia-sub-collection > p, h2 {
+	
+	margin:10px;
+}
+
+.east-asia-sub-collection > a > img {
+	
+	margin:10px;
+}
+
+/* style Lafayette prints sub collection divs */
+
+.lafayette-prints-subcollection {
+	
+	background:#F5F5F5;
+	border:1px solid #AAAAAA;
+	border-radius:2px;
+	margin:10px;
+}
+
+.lafayette-prints-subcollection > p, h2	 {
+	
+	margin:10px;
+}
 
 
 

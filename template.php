@@ -12,7 +12,7 @@
 require_once dirname(__FILE__) . '/includes/blocks.inc';
 require_once dirname(__FILE__) . '/includes/forms.inc';
 require_once dirname(__FILE__) . '/includes/menus.inc';
-require_once dirname(__FILE__) . '/includes/dssMods.inc';
+require_once dirname(__FILE__) . '/includes/dss_mods.inc';
 
 /**
  * Preprocess variables for page.tpl.php
@@ -309,6 +309,32 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 }
 */
 
+function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
+
+  dpm('trace');
+  dpm(array_keys($variables));
+
+  foreach($variables['associated_objects_array'] as &$associated_object) {
+
+    $object = $associated_object['object'];
+    dpm($object->models);
+
+    $mods_ds = $object['MODS'];
+
+    if(isset($mods_ds)) {
+
+      //$mods = new DssMods($mods_ds->content);
+      //$associated_object['mods_array'] = $mods->toArray();
+    }
+
+    dpm(array_keys($associated_object));
+
+    dpm($associated_object['thumb_link']);
+    dpm($associated_object['title']);
+
+  }
+}
+
 function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper($variables) {
 
   /*
@@ -337,10 +363,12 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper($va
     //drupal_load('module', 'dss_eastasia');
     try {
 
+      /*
       $mods_str = $islandora_object['MODS']->content;
 
       $mods_str = preg_replace('/<\?xml version="1.0"\?>/', '', $mods_str);
       $mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
+      */
 
       //$mods_object = new DssMods($mods_str);
     } catch (Exception $e) {
@@ -416,7 +444,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
   }
 
-  $variables['mods_object'] = isset($mods_object) ? $mods_object->mods : array();
+  $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray() : array();
 }
 
 function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {
@@ -440,7 +468,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables)
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
   }
 
-  $variables['mods_object'] = isset($mods_object) ? $mods_object->mods : array();
+  $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray() : array();
 }
 
 function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables) {
