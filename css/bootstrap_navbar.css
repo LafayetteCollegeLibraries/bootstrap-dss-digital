@@ -450,3 +450,18 @@ div.share-icon {
 
     margin-bottom:7px;
 }
+
+/**
+ * Terrible, refactor
+ *
+ */
+
+#carousel-featured-collection .carousel-caption-heading.carousel-collapsed {
+    
+    height: 40px;
+}
+
+#carousel-featured-collection .carousel-caption-text.carousel-collapsed {
+
+    display: none;
+}

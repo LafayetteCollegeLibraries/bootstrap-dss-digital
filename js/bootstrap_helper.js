@@ -105,6 +105,21 @@
 		$('#navbar .navbar-header h1 a').removeClass('navbar-header-collapsed');
 	    }
 
+	    /**
+	     * @todo Refactor all
+	     *
+	     */
+	    //if($( window ).width() <= 480 ) {
+	    if($( window ).width() <= 470 ) {
+
+		$('#carousel-featured-collection .carousel-caption-heading').addClass('carousel-collapsed');
+		$('#carousel-featured-collection .carousel-caption-text').addClass('carousel-collapsed');
+	    } else {
+
+		$('#carousel-featured-collection .carousel-caption-heading').removeClass('carousel-collapsed');
+		$('#carousel-featured-collection .carousel-caption-text').removeClass('carousel-collapsed');
+	    }
+
 	    if($( window ).width() <= 484 ) {
 
 		$('html.js body.html header#navbar.navbar div.navbar-header h2').addClass('navbar-header-top-collapsed');
@@ -174,6 +189,16 @@
 	$('#search-modal-help').popover();
 	$('#share-modal-help').popover();
 	$('#auth-modal-help').popover();
+	$('#search-facets').popover({
+		
+		html: true,
+		    placement: 'bottom',
+		    content: function() {
+
+		    $('#search-facets-content').show();
+		    return $('#search-facets-content').html();
+		}
+	    });
 
 	/**
 	 * Affixed navbar
@@ -219,6 +244,7 @@
 		$('#carousel-featured-collection').carousel('pause');
 	    });
 	$('#carousel-featured-collection').carousel('cycle');
+
     };
 
     // Ensure that the execution of all bootstrap functionality lies within a modular, Drupal-compliant context

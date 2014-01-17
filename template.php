@@ -13,6 +13,7 @@ require_once dirname(__FILE__) . '/includes/blocks.inc';
 require_once dirname(__FILE__) . '/includes/forms.inc';
 require_once dirname(__FILE__) . '/includes/menus.inc';
 require_once dirname(__FILE__) . '/includes/dss_mods.inc';
+require_once dirname(__FILE__) . '/includes/breadcrumbs.inc';
 
 /**
  * Preprocess variables for page.tpl.php
@@ -299,6 +300,10 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 ';
 
   $variables['slide_panel_container'] = $slide_panel_container;
+
+  $variables['breadcrumb'] = theme('breadcrumb', menu_get_active_trail());
+  //$variables['breadcrumb'] = theme('breadcrumb', menu_get_active_breadcrumb());
+  //$variables['breadcrumb'] = theme('breadcrumb', drupal_get_breadcrumb());
 }
 
 /**
@@ -655,10 +660,71 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 				   );
 }
 
-function bootstrap_dss_digital_breadcrumb($vars) {
+function bootstrap_dss_digital_breadcrumb($variables) {
 
-  dpm('trace');
-  //dpm($vars);
+  dpm($variables);
+
+  $output = '<ul class="breadcrumb">';
+
+  // Work-around
+  if(array_key_exists('breadcrumb', $variables)) {
+
+    unset($variables['breadcrumb']);
+  }
+
+  $breadcrumbs = $variables;
+  $count = count(array_keys($variables)) - 1;
+
+  $path = current_path();
+  $path_segments = explode('/', $path);
+
+  if(count($path_segments) > $count) {
+
+    // /abc/ab/a
+
+    $map = function($path_alias) {
+
+    };
+
+    //$breadcrumbs = $breadcrumbs[0];
+    $breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -2), array_map($map, $path_segments), array_slice($breadcrumbs, -1));
+      
+  }
+
+  foreach($breadcrumbs as $key => $breadcrumb) {
+
+    if ($count != $key) {
+
+      $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href']) . '<span class="divider">/</span></li>';
+    } else {
+
+      $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href']) . '</li>';
+    }
+  }
+
+  $output .= '</ul>';
+  return $output;
+
+  /*
+  $breadcrumb = $variables['breadcrumb'];
+
+  if (!empty($breadcrumb)) {
+    $breadcrumbs = '<ul class="breadcrumb">';
+    
+    $count = count($breadcrumb) - 1;
+    foreach ($breadcrumb as $key => $value) {
+      if ($count != $key) {
+        $breadcrumbs .= '<li>' . $value . '<span class="divider">/</span></li>';
+      }
+      else{
+        $breadcrumbs .= '<li>' . $value . '</li>';
+      }
+    }
+    $breadcrumbs .= '</ul>';
+    
+    return $breadcrumbs;
+  }
+  */
 }
 
 /**

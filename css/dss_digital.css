@@ -44,6 +44,12 @@ body{
 	text-decoration:underline;
 }
 
+.breadcrumb a:focus {
+
+	color:#DDDDDD;
+	text-shadow:none;
+}
+
 /* style contact link border */
 
 html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container div#page-site-links-container div#contact-container.breadcrumb{
@@ -140,6 +146,16 @@ html.js body.html footer.footer div.region section#block-menu-menu-footer-menu.b
 	margin-right:1%;
 	border:1px solid;
 	border-color:#AAAAAA;
+}
+
+#block-aggregator-feed-2 {
+	
+	margin-right:0px;
+}
+
+#block-nodeblock-7 {
+	
+	margin-left:0px;
 }
 
 /* placement of blog RSS block */
@@ -248,6 +264,11 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	border:1px solid;
 	border-color:#AAAAAA;
 	border-radius:2px;
+	float:left;
+	width:185px;
+	margin-left:1%;
+	margin-right:1%;
+	height:250px;
 }
 
 /* style people divs */
@@ -257,7 +278,6 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	background-color:#F5F5F5;
 	padding:10px;
 	margin-bottom:20px;
-	margin-left:3%;
 	border:1px solid;
 	border-color:#AAAAAA;
 	border-radius:2px;
@@ -313,14 +333,14 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 
 .carousel-control {
 	
-	margin-top:0px;
-	top:0px;
+	height:40px;
+	position:absolute;
+	width:auto;
 	left:0px;
+	border-radius:0px;
 	border:none;
-	height:25%;
-	background:none;
 	top:33%;
-	opacity:0.35;
+	
 }
 
 .carousel-control:focus {
@@ -346,16 +366,14 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 .carousel-control.left > img {
 	
 	float:left;
-	border-top-right-radius:2px;
-	border-bottom-right-radius:2px;
 }
 
 .carousel-control.right > img {
 	
 	float:right;
-	border-top-left-radius:2px;
-	border-bottom-left-radius:2px;
 }
+
+/* ensure width of carousel images */
 
 .carousel-inner > .item > img {
 	
@@ -639,11 +657,74 @@ ul.quicktabs-tabs > li.active {
 }
 
 
+/* style margins around nodes */
+
+.node {
+	
+	padding:0px;
+	margin-left:1%;
+	margin-right:1%;
+}
+
+/* style margin on projects */
+
+#node-12 {
+	
+	margin:0px;
+}
+
+/* style contact form height and submit button */
+
+.modal-body {
+	
+	max-height:none;
+	height:450px;
+}
+
+#edit-submit--4 {
+	
+	background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #404040;
+    float: left;
+    text-shadow: none;
+    width: 80px;
+}
+
+#webform-component-message {
+	
+	margin-bottom:5px;
+}
+
+html.js body.html div.main-container div.row-fluid section.span12 article#node-29.node div.field div.field-items div.field-item div {
+	
+	background-color: #F5F5F5;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    padding: 10px;
+    float: right;
+    text-align: center;
+}
+
+html.js body.html div.main-container div.row-fluid section.span12 article#node-29.node div.field div.field-items div.field-item div ul {
+	
+	list-style:none;
+	margin:0px;
+}
+
+html.js body.html div.main-container div.row-fluid section.span12 article#node-29.node div.field div.field-items div.field-item div h6 {
+	
+	margin-top:0px;
+	margin-bottom:5px;
+}
 
 
 
 
-/**
+
+/*
  * @author griffinj
  * Resolving DSSSM-308
  */

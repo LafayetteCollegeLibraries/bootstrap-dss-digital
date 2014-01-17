@@ -36,6 +36,9 @@ regions[hidden]         = 'Hidden'
 scripts[] = 'js/bootstrap.min.js'
 scripts[] = 'js/bootstrap.min.js'
 
+; Snap.js
+scripts[] = 'js/snap.js'
+
 scripts[] = 'js/bootstrap_helper.js'
 scripts[] = 'js/advanced_search_modal.js'
 scripts[] = 'js/sharethis_helper.js'
@@ -58,10 +61,13 @@ stylesheets[all][] = css/lafayette_lib_dss_page.css
 ; Lightbox2
 stylesheets[all][] = css/lightbox2.css
 
+; Snap.js
+; stylesheets[all][] = css/snap.css
+stylesheets[all][] = css/slide_panel.css
+
 ; JavaScript
 stylesheets[all][] = css/modal.css
 stylesheets[all][] = css/sharethis.css
-stylesheets[all][] = css/slide_panel.css
 
 ; Islandora
 stylesheets[all][] = css/islandora_solr.css

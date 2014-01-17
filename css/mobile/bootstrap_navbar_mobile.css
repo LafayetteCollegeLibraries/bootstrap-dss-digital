@@ -24,6 +24,16 @@ and (max-device-width : 1024px) {
     }
 }
 
+@media only screen 
+and (min-device-width : 0px) 
+and (max-device-width : 1024px) {
+
+    .carousel-control > img {
+	
+		height:10px;
+	}
+}
+
 /**
  * Smartphone-specific styling
  *

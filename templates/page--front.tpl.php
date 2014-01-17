@@ -81,33 +81,17 @@
 
 </header><! --/.navbar -->
 
-    <div id="menu" class="menu nav-collapse collapse width">
-        <div class="collapse-inner">
-          <div class="navbar navbar-inverse">
-            <div class="navbar-inner">
-              Menu
-            </div>
-          </div>
-          <?php print $slide_panel; ?>
-      </div>
-    </div><!-- /#menu -->
-    <div class="view">
-      <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#menu">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-      </div>
-    </div><!-- /.view -->
+<?php if (!empty($page['slide_panel'])): ?>
+<div>
+    <div>
+        <?php print render($page['slide_panel']); ?>
+    </div>
+</div>
+<?php endif; ?>
 
 <div class="main-container container">
 
-  <div class="carousel-container">
-    <?php print $carousel; ?>
-  </div><!-- /.carousel-container -->
+  <?php print $carousel; ?>
 
   <header role="banner" id="page-header">
    <p class="lead"><?php print l($title, current_path()); ?></p>
@@ -131,7 +115,7 @@
     <div id="breadcrumb-container">
       <?php if (!empty($breadcrumb)): ?>
 
-	<?php print $breadcrumb; ?>
+        <?php print $breadcrumb; ?>
       <?php endif;?>
 
       <div id="page-site-links-container">
