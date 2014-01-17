@@ -271,7 +271,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 			     'mdl_tabs' => theme('quicktabs', (array) $mdl_tabs));
   */
 
-  dpm($variables['page']['content']);
+  //dpm($variables['page']['content']);
 }
 
 /**
@@ -311,14 +311,44 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 
 function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
 
-  dpm('trace');
+  dpm('trace2');
   dpm(array_keys($variables));
+
+  $islandora_object = $variables['islandora_object'];
+  $collection_pid = $islandora_object->id;
+
+  //dpm($variables['associated_objects_array'][0]['dc_array']);
+
+  $slow_debug = FALSE;
 
   foreach($variables['associated_objects_array'] as &$associated_object) {
 
     $object = $associated_object['object'];
-    dpm($object->models);
+    $pid = $associated_object['pid'];
 
+    /*
+    $pid_dc_field_map = array('islandora:newspaper' => array('dc.creator',
+							     'dc.contributor',
+							     'dc.format',
+							     'dc.language'),
+			      );
+
+    foreach($associated_object['dc_array'] as $field_name => &$field) {
+
+      if(in_array($field_name, $pid_dc_field_map[$collection_pid])) {
+	  
+	unset($associated_object['dc_array'][$field_name]);
+      }
+    }
+    */
+
+    if(!$slow_debug) {
+
+      //dpm($object['dc_array']);
+      $slow_debug = TRUE;
+    }
+
+    /*
     $mods_ds = $object['MODS'];
 
     if(isset($mods_ds)) {
@@ -326,16 +356,115 @@ function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
       //$mods = new DssMods($mods_ds->content);
       //$associated_object['mods_array'] = $mods->toArray();
     }
+    */
 
-    dpm(array_keys($associated_object));
+    /*
+    $associated_objects_array[$pid]['title_link'] = l($title, $object_url, array('html' => TRUE, 'attributes' => array('title' => $title)));
+    $associated_objects_array[$pid]['thumb_link'] = l($thumbnail_img, $object_url, array('html' => TRUE, 'attributes' => array('title' => $title)));
+     */
 
-    dpm($associated_object['thumb_link']);
-    dpm($associated_object['title']);
+    //dpm($associated_object['dc_array']);
+
+    $title = $associated_object['title_link'];
+    $thumbnail_img = $associated_object['thumbnail'];
+    $object = $associated_object['object'];
+
+
+    // Work-around
+    // Refactor
+
+    $pid_relation_is_part_of_map = array(
+					 'eastAsia:imperialPostcards' => 'Imperial Postcard Collection',
+					 'eastAsia:linPostcards' => 'Lin Chia-Feng Family Postcard Collection',
+					 'eastAsia:lewis' => 'Michael Lewis Taiwan Postcard Collection',
+					 'eastAsia:pacwarPostcards' => 'Pacific War Postcard Collection',
+					 'eastAsia:paKoshitsu' => 'Japanese Imperial House Postcard Album',
+					 'eastAsia:paOmitsu01' => 'Sino-Japanese War Postcard Album 01',
+					 'eastAsia:paOmitsu02' => 'Sino-Japanese War Postcard Album 02',
+					 'eastAsia:paTsubokura' => 'Tsubokura Russo-Japanese War Postcard Album',
+					 );
+
+    if(preg_match('/eastAsia:.*/', $pid)) {
+
+      $associated_object['title_link'] = l($title,
+					   'islandora/search/cdm.Relation.IsPartOf:"'. $pid_relation_is_part_of_map[$pid] .'"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    
+      $associated_object['thumb_link'] = l($thumbnail_img,
+					   'islandora/search/cdm.Relation.IsPartOf:"'. $pid_relation_is_part_of_map[$pid] .'"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+
+    } elseif($pid == 'islandora:cap') {
+
+      $associated_object['title_link'] = l($title,
+					   'islandora/search/cdm.Relation.IsPartOf:"Historical Photograph Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    
+      $associated_object['thumb_link'] = l($thumbnail_img,
+					   'islandora/search/cdm.Relation.IsPartOf:"Historical Photograph Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+
+    } elseif($pid == 'islandora:geologySlidesEsi') {
+
+      $associated_object['title_link'] = l($title,
+					   'islandora/search/cdm.Relation.IsPartOf:"John S. Shelton Earth Science Image Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+
+      $associated_object['thumb_link'] = l($thumbnail_img,
+					   'islandora/search/cdm.Relation.IsPartOf:"John S. Shelton Earth Science Image Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+
+    } elseif($pid == 'islandora:mdlPrints') {
+
+      $associated_object['title_link'] = l($title,
+					   'islandora/search/cdm.Relation.IsPartOf:"Marquis de Lafayette Prints Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    
+      $associated_object['thumb_link'] = l($thumbnail_img,
+					   'islandora/search/cdm.Relation.IsPartOf:"Marquis de Lafayette Prints Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    }
+
+    /*
+ else {
+
+      $associated_object['title_link'] = l($title,
+					   'islandora/search/PID:"' . $pid . '"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    
+      $associated_object['thumb_link'] = l($thumbnail_img,
+					   'islandora/search/PID:"' . $pid . '"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    }
+    */
+
 
   }
 }
 
-function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper($variables) {
+function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$variables) {
+
+  dpm('trace');
 
   /*
   $page_number = (empty($_GET['page'])) ? 0 : $_GET['page'];
@@ -349,14 +478,13 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper($va
 								  ));
 
   $variables['collection_content'] = $collection_content;
-  */
 
   dpm($variables);
+  */
 
   $islandora_object = $variables['islandora_object'];
   
   $pid = $islandora_object->id;
-  dpm($pid);
 
   if(preg_match('/eastAsia/', $pid)) {
 
@@ -436,7 +564,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
     //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
 
-    dpm($mods_str);
+    //dpm($mods_str);
 
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
@@ -503,6 +631,87 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 function bootstrap_dss_digital_breadcrumb($vars) {
 
   dpm('trace');
-  dpm($vars);
+  //dpm($vars);
 }
 
+/**
+ * Implements hook_preprocess_theme()
+ * @see islandora_solr_islandora_solr
+ *
+ */
+
+function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
+
+  //dpm(array_keys($variables));
+  //dpm($variables['results']);
+
+  if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', current_path(), $m)) {
+
+    $relation = $m[1];
+
+    $relation_is_part_of_dc_field_map = array(
+					      'Marquis de Lafayette Prints Collection' => array(
+												'dc.description',
+												'dc.format',
+												'dc.identifier',
+												'dc.rights',
+												'dc.subject',
+												'dc.type'
+												),
+					      'John S. Shelton Earth Science Image Collection' => array('dc.contributor',
+													'dc.coverage',
+													'dc.description',
+													'dc.format',
+													'dc.identifier',
+													'dc.language',
+													'dc.publisher',
+													'dc.subject',
+													'dc.type',
+													)
+					      );
+
+    /*
+    $relation_is_part_of_dc_field_label_map = array('Marquis de Lafayette Prints Collection' => array(
+												      'dc.description' => '',
+												      'dc.identifier' => ''
+												      ));
+    */
+
+    foreach($variables['results'] as &$result) {
+      
+      foreach($result['solr_doc'] as $field_name => &$field) {
+
+	if(in_array($field_name, $relation_is_part_of_dc_field_map[$relation])) {
+	  
+	  unset($result['solr_doc'][$field_name]);
+	}
+
+	/*
+	if(in_array($field_name, $relation_is_part_of_dc_field_map[$relation])) {
+
+	  $result['solr_doc'][$field_name]['label'] = $relation_is_part_of_dc_field_label_map[$relation][$field_name];
+	}
+	*/
+      }
+    }
+  }
+
+  /*
+dc.contributor
+  () 
+dc.coverage
+  , North America--------, , 
+dc.description
+  , 
+dc.format
+  , nonprojected graphic 
+dc.identifier
+  islandora:3235 
+dc.language
+dc.publisher
+dc.subject
+    , ---- 
+dc.type
+    StillImage, 
+  */
+}

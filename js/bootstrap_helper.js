@@ -63,7 +63,8 @@
 		//if($( window ).width() <= 510) {
 		//if($( window ).width() <= 494) {
 		//if($( window ).width() <= 459) {
-		if($( window ).width() <= 478) {
+		//if($( window ).width() <= 478) {
+		if($( window ).width() <= 508) {
 
 		    $('.navbar-inner').addClass('navbar-fixed-width');		    
 		} else {
@@ -99,7 +100,8 @@
 	    }
 
 	    // Adjust the DSS link in response to the size of the browser
-	    if($( window ).width() <= 754 ) {
+	    //if($( window ).width() <= 754 ) {
+	    if($( window ).width() <= 736 ) {
 
 		// Refactor
 		/*
@@ -109,12 +111,48 @@
 		    $('#navbar .navbar-header h1 a').text('DSS');
 		}
 		*/
+
+		$('#navbar .navbar-header h1 a').addClass('navbar-header-collapsed');
 	    } else {
 
+		/*
 		if($('#navbar .navbar-header h1 a').text() == 'DSS') {
 
 		    $('#navbar .navbar-header h1 a').text( $(document).data('Drupal.theme.bootstrap.dss'));
 		}
+		*/
+
+		$('#navbar .navbar-header h1 a').removeClass('navbar-header-collapsed');
+	    }
+
+	    if($( window ).width() <= 484 ) {
+
+		$('html.js body.html header#navbar.navbar div.navbar-header h2').addClass('navbar-header-top-collapsed');
+		$('#navbar .navbar-header h1 a').addClass('navbar-header-collapsed-1');
+	    } else {
+
+		$('html.js body.html header#navbar.navbar div.navbar-header h2').removeClass('navbar-header-top-collapsed');
+		$('#navbar .navbar-header h1 a').removeClass('navbar-header-collapsed-1');
+	    }
+
+	    if($( window ).width() <= 364 ) {
+
+		$('html.js body.html header#navbar.navbar div.navbar-header h2').addClass('navbar-header-top-collapsed-1');
+		$('#navbar .navbar-header h1 a').addClass('navbar-header-collapsed-2');
+	    } else {
+
+		$('html.js body.html header#navbar.navbar div.navbar-header h2').removeClass('navbar-header-top-collapsed-1');
+		$('#navbar .navbar-header h1 a').removeClass('navbar-header-collapsed-2');
+	    }
+
+	    if($( window ).width() <= 300 ) {
+
+		$('html.js body.html header#navbar.navbar div.navbar-header h2').addClass('navbar-header-top-collapsed-smallest');
+		$('#navbar .navbar-header h1 a').addClass('navbar-header-collapsed-smallest');
+	    } else {
+
+		$('html.js body.html header#navbar.navbar div.navbar-header h2').removeClass('navbar-header-top-collapsed-smallest');
+		$('#navbar .navbar-header h1 a').removeClass('navbar-header-collapsed-smallest');
 	    }
 
 	    // Adjust the page title in response to the size of the browser

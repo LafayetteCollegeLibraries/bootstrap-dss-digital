@@ -55,7 +55,8 @@
 .navbar-fixed-width {
 
     /* width: 418px; */
-    width: 438px;
+    /* width: 438px; */
+    width: 455px;
 }
 
 /**
@@ -90,6 +91,41 @@ div.navbar-header h2 {
     */
     margin-right: 10%;
     font-size: x-large;
+}
+
+.navbar-header-collapsed {
+
+    font-size: xx-large;
+}
+
+.navbar-header-collapsed-1 {
+
+    font-size: x-large;
+}
+
+.navbar-header-collapsed-2 {
+
+    font-size: large;
+}
+
+.navbar-header-collapsed-smallest {
+
+    font-size: x-small;
+}
+
+html.js body.html header#navbar.navbar div.navbar-header h2.navbar-header-top-collapsed {
+
+    font-size: 18px;
+}
+
+html.js body.html header#navbar.navbar div.navbar-header h2.navbar-header-top-collapsed-1 {
+
+    font-size: 14px;
+}
+
+html.js body.html header#navbar.navbar div.navbar-header h2.navbar-header-top-collapsed-smallest {
+
+    font-size: 8px;
 }
 
 .navbar-inner {
