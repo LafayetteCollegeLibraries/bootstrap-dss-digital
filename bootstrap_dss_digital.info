@@ -23,6 +23,7 @@ regions[contact]  = 'Contact Interface'
 regions[header]         = 'Top Bar'
 regions[highlighted]    = 'Highlighted'
 regions[help]           = 'Help'
+regions[slide_panel]    = 'Slide Panel'
 regions[content]        = 'Content'
 regions[sidebar_first]  = 'Primary'
 regions[sidebar_second] = 'Secondary'
@@ -60,6 +61,7 @@ stylesheets[all][] = css/lightbox2.css
 ; JavaScript
 stylesheets[all][] = css/modal.css
 stylesheets[all][] = css/sharethis.css
+stylesheets[all][] = css/slide_panel.css
 
 ; Islandora
 stylesheets[all][] = css/islandora_solr.css

@@ -65,7 +65,8 @@
 
 		$('.navbar-inner-container').removeClass('tablet').insertAfter($('.menu-toggle-container'));
 		 */
-	    } else if($( window ).width() < 1024) {
+		//} else if($( window ).width() < 1024) {
+	    } else if($( window ).width() < 1008) {
 
 		
 		//$('.navbar-inner-container').removeClass('desktop');
@@ -152,10 +153,10 @@
 
 	    if($( window ).width() >= 1008) {
 
-		$('#menu-toggle-control-container').hide();
+		$('#menu-toggle-control-container').css('display', 'none');
 	    } else {
 
-		$('#menu-toggle-control-container').show();
+		$('#menu-toggle-control-container').css('display', 'block');
 	    }
 	}
 

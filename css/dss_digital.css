@@ -629,6 +629,8 @@ ul.quicktabs-tabs > li.active {
 	border:1px solid #AAAAAA;
 	border-radius:2px;
 	margin:10px;
+	margin-left:0px;
+	height:240px;
 }
 
 .lafayette-prints-subcollection > p, h2	 {

@@ -272,6 +272,33 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
   */
 
   //dpm($variables['page']['content']);
+
+  // Panel
+  $slide_panel_container = '
+      <div id="menu" class="menu nav-collapse collapse width">
+        <div class="collapse-inner">
+          <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+              Menu
+            </div>
+          </div>
+        ' . $variables['page']['slide_panel'] . '
+        </div>
+      </div><!-- /#menu -->
+      <div class="view">
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#menu">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+        </div><!-- /.view -->
+      </div>
+';
+
+  $variables['slide_panel_container'] = $slide_panel_container;
 }
 
 /**
