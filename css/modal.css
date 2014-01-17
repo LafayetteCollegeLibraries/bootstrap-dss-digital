@@ -148,3 +148,14 @@ body div.popover {
 
     z-index: 500000;
 }
+
+form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-terms button.islandora-solr-search-add.raised {
+
+    margin-top: -40px;
+    
+}
+
+#search-modal-help.raised {
+
+    margin-top: -30px;
+}

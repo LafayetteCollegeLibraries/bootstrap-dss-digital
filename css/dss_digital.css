@@ -9,26 +9,38 @@ body{
 	background-color:#FFFFFF;
 }
 
+/* style log out hyperlink */
+
+.navbar-inner a {
+	
+	color:#DDDDDD;
+}
+
+.navbar-inner a:hover{
+	
+	text-decoration:none;
+	color:#DDDDDD;
+}
+
 /* style breadcrumbs, contact, and copyright */
 
 .breadcrumb {
 
-	background-color: #F5F5F5;
-	border: 1px solid;
-	border-color:#AAAAAA;
+	background-image:linear-gradient(to bottom, #545454, #333333);
 	border-radius:2px;
+	border:none;
+	text-shadow:none;
 }
-
-/* set color of hyperlinks in breadcrumbs, contact, and copyright */
 
 .breadcrumb a {
 
-	color:#1A98DB;
+	color:#DDDDDD;
+	text-shadow:none;
 }
 
 .breadcrumb a:hover {
 	
-	color:#005580;
+	color:#FFFFFF;
 	text-decoration:underline;
 }
 
@@ -38,7 +50,7 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 	
 	border-top-right-radius:0px;
 	border-bottom-right-radius:0px;
-	border-right:none;
+	border-right:1px solid #DDDDDD;
 }
 
 /* style copyright link border */
@@ -150,7 +162,7 @@ html.js body.html div.main-container div.row-fluid section.span12 section#block-
 	
 	margin-top:2px;
 	margin-left:0%;
-	margin-right:49px;
+	margin-right:65px;
 }
 
 /* style LC log-in logo and link */
@@ -560,7 +572,7 @@ html.js body.html header#navbar.navbar div#share-modal.lafayette-dss-modal div.m
 
 ul.quicktabs-tabs > li {
 	
-	border-right:1px solid #AAAAAA;
+	border-right:2px solid #DDDDDD;
 	padding:5px 8px;
 	margin-left:-4px;
 }
@@ -576,9 +588,14 @@ ul.quicktabs-tabs > li > a:focus {
 	text-decoration:none;
 }
 
-ul.quicktabs-tabs > li.active.first {
+ul.quicktabs-tabs > li.first {
 	
-	border-left:1px solid #AAAAAA;
+	border-left:2px solid #DDDDDD;
+}
+
+ul.quicktabs-tabs > li.active {
+	
+	background:#DDDDDD;
 }
 
 /* style EAIC sub collection divs */
@@ -589,6 +606,9 @@ ul.quicktabs-tabs > li.active.first {
 	border:1px solid #AAAAAA;
 	border-radius:2px;
 	margin:10px;
+	clear:both;
+	margin-left:0px;
+	height:240px;
 }
 
 .east-asia-sub-collection > p, h2 {
