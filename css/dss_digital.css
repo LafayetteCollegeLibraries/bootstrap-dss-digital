@@ -675,10 +675,10 @@ ul.quicktabs-tabs > li.active {
 
 /* style contact form height and submit button */
 
-.modal-body {
+.modal-contact-body {
 	
-	max-height:none;
 	height:450px;
+	max-height:none;
 }
 
 #edit-submit--4 {
