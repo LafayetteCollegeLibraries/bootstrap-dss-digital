@@ -662,8 +662,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 
 function bootstrap_dss_digital_breadcrumb($variables) {
 
-  dpm($variables);
-
   $output = '<ul class="breadcrumb">';
 
   // Work-around
@@ -678,18 +676,42 @@ function bootstrap_dss_digital_breadcrumb($variables) {
   $path = current_path();
   $path_segments = explode('/', $path);
 
-  if(count($path_segments) > $count) {
+  $_breadcrumbs = $breadcrumbs;
 
-    // /abc/ab/a
+  switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
 
-    $map = function($path_alias) {
+  case 'node/1':
 
-    };
+    $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1));
+    $count--;
+    break;
 
-    //$breadcrumbs = $breadcrumbs[0];
-    $breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -2), array_map($map, $path_segments), array_slice($breadcrumbs, -1));
-      
+  case 'node/26':
+  case 'node/30':
+  case 'node/31':
+  case 'node/19':
+  case 'node/20':
+  case 'node/21':
+  case 'node/27':
+  case 'node/32':
+  case 'node/33':
+  case 'node/34':
+
+    $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Projects',
+									      'href' => 'node/12')), array_slice($breadcrumbs, -1));
+  $count++;
+    break;
+
+  case 'node/29':
+
+    $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Repositories',
+									      'href' => 'node/4')), array_slice($breadcrumbs, -1));
+    $count++;
+    
+    break;
   }
+
+  $breadcrumbs = $_breadcrumbs;
 
   foreach($breadcrumbs as $key => $breadcrumb) {
 
@@ -704,27 +726,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
   $output .= '</ul>';
   return $output;
-
-  /*
-  $breadcrumb = $variables['breadcrumb'];
-
-  if (!empty($breadcrumb)) {
-    $breadcrumbs = '<ul class="breadcrumb">';
-    
-    $count = count($breadcrumb) - 1;
-    foreach ($breadcrumb as $key => $value) {
-      if ($count != $key) {
-        $breadcrumbs .= '<li>' . $value . '<span class="divider">/</span></li>';
-      }
-      else{
-        $breadcrumbs .= '<li>' . $value . '</li>';
-      }
-    }
-    $breadcrumbs .= '</ul>';
-    
-    return $breadcrumbs;
-  }
-  */
 }
 
 /**

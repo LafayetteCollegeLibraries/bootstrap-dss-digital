@@ -150,21 +150,6 @@
 		$('#navbar .navbar-header h1 a').removeClass('navbar-header-collapsed-smallest');
 	    }
 
-	    // Adjust the page title in response to the size of the browser
-	    if($( window ).width() <= 502 ) {
-
-		// Refactor
-		if($('#navbar .navbar-header h2').is(':visible')) {
-
-		    //$('#navbar .navbar-header h2').hide();
-		}
-	    } else {
-
-		if(!$('#navbar .navbar-header h2').is(':visible')) {
-
-		    //$('#navbar .navbar-header h2').show();
-		}
-	    }
 
 	    if($( window ).width() >= 1008) {
 
