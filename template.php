@@ -342,15 +342,10 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 
 function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
 
-  dpm('trace2');
-  dpm(array_keys($variables));
-
   $islandora_object = $variables['islandora_object'];
   $collection_pid = $islandora_object->id;
 
-  //dpm($variables['associated_objects_array'][0]['dc_array']);
-
-  $slow_debug = FALSE;
+  //$slow_debug = FALSE;
 
   foreach($variables['associated_objects_array'] as &$associated_object) {
 
@@ -358,43 +353,12 @@ function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
     $pid = $associated_object['pid'];
 
     /*
-    $pid_dc_field_map = array('islandora:newspaper' => array('dc.creator',
-							     'dc.contributor',
-							     'dc.format',
-							     'dc.language'),
-			      );
-
-    foreach($associated_object['dc_array'] as $field_name => &$field) {
-
-      if(in_array($field_name, $pid_dc_field_map[$collection_pid])) {
-	  
-	unset($associated_object['dc_array'][$field_name]);
-      }
-    }
-    */
-
     if(!$slow_debug) {
 
-      //dpm($object['dc_array']);
+      dpm($object['dc_array']);
       $slow_debug = TRUE;
     }
-
-    /*
-    $mods_ds = $object['MODS'];
-
-    if(isset($mods_ds)) {
-
-      //$mods = new DssMods($mods_ds->content);
-      //$associated_object['mods_array'] = $mods->toArray();
-    }
     */
-
-    /*
-    $associated_objects_array[$pid]['title_link'] = l($title, $object_url, array('html' => TRUE, 'attributes' => array('title' => $title)));
-    $associated_objects_array[$pid]['thumb_link'] = l($thumbnail_img, $object_url, array('html' => TRUE, 'attributes' => array('title' => $title)));
-     */
-
-    //dpm($associated_object['dc_array']);
 
     $title = $associated_object['title_link'];
     $thumbnail_img = $associated_object['thumbnail'];
@@ -471,72 +435,10 @@ function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
 						 'alias' => TRUE,
 						 'attributes' => array('title' => $title)));
     }
-
-    /*
- else {
-
-      $associated_object['title_link'] = l($title,
-					   'islandora/search/PID:"' . $pid . '"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-    
-      $associated_object['thumb_link'] = l($thumbnail_img,
-					   'islandora/search/PID:"' . $pid . '"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-    }
-    */
-
-
   }
 }
 
 function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$variables) {
-
-  dpm('trace');
-
-  /*
-  $page_number = (empty($_GET['page'])) ? 0 : $_GET['page'];
-  $page_size = (empty($_GET['pagesize'])) ? variable_get('islandora_basic_collection_page_size', '10') : $_GET['pagesize'];
-  $islandora_object = $variables['islandora_object'];
-  list($total_count, $results) = islandora_basic_collection_get_member_objects($islandora_object, $page_number, $page_size);
-
-  $collection_content = theme('islandora_basic_collection', array(
-								  'islandora_object' => $islandora_object,
-								  'collection_results' => $results,
-								  ));
-
-  $variables['collection_content'] = $collection_content;
-
-  dpm($variables);
-  */
-
-  $islandora_object = $variables['islandora_object'];
-  
-  $pid = $islandora_object->id;
-
-  if(preg_match('/eastAsia/', $pid)) {
-
-    //drupal_load('module', 'dss_eastasia');
-    try {
-
-      /*
-      $mods_str = $islandora_object['MODS']->content;
-
-      $mods_str = preg_replace('/<\?xml version="1.0"\?>/', '', $mods_str);
-      $mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
-      */
-
-      //$mods_object = new DssMods($mods_str);
-    } catch (Exception $e) {
-    
-      drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
-    }
-
-    //$mods = new EastAsiaMods();
-  }
 
   // For rendering non-grid content
   drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.base.css');
@@ -549,7 +451,7 @@ function bootstrap_dss_digital_theme_registry_alter(&$registry) {
   $registry['hybridauth_widget']['file'] = 'template';
 
   // Work-around
-  $registry['islandora_basic_collection_wrapper']['preprocess functions'] = array('bootstrap_dss_digital_preprocess_islandora_basic_collection');
+  //$registry['islandora_basic_collection_wrapper']['preprocess functions'] = array('bootstrap_dss_digital_preprocess_islandora_basic_collection');
 
   /*
     'islandora_basic_collection_wrapper' => array(
@@ -679,6 +581,28 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
   switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
 
+  case 'islandora/object/islandora:root':
+
+    $_breadcrumbs = array($breadcrumbs[0], $breadcrumbs[count($breadcrumbs) - 1]);
+    $count--;
+    break;
+
+  case 'islandora/object/islandora:eastAsia':
+  case 'islandora/object/islandora:newspaper':
+  case 'islandora/object/islandora:academicPublications':
+  case 'islandora/object/islandora:administrativeArchive':
+  case 'islandora/object/islandora:cap':
+  case 'islandora/object/islandora:mdl':
+  case 'islandora/object/islandora:geologySlidesEsi':
+  case 'islandora/object/islandora:mckelvyHouse':
+  case 'islandora/object/islandora:warCasualties':
+  case 'islandora/object/islandora:presidents':
+
+    $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
+									      'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
+  $count++;
+    break;
+
   case 'node/1':
 
     $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1));
@@ -788,23 +712,4 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
       }
     }
   }
-
-  /*
-dc.contributor
-  () 
-dc.coverage
-  , North America--------, , 
-dc.description
-  , 
-dc.format
-  , nonprojected graphic 
-dc.identifier
-  islandora:3235 
-dc.language
-dc.publisher
-dc.subject
-    , ---- 
-dc.type
-    StillImage, 
-  */
 }

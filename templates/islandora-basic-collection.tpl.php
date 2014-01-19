@@ -10,8 +10,6 @@
 
 <div class="islandora islandora-basic-collection">
 
-    <?php dpm($associated_objects_array); ?>
-
     <?php
       $row_result = 0;
       foreach($associated_objects_array as $associated_object): ?>
