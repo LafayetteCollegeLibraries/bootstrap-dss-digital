@@ -281,8 +281,18 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	border:1px solid;
 	border-color:#AAAAAA;
 	border-radius:2px;
-	width:500px;
-	height:304px;
+	max-width:500px;
+	min-height:304px;
+}
+
+.contact-profile > p, h4, h5 {
+	
+	margin-left:10px;
+}
+
+.contact-profile > h4, {
+	
+	margin-left:10px;
 }
 
 /* carousel caption styling */
@@ -626,7 +636,7 @@ ul.quicktabs-tabs > li.active {
 	margin:10px;
 	clear:both;
 	margin-left:0px;
-	height:240px;
+	min-height:240px;
 }
 
 .east-asia-sub-collection > p, h2 {
@@ -648,7 +658,7 @@ ul.quicktabs-tabs > li.active {
 	border-radius:2px;
 	margin:10px;
 	margin-left:0px;
-	height:240px;
+	min-height:240px;
 }
 
 .lafayette-prints-subcollection > p, h2	 {
