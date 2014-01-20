@@ -765,6 +765,28 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	width:26% !important;
 }
 
+/* style collapsing menu */
+
+div.nav-collapse.in nav ul li {
+	
+	border-bottom:1px solid #DDDDDD;
+}
+
+div.nav-collapse.in nav ul li.first {
+	
+	border-top:1px solid #DDDDDD;
+}
+
+div.nav-collapse.in nav ul li.last {
+	
+	border-bottom:none;
+}
+
+div.nav-collapse.in nav ul {
+	
+	margin-bottom:0px;
+}
+
 
 
 
