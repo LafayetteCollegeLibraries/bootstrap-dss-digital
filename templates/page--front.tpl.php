@@ -121,7 +121,7 @@
       <div id="page-site-links-container">
       <!-- Work-around, hard-coding, refactor -->
       <div id="contact-container" class="breadcrumb" ><?php print $contact_anchor; ?></div>
-      <div id="copyright-container" class="breadcrumb" ><?php print l('Copyright Information', 'copyright'); ?></div>
+      <div id="copyright-container" class="breadcrumb" ><?php print l('Copyright & Use', 'copyright'); ?></div>
       </div>
     </div>
 
