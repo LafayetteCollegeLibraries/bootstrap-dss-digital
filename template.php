@@ -698,9 +698,12 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
       
       foreach($result['solr_doc'] as $field_name => &$field) {
 
-	if(in_array($field_name, $relation_is_part_of_dc_field_map[$relation])) {
+	if(in_array($relation, $relation_is_part_of_dc_field_map)) {
+
+	    if(in_array($field_name, $relation_is_part_of_dc_field_map[$relation])) {
 	  
-	  unset($result['solr_doc'][$field_name]);
+	      unset($result['solr_doc'][$field_name]);
+	    }
 	}
 
 	/*

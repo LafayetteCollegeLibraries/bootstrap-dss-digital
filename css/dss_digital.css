@@ -31,6 +31,8 @@ body{
 	border-radius:2px;
 	border:none;
 	text-shadow:none;
+	padding-top:1%;
+	padding-bottom:1%
 }
 
 .breadcrumb a {
@@ -51,21 +53,43 @@ body{
 	text-shadow:none;
 }
 
-/* style contact link border */
+html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container ul.breadcrumb {
+	
+	padding: 1% 1%;
+	width:48%;
+}
 
-html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container div#page-site-links-container div#contact-container.breadcrumb{
+#page-site-links-container {
+	
+	width:auto;
+	max-width:48%;
+}
+
+/* style contact link */
+
+#contact-container {
 	
 	border-top-right-radius:0px;
 	border-bottom-right-radius:0px;
 	border-right:1px solid #DDDDDD;
+	max-width:auto;
 }
 
-/* style copyright link border */
+#contact-container > a {
+	
+}
 
-html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container div#page-site-links-container div#copyright-container.breadcrumb{
+/* style copyright link */
+
+#copyright-container{
 	
 	border-top-left-radius:0px;
 	border-bottom-left-radius:0px;
+	max-width:auto;
+}
+
+#copyright-container > a {
+	
 }
 
 /* style footer */
@@ -724,6 +748,30 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	
 	margin-top:0px;
 	margin-bottom:5px;
+}
+
+/* style search results */
+
+.islandora-solr-search-result {
+	
+	background:#F5F5F5;
+	border:1px solid #AAAAAA;
+	border-radius:2px;
+	padding:10px;
+}
+
+.solr-fields {
+	
+	border-bottom: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.solr-thumb {
+	
+	width:26% !important;
 }
 
 
