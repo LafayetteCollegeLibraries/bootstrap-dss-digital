@@ -2,11 +2,12 @@
  *
  */
    
-/* set color for background of all pages */
+/* set color for background of and minimum width for all pages*/
 
 body{
 	
 	background-color:#FFFFFF;
+	min-width:532px;
 }
 
 /* style log out hyperlink */
@@ -285,12 +286,7 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	min-height:304px;
 }
 
-.contact-profile > p, h4, h5 {
-	
-	margin-left:10px;
-}
-
-.contact-profile > h4, {
+.contact-profile > p, .contact-profile > h4, .contact-profile > h5 {
 	
 	margin-left:10px;
 }
@@ -639,7 +635,7 @@ ul.quicktabs-tabs > li.active {
 	min-height:240px;
 }
 
-.east-asia-sub-collection > p, h2 {
+.east-asia-sub-collection > p, .east-asia-sub-collection > h2 {
 	
 	margin:10px;
 }
@@ -661,7 +657,7 @@ ul.quicktabs-tabs > li.active {
 	min-height:240px;
 }
 
-.lafayette-prints-subcollection > p, h2	 {
+.lafayette-prints-subcollection > p, .lafayette-prints-subcollection > h2	 {
 	
 	margin:10px;
 }
