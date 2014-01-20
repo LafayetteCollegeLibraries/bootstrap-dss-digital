@@ -78,21 +78,12 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 	max-width:auto;
 }
 
-#contact-container > a {
-	
-}
-
 /* style copyright link */
 
 #copyright-container{
 	
 	border-top-left-radius:0px;
 	border-bottom-left-radius:0px;
-	max-width:auto;
-}
-
-#copyright-container > a {
-	
 }
 
 /* style footer */
@@ -775,6 +766,28 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 .solr-thumb {
 	
 	width:26% !important;
+}
+
+/* style collapsing menu */
+
+div.nav-collapse.in nav ul li {
+	
+	border-bottom:1px solid #DDDDDD;
+}
+
+div.nav-collapse.in nav ul li.first {
+	
+	border-top:1px solid #DDDDDD;
+}
+
+div.nav-collapse.in nav ul li.last {
+	
+	border-bottom:none;
+}
+
+div.nav-collapse.in nav ul {
+	
+	margin-bottom:0px;
 }
 
 
