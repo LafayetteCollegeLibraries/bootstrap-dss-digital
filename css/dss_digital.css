@@ -768,14 +768,21 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	width:26% !important;
 }
 
+dd.solr-value {
+	
+	padding-left:1%;
+}
+
 .solr-fields dt {
 	
-	
+	word-wrap:break-word;
+	width:33%;
 }
 
 .solr-fields dd {
 	
-	
+	word-wrap:break-word;
+	width:67%;
 }
 
 /* style collapsing menu */
