@@ -56,8 +56,8 @@
 
 		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
 
-		//} else if($( window ).width() < 1008) {
-	    } else if($( window ).width() < 993) {
+	    } else if($( window ).width() < 1008) {
+		//} else if($( window ).width() < 993) {
 
 		
 		//$('.navbar-inner-container').removeClass('desktop');

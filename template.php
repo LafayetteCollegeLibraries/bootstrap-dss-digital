@@ -63,6 +63,9 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 							      'external' => TRUE));
 
   $browser = browscap_get_browser();
+
+  dpm($browser);
+
   $is_smartphone_browser = $browser['ismobiledevice'] && preg_match('/iPhone|(?:Android.*?Mobile)|(?:Windows Phone)/', $browser['useragent']);
 
   // Different images must be passed based upon the browser type
@@ -544,6 +547,9 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$v
   }
 
   $variables['view_links'] = array($list_link, $grid_link);
+  $variables['display'] = $display;
+
+  dpm($variables);
 }
 
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
