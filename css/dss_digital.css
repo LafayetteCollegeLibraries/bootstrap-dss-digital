@@ -757,9 +757,8 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 
 .solr-fields {
 	
-	border-bottom: 1px solid #DDDDDD;
-    border-left: 1px solid #DDDDDD;
-    border-right: 1px solid #DDDDDD;
+	border: 1px solid #DDDDDD !important;
+	background-color:#FFFFFF;
     padding-left: 1%;
     padding-right: 1%;
 }
