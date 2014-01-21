@@ -54,19 +54,10 @@
 	    // Ensure that the menu items are displayed in a format appropriate to smartphone and tablet devices
 	    if($( window ).width() <= 480) {
 
-		/*
-		  $('.navbar-inner-container').removeClass('tablet');
-		*/
-
 		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
 
-		/*
-		 * Attempting to resolve this solely through CSS
-
-		$('.navbar-inner-container').removeClass('tablet').insertAfter($('.menu-toggle-container'));
-		 */
-		//} else if($( window ).width() < 1024) {
-	    } else if($( window ).width() < 1008) {
+		//} else if($( window ).width() < 1008) {
+	    } else if($( window ).width() < 993) {
 
 		
 		//$('.navbar-inner-container').removeClass('desktop');
@@ -151,7 +142,8 @@
 		$('#navbar .navbar-header h1 a').removeClass('navbar-header-collapsed-smallest');
 	    }
 
-	    if($( window ).width() >= 1008) {
+	    //if($( window ).width() >= 1008) {
+	    if($( window ).width() >= 993) {
 
 		//$('#menu-toggle-control-container').css('display', 'none');
 		$('#menu-toggle-control-container').css('width', 0);
@@ -248,7 +240,7 @@
      * @todo Investigate why this became necessary on 01/17/14
      *
      */
-    $(document).ready(function() {
+    $(window).load(function() {
 
 	    Drupal.theme('bootstrapDssLdr');
 	});
