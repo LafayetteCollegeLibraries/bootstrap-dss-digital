@@ -15,7 +15,7 @@
       <ul class="links inline">
         <?php foreach ($view_links as $link): ?>
           <li>
-            <a <?php print drupal_attributes($link['attributes']) ?>><?php print filter_xss($link['title']) ?></a>
+            <?php print $link; ?>
           </li>
         <?php endforeach ?>
       </ul>

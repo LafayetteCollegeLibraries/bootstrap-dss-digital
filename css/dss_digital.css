@@ -28,11 +28,17 @@ body{
 .breadcrumb {
 
 	background-image:linear-gradient(to bottom, #545454, #333333);
-	border-radius:2px;
+	border-radius:1px;
 	border:none;
 	text-shadow:none;
-	padding-top:1%;
-	padding-bottom:1%
+	padding-top:5px;
+	padding-bottom:5px;
+	line-height:normal;
+}
+
+.breadcrumb > li {
+	
+	line-height:normal;
 }
 
 .breadcrumb a {
@@ -55,8 +61,9 @@ body{
 
 html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container ul.breadcrumb {
 	
-	padding: 1% 1%;
-	width:48%;
+	padding-left:8px;
+	padding-right:8px;
+	width:49%;
 }
 
 #page-site-links-container {
@@ -69,9 +76,7 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 
 #contact-container {
 	
-	border-top-right-radius:0px;
-	border-bottom-right-radius:0px;
-	border-right:1px solid #DDDDDD;
+	margin-right:1px;
 	max-width:auto;
 }
 
@@ -79,8 +84,7 @@ html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb
 
 #copyright-container{
 	
-	border-top-left-radius:0px;
-	border-bottom-left-radius:0px;
+	max-width:auto;
 }
 
 /* style footer */
@@ -753,9 +757,8 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 
 .solr-fields {
 	
-	border-bottom: 1px solid #DDDDDD;
-    border-left: 1px solid #DDDDDD;
-    border-right: 1px solid #DDDDDD;
+	border: 1px solid #DDDDDD !important;
+	background-color:#FFFFFF;
     padding-left: 1%;
     padding-right: 1%;
 }
@@ -765,11 +768,35 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	width:26% !important;
 }
 
+dd.solr-value {
+	
+	padding-left:1%;
+}
+
+.solr-fields dt {
+	
+	word-wrap:break-word;
+	width:33%;
+}
+
+.solr-fields dd {
+	
+	word-wrap:break-word;
+	width:67%;
+}
+
 /* style collapsing menu */
 
 div.nav-collapse.in nav ul li {
 	
 	border-bottom:1px solid #DDDDDD;
+	margin-top:0px;
+}
+
+div.nav-collapse.in nav ul li a {
+	
+	border-radius:0px;
+	margin-bottom:0px;
 }
 
 div.nav-collapse.in nav ul li.first {

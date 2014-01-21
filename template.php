@@ -443,8 +443,108 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$v
   // For rendering non-grid content
   drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.base.css');
   drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.theme.css');
-}
 
+  /*
+  $query_params['display'] = 'list';
+  $list_link = array(
+    'title' => t('List view'),
+    'attributes' => array(
+      'href' => url($path, array('query' => $query_params)),
+      'class' => array('islandora-view-list'),
+    ),
+  );
+
+  $query_params['display'] = 'grid';
+  $grid_link = array(
+    'title' => t('Grid view'),
+    'attributes' => array(
+      'href' => url($path, array('query' => $query_params)),
+      'class' => array('islandora-view-grid'),
+    ),
+  );
+  */
+  $islandora_object = $variables['islandora_object'];
+  $display = (empty($_GET['display'])) ? variable_get('islandora_basic_collection_default_view', 'grid') : $_GET['display'];
+  $link_text = (empty($_GET['display'])) ? 'grid' : $_GET['display'];
+  $query_params = drupal_get_query_parameters($_GET);
+
+  global $base_url;
+
+  if ($display == 'grid') {
+
+    $query_params['display'] = 'list';
+    
+    /*
+    $list_link = array(
+		       'title' => 'List view',
+		       'href' => $base_url . '/islandora/object/' . $islandora_object->id,
+		       'attributes' => array(
+					     'class' => 'islandora-view-list',
+					     ),
+		       'query' => $query_params,
+		       );
+    */
+
+    $list_link = l('List view',
+		   $base_url . '/islandora/object/' . $islandora_object->id,
+		   array('attributes' => array('class' => array('islandora-view-list')),
+			 'query' => $query_params));
+
+    unset($query_params['display']);
+    $query_params['display'] = 'grid';
+
+    /*
+    $grid_link = array(
+      'title' => 'Grid view',
+      'href' => $base_url . '/islandora/object/' . $islandora_object->id,
+      'attributes' => array('class' => array('islandora-view-grid', 'active')),
+      'query' => $query_params,
+    );
+    */
+
+    $grid_link = l('Grid view',
+		   $base_url . '/islandora/object/' . $islandora_object->id,
+		   array('attributes' => array('class' => array('islandora-view-grid', 'active')),
+			 'query' => $query_params));
+
+  } else {
+
+    $query_params['display'] = 'list';
+
+    /*
+    $list_link = array(
+      'title' => 'List view',
+      'href' => $base_url . '/islandora/object/' . $islandora_object->id,
+      'attributes' => array('class' => array('islandora-view-list', 'active')),
+      'query' => $query_params,
+    );
+    */
+
+    $list_link = l('List view',
+		   $base_url . '/islandora/object/' . $islandora_object->id,
+		   array('attributes' => array('class' => array('islandora-view-list', 'active')),
+			 'query' => $query_params));
+
+    unset($query_params['display']);
+    $query_params['display'] = 'grid';
+
+    /*
+      $grid_link = array(
+		       'title' => 'Grid view',
+		       'href' => $base_url . '/islandora/object/' . $islandora_object->id,
+		       'attributes' => array('class' => 'islandora-view-grid'),
+		       'query' => $query_params,
+		       );
+    */
+
+    $grid_link = l('Grid view',
+		   $base_url . '/islandora/object/' . $islandora_object->id,
+		   array('attributes' => array('class' => 'islandora-view-grid'),
+			 'query' => $query_params));
+  }
+
+  $variables['view_links'] = array($list_link, $grid_link);
+}
 
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
@@ -459,8 +559,6 @@ function bootstrap_dss_digital_theme_registry_alter(&$registry) {
       'template' => 'theme/islandora-basic-collection-wrapper',
       'variables' => array('islandora_object' => NULL),
   */
-
-  dpm($registry);
 }
 
 /**
@@ -674,7 +772,7 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
     ),
   );
 
-  $variables['view_links'] = array($grid_link, $list_link);
+  $variables['view_links'] = array($list_link, $grid_link);
 
   /*
   $results = $variables['results'];
