@@ -218,12 +218,12 @@
 	 *
 	 */
 
-	$('#carousel-featured-collection .carousel-inner .item').click(function(e) {
+	$('#carousel-featured-collection .carousel-inner .item, #carousel-featured-collection.carousel .carousel-indicators li, #carousel-featured-collection.carousel .carousel-inner .item .carousel-caption a, #carousel-featured-collection.carousel a.left, #carousel-featured-collection.carousel a.right').click(function(e) {
 
 		$('#carousel-featured-collection').carousel('pause');
 	    });
-	$('#carousel-featured-collection').carousel('cycle');
 
+	$('#carousel-featured-collection').carousel('cycle');
     };
 
     // Ensure that the execution of all bootstrap functionality lies within a modular, Drupal-compliant context
