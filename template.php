@@ -343,104 +343,6 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 }
 */
 
-function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
-
-  $islandora_object = $variables['islandora_object'];
-  $collection_pid = $islandora_object->id;
-
-  //$slow_debug = FALSE;
-
-  foreach($variables['associated_objects_array'] as &$associated_object) {
-
-    $object = $associated_object['object'];
-    $pid = $associated_object['pid'];
-
-    /*
-    if(!$slow_debug) {
-
-      dpm($object['dc_array']);
-      $slow_debug = TRUE;
-    }
-    */
-
-    $title = $associated_object['title_link'];
-    $thumbnail_img = $associated_object['thumbnail'];
-    $object = $associated_object['object'];
-
-
-    // Work-around
-    // Refactor
-
-    $pid_relation_is_part_of_map = array(
-					 'eastAsia:imperialPostcards' => 'Imperial Postcard Collection',
-					 'eastAsia:linPostcards' => 'Lin Chia-Feng Family Postcard Collection',
-					 'eastAsia:lewis' => 'Michael Lewis Taiwan Postcard Collection',
-					 'eastAsia:pacwarPostcards' => 'Pacific War Postcard Collection',
-					 'eastAsia:paKoshitsu' => 'Japanese Imperial House Postcard Album',
-					 'eastAsia:paOmitsu01' => 'Sino-Japanese War Postcard Album 01',
-					 'eastAsia:paOmitsu02' => 'Sino-Japanese War Postcard Album 02',
-					 'eastAsia:paTsubokura' => 'Tsubokura Russo-Japanese War Postcard Album',
-					 );
-
-    if(preg_match('/eastAsia:.*/', $pid)) {
-
-      $associated_object['title_link'] = l($title,
-					   'islandora/search/cdm.Relation.IsPartOf:"'. $pid_relation_is_part_of_map[$pid] .'"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-    
-      $associated_object['thumb_link'] = l($thumbnail_img,
-					   'islandora/search/cdm.Relation.IsPartOf:"'. $pid_relation_is_part_of_map[$pid] .'"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-
-    } elseif($pid == 'islandora:cap') {
-
-      $associated_object['title_link'] = l($title,
-					   'islandora/search/cdm.Relation.IsPartOf:"Historical Photograph Collection"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-    
-      $associated_object['thumb_link'] = l($thumbnail_img,
-					   'islandora/search/cdm.Relation.IsPartOf:"Historical Photograph Collection"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-
-    } elseif($pid == 'islandora:geologySlidesEsi') {
-
-      $associated_object['title_link'] = l($title,
-					   'islandora/search/cdm.Relation.IsPartOf:"John S. Shelton Earth Science Image Collection"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-
-      $associated_object['thumb_link'] = l($thumbnail_img,
-					   'islandora/search/cdm.Relation.IsPartOf:"John S. Shelton Earth Science Image Collection"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-
-    } elseif($pid == 'islandora:mdlPrints') {
-
-      $associated_object['title_link'] = l($title,
-					   'islandora/search/cdm.Relation.IsPartOf:"Marquis de Lafayette Prints Collection"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-    
-      $associated_object['thumb_link'] = l($thumbnail_img,
-					   'islandora/search/cdm.Relation.IsPartOf:"Marquis de Lafayette Prints Collection"',
-					   array('html' => TRUE,
-						 'alias' => TRUE,
-						 'attributes' => array('title' => $title)));
-    }
-  }
-}
-
 function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$variables) {
 
   // For rendering non-grid content
@@ -546,11 +448,112 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$v
 			 'query' => $query_params));
   }
 
-  $variables['view_links'] = array($list_link, $grid_link);
+  $variables['view_links'] = array('list' => $list_link,
+				   'grid' => $grid_link);
   $variables['display'] = $display;
 
   dpm($variables);
 }
+
+
+function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
+
+  $islandora_object = $variables['islandora_object'];
+  $collection_pid = $islandora_object->id;
+
+  //$slow_debug = FALSE;
+
+  foreach($variables['associated_objects_array'] as &$associated_object) {
+
+    $object = $associated_object['object'];
+    $pid = $associated_object['pid'];
+
+    /*
+    if(!$slow_debug) {
+
+      dpm($object['dc_array']);
+      $slow_debug = TRUE;
+    }
+    */
+
+    $title = $associated_object['title_link'];
+    $thumbnail_img = $associated_object['thumbnail'];
+    $object = $associated_object['object'];
+
+
+    // Work-around
+    // Refactor
+
+    $pid_relation_is_part_of_map = array(
+					 'eastAsia:imperialPostcards' => 'Imperial Postcard Collection',
+					 'eastAsia:linPostcards' => 'Lin Chia-Feng Family Postcard Collection',
+					 'eastAsia:lewis' => 'Michael Lewis Taiwan Postcard Collection',
+					 'eastAsia:pacwarPostcards' => 'Pacific War Postcard Collection',
+					 'eastAsia:paKoshitsu' => 'Japanese Imperial House Postcard Album',
+					 'eastAsia:paOmitsu01' => 'Sino-Japanese War Postcard Album 01',
+					 'eastAsia:paOmitsu02' => 'Sino-Japanese War Postcard Album 02',
+					 'eastAsia:paTsubokura' => 'Tsubokura Russo-Japanese War Postcard Album',
+					 );
+
+    if(preg_match('/eastAsia:.*/', $pid)) {
+
+      $associated_object['title_link'] = l($title,
+					   'islandora/search/cdm.Relation.IsPartOf:"'. $pid_relation_is_part_of_map[$pid] .'"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    
+      $associated_object['thumb_link'] = l($thumbnail_img,
+					   'islandora/search/cdm.Relation.IsPartOf:"'. $pid_relation_is_part_of_map[$pid] .'"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+
+    } elseif($pid == 'islandora:cap') {
+
+      $associated_object['title_link'] = l($title,
+					   'islandora/search/cdm.Relation.IsPartOf:"Historical Photograph Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    
+      $associated_object['thumb_link'] = l($thumbnail_img,
+					   'islandora/search/cdm.Relation.IsPartOf:"Historical Photograph Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+
+    } elseif($pid == 'islandora:geologySlidesEsi') {
+
+      $associated_object['title_link'] = l($title,
+					   'islandora/search/cdm.Relation.IsPartOf:"John S. Shelton Earth Science Image Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+
+      $associated_object['thumb_link'] = l($thumbnail_img,
+					   'islandora/search/cdm.Relation.IsPartOf:"John S. Shelton Earth Science Image Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+
+    } elseif($pid == 'islandora:mdlPrints') {
+
+      $associated_object['title_link'] = l($title,
+					   'islandora/search/cdm.Relation.IsPartOf:"Marquis de Lafayette Prints Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    
+      $associated_object['thumb_link'] = l($thumbnail_img,
+					   'islandora/search/cdm.Relation.IsPartOf:"Marquis de Lafayette Prints Collection"',
+					   array('html' => TRUE,
+						 'alias' => TRUE,
+						 'attributes' => array('title' => $title)));
+    }
+  }
+}
+
 
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 

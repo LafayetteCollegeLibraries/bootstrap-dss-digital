@@ -13,9 +13,9 @@
 
     <span class="islandora-basic-collection-display-switch">
       <ul class="links inline">
-        <?php foreach ($view_links as $link): ?>
+        <?php foreach ($view_links as $label => $link): ?>
           <li>
-            <span id="view-<?php print $display ?>-icon" ></span>
+            <span id="view-<?php print $label ?>-icon" ></span>
             <?php print $link; ?>
           </li>
         <?php endforeach ?>
