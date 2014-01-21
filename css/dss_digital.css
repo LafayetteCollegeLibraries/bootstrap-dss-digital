@@ -780,6 +780,13 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 div.nav-collapse.in nav ul li {
 	
 	border-bottom:1px solid #DDDDDD;
+	margin-top:0px;
+}
+
+div.nav-collapse.in nav ul li a {
+	
+	border-radius:0px;
+	margin-bottom:0px;
 }
 
 div.nav-collapse.in nav ul li.first {
