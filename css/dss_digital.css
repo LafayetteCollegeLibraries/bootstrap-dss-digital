@@ -1,7 +1,8 @@
 /**
+ * @author goodnowt@lafayette.edu
  *
  */
-   
+  
 /* set color for background of and minimum width for all pages*/
 
 body{
@@ -632,7 +633,14 @@ ul.quicktabs-tabs > li.first {
 
 ul.quicktabs-tabs > li:hover {
 	
-	background:#EEEEEE;
+	background:#DDDDDD;
+	text-decoration:underline;
+	color:#005580;
+}
+
+ul.quicktabs-tabs > li:hover > a {
+	
+	color:inherit;
 }
 
 ul.quicktabs-tabs > li > a:focus {
@@ -768,7 +776,7 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 
 .solr-fields {
 	
-	border: 1px solid #DDDDDD !important;
+	border: 1px solid #AAAAAA !important;
 	background-color:#FFFFFF;
     padding-left: 1%;
     padding-right: 1%;
@@ -816,11 +824,6 @@ dd.solr-value {
     display: list-item;
     /* float: inherit; */
 }
-
-/**
- * @author goodnowt@lafayette.edu
- *
- */
 
 /* style top area of both search results views */
 
