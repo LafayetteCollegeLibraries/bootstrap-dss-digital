@@ -224,6 +224,79 @@
 	    });
 
 	$('#carousel-featured-collection').carousel('cycle');
+
+	// maxPosition: 216
+	// maxPosition: 240
+
+	var snapper = new Snap({
+
+                element: document.getElementById('content'),
+		disable: 'right',
+		tapToClose: false,
+		touchToDrag: false,
+		maxPosition: 32
+            });
+
+	// Work-around
+	//$(document).data('animating.lastSnapperState', 'closed');
+	$(document).data('lastSnapperState', 'closed');
+
+	snapper.on('animating', function(e) {
+
+		/*
+		if(snapper.state().state != $(document).data('animating.lastSnapperState')) {
+
+		    //$('#content .main-container').toggleClass('snap-expand-left');
+		    //$('#content').toggleClass('snap-expand-left');
+		}
+
+		$(document).data('animating.lastSnapperState', snapper.state().state);
+		*/
+	    }).on('animated', function(e) {
+		    
+		    if(snapper.state().state != $(document).data('lastSnapperState')) {
+
+			$('#content .main-container').toggleClass('snap-expand-left');
+			//$('#content').toggleClass('snap-expand-left');
+			$('.drawers .left-drawer').toggleClass('snap-expand-left');
+		    }
+
+		    $(document).data('lastSnapperState', snapper.state().state);
+		});
+
+	$('.snap-trigger').click(function(e) {
+		
+		if(snapper.state().state != 'closed') {
+
+		    $(this).text('Refine');
+		    snapper.close();
+		} else {
+
+		    $(this).text('Generalize');
+		    snapper.open('left');
+		}
+	    });
+
+	/*
+	$("#slide-panel").buildMbExtruder({
+
+                position:"left",
+		    width:300,
+		    extruderOpacity:.8,
+
+		    hidePanelsOnClose:false,
+		    accordionPanels:false,
+		    onExtOpen:function(){},
+		    onExtContentLoad:function(){$("#slide-panel").openPanel();},
+		    onExtClose:function(){}
+            });
+
+	$("#slide-panel-button").click(function(e) {
+
+		$('#slide-panel').openMbExtruder(true);
+		//$('#slide-panel').openPanels();
+	    });
+	*/
     };
 
     // Ensure that the execution of all bootstrap functionality lies within a modular, Drupal-compliant context
@@ -232,6 +305,7 @@
 	attach: function(context, settings) {
 
 	    Drupal.theme('bootstrapDssLdr');
+
 	}
     };
 

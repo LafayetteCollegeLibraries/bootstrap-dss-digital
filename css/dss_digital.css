@@ -796,6 +796,32 @@ dd.solr-value {
 	width:67%;
 }
 
+/**
+ * @author griffinj@lafayette.edu
+ *
+ */
+
+.islandora-solr-search-result-list {
+
+    /* position: relative; */
+}
+
+.islandora-solr-search-result-item {
+
+    /* position: absolute; */
+}
+
+.islandora-solr-search-result {
+
+    display: list-item;
+    /* float: inherit; */
+}
+
+/**
+ * @author goodnowt@lafayette.edu
+ *
+ */
+
 /* style top area of both search results views */
 
 #islandora-solr-top {

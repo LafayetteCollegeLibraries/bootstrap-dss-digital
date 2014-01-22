@@ -8,23 +8,27 @@
  *
  * @see template_preprocess_islandora_solr()
  */
-
 ?>
 
-<?php if (empty($results)): ?>
-  <p class="no-results"><?php print t('Sorry, but your search returned no results.'); ?></p>
-<?php else: ?>
+<div class="islandora islandora-solr-search-results">
+<?php if($display == 'list'): ?>
 
-  <?php if($display == 'list'): ?>
-    <div class="islandora islandora-solr-search-results">
+    <?php if (empty($results)): ?>
 
+       <div class="no-results"><?php print t('Sorry, but your search returned no results.'); ?></div>
+    <?php else: ?>
+
+    <ol class="islandora-solr-search-result-list">
     <?php
       $row_result = 0;
       foreach($results as $key => $result):
     ?>
 
         <!-- Search result -->
-        <div class="islandora-solr-search-result clear-block <?php print $row_result % 2 == 0 ? 'odd' : 'even'; ?>">
+
+	<!-- <li class="islandora-solr-search-result-item"> -->
+	<li class="islandora-solr-search-result clear-block <?php print $row_result % 2 == 0 ? 'odd' : 'even'; ?>">
+        <!-- <div class="islandora-solr-search-result clear-block <?php print $row_result % 2 == 0 ? 'odd' : 'even'; ?>"> -->
           <!-- Thumbnail -->
           <dl class="solr-thumb">
           <dt>
@@ -88,9 +92,19 @@
             <?php $row_field++; ?>
           <?php endforeach; ?>
         </dl>
-      </div>
+      <!-- </div> --><!-- /.islandora-solr-search-result -->
+    </li><!-- /.islandora-solr-search-result-item -->
+
     <?php endforeach; ?>
+    </ol><!-- /.islandora-solr-search-result-list -->
+
+  <?php endif; ?>
   <?php else: ?>
+
+    <?php if (empty($results)): ?>
+
+       <div class="no-results"><?php print t('Sorry, but your search returned no results.'); ?></div>
+    <?php else: ?>
 
     <div class="islandora islandora-basic-collection">
     <div class="islandora-basic-collection-grid clearfix">
@@ -130,8 +144,9 @@
     $row_result++;
     endforeach;
   ?>
-  </div><!--/.islandora-basic-collection-grid -->
-</div><!--/.islandora-basic-collection-grid -->
+  </div><!-- /.islandora-basic-collection-grid -->
+</div><!-- /.islandora-basic-collection-grid -->
 
+<?php endif; ?><!-- Results -->
 <?php endif; ?><!-- List/Grid view -->
- <?php endif; ?><!-- For empty results -->
+</div><!-- /.islandora islandora-solr-search-results -->

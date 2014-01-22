@@ -39,6 +39,11 @@ scripts[] = 'js/bootstrap.min.js'
 ; Snap.js
 scripts[] = 'js/snap.js'
 
+;  jquery.mb.extruder
+; scripts[] = 'js/jquery.hoverIntent.min.js'
+; scripts[] = 'js/jquery.mb.flipText.js'
+; scripts[] = 'js/mbExtruder.js'
+
 scripts[] = 'js/bootstrap_helper.js'
 scripts[] = 'js/advanced_search_modal.js'
 scripts[] = 'js/sharethis_helper.js'
@@ -64,6 +69,8 @@ stylesheets[all][] = css/lightbox2.css
 ; Snap.js
 ; stylesheets[all][] = css/snap.css
 stylesheets[all][] = css/slide_panel.css
+
+; stylesheets[all][] = css/mbExtruder.css
 
 ; JavaScript
 stylesheets[all][] = css/modal.css
