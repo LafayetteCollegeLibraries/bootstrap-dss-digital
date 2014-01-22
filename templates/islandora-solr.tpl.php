@@ -18,18 +18,16 @@
        <div class="no-results"><?php print t('Sorry, but your search returned no results.'); ?></div>
     <?php else: ?>
 
-    <ol class="islandora-solr-search-result-list">
+    <ol class="islandora-solr-search-result-list" start="<?php print $elements['solr_start'] + 1; ?>">
     <?php
       $row_result = 0;
       foreach($results as $key => $result):
     ?>
 
         <!-- Search result -->
-
-	<!-- <li class="islandora-solr-search-result-item"> -->
 	<li class="islandora-solr-search-result clear-block <?php print $row_result % 2 == 0 ? 'odd' : 'even'; ?>">
-        <!-- <div class="islandora-solr-search-result clear-block <?php print $row_result % 2 == 0 ? 'odd' : 'even'; ?>"> -->
-          <!-- Thumbnail -->
+
+	  <!-- Thumbnail -->
           <dl class="solr-thumb">
           <dt>
             <?php
