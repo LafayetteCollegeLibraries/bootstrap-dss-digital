@@ -81,7 +81,7 @@
 
 </header><! --/.navbar -->
 
-<div class="panel-container">
+<div class="panel-container container">
 
    <?php if(isset($slide_drawers)): ?>
       <div class="drawers snap-drawers">
@@ -98,13 +98,12 @@
       </div><!--/.snap-drawers -->
    <?php endif; ?>
 
-<div id="content" class="snap-content">
 <div class="main-container container">
 
   <header role="banner" id="page-header">
    <p class="lead"><?php print l($title, current_path()); ?></p>
 
-    <?php print render($page['header']); ?>
+     <?php print render($page['header']); ?>
   </header> <!-- /#header -->
 
   <div class="row-fluid">
@@ -158,7 +157,7 @@
     <?php endif; ?>
 
   </div><!-- /.row-fluid -->
-</div>
+</div><!-- /.main-container -->
 </div>
 </div>
 
