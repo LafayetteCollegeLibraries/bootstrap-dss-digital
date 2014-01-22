@@ -35,40 +35,51 @@
 
 .snap-drawers {
 
-    position: absolute;
+    float: left;
+    /* position: absolute; */
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    width: auto;
+    /* width: auto; */
+    /* width: 30%; */
     height: auto;
+
+    width: 0%;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transition: width 0.3s ease;
+    -moz-transition: width 0.3s ease;
+    -ms-transition: width 0.3s ease;
+    -o-transition: width 0.3s ease;
+    transition: width 0.3s ease;
 }
 
 .snap-drawer {
 
-    position: absolute;
-  top: 0;
-  right: auto;
-  bottom: 0;
-  left: auto;
-  width: 265px;
+    /* position: absolute; */
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: auto;
+
+  /* width: 265px; */
+
   height: auto;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  -webkit-transition: width 0.3s ease;
-  -moz-transition: width 0.3s ease;
-  -ms-transition: width 0.3s ease;
-  -o-transition: width 0.3s ease;
-  transition: width 0.3s ease;
   
-  opacity: none;
+  /* opacity: 0.0; */
   -webkit-transform: opacity 0.3s ease;
   -moz-transform: opacity 0.3s ease;
   -ms-transform: opacity 0.3s ease;
   -o-transform: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 
-  opacity: 0.0;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: width 0.3s ease;
+  -moz-transition: width 0.3s ease;
+  -ms-transition: width 0.3s ease;
+  -o-transition: width 0.3s ease;
+  transition: width 0.3s ease;
 }
 
 .snap-drawer-left {
@@ -98,19 +109,35 @@
     position: relative;
 }
 
-.main-container {
+/* .main-container { */
+
+.main-container > header {
+
+    -webkit-transition: margin-left 0.3s ease;
+    -moz-transition: margin-left 0.3s ease;
+    -ms-transition: margin-left 0.3s ease;
+    -o-transition: margin-left 0.3s ease;
+    transition: margin-left 0.3s ease;
+}
+
+.main-container > div {
+
 
     -webkit-transition: width 0.3s ease;
     -moz-transition: width 0.3s ease;
     -ms-transition: width 0.3s ease;
     -o-transition: width 0.3s ease;
     transition: width 0.3s ease;
-    
+}
 
+.main-container > div {
+
+    float: right;
 }
 
 .main-container {
 
+    float: left;
     padding-top: 2px;
 }
 
@@ -118,25 +145,44 @@
  * @note width must remain at or below 70%
  *
  */
+
 .main-container.snap-expand-left {
 
-/**
- * @note width must remain at or below 70%
- *
- */
     width: 70%;
-    
 }
+
+/*
+.main-container.snap-expand-left > header {
+
+    margin-left: 8%;
+}
+*/
+
+/*
+.main-container.snap-expand-left > div {
+
+    width: 92%;
+}
+*/
 
 .snap-content.snap-expand-left {
 
     background-color: transparent;
 }
 
+.snap-drawers.snap-expand-left {
+
+    opacity: 1.0;
+    width: 30%;
+}
+
+/*
 .snap-drawer.snap-expand-left {
 
     opacity: 1.0;
+    width: 30%;
 }
+*/
 
 /*
 .menu {

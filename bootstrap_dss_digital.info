@@ -37,7 +37,7 @@ scripts[] = 'js/bootstrap.min.js'
 scripts[] = 'js/bootstrap.min.js'
 
 ; Snap.js
-scripts[] = 'js/snap.js'
+; scripts[] = 'js/snap.js'
 
 ;  jquery.mb.extruder
 ; scripts[] = 'js/jquery.hoverIntent.min.js'
