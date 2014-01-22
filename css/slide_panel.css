@@ -12,7 +12,7 @@
   left: 0;
   width: auto;
   height: auto;
-  z-index: 2;
+  /* z-index: 2; */
   overflow: auto;
   
   /* background-color: #ffffff; */
