@@ -64,8 +64,6 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 
   $browser = browscap_get_browser();
 
-  dpm($browser);
-
   $is_smartphone_browser = $browser['ismobiledevice'] && preg_match('/iPhone|(?:Android.*?Mobile)|(?:Windows Phone)/', $browser['useragent']);
 
   // Different images must be passed based upon the browser type
@@ -274,9 +272,10 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 			     'mdl_tabs' => theme('quicktabs', (array) $mdl_tabs));
   */
 
-  //dpm($variables['page']['content']);
+
 
   // Panel
+  /*
   $slide_panel_container = '
       <div id="menu" class="menu nav-collapse collapse width">
         <div class="collapse-inner">
@@ -300,12 +299,16 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
         </div><!-- /.view -->
       </div>
 ';
+  */
+  $slide_panel_container = '';
 
   $variables['slide_panel_container'] = $slide_panel_container;
 
   $variables['breadcrumb'] = theme('breadcrumb', menu_get_active_trail());
   //$variables['breadcrumb'] = theme('breadcrumb', menu_get_active_breadcrumb());
   //$variables['breadcrumb'] = theme('breadcrumb', drupal_get_breadcrumb());
+
+  $variables['slide_drawers'] = TRUE;
 }
 
 /**
@@ -332,6 +335,8 @@ function bootstrap_dss_digital_preprocess_html(&$variables) {
 
   drupal_add_library('system', 'effects.drop');
   drupal_add_library('system', 'effects.slide');
+
+  //$variables['slide_panel'] = $variables['page']['slide_panel'];
 }
 
 /**
@@ -344,6 +349,8 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 */
 
 function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$variables) {
+
+  $variables['slide_drawers'] = TRUE;
 
   // For rendering non-grid content
   drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.base.css');
@@ -775,13 +782,17 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
   $query_params['display'] = 'grid';
   $grid_link = array(
     'title' => t('Grid view'),
-    'attributes' => array(
-      'href' => url($path, array('query' => $query_params)),
-      'class' => array('islandora-view-grid'),
-    ),
-  );
+    'attributes' => array('href' => url($path, array('query' => $query_params)),
+			  'class' => array('islandora-view-grid'),
+			  ),
+		     );
+  
+  $refine_link = array(
+    'title' => t('Refine'),
+    'attributes' => array('href' => '#',
+			  'class' => array('snap-trigger')));
 
-  $variables['view_links'] = array($list_link, $grid_link);
+  $variables['view_links'] = array($refine_link, $list_link, $grid_link);
 
   /*
   $results = $variables['results'];
@@ -811,9 +822,12 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   $variables['content'] = $content;
 
-  dpm($variables);
+
   */
 
+  drupal_set_title(drupal_get_title() . ' ' . $variables['islandora_solr_result_count']);
+
+  dpm($variables);
 }
 
 /**
@@ -854,7 +868,6 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
   */
 
   $variables['display'] = $display;
-  dpm($variables);
 
   //$variables['view_links'] = array($grid_link, $list_link);
   //$islandora_object = $variables['islandora_object'];
@@ -921,4 +934,5 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
   drupal_add_css(drupal_get_path('module', 'islandora_basic_collection') . '/css/islandora_basic_collection.base.css');
   drupal_add_css(drupal_get_path('module', 'islandora_basic_collection') . '/css/islandora_basic_collection.theme.css');
 
+  dpm($variables);
 }

@@ -5,7 +5,9 @@
    <!-- Refactor into hook_preprocess_page -->
    <h2><?php print l('Skillman Library', 'http://library.lafayette.edu/'); ?> at <?php print l('Lafayette College', 'http://www.lafayette.edu/'); ?></h2>
 
-    <h1><?php print l('Digital Scholarship Services', '', array('absolute' => TRUE)); ?></h1>
+   <?php if(!empty($title)): ?>
+																			<h1><?php print l('Digital Scholarship Services', '', array('absolute' => TRUE)); ?></h1>
+   <?php endif; ?>
   </div>
 
   <div class="navbar-inner">
@@ -79,6 +81,24 @@
 
 </header><! --/.navbar -->
 
+<div class="panel-container">
+
+   <?php if(isset($slide_drawers)): ?>
+      <div class="drawers snap-drawers">
+
+	 <div class="left-drawer snap-drawer snap-drawer-left">
+
+	 <?php if (!empty($page['slide_panel'])): ?>
+	   <div>
+	     <?php print render($page['slide_panel']); ?>
+           </div>
+         <?php endif; ?>
+
+	 </div><!--/.snap-drawer-left -->
+      </div><!--/.snap-drawers -->
+   <?php endif; ?>
+
+<div id="content" class="snap-content">
 <div class="main-container container">
 
   <header role="banner" id="page-header">
@@ -103,7 +123,7 @@
     <div id="breadcrumb-container">
       <?php if (!empty($breadcrumb)): ?>
 
-	<?php print $breadcrumb; ?>
+        <?php print $breadcrumb; ?>
       <?php endif;?>
 
       <div id="page-site-links-container">
@@ -137,7 +157,9 @@
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
 
-  </div>
+  </div><!-- /.row-fluid -->
+</div>
+</div>
 </div>
 
 <!--

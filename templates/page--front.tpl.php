@@ -81,14 +81,24 @@
 
 </header><! --/.navbar -->
 
-<?php if (!empty($page['slide_panel'])): ?>
-<div>
-    <div>
-        <?php print render($page['slide_panel']); ?>
-    </div>
-</div>
-<?php endif; ?>
+<div class="panel-container">
 
+   <?php if(isset($slide_drawers)): ?>
+      <div class="drawers snap-drawers">
+
+	 <div class="left-drawer snap-drawer snap-drawer-left">
+
+	 <?php if (!empty($page['slide_panel'])): ?>
+	   <div>
+	     <?php print render($page['slide_panel']); ?>
+           </div>
+         <?php endif; ?>
+
+	 </div><!--/.snap-drawer-left -->
+      </div><!--/.snap-drawers -->
+   <?php endif; ?>
+
+<div id="content" class="snap-content">
 <div class="main-container container">
 
   <?php print $carousel; ?>
@@ -149,7 +159,9 @@
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
 
-  </div>
+  </div><!-- /.row-fluid -->
+</div>
+</div>
 </div>
 
 <!--
