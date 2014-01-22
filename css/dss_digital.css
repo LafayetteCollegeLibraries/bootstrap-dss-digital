@@ -901,7 +901,12 @@ div.nav-collapse.in nav ul {
 	margin-bottom:0px;
 }
 
-/* style list and grid view links and icons */
+/* set z-index of search refinement hidden div */
+
+.snap-drawer-left {
+	
+	z-index:-1;
+}
 
 
 
