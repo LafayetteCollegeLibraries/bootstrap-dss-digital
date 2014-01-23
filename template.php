@@ -768,6 +768,9 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
 function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
+  $display = (empty($_GET['display'])) ? variable_get('islandora_basic_collection_default_view', 'grid') : $_GET['display'];
+  $variables['display'] = $display;
+
   $path = current_path();
 
   $query_params['display'] = 'list';

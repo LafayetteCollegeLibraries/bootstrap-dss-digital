@@ -28,6 +28,7 @@
       <ul class="links inline">
         <?php foreach ($view_links as $link): ?>
           <li>
+            <span id="view-<?php print $display; ?>-icon"></span>
             <a <?php print drupal_attributes($link['attributes']) ?>><?php print filter_xss($link['title']) ?></a>
           </li>
         <?php endforeach ?>
