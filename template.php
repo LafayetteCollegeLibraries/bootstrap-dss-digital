@@ -837,7 +837,7 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   */
 
-  drupal_set_title(drupal_get_title() . ' ' . $variables['islandora_solr_result_count']);
+  //drupal_set_title(drupal_get_title() . ' ' . $variables['islandora_solr_result_count']);
 
   dpm($variables);
 }
