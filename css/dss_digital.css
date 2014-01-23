@@ -245,7 +245,8 @@ html.js body#thmr_undefined.html header#navbar.navbar div.navbar-inner div.menu-
 
 .lead {
 	
-	font-size:42px; 
+	font-size:40px;
+	line-height:42px; 
 }
 
 /* suppress extra title on large sub-collection pages */
