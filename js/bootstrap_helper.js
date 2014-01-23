@@ -265,7 +265,7 @@
 	// Integrate into the Drupal Object
 	if(/\/islandora/.exec(document.URL)) {
 
-	    $('.main-container').toggleClass('snap-collapse-left');
+	    $('.main-container').addClass('snap-collapse-left');
 	
 	    $('.snap-trigger').click(function(e) {
 		    

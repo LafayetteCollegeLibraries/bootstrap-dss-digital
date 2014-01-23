@@ -819,29 +819,38 @@ dd.solr-value {
     display: inline-block;
 }
 
-/* style top area of both search results views */
-
-#islandora-solr-top {
-	
-	width:150px;
-	float:left;
-	padding:0px;
-	margin-left:1%;
-}
-
-.islandora-basic-collection-display-switch {
-	
-	margin-right:1%;
-}
+/* reset padding of search results page */
 
 .islandora-solr-content {
 	
 	padding:0px;
 }
 
-.pagination {
+/* style top area of both search results views */
+
+.islandora-result-count {
 	
-	clear:both;
+    text-align:center;
+}
+
+.page-number-control {
+	
+	margin-left:1%;
+	margin-right:1%;
+	float:left;
+}
+
+.page-number-control > select {
+	
+	width:60px;
+}
+
+.title-sort-control {
+	
+	float:left;
+	clear:left;
+	margin-left:1%;
+	margin-right:1%;
 }
 
 /* style grid view search results */
@@ -861,12 +870,47 @@ dd.solr-value {
 	border: 1px solid #AAAAAA;
 }
 
+.islandora-solr-search-results {
+	
+	clear:both;
+}
+
 .islandora-basic-collection-grid dl {
 	
 	font-size:14px;
 	margin:1%;
 	width:23%;
 	text-align:center;
+}
+
+.pagination {
+	
+	clear:both;
+}
+
+.islandora-basic-collection-display-switch {
+	
+	margin-top:-100px;
+}
+
+#islandora-solr-top {
+	
+	min-height:0px;
+}
+
+#view-grid-icon {
+	
+	
+}
+
+#view-list-icon {
+	
+	
+}
+
+#view-refine-icon {
+	
+	
 }
 
 /* style collapsing menu */
