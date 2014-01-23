@@ -49,6 +49,8 @@ scripts[] = 'js/advanced_search_modal.js'
 scripts[] = 'js/sharethis_helper.js'
 scripts[] = 'js/advanced_search_modal_helper.js'
 
+scripts[] = 'js/objects_list_sort.js'
+
 ; Stylesheets
 
 ; Bootstrap core (modified in order to avoid locally compiling LESS)
@@ -83,6 +85,4 @@ stylesheets[all][] = css/islandora_book.css
 ; (To be integrated)
 stylesheets[all][] = css/dss_digital.css
 
-
-
-
+stylesheets[all][] = css/openseadragon.css
