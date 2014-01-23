@@ -21,9 +21,29 @@
 
 <div id="islandora-solr-top">
   <?php print $secondary_profiles; ?>
-  <!-- <div id="islandora-solr-result-count"><?php print $islandora_solr_result_count; ?></div> -->
 </div>
 <div class="islandora-solr-content content">
+
+  <div class="islandora-discovery-controls">
+
+    <form id="islandora-discovery-form" action="/" >
+    <div class="islandora-discovery-control page-number-control">
+
+<span>Show:</span>
+<select>
+<option>25</option>
+</select>
+    </div>
+    <div class="islandora-discovery-control title-sort-control">
+
+<span>Sort by:</span>
+<select>
+<option>Title</option>
+</select>
+    </div>
+    </form>
+    <?php print $solr_pager; ?>
+
     <span class="islandora-basic-collection-display-switch">
       <ul class="links inline">
         <?php foreach ($view_links as $link): ?>
@@ -34,7 +54,8 @@
         <?php endforeach ?>
       </ul>
     </span>
-  <?php print $solr_pager; ?>
+
+  </div><!-- /.islandora-discovery-controls -->
   <?php print $results; ?>
   <?php print $solr_debug; ?>
   <?php print $solr_pager; ?>
