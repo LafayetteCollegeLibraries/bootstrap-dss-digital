@@ -565,6 +565,8 @@ function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
   $registry['hybridauth_widget']['file'] = 'template';
+  
+  //dpm($registry['pager']);
 
   // Work-around
   //$registry['islandora_basic_collection_wrapper']['preprocess functions'] = array('bootstrap_dss_digital_preprocess_islandora_basic_collection');
@@ -694,71 +696,78 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
   $_breadcrumbs = $breadcrumbs;
 
-  switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
+  dpm($breadcrumbs);
 
-  case 'islandora/object/islandora:root':
+  if(isset($breadcrumbs[count($breadcrumbs) - 1])) {
+    switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
 
-    $_breadcrumbs = array($breadcrumbs[0], $breadcrumbs[count($breadcrumbs) - 1]);
-    $count--;
-    break;
+    case 'islandora/object/islandora:root':
 
-  case 'islandora/object/islandora:eastAsia':
-  case 'islandora/object/islandora:newspaper':
-  case 'islandora/object/islandora:academicPublications':
-  case 'islandora/object/islandora:administrativeArchive':
-  case 'islandora/object/islandora:cap':
-  case 'islandora/object/islandora:mdl':
-  case 'islandora/object/islandora:geologySlidesEsi':
-  case 'islandora/object/islandora:mckelvyHouse':
-  case 'islandora/object/islandora:warCasualties':
-  case 'islandora/object/islandora:presidents':
+      $_breadcrumbs = array($breadcrumbs[0], $breadcrumbs[count($breadcrumbs) - 1]);
+      $count--;
+      break;
 
-    $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
+    case 'islandora/object/islandora:eastAsia':
+    case 'islandora/object/islandora:newspaper':
+    case 'islandora/object/islandora:academicPublications':
+    case 'islandora/object/islandora:administrativeArchive':
+    case 'islandora/object/islandora:cap':
+    case 'islandora/object/islandora:mdl':
+    case 'islandora/object/islandora:geologySlidesEsi':
+    case 'islandora/object/islandora:mckelvyHouse':
+    case 'islandora/object/islandora:warCasualties':
+    case 'islandora/object/islandora:presidents':
+
+      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
 									      'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
-  $count++;
-    break;
-
-  case 'node/1':
-
-    $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1));
-    $count--;
-    break;
-
-  case 'node/26':
-  case 'node/30':
-  case 'node/31':
-  case 'node/19':
-  case 'node/20':
-  case 'node/21':
-  case 'node/27':
-  case 'node/32':
-  case 'node/33':
-  case 'node/34':
-
-    $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Projects',
-									      'href' => 'node/12')), array_slice($breadcrumbs, -1));
-  $count++;
-    break;
-
-  case 'node/29':
-
-    $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Repositories',
-									      'href' => 'node/4')), array_slice($breadcrumbs, -1));
     $count++;
-    
     break;
+
+    case 'node/1':
+    
+      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1));
+      $count--;
+      break;
+
+    case 'node/26':
+    case 'node/30':
+    case 'node/31':
+    case 'node/19':
+    case 'node/20':
+    case 'node/21':
+    case 'node/27':
+    case 'node/32':
+    case 'node/33':
+    case 'node/34':
+
+      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Projects',
+									      'href' => 'node/12')), array_slice($breadcrumbs, -1));
+    $count++;
+    break;
+
+    case 'node/29':
+
+      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Repositories',
+										'href' => 'node/4')), array_slice($breadcrumbs, -1));
+      $count++;
+      
+      break;
+    }
   }
 
   $breadcrumbs = $_breadcrumbs;
 
   foreach($breadcrumbs as $key => $breadcrumb) {
 
-    if ($count != $key) {
+    if(isset($breadcrumb['href'])) {
 
-      $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href']) . '<span class="divider">/</span></li>';
-    } else {
+      if ($count != $key) {
 
-      $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href']) . '</li>';
+	$output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href']) . '<span class="divider">/</span></li>';
+      } else {
+
+	$output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href']) . '</li>';
+      }
     }
   }
 
@@ -767,6 +776,9 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 }
 
 function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
+
+  $display = (empty($_GET['display'])) ? variable_get('islandora_basic_collection_default_view', 'grid') : $_GET['display'];
+  $variables['display'] = $display;
 
   $path = current_path();
 

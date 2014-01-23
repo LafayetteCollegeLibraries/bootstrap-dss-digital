@@ -260,19 +260,27 @@
 
 
 	*/
-	$('.snap-trigger').click(function(e) {
 
-		if($(this).text() == 'Refine') {
+	// Work-around
+	// Integrate into the Drupal Object
+	if(/\/islandora/.exec(document.URL)) {
 
-		    $(this).text('Generalize');
-		} else {
+	    $('.main-container').toggleClass('snap-collapse-left');
+	
+	    $('.snap-trigger').click(function(e) {
+		    
+		    if($(this).text() == 'Refine') {
 
-		    $(this).text('Refine');
-		}
+			$(this).text('Generalize');
+		    } else {
 
-		$('.main-container').toggleClass('snap-expand-left');
-		$('.snap-drawers').toggleClass('snap-expand-left');
-	    });
+			$(this).text('Refine');
+		    }
+
+		    $('.main-container').toggleClass('snap-expand-left');
+		    $('.snap-drawers').toggleClass('snap-expand-left');
+		});
+	}
 
 	/*
 	$("#slide-panel").buildMbExtruder({

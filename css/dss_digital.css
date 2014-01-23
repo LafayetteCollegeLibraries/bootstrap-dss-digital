@@ -809,20 +809,14 @@ dd.solr-value {
  *
  */
 
-.islandora-solr-search-result-list {
-
-    /* position: relative; */
-}
-
-.islandora-solr-search-result-item {
-
-    /* position: absolute; */
-}
-
 .islandora-solr-search-result {
 
     display: list-item;
-    /* float: inherit; */
+}
+
+.islandora-discovery-control {
+
+    display: inline-block;
 }
 
 /* style top area of both search results views */
