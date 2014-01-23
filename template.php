@@ -13,6 +13,7 @@ require_once dirname(__FILE__) . '/includes/blocks.inc';
 require_once dirname(__FILE__) . '/includes/forms.inc';
 require_once dirname(__FILE__) . '/includes/menus.inc';
 require_once dirname(__FILE__) . '/includes/dss_mods.inc';
+require_once dirname(__FILE__) . '/includes/pager.inc';
 
 /**
  * Preprocess variables for page.tpl.php
