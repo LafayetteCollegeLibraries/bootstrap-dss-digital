@@ -46,12 +46,20 @@
     height: auto;
 
     width: 0%;
+    /*
     -webkit-overflow-scrolling: touch;
     -webkit-transition: width 0.3s ease;
     -moz-transition: width 0.3s ease;
     -ms-transition: width 0.3s ease;
     -o-transition: width 0.3s ease;
     transition: width 0.3s ease;
+    */
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .snap-drawer {
@@ -62,32 +70,33 @@
     bottom: 0;
     left: auto;
 
-  /* width: 265px; */
+    /* width: 265px; */
+    /* height: auto; */
+    height: 0;
+    overflow: auto;
 
-  height: auto;
-  overflow: auto;
-  
-  /* opacity: 0.0; */
-  /*
-  -webkit-transform: opacity 0.3s ease;
-  -moz-transform: opacity 0.3s ease;
-  -ms-transform: opacity 0.3s ease;
-  -o-transform: opacity 0.3s ease;
-  transition: opacity 0.3s ease;
-  */
+    /* opacity: 0.0; */
+    /*
+      -webkit-transform: opacity 0.3s ease;
+      -moz-transform: opacity 0.3s ease;
+      -ms-transform: opacity 0.3s ease;
+      -o-transform: opacity 0.3s ease;
+      transition: opacity 0.3s ease;
+      */
 
-  -webkit-overflow-scrolling: touch;
-  -webkit-transition: width 0.3s ease;
-  -moz-transition: width 0.3s ease;
-  -ms-transition: width 0.3s ease;
-  -o-transition: width 0.3s ease;
-  transition: width 0.3s ease;
+    -webkit-overflow-scrolling: touch;
 }
 
 .snap-drawer-left {
-  left: 0;
-  z-index: 1;
-  margin-left: 2%;
+
+    left: 0;
+    z-index: 1;
+    margin-left: 2%;
+}
+
+.snap-expand-left .snap-drawer-left {
+
+    height: auto;
 }
 
 .snap-drawer-right {
