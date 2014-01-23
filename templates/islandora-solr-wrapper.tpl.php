@@ -19,18 +19,11 @@
  */
 ?>
 
-<div id="islandora-solr-top">
-  <?php print $secondary_profiles; ?>
-</div>
 <div class="islandora-solr-content content">
 
     <div class="islandora-discovery-controls">
 
       <div class="islandora-discovery-inner-container">
-
-        <div class="islandora-result-count">
-          <?php print $islandora_solr_result_count; ?>
-        </div><!-- /.islandora-result-count -->
 
       <div class="islandora-page-controls">
         <form id="islandora-discovery-form" action="/" >
@@ -48,25 +41,31 @@
 
 <span>Sort by:</span>
 <select>
-<option>Title</option>
+<option value="">Title</option>
+<option value=".islandora-inline-metadata dd.solr-value.eastasia-coverage-location">Coverage.Location</option>
 </select>
     </div><!-- /.islandora-discovery-control -->
-
     </form>
-    <?php print $solr_pager; ?>
-  </div><!-- /.islandora-discovery-control -->
 
     <span class="islandora-basic-collection-display-switch">
       <ul class="links inline">
         <?php foreach ($view_links as $link): ?>
           <li>
-            <span id="view-<?php print $display; ?>-icon"></span>
+
             <a <?php print drupal_attributes($link['attributes']) ?>><?php print filter_xss($link['title']) ?></a>
+            <img src="<?php print $view_icon_srcs[$link['title']]; ?>" alt="<?php print $view_icon_alts[$link['title']] ?>" id="<?php print $view_icon_ids[$link['title']] ?>" />
           </li>
         <?php endforeach ?>
       </ul>
-    </span>
+    </span><!-- /.islandora-basic-collection-display-switch -->
 
+    <div class="islandora-result-count">
+      <?php print $islandora_solr_result_count; ?>
+    </div><!-- /.islandora-result-count -->
+
+    <?php print $solr_pager; ?>
+
+  </div><!-- /.islandora-discovery-inner-container -->
   </div><!-- /.islandora-discovery-controls -->
   <?php print $results; ?>
   <?php print $solr_debug; ?>
