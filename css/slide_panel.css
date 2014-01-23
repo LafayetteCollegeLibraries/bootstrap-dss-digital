@@ -68,11 +68,13 @@
   overflow: auto;
   
   /* opacity: 0.0; */
+  /*
   -webkit-transform: opacity 0.3s ease;
   -moz-transform: opacity 0.3s ease;
   -ms-transform: opacity 0.3s ease;
   -o-transform: opacity 0.3s ease;
   transition: opacity 0.3s ease;
+  */
 
   -webkit-overflow-scrolling: touch;
   -webkit-transition: width 0.3s ease;
@@ -109,36 +111,16 @@
     position: relative;
 }
 
-/* .main-container { */
+.main-container {
 
-.main-container > header {
-
-    -webkit-transition: margin-left 0.3s ease;
-    -moz-transition: margin-left 0.3s ease;
-    -ms-transition: margin-left 0.3s ease;
-    -o-transition: margin-left 0.3s ease;
-    transition: margin-left 0.3s ease;
-}
-
-.main-container > div {
-
+    float: left;
+    padding-top: 2px;
 
     -webkit-transition: width 0.3s ease;
     -moz-transition: width 0.3s ease;
     -ms-transition: width 0.3s ease;
     -o-transition: width 0.3s ease;
     transition: width 0.3s ease;
-}
-
-.main-container > div {
-
-    float: right;
-}
-
-.main-container {
-
-    float: left;
-    padding-top: 2px;
 }
 
 /**
@@ -149,21 +131,8 @@
 .main-container.snap-expand-left {
 
     width: 70%;
+    float: right;
 }
-
-/*
-.main-container.snap-expand-left > header {
-
-    margin-left: 8%;
-}
-*/
-
-/*
-.main-container.snap-expand-left > div {
-
-    width: 92%;
-}
-*/
 
 .snap-content.snap-expand-left {
 
@@ -175,14 +144,6 @@
     opacity: 1.0;
     width: 30%;
 }
-
-/*
-.snap-drawer.snap-expand-left {
-
-    opacity: 1.0;
-    width: 30%;
-}
-*/
 
 /*
 .menu {
