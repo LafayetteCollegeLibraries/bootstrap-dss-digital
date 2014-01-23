@@ -13,6 +13,7 @@ require_once dirname(__FILE__) . '/includes/blocks.inc';
 require_once dirname(__FILE__) . '/includes/forms.inc';
 require_once dirname(__FILE__) . '/includes/menus.inc';
 require_once dirname(__FILE__) . '/includes/dss_mods.inc';
+require_once dirname(__FILE__) . '/includes/pager.inc';
 
 /**
  * Preprocess variables for page.tpl.php
@@ -837,7 +838,7 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   */
 
-  drupal_set_title(drupal_get_title() . ' ' . $variables['islandora_solr_result_count']);
+  //drupal_set_title(drupal_get_title() . ' ' . $variables['islandora_solr_result_count']);
 
   dpm($variables);
 }
