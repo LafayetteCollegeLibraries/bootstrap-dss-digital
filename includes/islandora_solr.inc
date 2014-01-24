@@ -166,7 +166,7 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   /*
   $results = $variables['results'];
-  $elements = $variables['elements'];
+v  $elements = $variables['elements'];
   $pids = $variables['pids'];
 
   //dpm($results);

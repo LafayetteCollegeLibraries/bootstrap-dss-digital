@@ -238,28 +238,36 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
         <li data-target="#carousel-featured-collection" data-slide-to="2"></li>
         <li data-target="#carousel-featured-collection" data-slide-to="3"></li>
         <li data-target="#carousel-featured-collection" data-slide-to="4"></li>
+        <li data-target="#carousel-featured-collection" data-slide-to="6"></li>
     </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.jpg" alt="Geisha dances to samisen by Tamagawa near Tokyo" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.jpg" alt="Ceremony for Rebuilding Ise Shrine" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/eastasia">East Asia Image Collections</a></p>
-                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/eastasia&CISOPTR=1698&CISOBOX=1&REC=14">Japan Ministry of Justice Employees Labor Union March</a></p>
+                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/eastasia&CISOPTR=1698&CISOBOX=1&REC=14">Ceremony for Rebuilding Ise Shrine</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.jpg" alt="1811 ledger of loan records for John Bowes" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening of Excellent New Panegyrick on Skinnibonia by Jonathan Swift, with Numbr 2. written in margin by Swift himself" />
+            <div class="carousel-caption">
+                <p class="carousel-caption-heading"><a href="projects/spa">Swift Poems Project</a></p>
+                <p class="carousel-caption-text"><a href="projects/spa">Opening of a poem by Jonathan Swift, with "Numbr 2." written in margin by himself</a></p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.jpg" alt="1811 loan records for George Wolf, later Governor of Pennsylvania" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/eastonlibrary">Easton Library Company Database</a></p>
-                <p class="carousel-caption-text"><a href="projects/eastonlibrary">Ledger of loan records for Abraham Bachman</a></p>
+                <p class="carousel-caption-text"><a href="projects/eastonlibrary">1811 loan records for George Wolf, later Governor of Pennsylvania</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.jpg" alt="May 11, 1956 issue" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.jpg" alt="June 2, 1893 issue" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/newspaper">Lafayette Newspaper</a></p> 
-                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/document.php?CISOROOT=/newspaper&CISOPTR=9423&CISOSHOW=9417">May 11, 1956 issue</a></p>
+                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/document.php?CISOROOT=/newspaper&CISOPTR=9423&CISOSHOW=9417">June 2, 1893 issue</a></p>
             </div>
         </div>
         <div class="item">
