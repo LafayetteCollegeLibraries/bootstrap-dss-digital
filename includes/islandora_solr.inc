@@ -130,17 +130,17 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   $query_params['display'] = 'grid';
   $grid_link = array(
-    'title' => t('Grid'),
-    'attributes' => array('href' => url($path, array('query' => $query_params)),
-			  'class' => array('islandora-view-grid'),
-			  ),
+		     'title' => t('Grid'),
+		     'attributes' => array('href' => url($path, array('query' => $query_params)),
+					   'class' => array('islandora-view-grid'),
+					   ),
 		     );
   
   $refine_link = array(
-    'title' => t('Refine'),
-    'attributes' => array('href' => '#',
-			  'class' => array('snap-trigger')));
-
+		       'title' => t('Refine'),
+		       'attributes' => array('href' => '#',
+					     'class' => array('snap-trigger')));
+  
   // Refactor
   $view_icon_srcs = array('Refine' => base_path() . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/RefineIcon.png',
 			  'List' => base_path() . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/ListIcon.png',
@@ -195,7 +195,8 @@ v  $elements = $variables['elements'];
 
   */
 
-  //drupal_set_title(drupal_get_title() . ' ' . $variables['islandora_solr_result_count']);
+  $elements = $variables['elements'];
+  drupal_set_title($elements['solr_total'] . ' Items Found');
 
   dpm($variables);
 }
