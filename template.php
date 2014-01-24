@@ -17,6 +17,24 @@ require_once dirname(__FILE__) . '/includes/pager.inc';
 require_once dirname(__FILE__) . '/includes/islandora_solr.inc';
 require_once dirname(__FILE__) . '/includes/islandora_basic_collection.inc';
 
+
+
+/**
+ * Implements template_preprocess_hybridauth_widget
+ * @griffinj
+ *
+ */
+function bootstrap_dss_digital_preprocess_hybridauth_widget(&$vars) {
+
+  // Refactor
+  $i = 0;
+  foreach (hybridauth_get_enabled_providers() as $provider_id => $provider_name) {
+
+    //$vars['providers'][$i] = preg_replace('/(<\/span>)/', "</span><span>&nbsp;$provider_name</span>", $vars['providers'][$i]);
+    $i++;
+  }
+}
+
 /**
  * Preprocess variables for page.tpl.php
  *
@@ -315,22 +333,6 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 }
 
 /**
- * Implements template_preprocess_hybridauth_widget
- * @griffinj
- *
- */
-function bootstrap_dss_digital_preprocess_hybridauth_widget(&$vars) {
-
-  // Refactor
-  $i = 0;
-  foreach (hybridauth_get_enabled_providers() as $provider_id => $provider_name) {
-
-    //$vars['providers'][$i] = preg_replace('/(<\/span>)/', "</span><span>&nbsp;$provider_name</span>", $vars['providers'][$i]);
-    $i++;
-  }
-}
-
-/**
  * Implements template_preprocess_html
  *
  */
@@ -570,4 +572,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
   return $output;
 }
 
+function bootstrap_dss_digital_menu_alter(&$alter) {
 
+  dpm($variables);
+}

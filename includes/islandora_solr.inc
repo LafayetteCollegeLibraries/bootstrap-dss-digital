@@ -121,7 +121,7 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   $query_params['display'] = 'list';
   $list_link = array(
-    'title' => t('List view'),
+    'title' => t('List'),
     'attributes' => array(
       'href' => url($path, array('query' => $query_params)),
       'class' => array('islandora-view-list'),
@@ -130,7 +130,7 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   $query_params['display'] = 'grid';
   $grid_link = array(
-    'title' => t('Grid view'),
+    'title' => t('Grid'),
     'attributes' => array('href' => url($path, array('query' => $query_params)),
 			  'class' => array('islandora-view-grid'),
 			  ),
