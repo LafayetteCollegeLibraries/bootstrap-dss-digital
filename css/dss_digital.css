@@ -946,6 +946,56 @@ div.nav-collapse.in nav ul {
 	z-index:-1;
 }
 
+/* style image viewer */
+
+#book-page-viewer {
+	
+	margin-left:1%;
+	margin-right:1%;
+}
+
+body > div#islandora-openseadragon {
+	
+	padding-left:0px;
+	padding-right:0px;
+}
+
+/* style image viewer controls */
+
+#book-page-viewer > div > form > div#openseadragon-size-transform-container {
+	
+	bottom:5px;
+	top:auto !important;
+	right:5px;
+	left:auto !important;
+}
+
+#openseadragon-size-transform-container > span > fieldgroup > button {
+	
+	background-color:#EEEEEE !important;
+	border:1px solid #AAAAAA !important;
+	border-radius:2px;
+	margin:2px !important;
+}
+
+#openseadragon-size-transform-container > span > fieldgroup > button > img {
+	
+	opacity:1 !important;
+}
+
+body > div#islandora-openseadragon > form > #openseadragon-size-transform-container {
+	
+	margin-top:5px !important;
+	margin-left:5px !important;
+}
+
+.openseadragon-controls-container {
+	
+	margin-right:1%;
+}
+
+
+
 
 
 
