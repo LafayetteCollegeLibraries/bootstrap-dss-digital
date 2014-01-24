@@ -269,12 +269,15 @@
 	
 	    $('.snap-trigger').click(function(e) {
 		    
-		    if($(this).text() == 'Refine') {
+		    if(/Refine/.exec($(this).text())) {
 
-			$(this).text('Generalize');
+			//$(this).text('Hide');
+			$(this).html( $(this).html().replace('Refine', 'Hide') );
 		    } else {
 
-			$(this).text('Refine');
+			//$(this).text('Refine');
+			//$(this).html();
+			$(this).html( $(this).html().replace('Hide', 'Refine') );
 		    }
 
 		    $('.main-container').toggleClass('snap-expand-left');

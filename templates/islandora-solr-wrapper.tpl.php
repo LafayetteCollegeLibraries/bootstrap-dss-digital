@@ -53,10 +53,6 @@
     </span><!-- /.islandora-basic-collection-display-switch -->
 
     <div class="pagination-count">
-    <div class="islandora-result-count">
-      <?php print $islandora_solr_result_count; ?>
-    </div><!-- /.islandora-result-count -->
-
 
     <?php print $solr_pager; ?>
     </div><!-- /.pagination-count -->
