@@ -143,22 +143,22 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   // Refactor
   $view_icon_srcs = array('Refine' => base_path() . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/RefineIcon.png',
-			  'List view' => base_path() . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/ListIcon.png',
-			  'Grid view' => base_path() . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/GridIcon.png');
+			  'List' => base_path() . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/ListIcon.png',
+			  'Grid' => base_path() . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/GridIcon.png');
 
   $variables['view_icon_srcs'] = $view_icon_srcs;
   
   // Refactor
   $view_icon_alts = array('Refine' => 'refine search icon',
-			  'List view' => 'view list icon',
-			  'Grid view' => 'view grid icon');
+			  'List' => 'view list icon',
+			  'Grid' => 'view grid icon');
 
   $variables['view_icon_alts'] = $view_icon_alts;
 
   // Refactor
   $view_icon_ids = array('Refine' => 'refine-search-icon',
-			 'List view' => 'view-list-icon',
-			 'Grid view' => 'view-grid-icon');
+			 'List' => 'view-list-icon',
+			 'Grid' => 'view-grid-icon');
 
   $variables['view_icon_ids'] = $view_icon_ids;
 
