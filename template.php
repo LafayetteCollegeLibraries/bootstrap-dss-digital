@@ -253,7 +253,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening of Excellent New Panegyrick on Skinnibonia by Jonathan Swift, with Numbr 2. written in margin by Swift himself" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/spa">Swift Poems Project</a></p>
-                <p class="carousel-caption-text"><a href="projects/spa">Opening of a poem by Jonathan Swift, with "Numbr 2." written in margin by himself</a></p>
+                <p class="carousel-caption-text"><a href="projects/spa">"Numbr 2." written in margin by Swift on one of his poems</a></p>
             </div>
         </div>
         <div class="item">
