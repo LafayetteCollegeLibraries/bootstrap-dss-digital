@@ -30,14 +30,6 @@
         <form id="islandora-discovery-form" action="/" >
       </div><!--/.islandora-page-controls -->
 
-    <div class="islandora-discovery-control page-number-control">
-
-<span>Show:</span>
-<select>
-<option>25</option>
-</select>
-    </div><!-- /.islandora-discovery-control -->
-
     <div class="islandora-discovery-control title-sort-control">
 
 <span>Sort by:</span>
@@ -53,8 +45,8 @@
         <?php foreach ($view_links as $link): ?>
           <li>
 
-            <a <?php print drupal_attributes($link['attributes']) ?>><?php print filter_xss($link['title']) ?></a>
-            <img src="<?php print $view_icon_srcs[$link['title']]; ?>" alt="<?php print $view_icon_alts[$link['title']] ?>" id="<?php print $view_icon_ids[$link['title']] ?>" />
+            <a <?php print drupal_attributes($link['attributes']) ?>><?php print filter_xss($link['title']) ?>
+            <img src="<?php print $view_icon_srcs[$link['title']]; ?>" alt="<?php print $view_icon_alts[$link['title']] ?>" id="<?php print $view_icon_ids[$link['title']] ?>" /></a>
           </li>
         <?php endforeach ?>
       </ul>

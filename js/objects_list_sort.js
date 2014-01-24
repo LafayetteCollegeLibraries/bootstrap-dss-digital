@@ -75,7 +75,7 @@ LafayetteDssObjectList.prototype = {
 
 	var objectList = new LafayetteDssObjectList($, $('.islandora-solr-search-result-list'));
 
-	$('.islandora-discovery-control.title-sort-control select').click(function() {
+	$('.islandora-discovery-control.title-sort-control select').change(function() {
 
 		objectList.sort($(this).val());
 	    });
