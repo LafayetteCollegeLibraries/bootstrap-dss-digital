@@ -243,17 +243,17 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.jpg" alt="Ceremony for Rebuilding Ise Shrine" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.jpg" alt="Detail of a Japanese postcard depicting the ceremony for rebuilding Ise Shrine, ca. 1918-31." />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/eastasia">East Asia Image Collections</a></p>
-                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/eastasia&CISOPTR=1698&CISOBOX=1&REC=14">Ceremony for Rebuilding Ise Shrine</a></p>
+                <p class="carousel-caption-text"><a href="http://digital.stage.lafayette.edu/islandora/object/islandora%3A33684">Detail of a Japanese postcard depicting the ceremony for rebuilding Ise Shrine, ca. 1918-31</a></p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening of Excellent New Panegyrick on Skinnibonia by Jonathan Swift, with Numbr 2. written in margin by Swift himself" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/spa">Swift Poems Project</a></p>
-                <p class="carousel-caption-text"><a href="projects/spa">"Numbr 2." written in margin by Swift on one of his poems</a></p>
+                <p class="carousel-caption-text"><a href="projects/spa">"Numbr 2." in margin written by Swift on one of his poems</a></p>
             </div>
         </div>
         <div class="item">
@@ -267,21 +267,21 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.jpg" alt="June 2, 1893 issue" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/newspaper">Lafayette Newspaper</a></p> 
-                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/document.php?CISOROOT=/newspaper&CISOPTR=9423&CISOSHOW=9417">June 2, 1893 issue</a></p>
+                <p class="carousel-caption-text"><a href="projects/newspaper">June 2, 1893 issue</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.jpg" alt="General Lafayette visiting George Washington at His Home" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.jpg" alt="Predella scene from a lithograph portrait of Lafayette by Antoine Maurin (1797-1860)" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/lafayetteprints">Marquis de Lafayette Prints Collection</a></p> 
-                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/mdl-prints&CISOPTR=1970&CISOBOX=1&REC=8">General Lafayette visiting George Washington at His Home</a></p>
+                <p class="carousel-caption-text"><a href="projects/lafayetteprints">Predella scene from a lithograph portrait of Lafayette by Antoine Maurin (1797-1860)</a></p>
             </div>
         </div>
         <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.jpg" alt="1896 portrait of football team on steps of Pardee Hall" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/historicalphotos">Historical Photograph Collection</a></p> 
-                <p class="carousel-caption-text"><a href="http://cdm.lafayette.edu/cdm4/item_viewer.php?CISOROOT=/cap&CISOPTR=1180">1896 portrait of football team on steps of Pardee Hall</a></p>
+                <p class="carousel-caption-text"><a href="projects/historicalphotos">Portrait of the Class of 1900 at the Senior Fence.  Gift of Hugh T. McIlwain.</a></p>
             </div>
         </div>
     </div>
