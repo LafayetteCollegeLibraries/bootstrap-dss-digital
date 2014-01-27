@@ -829,25 +829,6 @@ dd.solr-value {
 
 /* style top area of both search results views */
 
-.islandora-result-count {
-	
-    text-align:center;
-    clear:both;
-}
-
-.page-number-control {
-	
-	margin-left:1%;
-	margin-right:1%;
-	float:left;
-	height:35px;
-}
-
-.page-number-control > select {
-	
-	width:60px;
-}
-
 .title-sort-control {
 	
 	float:left;
@@ -856,12 +837,18 @@ dd.solr-value {
 	margin-right:1%;
 }
 
-.pagination {
+.title-sort-control > span {
 	
-	clear:both;
-	margin-top:7px;
+	float:left;
+	margin-bottom: 5px;
+    margin-top: 3px;
 }
 
+.title-sort-control select {
+	
+	float:left;
+	clear:left;
+}
 
 .islandora-basic-collection-display-switch > ul > li {
 	
@@ -876,7 +863,6 @@ dd.solr-value {
 .islandora-basic-collection-display-switch {
 	
 	margin-right:1%;
-	margin-top:-28px;
 }
 
 /* style grid view search results */
@@ -907,6 +893,7 @@ dd.solr-value {
 	margin:1%;
 	width:23%;
 	text-align:center;
+	vertical-align:bottom;
 }
 
 /* style collapsing menu */
@@ -944,6 +931,61 @@ div.nav-collapse.in nav ul {
 	
 	z-index:-1;
 }
+
+/* style image viewer */
+
+#book-page-viewer {
+	
+	margin-left:1%;
+	margin-right:1%;
+}
+
+body > div#islandora-openseadragon {
+	
+	padding-left:0px;
+	padding-right:0px;
+}
+
+/* style image viewer controls */
+
+#openseadragon-size-transform-container > span > fieldgroup > button {
+	
+	background-color:#EEEEEE !important;
+	border:1px solid #AAAAAA !important;
+	border-radius:2px;
+	margin:2px !important;
+}
+
+#openseadragon-size-transform-container > span > fieldgroup > button > img {
+	
+	opacity:1 !important;
+}
+
+body > div#islandora-openseadragon > form > #openseadragon-size-transform-container {
+	
+	margin-top:5px !important;
+	margin-left:5px !important;
+}
+
+.openseadragon-controls-container {
+	
+	margin-right:1%;
+}
+
+/* ensure equal spacing and proper alignment among icons/links in authentication window */
+
+.hybridauth-widget-wrapper > h3 {
+    
+    display:none;
+}
+
+#block-hybridauth-hybridauth {
+	
+	margin-top:1px;
+	margin-left:1px;
+}
+
+
 
 
 
