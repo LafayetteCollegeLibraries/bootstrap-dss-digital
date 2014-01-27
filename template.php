@@ -361,12 +361,6 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 }
 */
 
-
-
-
-
-
-
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
   $registry['hybridauth_widget']['file'] = 'template';
@@ -501,8 +495,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
   $_breadcrumbs = $breadcrumbs;
 
-  dpm($breadcrumbs);
-
   if(isset($breadcrumbs[count($breadcrumbs) - 1])) {
     switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
 
@@ -578,9 +570,4 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
   $output .= '</ul>';
   return $output;
-}
-
-function bootstrap_dss_digital_menu_alter(&$alter) {
-
-  dpm($variables);
 }
