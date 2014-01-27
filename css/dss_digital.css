@@ -962,14 +962,6 @@ body > div#islandora-openseadragon {
 
 /* style image viewer controls */
 
-#book-page-viewer > div > form > div#openseadragon-size-transform-container {
-	
-	bottom:5px;
-	top:auto !important;
-	right:5px;
-	left:auto !important;
-}
-
 #openseadragon-size-transform-container > span > fieldgroup > button {
 	
 	background-color:#EEEEEE !important;
