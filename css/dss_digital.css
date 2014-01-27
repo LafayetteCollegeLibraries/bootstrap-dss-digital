@@ -986,6 +986,19 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	margin-right:1%;
 }
 
+/* ensure equal spacing and proper alignment among icons/links in authentication window */
+
+.hybridauth-widget-wrapper > h3 {
+    
+    display:none;
+}
+
+#block-hybridauth-hybridauth {
+	
+	margin-top:1px;
+	margin-left:1px;
+}
+
 
 
 
