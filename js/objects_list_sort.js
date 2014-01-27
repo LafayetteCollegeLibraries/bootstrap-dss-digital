@@ -27,7 +27,7 @@ var LafayetteDssObjectList = function($, element, options) {
     this.element = element;
     this.options = $.extend({
 	    fieldSelector: '.islandora-inline-metadata dd.solr-value.dc-title',
-	    order: 'ASC'
+	    order: 'asc'
 	}, options);
     
     this.fieldSelector = this.options.fieldSelector;
@@ -45,9 +45,10 @@ LafayetteDssObjectList.prototype = {
 
     constructor: LafayetteDssObjectList,
 
-    sort: function(fieldSelector) {
+    sort: function(fieldSelector, order) {
 
 	fieldSelector = fieldSelector || this.fieldSelector;
+	order = order || this.order;
 	$ = this.$;
 	var that = this;
 
@@ -56,9 +57,10 @@ LafayetteDssObjectList.prototype = {
 		return $(u).find(fieldSelector).text().localeCompare($(v).find(fieldSelector).text());
 	    });
 
-	if(this.order == 'DESC') {
-	    
-	    this._index = this._index.reverse();
+	if(order != this.order) {
+
+	    this._index = $(this._index.get().reverse());
+	    this.order = order;
 	}
 
 	this.$element.empty().append(this._index);
@@ -73,11 +75,11 @@ LafayetteDssObjectList.prototype = {
 
     Drupal.theme.prototype.bootstrapDssObjectList = function() {
 
-	var objectList = new LafayetteDssObjectList($, $('.islandora-solr-search-result-list'));
+	var objectList = new LafayetteDssObjectList($, $('.islandora-solr-search-result-list'), { order: $('#order-sort-select').val() });
 
 	$('.islandora-discovery-control.title-sort-control select').change(function() {
 
-		objectList.sort($(this).val());
+		objectList.sort($(this).val(), $('#order-sort-select').val());
 	    });
     };
 
