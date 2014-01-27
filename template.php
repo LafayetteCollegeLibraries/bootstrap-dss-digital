@@ -250,17 +250,17 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening of Excellent New Panegyrick on Skinnibonia by Jonathan Swift, with Numbr 2. written in margin by Swift himself" />
-            <div class="carousel-caption">
-                <p class="carousel-caption-heading"><a href="projects/spa">Swift Poems Project</a></p>
-                <p class="carousel-caption-text"><a href="projects/spa">"Numbr 2." in margin written by Swift on one of his poems</a></p>
-            </div>
-        </div>
-        <div class="item">
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.jpg" alt="1811 loan records for George Wolf, later Governor of Pennsylvania" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="projects/eastonlibrary">Easton Library Company Database</a></p>
                 <p class="carousel-caption-text"><a href="projects/eastonlibrary">1811 loan records for George Wolf, later Governor of Pennsylvania</a></p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.jpg" alt="1896 portrait of football team on steps of Pardee Hall" />
+            <div class="carousel-caption">
+                <p class="carousel-caption-heading"><a href="projects/historicalphotos">Historical Photograph Collection</a></p> 
+                <p class="carousel-caption-text"><a href="projects/historicalphotos">Portrait of the Class of 1900 at the Senior Fence.  Gift of Hugh T. McIlwain.</a></p>
             </div>
         </div>
         <div class="item">
@@ -276,12 +276,12 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
                 <p class="carousel-caption-heading"><a href="projects/lafayetteprints">Marquis de Lafayette Prints Collection</a></p> 
                 <p class="carousel-caption-text"><a href="projects/lafayetteprints">Predella scene from a lithograph portrait of Lafayette by Antoine Maurin (1797-1860)</a></p>
             </div>
-        </div>
+        </div>                         
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.jpg" alt="1896 portrait of football team on steps of Pardee Hall" />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening of Excellent New Panegyrick on Skinnibonia by Jonathan Swift, with Numbr 2. written in margin by Swift himself" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading"><a href="projects/historicalphotos">Historical Photograph Collection</a></p> 
-                <p class="carousel-caption-text"><a href="projects/historicalphotos">Portrait of the Class of 1900 at the Senior Fence.  Gift of Hugh T. McIlwain.</a></p>
+                <p class="carousel-caption-heading"><a href="projects/spa">Swift Poems Project</a></p>
+                <p class="carousel-caption-text"><a href="projects/spa">"Numbr 2." in margin written by Swift on one of his poems</a></p>
             </div>
         </div>
     </div>
