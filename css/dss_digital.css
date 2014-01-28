@@ -893,7 +893,12 @@ dd.solr-value {
 	margin:1%;
 	width:23%;
 	text-align:center;
-	vertical-align:bottom;
+	vertical-align:top;
+}
+
+.islandora-basic-collection-grid dd {
+	
+	margin-top:3px;
 }
 
 /* style collapsing menu */
