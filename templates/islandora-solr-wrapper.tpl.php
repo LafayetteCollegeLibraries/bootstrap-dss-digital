@@ -32,14 +32,13 @@
     <div class="islandora-discovery-control title-sort-control">
 
 <span>Sort by:</span>
+
+    <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z&nbsp;↓</a>
+    <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A&nbsp;↓</a>
+
 <select id="field-sort-select" >
 <option value="">Title</option>
 <option value=".islandora-inline-metadata dd.solr-value.eastasia-coverage-location">Coverage.Location</option>
-</select>
-
-<select id="order-sort-select" >
-<option value="asc">Ascending</option>
-<option value="desc">Descending</option>
 </select>
 
     </div><!-- /.islandora-discovery-control -->

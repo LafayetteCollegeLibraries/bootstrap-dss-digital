@@ -75,11 +75,28 @@ LafayetteDssObjectList.prototype = {
 
     Drupal.theme.prototype.bootstrapDssObjectList = function() {
 
-	var objectList = new LafayetteDssObjectList($, $('.islandora-solr-search-result-list'), { order: $('#order-sort-select').val() });
+	/*
+	$('.field-sort').click(function(e) {
 
-	$('.islandora-discovery-control.title-sort-control select').change(function() {
+		e.preventDefault();
+		$('.field-sort').toggleClass('active');
+	    });
+	*/
 
-		objectList.sort($(this).val(), $('#order-sort-select').val());
+	//var objectList = new LafayetteDssObjectList($, $('.islandora-solr-search-result-list'), { order: $('#order-sort-select').val() });
+	var objectList = new LafayetteDssObjectList($, $('.islandora-solr-search-result-list'), { order: /field\-sort\-(.+)/.exec( $('.field-sort.active').attr('id'))[1] });
+
+	//$('.islandora-discovery-control.title-sort-control select').change(function() {
+	$('.field-sort').click(function(e) {
+
+		$('.field-sort.active').removeClass('active');
+		e.preventDefault();
+		$(this).toggleClass('active');
+
+		//objectList.sort($(this).val(), $('#order-sort-select').val());
+		//objectList.sort($(this).val(), preg_match('/field\-sort\-(.+)/', $('.field-sort.active').attr('id'))[1]);
+
+		objectList.sort($(this).val(), /field\-sort\-(.+)/.exec( $(this).attr('id'))[1] );
 	    });
     };
 
