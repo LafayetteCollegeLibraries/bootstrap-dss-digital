@@ -25,7 +25,6 @@
 
       <div class="islandora-discovery-inner-container">
 
-
       <div class="islandora-page-controls">
         <form id="islandora-discovery-form" action="/" >
       </div><!--/.islandora-page-controls -->
@@ -33,10 +32,16 @@
     <div class="islandora-discovery-control title-sort-control">
 
 <span>Sort by:</span>
-<select>
+<select id="field-sort-select" >
 <option value="">Title</option>
 <option value=".islandora-inline-metadata dd.solr-value.eastasia-coverage-location">Coverage.Location</option>
 </select>
+
+<select id="order-sort-select" >
+<option value="asc">Ascending</option>
+<option value="desc">Descending</option>
+</select>
+
     </div><!-- /.islandora-discovery-control -->
     </form>
 
