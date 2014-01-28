@@ -17,8 +17,6 @@ require_once dirname(__FILE__) . '/includes/pager.inc';
 require_once dirname(__FILE__) . '/includes/islandora_solr.inc';
 require_once dirname(__FILE__) . '/includes/islandora_basic_collection.inc';
 
-
-
 /**
  * Implements template_preprocess_hybridauth_widget
  * @griffinj
