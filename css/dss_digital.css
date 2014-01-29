@@ -1002,6 +1002,14 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	margin-left:1px;
 }
 
+/* style search refinement panel */
+
+.islandora-solr-facet {
+	
+	font-size: 15px;
+    font-weight: bold;
+}
+
 
 
 
