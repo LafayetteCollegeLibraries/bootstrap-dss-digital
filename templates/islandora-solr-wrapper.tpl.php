@@ -33,8 +33,8 @@
 
 <span>Sort by:</span>
 
-    <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z&nbsp;↓</a>
-    <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A&nbsp;↓</a>
+    <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
+    <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
 
 <select id="field-sort-select" >
 <option value="">Title</option>
