@@ -154,6 +154,12 @@
     width: 30%;
 }
 
+.islandora-solr-facet-date-slider {
+
+    width: 90%;
+    margin-left: 4%;
+}
+
 /*
 .menu {
   height:100%;
