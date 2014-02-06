@@ -1042,6 +1042,13 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	margin-right:0;
 }
 
+/* get rid of second instance of "projects" heading on projects page */
+
+#block-quicktabs-projects > h2 {
+	
+	display:none;
+}
+
 
 
 
