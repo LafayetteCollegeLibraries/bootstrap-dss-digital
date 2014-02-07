@@ -282,7 +282,7 @@
 
 		    $('.main-container').toggleClass('snap-expand-left');
 		    $('.snap-drawers').toggleClass('snap-expand-left');
-		});
+		}).toggleClass('shown').children('img').toggleClass('shown');
 	}
 
 	/*

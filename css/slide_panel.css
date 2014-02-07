@@ -154,10 +154,47 @@
     width: 30%;
 }
 
+/**
+ * For the date slider
+ *
+ */
 .islandora-solr-facet-date-slider {
 
     width: 90%;
     margin-left: 4%;
+}
+
+/**
+ * 
+ *
+ */
+.snap-trigger,
+.snap-trigger img {
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.snap-trigger {
+
+    /* background-image: url('../files/loader_25_25.gif'); */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.snap-trigger {
+
+    opacity: 0;
+}
+
+.snap-trigger.shown,
+.snap-trigger img.shown {
+
+    background-image: none;
+    opacity: 1;
 }
 
 /*
