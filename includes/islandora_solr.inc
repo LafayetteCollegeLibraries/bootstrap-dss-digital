@@ -139,7 +139,8 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
   $refine_link = array(
 		       'title' => t('Refine'),
 		       'attributes' => array('href' => '#',
-					     'class' => array('snap-trigger')));
+					     'class' => array('snap-trigger'),
+					     'style' => ''));
   
   // Refactor
   $view_icon_srcs = array('Refine' => base_path() . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/RefineIcon.png',
