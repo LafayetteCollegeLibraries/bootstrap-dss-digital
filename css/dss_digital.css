@@ -1049,6 +1049,35 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	display:none;
 }
 
+/* style sliders on refinement controls for search results */
+
+.islandora-solr-facet-date-init {
+	
+	float:left;
+	margin-left: 6px;
+    margin-top: 5px;
+    margin-bottom: 9px;
+}
+
+.islandora-solr-facet-date-term {
+	
+	float:right;
+	margin-right: 8px;
+    margin-top: 5px;
+}
+
+.islandora-solr-facet {
+	
+	clear:both;
+}
+
+.ui-slider-handle {
+	
+	background-color: #F5F5F5 !important;
+    background-image: none !important;
+    border-color: #AAAAAA !important;
+}
+
 
 
 
