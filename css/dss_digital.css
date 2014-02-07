@@ -1010,6 +1010,45 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
     font-weight: bold;
 }
 
+/* get rid of styling on div surrounding each projects tab "page" within projects page */
+
+#block-nodeblock-12 {
+	
+	background: none;
+    border: none;
+    clear: both;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}
+
+#block-nodeblock-44 {
+	
+	background: none;
+    border: none;
+    clear: both;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}
+
+#node-44 {
+	
+	margin-left:0;
+	margin-right:0;
+}
+
+/* get rid of second instance of "projects" heading on projects page */
+
+#block-quicktabs-projects > h2 {
+	
+	display:none;
+}
+
 
 
 
