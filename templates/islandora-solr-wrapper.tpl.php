@@ -37,8 +37,8 @@
     <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
 
 <select id="field-sort-select" >
-<option value="">Title</option>
-<option value=".islandora-inline-metadata dd.solr-value.eastasia-coverage-location">Coverage.Location</option>
+<option value="dc.title">Title</option>
+<option value="eastasia.Coverage.Location">Coverage.Location</option>
 </select>
 
     </div><!-- /.islandora-discovery-control -->

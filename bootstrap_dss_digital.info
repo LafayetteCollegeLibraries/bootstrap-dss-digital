@@ -49,7 +49,7 @@ scripts[] = 'js/advanced_search_modal.js'
 scripts[] = 'js/sharethis_helper.js'
 scripts[] = 'js/advanced_search_modal_helper.js'
 
-scripts[] = 'js/objects_list_sort.js'
+; scripts[] = 'js/objects_list_sort.js'
 
 ; Stylesheets
 
