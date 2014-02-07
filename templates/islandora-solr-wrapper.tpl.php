@@ -37,8 +37,9 @@
     <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
 
 <select id="field-sort-select" >
-<option value="dc.title">Title</option>
-<option value="eastasia.Coverage.Location">Coverage.Location</option>
+									 <?php foreach($collection_fields as $value => $title): ?>
+									 <option value="<?php print $value; ?>"><?php print $title; ?></option>
+									 <?php endforeach; ?>
 </select>
 
     </div><!-- /.islandora-discovery-control -->
