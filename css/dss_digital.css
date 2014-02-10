@@ -1062,7 +1062,7 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 .islandora-solr-facet-date-term {
 	
 	float:right;
-	margin-right: 8px;
+	margin-right: 26px;
     margin-top: 5px;
 }
 
@@ -1078,6 +1078,125 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
     border-color: #AAAAAA !important;
 }
 
+.ui-slider-handle {
+	
+	border-radius:2px !important;
+}
+
+.ui-slider-handle:hover {
+	
+	cursor:pointer;
+}
+
+
+.ui-slider-range {
+	
+	background-color:#DDDDDD !important;
+}
+
+.islandora-solr-facet-date-slider {
+	
+	width:85%;
+}
+
+/* enure pagination controls do not display on search results */
+
+.pagination-count {
+	
+	display:none;
+}
+
+/* style facet removal controls */
+
+.islandora-solr-facet-token-list {
+	
+	list-style:none;
+	margin-left:10px;
+	margin-top:12px;
+}
+
+.islandora-solr-facet-token {
+	
+	background-color:#F5F5F5;
+	-moz-box-sizing:content-box;
+	padding:1px 5px;
+}
+
+.islandora-solr-facet-token:hover {
+	
+	cursor:pointer;
+}
+
+.islandora-solr-facet-token > span.close {
+	
+	color: #7E7E7E;
+    margin-left: 4px;
+    opacity: 1;
+}
+
+/* style show more lightbox from search refinement */
+
+.ui-widget-header {
+	
+	background:none;
+	border-top:none;
+	border-right:none;
+	border-left:none;
+	border-bottom:1px solid #EEEEEE;
+}
+
+.ui-corner-all {
+	
+	border-radius:0px;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+	
+	padding: 0.6em 1em;
+}
+
+.ui-dialog {
+	
+	padding:0px;
+}
+
+#edit-fields {
+	
+	border: 1px solid #CCCCCC;
+	padding:2px;
+	border-radius:2px;
+}
+
+#edit-submit {
+	
+	background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #404040;
+    text-shadow: none;
+    margin-top:8px;
+}
+
+/* style search refinement lightbox alert */
+
+.ui-dialog-buttonpane {
+	
+	border:none;
+	margin-top:0px;
+}
+
+.ui-dialog-buttonset > button {
+	
+	background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #404040;
+    text-shadow: none;
+    margin-top:8px;
+    padding:4px 12px;
+}
 
 
 
