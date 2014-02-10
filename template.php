@@ -493,6 +493,70 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
   $_breadcrumbs = $breadcrumbs;
 
+  /*
+					      'Marquis de Lafayette Prints Collection' => array(
+												'dc.description',
+												'dc.format',
+												'dc.identifier',
+												'dc.rights',
+												'dc.subject',
+												'dc.type'
+												),
+					      'John S. Shelton Earth Science Image Collection' => array('dc.contributor',
+   */
+
+  dpm($breadcrumbs);
+
+  $searched_collection;
+  $faceted_collection;
+
+  if(array_key_exists('q', $_GET)) {
+
+    $solr_query = $_GET['q'];
+    $facets = array();
+    foreach($_GET as $param_key => $param_value) {
+
+      if($param_key != 'q' && $param_key == 'f') {
+
+	//$facets[] = array($param_key => $param_value);
+	foreach($param_value as $facet) {
+
+	  $facet_split = explode(':', $facet);
+	  $facet_field = $facet_split[0];
+	  $facet_value = $facet_split[1];
+	  //$facets[$facet_field] = $facet_value;
+
+	  preg_match('/"(.+?)"/', $facet_value, $facet_value_match);
+
+	  if(!array_key_exists($facet_field, $facets)) {
+
+	    $facets[$facet_field] = $facet_value_match[1];
+	  }
+	}
+      }
+    }
+
+    // Accessing via Search This Collection: Home / [collection name] / Search
+    if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
+
+      $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $m[1], 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $m[1] . '"');
+      $_breadcrumbs[] = array('title' => 'Search', 'href' => current_path());
+      $count++;
+
+    } else if(array_key_exists('cdm.Relation.IsPartOf', $facets)) { // Home / Projects / [collection name] / Browse
+
+      $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Projects', 'href' => 'projects');
+      //$_breadcrumbs[] = array('title' => 'Projects', 'href' => '/projects');
+      $_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:' . $facets['cdm.Relation.IsPartOf']);
+      $_breadcrumbs[] = array('title' => 'Browse', 'href' => current_path());
+      $count += 2;
+
+    } else { // Home / Search
+
+      $_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Search';
+    }
+  }
+
   if(isset($breadcrumbs[count($breadcrumbs) - 1])) {
     switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
 
@@ -549,6 +613,8 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       break;
     }
   }
+
+  dpm($_breadcrumbs);
 
   $breadcrumbs = $_breadcrumbs;
 
