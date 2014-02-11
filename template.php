@@ -400,8 +400,6 @@ function hybridauth_theme($existing, $type, $theme, $path) {
 
 function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables) {
 
-  dpm($variables);
-
   $object = $variables['object'];
 
   // Refactor
@@ -578,10 +576,12 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	//$_breadcrumbs[] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
 	//$count++;
 
-	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
+	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
+	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
       } else {
 
-	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
+	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
+	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
       }
       
       $_breadcrumbs[] = array('title' => 'Search', 'href' => current_path());
@@ -597,12 +597,16 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
 	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'East Asia Image Collection', 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
 	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[1]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-	$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
 	//$count++;
+
+	$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
       } else {
 
 	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-	$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+
+	$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
       }
 
       $_breadcrumbs[] = array('title' => 'Browse', 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
@@ -679,8 +683,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
     if(isset($breadcrumb['href'])) {
 
       $breadcrumbs_length += strlen($breadcrumb['title']);
-
-      dpm($breadcrumbs_length);
 
       if($breadcrumbs_length > BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX) {
 

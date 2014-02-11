@@ -83,9 +83,35 @@
               endif;
             ?>
             <dd class="solr-value <?php print $value['class']; ?><?php print $row_field == 0 ? ' first' : ''; ?><?php print $row_field == $max_rows ? ' last' : ''; ?>">
+		<?php
+		if ($key == 'dc.title'):
+		  // Construct options array for l() function call.  Only include
+		  // what is needed.  Can accept standard url parameters and a
+		  // single anchor tag (fragment) at the end.
+		  $options = array(
+				   'html' => TRUE,
+				   );
 
-		<!-- @griffinj For formatting date time values -->
-		<?php print preg_match('/(?:Lower|Upper)/', $value['label']) ? date('F, Y', strtotime($value['value'])) : $value['value'] ?>
+                  if (isset($result['object_url_params'])):
+
+		    $options['query'] = $result['object_url_params'];
+                  endif;
+
+                  if (isset($result['object_url_fragment'])):
+
+		    $options['fragment'] = $result['object_url_fragment'];
+                  endif;
+
+                  // Construct the PID link.
+                  print l($value['value'], $result['object_url'], $options);
+
+		else:
+
+		  // @griffinj For formatting date time values
+		  print preg_match('/(?:Lower|Upper)/', $value['label']) ? date('F, Y', strtotime($value['value'])) : $value['value'];
+
+                endif;
+                ?>
             </dd>
             <?php $row_field++; ?>
           <?php endforeach; ?>
@@ -133,7 +159,26 @@
 
 	      <?php
 
-		print $result['solr_doc']['dc.title']['value']; ?>
+		  // Construct options array for l() function call.  Only include
+		  // what is needed.  Can accept standard url parameters and a
+		  // single anchor tag (fragment) at the end.
+		  $options = array(
+				   'html' => TRUE,
+				   );
+
+                  if (isset($result['object_url_params'])):
+
+		    $options['query'] = $result['object_url_params'];
+                  endif;
+
+                  if (isset($result['object_url_fragment'])):
+
+		    $options['fragment'] = $result['object_url_fragment'];
+                  endif;
+
+                  // Construct the PID link.
+                  print l($result['solr_doc']['dc.title']['value'], $result['object_url'], $options);
+              ?>
 	</dd>
     </dl><!--/.islandora-basic-collection-object -->
   
