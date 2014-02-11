@@ -17,6 +17,7 @@ class DssMods extends SimpleXMLElement {
 
     $mods_array = array();
 
+    /*
     $template_map = array(
 			  // Generic
 			  'Title' => "./mods:titleInfo/mods:title",
@@ -28,7 +29,10 @@ class DssMods extends SimpleXMLElement {
                           'Date of Publication' => "(./mods:originInfo/mods:dateOther)[1]",
                           'Date of Digitization' => "(./mods:originInfo/mods:dateOther)[2]",
                           'Rights' => "./mods:accessCondition",
+			  );
+    */
 
+    $template_map = array(
 			  /*
 			    East Asia Image Collections
 			   */
@@ -93,7 +97,7 @@ class DssMods extends SimpleXMLElement {
 						       'facet' => true),
 			  */
 
-			  'Format.Extant' => "./mods:physicalDescription/mods:extent",
+			  'Format.Extent' => "./mods:physicalDescription/mods:extent",
 
 			  'Format.Medium' => array('xpath' => "./mods:physicalDescription/mods:form",
 						   'facet' => true),
@@ -159,13 +163,13 @@ class DssMods extends SimpleXMLElement {
 			  'Coverage.place.birth' => array('xpath' => './mods:note[@type="recorded place of birth"]',
 							  'facet' => true),
 
-			  'Description.millitary.branch' => array('xpath' => "./mods:note[@type='military branch']",
+			  'Description.military.branch' => array('xpath' => "./mods:note[@type='military branch']",
 								  'facet' => true),
 
-			  'Description.millitary.rank' => array('xpath' => "./mods:note[@type='military rank']",
+			  'Description.military.rank' => array('xpath' => "./mods:note[@type='military rank']",
 								'facet' => true),
 
-			  'Description.millitary.unit' => array('xpath' => "./mods:note[@type='military unit']",
+			  'Description.military.unit' => array('xpath' => "./mods:note[@type='military unit']",
 								'facet' => true),
 
 			  'Date.death.display' => array('xpath' => "./mods:note[@type='recorded date of death']",
@@ -182,6 +186,8 @@ class DssMods extends SimpleXMLElement {
 
 			  'Format.analog' => "./mods:note[@type='analog format']",
                           );
+
+    $this->xpath("./mods:note[@type='admin']");
 
     foreach($template_map as $facet => $value) {
 
@@ -256,6 +262,7 @@ class DssMods extends SimpleXMLElement {
 	}
 
 	if($is_date) {
+
 	  $element['date_value'] = date('Y-m-d', strtotime($element['value']));
 	}
 

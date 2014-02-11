@@ -400,6 +400,8 @@ function hybridauth_theme($existing, $type, $theme, $path) {
 
 function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables) {
 
+  dpm($variables);
+
   $object = $variables['object'];
 
   // Refactor
@@ -411,14 +413,13 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
     //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
 
-    //dpm($mods_str);
-
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
     
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
   }
 
+  dpm($mods_object->toArray());
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray() : array();
 }
 
