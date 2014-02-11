@@ -1119,7 +1119,8 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	
 	background-color:#F5F5F5;
 	-moz-box-sizing:content-box;
-	padding:1px 5px;
+	padding: 1px 4px 1px 5px;
+	height:auto;
 }
 
 .islandora-solr-facet-token:hover {
@@ -1130,8 +1131,9 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 .islandora-solr-facet-token > span.close {
 	
 	color: #7E7E7E;
-    margin-left: 4px;
+    margin-left: 8px;
     opacity: 1;
+    margin-top:-2px;
 }
 
 /* style show more lightbox from search refinement */
@@ -1198,6 +1200,77 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
     padding:4px 12px;
 }
 
+/* set width of refinement panel and page content when refinement panel is displayed on search results */
+
+.snap-drawers.snap-expand-left {
+	
+    width: 24%;
+    border-bottom: 1px solid #CCCCCC;
+    border-radius: 2px;
+    border-right: 1px solid #CCCCCC;
+    padding-right: 1%;
+}
+
+.main-container.snap-expand-left {
+	
+    width: 74%;
+}
+
+/* style metadata on item level pages */
+
+.islandora-book-fields > dt {
+	
+	width: 33%;
+    word-wrap: break-word;
+    float:left;
+    border-top:1px solid #CCCCCC;
+    clear:both;
+    padding-left:1%;
+    padding-right:1%;
+    -moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background-color:#F5F5F5;
+}
+
+.islandora-book-fields > dd {
+	
+	width: 67%;
+    word-wrap: break-word;
+    float:left;
+    border-top:1px solid #CCCCCC;
+    border-left:1px solid #CCCCCC;
+    padding-left:1%;
+    padding-right:1%;
+    -moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background-color:#FFFFFF;
+}
+
+.islandora-book-fields > dt.first {
+	
+	border-top:none;
+}
+
+.islandora-book-fields > dd.first {
+	
+	border-top:none;
+}
+
+.islandora-book-metadata {
+	
+	border:1px solid #CCCCCC;
+	margin-top:20px;
+	border-radius:2px;
+	background-color:#F5F5F5;
+	margin-bottom:10px;
+}
+
+.islandora-book-metadata > legend {
+	
+	display:none;
+}
 
 
 
