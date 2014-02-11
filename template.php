@@ -400,6 +400,8 @@ function hybridauth_theme($existing, $type, $theme, $path) {
 
 function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables) {
 
+  dpm($variables);
+
   $object = $variables['object'];
 
   // Refactor
@@ -411,14 +413,13 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
     //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
 
-    //dpm($mods_str);
-
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
     
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
   }
 
+  dpm($mods_object->toArray());
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray() : array();
 }
 
@@ -475,6 +476,11 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 				   );
 }
 
+define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 52);
+
+// "Home/Japanese Imperial House Postcard Album/Search"
+//define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 41);
+
 function bootstrap_dss_digital_breadcrumb($variables) {
 
   $output = '<ul class="breadcrumb">';
@@ -487,6 +493,10 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
   $breadcrumbs = $variables;
   $count = count(array_keys($variables)) - 1;
+
+  // For the truncation of individual breadcrumbs
+  $breadcrumbs_length = 0;
+
 
   $path = current_path();
   $path_segments = explode('/', $path);
@@ -504,8 +514,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 												),
 					      'John S. Shelton Earth Science Image Collection' => array('dc.contributor',
    */
-
-  dpm($breadcrumbs);
 
   $searched_collection;
   $faceted_collection;
@@ -536,19 +544,68 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       }
     }
 
+    $eastasia_subcollections = array(
+				     'Japanese Imperial House Postcard Album',
+				     'T.W. Ingersoll Co. Stereoviews of the Siege of Port Arthur',
+				     'Imperial Postcard Collection',
+				     'Tsubokura Russo-Japanese War Postcard Album',
+				     'Sino-Japanese War Postcard Album 01',
+				     'Sino-Japanese War Postcard Album 02',
+				     'Lin Chia-Feng Family Postcard Collection',
+				     'Japanese History Study Cards',
+				     'Pacific War Postcard Collection',
+				     'Michael Lewis Taiwan Postcard Collection',
+				     'Gerald & Rella Warner Taiwan Postcard Collection',
+				     'Gerald & Rella Warner Dutch East Indies Negative Collection',
+				     'Japanese Imperial House Postcard Album',
+				     'Gerald & Rella Warner Manchuria Negative Collection',
+				     'Gerald & Rella Warner Taiwan Negative Collection',
+				     'Gerald & Rella Warner Japan Slide Collection',
+				     'Gerald & Rella Warner Souvenirs of Beijing and Tokyo',
+				     'Woodsworth Taiwan Image Collection',
+				     'Scenic Taiwan',
+				     'Taiwan Photographic Monthly',
+				     );
+
     // Accessing via Search This Collection: Home / [collection name] / Search
     if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
 
-      $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $m[1], 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $m[1] . '"');
+      $title = $m[1];
+
+      if(in_array($title, $eastasia_subcollections)) {
+
+	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'East Asia Image Collection', 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
+	//$_breadcrumbs[] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
+	//$count++;
+
+	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
+      } else {
+
+	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
+      }
+      
       $_breadcrumbs[] = array('title' => 'Search', 'href' => current_path());
       $count++;
 
     } else if(array_key_exists('cdm.Relation.IsPartOf', $facets)) { // Home / Projects / [collection name] / Browse
 
-      $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Projects', 'href' => 'projects');
+      $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Collections', 'href' => 'projects');
       //$_breadcrumbs[] = array('title' => 'Projects', 'href' => '/projects');
-      $_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:' . $facets['cdm.Relation.IsPartOf']);
-      $_breadcrumbs[] = array('title' => 'Browse', 'href' => current_path());
+
+      // Hierarchical collections
+      if(in_array($facets['cdm.Relation.IsPartOf'], $eastasia_subcollections)) {
+
+	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'East Asia Image Collection', 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
+	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[1]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+	$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+	//$count++;
+      } else {
+
+	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+	$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+      }
+
+      $_breadcrumbs[] = array('title' => 'Browse', 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
       $count += 2;
 
     } else { // Home / Search
@@ -614,9 +671,29 @@ function bootstrap_dss_digital_breadcrumb($variables) {
     }
   }
 
-  dpm($_breadcrumbs);
-
   $breadcrumbs = $_breadcrumbs;
+
+  $i = 1;
+  foreach($breadcrumbs as $key => $breadcrumb) {
+
+    if(isset($breadcrumb['href'])) {
+
+      $breadcrumbs_length += strlen($breadcrumb['title']);
+
+      dpm($breadcrumbs_length);
+
+      if($breadcrumbs_length > BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX) {
+
+	if($key != count($breadcrumbs) - 1) {
+	  
+	  $breadcrumbs[$i]['title'] = '…';
+	  $breadcrumbs_length -= strlen($breadcrumb['title']) - 1;
+
+	  $i++;
+	}
+      }
+    }
+  }
 
   foreach($breadcrumbs as $key => $breadcrumb) {
 
