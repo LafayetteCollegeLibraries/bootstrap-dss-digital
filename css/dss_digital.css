@@ -1096,7 +1096,10 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 
 .islandora-solr-facet-date-slider {
 	
-	width:85%;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
 }
 
 /* enure pagination controls do not display on search results */
