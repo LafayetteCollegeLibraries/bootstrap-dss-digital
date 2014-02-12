@@ -411,6 +411,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
     //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
 
+    dpm(islandora_solr_get_fields('result_fields', FALSE));
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
     
@@ -418,7 +419,22 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   }
 
   dpm($mods_object->toArray());
-  $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray() : array();
+
+  $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
+
+  $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
+  
+  $rendered_fields = array();
+  foreach($variables['mods_object'] as $key => &$value) {
+
+    if(!in_array($value['label'], $rendered_fields)) {
+
+      $rendered_fields[] = $value['label'];
+    } else {
+
+      $value['label'] = '';
+    }
+  }
 }
 
 function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {

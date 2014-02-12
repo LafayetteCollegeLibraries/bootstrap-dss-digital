@@ -10,7 +10,7 @@
 
 class DssMods extends SimpleXMLElement {
 
-  public function toArray() {
+  public function toArray($label_map=array()) {
 
     $this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
     $this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
@@ -31,6 +31,53 @@ class DssMods extends SimpleXMLElement {
                           'Rights' => "./mods:accessCondition",
 			  );
     */
+
+    /*
+
+
+    dc.title (String, 13 characters ) Title.English
+    eastasia.Subject.OCM (String, 11 characters ) Subject.OCM
+    eastasia.Contributors.Digital (String, 20 characters ) Contributors.Digital
+    eastasia.Coverage.Location (String, 17 characters ) Coverage.Location
+    eastasia.Coverage.Location.Country (String, 25 characters ) Coverage.Location.Country
+    eastasia.Format.Medium (String, 13 characters ) Format.Medium
+    eastasia.Date.Artifact.Lower (String, 19 characters ) Date.Artifact.Lower
+    eastasia.Date.Artifact.Upper (String, 19 characters ) Date.Artifact.Upper
+    eastasia.Date.Image.Lower (String, 16 characters ) Date.Image.Lower
+    eastasia.Date.Image.Upper (String, 16 characters ) Date.Image.Upper
+    dc.contributor (String, 14 characters ) dc.contributor
+    dc.coverage (String, 11 characters ) dc.coverage
+    dc.date (String, 7 characters ) dc.date
+    dc.description (String, 14 characters ) dc.description
+    dc.format (String, 9 characters ) dc.format
+    dc.identifier (String, 13 characters ) dc.identifier
+    dc.language (String, 11 characters ) dc.language
+    dc.publisher (String, 12 characters ) dc.publisher
+    dc.rights (String, 9 characters ) dc.rights
+    dc.source (String, 9 characters ) dc.source
+    dc.subject (String, 10 characters ) dc.subject
+    dc.type (String, 7 characters ) dc.type
+    mdl_prints.subject.lcsh (String, 12 characters ) Subject.LCSH
+    mdl_prints.format.medium (String, 13 characters ) Format.Medium
+    mdl_prints.format.extent (String, 13 characters ) Format.Extent
+    mdl_prints.description (String, 11 characters ) Description
+    mdl_prints.description.provenance (String, 22 characters ) Description.Provenance
+    mdl_prints.description.series (String, 18 characters ) Description.Series
+    mdl_prints.identifier.itemnumber (String, 21 characters ) Identifier.ItemNumber
+    geology_slides.coverage.location.country (String, 25 characters ) coverage.location.country
+    geology_slides.coverage.location.state (String, 23 characters ) coverage.location.state
+    geology_slides.description.geologic.feature (String, 28 characters ) description.geologic.feature
+    geology_slides.description.critical (String, 20 characters ) description.critical
+    geology_slides_esi.subject (String, 7 characters ) Subject
+    geology_slides_esi.description.vantagepoint (String, 24 characters ) Description.Vantagepoint
+    geology_slides_esi.date.original (String, 13 characters ) Date.Original
+    mdl_prints.rights.digital (String, 14 characters ) Rights.Digital
+    mdl_prints.publisher.digital (String, 17 characters ) Publisher.Digital
+    mdl_prints.format.digital (String, 14 characters ) Format.Digital
+    cdm.Relation.IsPartOf (String, 17 characters ) Relation.IsPartOf
+
+
+     */
 
     $template_map = array(
 			  /*
@@ -126,10 +173,13 @@ class DssMods extends SimpleXMLElement {
 						      'facet' => true,
 						      'date' => true),
 
+			  //			  'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
+			  //			       'facet' => false,
+			  //			       'link' => true,
+			  //			       'href' => ''),
+
 			  'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
-						       'facet' => false,
-						       'link' => true,
-						       'href' => ''),
+						       'facet' => true),
 
 			  'Relation.SeeAlso' => "./mods:relatedItem[@type='references']/mods:note[@type='citation']",
 
@@ -256,8 +306,14 @@ class DssMods extends SimpleXMLElement {
       foreach($mods_elements as $i => &$element) {
 
 	if($is_facet) {
-	  
-	  $element['facet'] = $facet;
+
+	  if(array_key_exists($facet, $label_map)) {
+
+	    $element['facet'] = $label_map[$facet];
+	  } else {
+
+	    $element['facet'] = $facet;
+	  }
 	  $element['facet_value'] = '"' . $element['value'] . '"';
 	}
 
