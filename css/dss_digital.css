@@ -1220,22 +1220,27 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 
 .islandora-book-fields > dt {
 	
-	width: 33%;
+	width: 27%;
     word-wrap: break-word;
     float:left;
-    border-top:1px solid #CCCCCC;
     clear:both;
     padding-left:1%;
     padding-right:1%;
     -moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	background-color:#F5F5F5;
+	border-right: 1px solid #CCCCCC;
+	margin-right: -1px;
+}
+
+.islandora-inline-metadata-displayed {
+	
+	border-top:1px solid #CCCCCC;
 }
 
 .islandora-book-fields > dd {
 	
-	width: 67%;
+	width: 73%;
     word-wrap: break-word;
     float:left;
     border-top:1px solid #CCCCCC;
@@ -1245,7 +1250,6 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
     -moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	background-color:#FFFFFF;
 }
 
 .islandora-book-fields > dt.first {
@@ -1260,11 +1264,11 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 
 .islandora-book-metadata {
 	
-	border:1px solid #CCCCCC;
-	margin-top:20px;
-	border-radius:2px;
-	background-color:#F5F5F5;
-	margin-bottom:10px;
+	border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    display: block;
+    margin: 20px auto 10px;
+    width: 80%;
 }
 
 .islandora-book-metadata > legend {
