@@ -418,7 +418,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
   }
 
-  dpm($mods_object->toArray());
+  //dpm($mods_object->toArray());
+  dpm( islandora_solr_get_fields('result_fields', FALSE));
 
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
 
