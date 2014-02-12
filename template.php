@@ -429,6 +429,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
     if(!in_array($value['label'], $rendered_fields)) {
 
+      $value['class'] .= ' islandora-inline-metadata-displayed';
       $rendered_fields[] = $value['label'];
     } else {
 

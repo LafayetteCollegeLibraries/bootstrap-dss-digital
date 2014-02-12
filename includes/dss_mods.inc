@@ -106,14 +106,28 @@ class DssMods extends SimpleXMLElement {
 
                           'Description.Citation' => "./mods:note[@type='citation']",
                           'Description.Critical' => "./mods:note[@type='content']",
+			  'Description.Indicia' => array('xpath' => "./mods:note[@type='indicia']",
+							 'facet' => true),
+			  'Coverage.Location.Country' => array('xpath' => "./mods:subject/mods:hierarchicalGeographic/mods:country",
+							       'facet' => true),
+                          'Description.Ethnicity' => array('xpath' => "./mods:note[@type='ethnicity']",
+							   'facet' => true),
+                          'Contributors.Digital' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='ctb']/../../mods:namePart",
+							  'facet' => true),
+			  //			  'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
+			  //			       'facet' => false,
+			  //			       'link' => true,
+			  //			       'href' => ''),
+
+			  'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
+						       'facet' => true),
 
                           'Description.Text.English' => "./mods:abstract[@xml:lang='en-US']",
                           'Description.Text.Chinese' => "./mods:abstract[@xml:lang='zh']",
                           'Description.Text.Japanese' => "./mods:abstract[@xml:lang='Jpan']",
                           'Description.Text.Korean' => "./mods:abstract[@xml:lang='Kore']",
 
-                          'Contributors.Digital' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='ctb']/../../mods:namePart",
-							  'facet' => true),
+
 
 			  /*
                           'Creator.Company' => array('xpath' => "./mods:originInfo/mods:publisher",
@@ -125,19 +139,16 @@ class DssMods extends SimpleXMLElement {
                           'Creator.Maker' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='pht']/../../mods:namePart",
 						   'facet' => true),
 
-                          'Description.Ethnicity' => array('xpath' => "./mods:note[@type='ethnicity']",
-							   'facet' => true),
 
-			  'Description.Indicia' => array('xpath' => "./mods:note[@type='indicia']",
-							 'facet' => true),
+
+
 
 			  'Description.Indicia.English' => "./mods:note[@xml:lang='en-US']",
 			  'Description.Indicia.Chinese' => "./mods:note[@xml:lang='en-US']",
 			  'Description.Indicia.Japanese' => "./mods:note[@xml:lang='en-US']",
 			  'Description.Indicia.Korean' => "./mods:note[@xml:lang='en-US']",
 
-			  'Coverage.Location.Country' => array('xpath' => "./mods:subject/mods:hierarchicalGeographic/mods:country",
-							       'facet' => true),
+
 
 			  /*
 			  'Coverage.Location' => array('xpath' => "./mods:subject/mods:geographic",
@@ -161,9 +172,9 @@ class DssMods extends SimpleXMLElement {
 							 'facet' => true,
 							 'date' => true),
 
-			  'Date.Search' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='search']",
-						 'facet' => true,
-						 'date' => true),
+			  //'Date.Search' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='search']",
+			  //'facet' => true,
+			  //'date' => true),
 
 			  'Date.Image.Upper' => array('xpath' => "./mods:originInfo/mods:dateCreated[@point='end']",
 						      'facet' => true,
@@ -173,13 +184,7 @@ class DssMods extends SimpleXMLElement {
 						      'facet' => true,
 						      'date' => true),
 
-			  //			  'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
-			  //			       'facet' => false,
-			  //			       'link' => true,
-			  //			       'href' => ''),
 
-			  'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
-						       'facet' => true),
 
 			  'Relation.SeeAlso' => "./mods:relatedItem[@type='references']/mods:note[@type='citation']",
 
