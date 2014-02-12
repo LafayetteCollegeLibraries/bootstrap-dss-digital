@@ -139,16 +139,10 @@ class DssMods extends SimpleXMLElement {
                           'Creator.Maker' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='pht']/../../mods:namePart",
 						   'facet' => true),
 
-
-
-
-
 			  'Description.Indicia.English' => "./mods:note[@xml:lang='en-US']",
 			  'Description.Indicia.Chinese' => "./mods:note[@xml:lang='en-US']",
 			  'Description.Indicia.Japanese' => "./mods:note[@xml:lang='en-US']",
 			  'Description.Indicia.Korean' => "./mods:note[@xml:lang='en-US']",
-
-
 
 			  /*
 			  'Coverage.Location' => array('xpath' => "./mods:subject/mods:geographic",
@@ -156,18 +150,14 @@ class DssMods extends SimpleXMLElement {
 			  */
 
 			  'Format.Extent' => "./mods:physicalDescription/mods:extent",
-
 			  'Format.Medium' => array('xpath' => "./mods:physicalDescription/mods:form",
 						   'facet' => true),
-
 			  'Date.Original' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='original']",
 						   'facet' => true,
 						   'date' => true),
-
 			  'Date.Artifact.Upper' => array('xpath' => "./mods:originInfo/mods:dateIssued[@point='end']",
 							 'facet' => true,
 							 'date' => true),
-
 			  'Date.Artifact.Lower' => array('xpath' => "./mods:originInfo/mods:dateIssued[@point='start']",
 							 'facet' => true,
 							 'date' => true),
@@ -179,12 +169,9 @@ class DssMods extends SimpleXMLElement {
 			  'Date.Image.Upper' => array('xpath' => "./mods:originInfo/mods:dateCreated[@point='end']",
 						      'facet' => true,
 						      'date' => true),
-
 			  'Date.Image.Lower' => array('xpath' => "./mods:originInfo/mods:dateCreated[@point='start']",
 						      'facet' => true,
 						      'date' => true),
-
-
 
 			  'Relation.SeeAlso' => "./mods:relatedItem[@type='references']/mods:note[@type='citation']",
 
@@ -319,7 +306,14 @@ class DssMods extends SimpleXMLElement {
 
 	    $element['facet'] = $facet;
 	  }
-	  $element['facet_value'] = '"' . $element['value'] . '"';
+
+	  if($is_date) {
+
+	    $element['facet_value'] = '[' . $element['value'] . ' TO ' . $element['value'] . ']';
+	  } else {
+	  
+	    $element['facet_value'] = '"' . $element['value'] . '"';
+	  }
 	}
 
 	if($is_date) {
