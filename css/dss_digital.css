@@ -1094,14 +1094,6 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	background-color:#DDDDDD !important;
 }
 
-.islandora-solr-facet-date-slider {
-	
-	display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-}
-
 /* enure pagination controls do not display on search results */
 
 .pagination-count {
