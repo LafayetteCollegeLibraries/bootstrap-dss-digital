@@ -1259,10 +1259,8 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 
 .islandora-book-metadata {
 	
-	border: 1px solid #CCCCCC;
-    border-radius: 2px;
     display: block;
-    margin: 20px auto 10px;
+    margin: 30px auto 10px;
     width: 80%;
 }
 
