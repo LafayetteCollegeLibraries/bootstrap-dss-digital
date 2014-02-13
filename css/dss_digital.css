@@ -1211,11 +1211,11 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
     width: 74%;
 }
 
-/* style metadata on item level pages */
+/* style metadata on multiple-image object level pages */
 
 .islandora-book-fields > dt {
 	
-	width: 27%;
+	width: 30%;
     word-wrap: break-word;
     float:left;
     clear:both;
@@ -1235,7 +1235,7 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 
 .islandora-book-fields > dd {
 	
-	width: 73%;
+	width: 70%;
     word-wrap: break-word;
     float:left;
     border-top:1px solid #CCCCCC;
@@ -1268,6 +1268,86 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	
 	display:none;
 }
+
+/* ensure display of metadata on pdf and single-image object level pages */
+
+html.js fieldset.collapsed .fieldset-wrapper {
+	
+	display:block;
+}
+
+html.js fieldset.collapsed {
+	
+	height:auto;
+}
+
+/* style metadata on single-image object level pages */
+
+.islandora-large-image-metadata > legend {
+	
+	display:none;
+}
+
+.islandora-large-image-metadata {
+	
+	display: block;
+    margin: 30px auto 10px;
+    width: 80%;
+}
+
+.islandora-inline-metadata > dt {
+	
+	width: 30%;
+    word-wrap: break-word;
+    float:left;
+    clear:both;
+    padding-left:1%;
+    padding-right:1%;
+    -moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	border-right: 1px solid #CCCCCC;
+	margin-right: -1px;
+	border-top:1px solid #CCCCCC;
+	text-align:left;
+}
+
+.islandora-inline-metadata > dd {
+	
+	width: 70%;
+    word-wrap: break-word;
+    float:left;
+    border-top:1px solid #CCCCCC;
+    border-left:1px solid #CCCCCC;
+    padding-left:1%;
+    padding-right:1%;
+    -moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+/* style metadata for PDF object level pages */
+
+.islandora-pdf-metadata > legend {
+	
+	display:none;
+}
+
+.islandora-pdf-metadata {
+	
+	display: block;
+    margin: 30px auto 10px;
+    width: 80%;
+}
+
+/* ensure pdf viewer background texture is not applied to entire page */
+
+body {
+	
+	background-image:none;
+}
+
+
 
 
 
