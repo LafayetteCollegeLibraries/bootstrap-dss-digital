@@ -1094,6 +1094,33 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	background-color:#DDDDDD !important;
 }
 
+.ui-slider-horizontal .ui-slider-left {
+	
+	margin-left:-9%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+.ui-slider-horizontal .ui-slider-right {
+	
+	margin-left:0px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+.islandora-solr-facet-date-slider {
+	
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
 /* enure pagination controls do not display on search results */
 
 .pagination-count {
