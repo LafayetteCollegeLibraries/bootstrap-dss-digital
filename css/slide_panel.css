@@ -183,11 +183,26 @@
     /* background-image: url('../files/loader_25_25.gif'); */
     background-repeat: no-repeat;
     background-position: center;
+
+    opacity: 0;
+}
+
+.islandora-basic-collection-display-switch .links li:first-child {
+
+    background-image: url("../files/gif-load.gif");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.islandora-basic-collection-display-switch .links li:first-child.loaded {
+
+    background-image: none;
 }
 
 .snap-trigger {
 
-    opacity: 0;
+    /* background-image: url("../files/gif-load.gif"); */
+    /* opacity: 0; */
 }
 
 .snap-trigger.shown,
