@@ -83,6 +83,7 @@ class DssMods extends SimpleXMLElement {
 			  /*
 			    East Asia Image Collections
 			   */
+			  'Title' => "./mods:titleInfo/mods:title",
 			  'Title.English' => "./mods:titleInfo/mods:title[@xml:lang='en-US']",
                           'Title.Chinese' => "./mods:titleInfo/mods:title[@xml:lang='zh']",
                           'Title.Japanese' => "./mods:titleInfo/mods:title[@xml:lang='Jpan']",

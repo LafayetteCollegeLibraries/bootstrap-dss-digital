@@ -394,7 +394,45 @@ function hybridauth_theme($existing, $type, $theme, $path) {
 }
 */
 
+function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variables) {
 
+  $object = $variables['islandora_object'];
+
+  // Refactor
+  // Retrieve the MODS Metadata
+  try {
+
+    $mods_str = $object['MODS']->content;
+
+    $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
+    //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
+
+    dpm($mods_str);
+    $mods_object = new DssMods($mods_str);
+  } catch (Exception $e) {
+    
+    drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
+  }
+
+  $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
+
+  $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
+  
+  $rendered_fields = array();
+  foreach($variables['mods_object'] as $key => &$value) {
+
+    if(!in_array($value['label'], $rendered_fields)) {
+
+      //$value['class'] .= ' islandora-inline-metadata-displayed';
+      $rendered_fields[] = $value['label'];
+    } else {
+
+      $value['label'] = '';
+    }
+  }
+
+  dpm($variables);
+}
 
 //module_load_include('inc', 'bootstrap_dss_digital', 'includes/dssMods');
 
@@ -657,7 +695,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
     case 'islandora/object/islandora:presidents':
 
       $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
-									      'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
+										'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
     $count++;
     break;
 
