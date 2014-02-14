@@ -198,36 +198,40 @@ class DssMods extends SimpleXMLElement {
 			    war-casualties
 			   */
 
-			  'Description.class' => array('xpath' => './mods:note[@type="graduating class"]',
+			  'Description.class' => array('xpath' => './mods:note[@type="lafayette-class"]',
 						       'facet' => true),
 
-			  'Date.birth.display' => './mods:note[@type="recorded date of birth"]',
-
-			  'Coverage.place.birth' => array('xpath' => './mods:note[@type="recorded place of birth"]',
-							  'facet' => true),
-
-			  'Description.military.branch' => array('xpath' => "./mods:note[@type='military branch']",
-								  'facet' => true),
-
-			  'Description.military.rank' => array('xpath' => "./mods:note[@type='military rank']",
-								'facet' => true),
-
-			  'Description.military.unit' => array('xpath' => "./mods:note[@type='military unit']",
-								'facet' => true),
-
-			  'Date.death.display' => array('xpath' => "./mods:note[@type='recorded date of death']",
+			  'Date.birth.display' => array('xpath' => './mods:originInfo/mods:dateOther[@type="birth-display"]',
 							'facet' => true,
 							'date' => true),
 
-			  'Coverage.place.death' => array('xpath' => "./mods:note[@type='recorded place of death']",
+			  'Coverage.place.birth' => array('xpath' => './mods:note[@type="place-birth"]',
 							  'facet' => true),
 
-			  'Description.cause.death' => "./mods:note[@type='recorded cause of death']",
 
-			  'Description.honors' => array('xpath' => "./mods:note[@type='military honors']",
+
+			  'Description.military.branch' => array('xpath' => "./mods:note[@type='military-branch']",
+								  'facet' => true),
+
+			  'Description.military.rank' => array('xpath' => "./mods:note[@type='military-rank']",
+								'facet' => true),
+
+			  'Description.military.unit' => array('xpath' => "./mods:note[@type='military-unit']",
+								'facet' => true),
+
+			  'Date.death.display' => array('xpath' => './mods:originInfo/mods:dateOther[@type="death-display"]',
+							'facet' => true,
+							'date' => true),
+
+			  'Coverage.place.death' => array('xpath' => "./mods:note[@type='place-death']",
+							  'facet' => true),
+
+			  'Description.cause.death' => "./mods:note[@type='cause-death']",
+
+			  'Description.honors' => array('xpath' => "./mods:note[@type='military-honors']",
 							'facet' => true),
 
-			  'Format.analog' => "./mods:note[@type='analog format']",
+			  'Format.analog' => "./mods:note[@type='format-analog']",
                           );
 
     $this->xpath("./mods:note[@type='admin']");

@@ -1054,7 +1054,7 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 .islandora-solr-facet-date-init {
 	
 	float:left;
-	margin-left: 6px;
+	margin-left: 6%;
     margin-top: 5px;
     margin-bottom: 9px;
 }
@@ -1062,7 +1062,7 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 .islandora-solr-facet-date-term {
 	
 	float:right;
-	margin-right: 26px;
+	margin-right: 6%;
     margin-top: 5px;
 }
 
