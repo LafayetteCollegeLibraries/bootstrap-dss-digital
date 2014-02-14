@@ -1071,6 +1071,11 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	clear:both;
 }
 
+.ui-slider .ui-slider-handle {
+	
+	width:9%;
+}
+
 .ui-slider-handle {
 	
 	background-color: #F5F5F5 !important;

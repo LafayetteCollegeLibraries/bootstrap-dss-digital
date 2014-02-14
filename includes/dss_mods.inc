@@ -261,6 +261,8 @@ class DssMods extends SimpleXMLElement {
 	$xpath = $value;
       }
 
+      // Transforming the MODS Document into a PHP Array
+      //
       $map = function($element) {
 
         $lang = 'en-US';
@@ -283,6 +285,31 @@ class DssMods extends SimpleXMLElement {
       };
 
       $mods_elements = array_map($map, $this->xpath($xpath));
+
+      // Filter MODS elements based upon the parent collection
+      switch($mods_elements['Relation.IsPartOf']) {
+
+      case 'Historical Photograph Collection':
+
+	$collection_elements = array(
+				     'Title',
+				     'Genre',
+				     'Description',
+				     'Date of Publication',
+				     'Type',
+				     'Relation.IsPartOf',
+				     'Source',
+				     'Rights',
+				     'Format.Digital',
+				     );
+
+	
+
+	break;
+      default:
+
+	break;
+      }
 
       for($i = 0; $i < sizeof($mods_elements); $i++) {
 
