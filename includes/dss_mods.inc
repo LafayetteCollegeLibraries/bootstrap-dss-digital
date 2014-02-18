@@ -82,56 +82,7 @@ class DssMods extends SimpleXMLElement {
     $relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
     dpm( $relation_is_part_of_value  );
 
-    switch($relation_is_part_of_value) {
-
-      case 'Presidents of Lafayette College':
-
-      $template_map = array(
-			  /*
-			   * Presidents
-			   *
-			   */
-			  'Title' => "./mods:titleInfo/mods:title",
-                          'Subject' => array('xpath' => "./mods:subject/mods:topic",
-						 'facet' => true),
-                          'Description' => array('xpath' => "./mods:note",
-						 'facet' => true),
-			  'Publisher' => "./mods:originInfo/mods:publisher",
-			  'Digital Publisher' => array('xpath' => "./mods:name/mods:namePart",
-						       'facet' => true),
-			  'Digitization Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
-						       'facet' => true,
-						       'date' => true),
-			  'Digital Format' => array('xpath' => "./mods:physicalDescription/mods:note",
-						    'facet' => true),
-			  'Source' => array('xpath' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title"),
-			  'Language' => array('xpath' => "./mods:language/mods:languageTerm[@type='text']"),
-                          'Rights' => "./mods:accessCondition",
-                          );
-      break;
-
-    case 'Historical Photograph Collection':
-      
-      $template_map = array(
-			    'Title' => "./mods:titleInfo/mods:title",
-			    'Subject' => array('xpath' => "./mods:subject/mods:topic",
-					       'facet' => true),
-			    'Description' => "./mods:note[1]",
-			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
-							'facet' => true,
-							'date' => true),
-			    'Medium' => "./mods:note[2]",
-			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
-						  'facet' => true),
-			    'Source' => array('xpath' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title"),
-			    'Rights' => "./mods:accessCondition",
-			    'Digital Format' => array('xpath' => "./mods:physicalDescription/mods:note",
-						      'facet' => true),
-			    );
-      break;
-    default:
-
-      $template_map = array(
+    $template_map = array(
 			    'Genre' => "./mods:genre",
 			    'Location' => "./mods:subject/mods:geographic",
 			    'Topic' => "./mods:subject/mods:topic",
@@ -293,7 +244,310 @@ class DssMods extends SimpleXMLElement {
 							'facet' => true),
 
 			  'Format.analog' => "./mods:note[@type='format-analog']",
+			  );
+
+    switch($relation_is_part_of_value) {
+
+    case 'East Asia Image Collection':
+
+      $template_map = array(
+			    /*
+			      East Asia Image Collections
+			    */
+			    'Title.English' => "./mods:titleInfo/mods:title",
+			    'Title.English' => "./mods:titleInfo/mods:title[@xml:lang='en-US']",
+			    'Title.Japanese' => "./mods:titleInfo/mods:title[@xml:lang='Jpan']",
+			    'Title.Chinese' => "./mods:titleInfo/mods:title[@xml:lang='zh']",
+			    'Title.Korean' => "./mods:titleInfo/mods:title[@xml:lang='Kore']",
+			    'Subject.OCM' => array('xpath' => "./mods:subject[@authorityURI='http://www.yale.edu/hraf/outline.htm']/mods:topic",
+						   'facet' => true),
+
+			    'Description.Critical' => "./mods:note[@type='content']",
+
+			    //'Description.Caption.English' => "./mods:note[@xml:lang='en-US']",
+			    //'Description.Caption.Japanese' => "./mods:note[@xml:lang='en-US']",
+
+			    'Description.Indicia' => array('xpath' => "./mods:note[@type='indicia']",
+							   'facet' => true),
+			    //'Description.Indicia.English' => "./mods:note[@xml:lang='en-US']",
+			    //'Description.Indicia.Chinese' => "./mods:note[@xml:lang='en-US']",
+			    //'Description.Indicia.Japanese' => "./mods:note[@xml:lang='en-US']",
+			    //'Description.Indicia.Korean' => "./mods:note[@xml:lang='en-US']",
+
+			    'Coverage.Location' => array('xpath' => "./mods:subject/mods:geographic",
+							 'facet' => true),
+			    'Coverage.Location.Country' => array('xpath' => "./mods:subject/mods:hierarchicalGeographic/mods:country",
+								 'facet' => true),
+			    'Description.Ethnicity' => array('xpath' => "./mods:note[@type='ethnicity']",
+							     'facet' => true),
+			    'Contributor' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='ctb']/../../mods:namePart",
+							    'facet' => true),
+			    //'Relation.SeeAlso' => "./mods:relatedItem[@type='references']/mods:note[@type='citation']",
+			    'Relation.SeeAlso' => array('xpath' => "./mods:note[@type='admin']",
+							'facet' => true),
+
+			    'Description.Citation' => "./mods:note[@type='citation']",
+			    'Format.Medium' => array('xpath' => "./mods:physicalDescription/mods:form",
+						     'facet' => true),
+
+			    'Creator.Company' => array('xpath' => "./mods:originInfo/mods:publisher",
+						       'facet' => true),
+
+			    'Creator.Maker' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='pht']/../../mods:namePart",
+						     'facet' => true),
+			    'Format.Extent' => "./mods:physicalDescription/mods:extent",
+
+			    'Date.Artifact.Upper' => array('xpath' => "./mods:originInfo/mods:dateIssued[@point='end']",
+							   'facet' => true,
+							   'date' => true),
+			    'Date.Artifact.Lower' => array('xpath' => "./mods:originInfo/mods:dateIssued[@point='start']",
+							   'facet' => true,
+							   'date' => true),
+			    'Date.Image.Upper' => array('xpath' => "./mods:originInfo/mods:dateCreated[@point='end']",
+							'facet' => true,
+							'date' => true),
+			    'Date.Image.Lower' => array('xpath' => "./mods:originInfo/mods:dateCreated[@point='start']",
+							'facet' => true,
+							'date' => true),
+			    'Date.Original' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='original']",
+						     'facet' => true,
+						     'date' => true),
+
+			    /*
+			    'Creator.Digital' => "./mods:note[@type='creation credits']",
+			    'Publisher.Digital' => "./mods:note[@type='statement of responsibility']",
+			    //'Rights.Digital' => "./mods:accessCondition",
+			    'Format.Digital' => "./mods:note[@type='digital format']",
+			    */
+			    );
+
+      break;
+
+    case 'Marquis de Lafayette Prints Collection':
+
+      $template_map = array(
+			    'Title' => "./mods:titleInfo/mods:title",
+
+			    'Description.Note' => "./mods:note[@type='description']",
+
+			    'Creator' => "./mods:name/mods:role/mods:roleTerm[text() = 'cre']/../../mods:namePart",
+			    'Subject.LCSH' => array('xpath' => "./mods:subject[@authority='lcsh']/mods:topic",
+						    'facet' => true),
+			    'Publisher.Original' => "./mods:originInfo/mods:publisher",
+			    'Date.Original' => "./mods:originInfo/mods:dateCreated",
+
+			    'Format.Medium' => '/mods:physicalDescription/mods:form',
+			    'Format.Extent' => "./mods:physicalDescription/mods:extent",
+
+			    'Description' => "./mods:abstract",
+
+			    // 'Description.Condition' => array()
+			    'Description.Provenance' => "/mods:note[@type='ownership']",
+			    'Description.Series' => "/mods:note[@type='series']",
+
+			    'Identifier.Item.Number' => "./mods:identifier[@type='item-number']",
+			    'Rights.Digital' => "./mods:accessCondition",
+			    'Publisher.Digital' => "./mods:note[@type='statement of responsibility']",
+			    'Source' => './mods:location/mods:physicallocation[@displaylabel="Source"]',
+			    'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
+							'facet' => true),
+			    'Format.Digital' => array('xpath' => "/mods:note[@type='digital format']",
+						      'facet' => true),
+
+			    /*
+			    'Digital Publisher' => array('xpath' => "./mods:name/mods:namePart",
+							 'facet' => true),
+			    'Digitization Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
+							 'facet' => true,
+							 'date' => true),
+			    */
+			    /*
+			    'Digital Format' => array('xpath' => "./mods:physicalDescription/mods:note",
+						      'facet' => true),
+			    'Source' => array('xpath' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title"),
+			    'Language' => array('xpath' => "./mods:language/mods:languageTerm[@type='text']"),
+			    */
+
+			    );
+      break;
+
+      case 'Presidents of Lafayette College':
+
+      $template_map = array(
+			  /*
+			   * Presidents
+			   *
+			   */
+			  'Title' => "./mods:titleInfo/mods:title",
+                          'Subject' => array('xpath' => "./mods:subject/mods:topic",
+						 'facet' => true),
+                          'Description' => array('xpath' => "./mods:note",
+						 'facet' => true),
+			  'Publisher' => "./mods:originInfo/mods:publisher",
+			  'Digital Publisher' => array('xpath' => "./mods:name/mods:namePart",
+						       'facet' => true),
+			  'Digitization Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
+						       'facet' => true,
+						       'date' => true),
+			  'Digital Format' => array('xpath' => "./mods:physicalDescription/mods:note",
+						    'facet' => true),
+			  'Source' => array('xpath' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title"),
+			  'Language' => array('xpath' => "./mods:language/mods:languageTerm[@type='text']"),
+                          'Rights' => "./mods:accessCondition",
                           );
+      break;
+
+    case 'Geology Department Slide Collection':
+
+      $template_map = array(
+			    'Title' => "./mods:titleInfo/mods:title",
+			    'Subject' => array('xpath' => "./mods:subject/mods:topic",
+					       'facet' => true),
+			    'Vantage Point' => "./mods:note[@type='vantagepoint']",
+			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='original']",
+							'facet' => true,
+							'date' => true),
+			    'Description' => "./mods:abstract",
+
+			    'Coverage' => "./mods:subject/mods:geographic",
+
+			    /*
+			    'Publisher' => "./mods:originInfo/mods:publisher",
+			    'Digital Publisher' => array('xpath' => "./mods:name/mods:namePart",
+							 'facet' => true),
+			    'Digitization Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
+							 'facet' => true,
+							 'date' => true),
+			    'Digital Format' => array('xpath' => "./mods:physicalDescription/mods:note",
+						      'facet' => true),
+			    'Source' => array('xpath' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title"),
+			    'Language' => array('xpath' => "./mods:language/mods:languageTerm[@type='text']"),
+			    */
+			    'See Also' => "/mods:relatedItem[@type='original']/mods:note[@type='citation']",
+			    'See Also' => "/mods:relatedItem[@type='host']/mods:note[@type='citation']",
+			    
+			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
+						  'facet' => true),
+			    'Rights' => "./mods:accessCondition",
+			    );
+      break;
+
+    case 'McKelvy House Photograph Collection':
+      
+      $template_map = array(
+			    'Title' => "./mods:titleInfo/mods:title",
+			    'Subject' => array('xpath' => "./mods:subject/mods:topic",
+					       'facet' => true),
+			    'Description' => "./mods:abstract",
+
+			    'Note' => './mods:note[@type="description"]',
+			    'Medium' => array('xpath' => "./mods:physicalDescription[2]/mods:form",
+						     'facet' => true),
+
+			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='display']",
+							'facet' => true,
+							'date' => true),
+
+			    'Dimensions' => "./mods:physicalDescription[1]/mods:form",
+
+			    'Digital Publisher' => "./mods:note[@type='statement of responsibility']",
+			    'Digital Format' => "./mods:note[@type='digital format']",
+
+			    //'Medium' => "./mods:note[2]",
+			    //'Collection' => array('xpath' => "./mods:note[@type='admin']",
+			    //'facet' => true),
+
+			    'Rights' => "./mods:accessCondition",
+			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
+						  'facet' => true),
+
+			    'Source' => "./mods:originInfo/mods:place/mods:placeTerm",
+			    );
+      break;
+
+    case 'Historical Photograph Collection':
+
+      $template_map = array(
+			    'Title' => "./mods:titleInfo/mods:title",
+			    'Subject' => array('xpath' => "./mods:subject/mods:topic",
+					       'facet' => true),
+			    'Description' => "./mods:note[1]",
+			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
+							'facet' => true,
+							'date' => true),
+			    'Medium' => "./mods:note[2]",
+			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
+						  'facet' => true),
+			    'Source' => array('xpath' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title"),
+			    'Rights' => "./mods:accessCondition",
+			    'Digital Format' => array('xpath' => "./mods:physicalDescription/mods:note",
+						      'facet' => true),
+			    );
+      break;
+
+    case 'Lafayette World War II Casualties':
+
+      $template_map = array(
+			    'Title' => "./mods:titleInfo/mods:title",
+
+			    'Graduating Class' => array('xpath' => './mods:note[@type="lafayette-class"]',
+							'facet' => true),
+			    'Date of Birth' => array('xpath' => './mods:originInfo/mods:dateOther[@type="birth-display"]',
+						     'facet' => true,
+						     'date' => true),
+			    'Place of Birth' => array('xpath' => './mods:note[@type="place-birth"]',
+						      'facet' => true),
+
+			    'Branch' => array('xpath' => "./mods:note[@type='military-branch']",
+					      'facet' => true),
+			    'Rank' => array('xpath' => "./mods:note[@type='military-rank']",
+					    'facet' => true),
+			    'Unit' => array('xpath' => "./mods:note[@type='military-unit']",
+					    'facet' => true),
+
+			    'Date of Death' => array('xpath' => './mods:originInfo/mods:dateOther[@type="death-display"]',
+						     'facet' => true,
+						     'date' => true),
+			    
+			    'Place of Death' => array('xpath' => "./mods:note[@type='place-death']",
+						      'facet' => true),
+
+			    'Cause of Death' => "./mods:note[@type='cause-death']",
+
+			    'Honors' => array('xpath' => "./mods:note[@type='military-honors']",
+					      'facet' => true),
+
+			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
+						  'facet' => true),
+			    
+			    'Source Material' => "./mods:physicalDescription/mods:note[@type='format-analog']",
+
+			    'Digital.Format' => "./mods:note[@type='digital format']",
+			    'Digital.Publisher' => "./mods:note[@type='statement of responsibility']",
+
+			    'Rights' => "./mods:accessCondition",
+			    );
+
+      break;
+
+    default:
+
+      // Newspapers and other anomalous Objects
+      $template_map = array(
+			    'Title' => "./mods:titleInfo/mods:title",
+			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
+							'facet' => true,
+							'date' => true),
+			    'Coverage' => "./mods:subject/mods:geographic",
+			    'Description' => "./mods:note",
+			    'Subject' => "./mods:genre",
+			    'Rights' => "./mods:accessCondition",
+			    'Publisher' => "./mods:originInfo/mods:publisher",
+			    'Source Material' => array('xpath' => "./mods:subject/mods:topic",
+						       'facet' => true),
+			    'Medium' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title",
+			    );
+
       break;
     }
 
@@ -369,7 +623,6 @@ class DssMods extends SimpleXMLElement {
 
 	if($is_facet) {
 
-	  /*
 	  if(array_key_exists($facet, $label_map)) {
 
 	    $element['facet'] = $label_map[$facet];
@@ -377,8 +630,7 @@ class DssMods extends SimpleXMLElement {
 
 	    $element['facet'] = $facet;
 	  }
-	  */
-	  $element['facet'] = $facet;
+	  //$element['facet'] = $facet;
 
 	  if($is_date) {
 
