@@ -1419,6 +1419,21 @@ body {
 	text-shadow:none;
 }
 
+/* style div around browse links on single-page collection pages */
+
+.browse-block {
+	
+	background-color: #F5F5F5;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    float: right;
+    padding: 10px;
+    text-align: center;
+    width:175px;
+    min-height:150px;
+    margin-left:10px;
+}
+
 
 
 
