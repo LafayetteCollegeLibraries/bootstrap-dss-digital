@@ -20,6 +20,7 @@
 
     <ol class="islandora-solr-search-result-list" start="<?php print $elements['solr_start'] + 1; ?>">
     <?php
+
       $row_result = 0;
       foreach($results as $key => $result):
     ?>
@@ -31,6 +32,7 @@
           <dl class="solr-thumb">
           <dt>
             <?php
+
               $image = '<img src="' . url($result['thumbnail_url'], array('query' => $result['thumbnail_url_params'])) . '" />';
               // Construct options array for l() function call.  Only include
               // what is needed.  Can accept standard url parameters and a
