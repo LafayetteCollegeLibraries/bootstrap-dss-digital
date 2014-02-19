@@ -1434,7 +1434,43 @@ body {
     margin-left:10px;
 }
 
+/* make styling on single-page item viewer match multi-page item viewer */
 
+body.no-sidebars .islandora-large-image-content {
+	
+	float:none;
+	width:auto;
+}
+
+.islandora-large-image-content {
+	
+	background-color:none;
+	border:none;
+	border-radius:0px;
+	padding:0px;
+}
+
+.islandora-large-image-content-wrapper {
+	
+	margin-left:1%;
+	margin-right:1%;
+}
+
+/* set margins on multi-page item viewer */
+
+#book-viewer {
+	
+	margin-left:1%;
+	margin-right:1%;
+}
+
+/* styling for PDF viewer */
+
+.islandora-pdf-content-wrapper {
+	
+	margin-left:1%;
+	margin-right:1%;
+}
 
 
 

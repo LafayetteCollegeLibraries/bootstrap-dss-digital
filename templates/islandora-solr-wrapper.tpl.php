@@ -21,28 +21,29 @@
 
 <div class="islandora-solr-content content">
 
-    <div class="islandora-discovery-controls">
+  <?php if($solr_total > 0): ?>
 
-      <div class="islandora-discovery-inner-container">
+  <div class="islandora-discovery-controls">
+
+    <div class="islandora-discovery-inner-container">
 
       <div class="islandora-page-controls">
-        <form id="islandora-discovery-form" action="/" >
+
+    <form id="islandora-discovery-form" action="/" >
       </div><!--/.islandora-page-controls -->
 
-    <div class="islandora-discovery-control title-sort-control">
+      <div class="islandora-discovery-control title-sort-control">
 
-<span>Sort by:</span>
+        <span>Sort by:</span>
+        <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
+        <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
+        <select id="field-sort-select">
 
-    <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
-    <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
-
-<select id="field-sort-select" >
-									 <?php foreach($collection_fields as $value => $title): ?>
-									 <option value="<?php print $value; ?>"><?php print $title; ?></option>
-									 <?php endforeach; ?>
-</select>
-
-    </div><!-- /.islandora-discovery-control -->
+          <?php foreach($collection_fields as $value => $title): ?>
+	    <option value="<?php print $value; ?>"><?php print $title; ?></option>
+	  <?php endforeach; ?>
+        </select>
+      </div><!-- /.islandora-discovery-control -->
     </form>
 
     <span class="islandora-basic-collection-display-switch">
@@ -59,11 +60,13 @@
 
     <div class="pagination-count">
 
-    <?php print $solr_pager; ?>
+      <?php print $solr_pager; ?>
     </div><!-- /.pagination-count -->
 
   </div><!-- /.islandora-discovery-inner-container -->
   </div><!-- /.islandora-discovery-controls -->
+    <?php endif; ?>
+
   <?php print $results; ?>
   <?php print $solr_debug; ?>
   <?php print $solr_pager; ?>
