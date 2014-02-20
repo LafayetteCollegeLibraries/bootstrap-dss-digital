@@ -1511,6 +1511,18 @@ body.no-sidebars .islandora-large-image-content {
 	border: 1px solid #CCCCCC;
 }
 
+.islandora-pdf-content {
+	
+	background-color:#F5F5F5;
+}
+
+.toolbar {
+	
+	margin-left: -1px;
+    margin-right: -1px;
+    margin-top: -1px;
+}
+
 
 
 
