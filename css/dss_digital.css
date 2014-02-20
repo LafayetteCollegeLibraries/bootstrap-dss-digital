@@ -1503,6 +1503,14 @@ body.no-sidebars .islandora-large-image-content {
     width: 560px;
 }
 
+/* style pdf viewer */
+
+.toolbarField:hover, .toolbarField:focus {
+	
+	background-color:#FFFFFF;
+	border: 1px solid #CCCCCC;
+}
+
 
 
 
