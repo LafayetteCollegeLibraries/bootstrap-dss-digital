@@ -1523,6 +1523,17 @@ body.no-sidebars .islandora-large-image-content {
     margin-top: -1px;
 }
 
+#toolbarContainer, .findbar {
+	
+	background-image: linear-gradient(to bottom, #545454, #333333);
+}
+
+.secondaryToolbar {
+	
+	background-color:#333333;
+	background-image:none;
+}
+
 
 
 

@@ -544,17 +544,21 @@
 				  if($(document).height() - $(e).scrollTop() - $(e).height() > 0) {
 
 				      console.log('trace2');
-				      console.log( $(document).height() - $(e).scrollTop() - $(e).height() );
+				      //console.log( $(document).height() - $(e).scrollTop() - $(e).height() );
+				      console.log(  $('body').height() - $(e).scrollTop() );
+
 				      $(e).css('top', offsetTop );
 				  }
 			      }
 
 			      var $navbar = $('.navbar-inner.affix');
 			      //if($navbar.length > 0) {
-			      if($navbar.length > 0 && ($(document).height() - $(e).scrollTop() - $(e).height()) > 0) {
+			      if($navbar.length > 0 && ($('body').height() - $('body').scrollTop()) != $('body').height()) {
 
 				  console.log('trace3');
-				  console.log( $(document).height() - $(e).scrollTop() - $(e).height() );
+				  console.log(  $('body').height() - $('body').scrollTop() );
+				  //console.log( $(document).height() - $(e).scrollTop() - $(e).height() );
+
 				  //$(e).css('top', $(e).offset().top + $(window).scrollTop());
 				  $(e).css('top', offsetTop + $(window).scrollTop() - $(document).data('LafayetteDssModal.navbar.offset.top') );
 			      }
