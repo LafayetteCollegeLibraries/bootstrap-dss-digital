@@ -532,7 +532,7 @@
 				      //$(e).css('top', offsetTop );
 				      if($(document).height() - $(e).scrollTop() - $(e).height()) {
 
-					  console.log('trace1');
+					  //console.log('trace1');
 					  $(e).css('top', offsetTop );
 				      }
 				  }
@@ -541,7 +541,8 @@
 			      if($(window).scrollTop() < navbarOffsetTop) {
 
 				  //$(e).css('top', offsetTop );
-				  if($(document).height() - $(e).scrollTop() - $(e).height() > 0) {
+				  //if($(document).height() - $(e).scrollTop() - $(e).height() > 0) {
+				  if(($(document).height() - $(document).scrollTop()) > $(e).height()) {
 
 				      console.log('trace2');
 				      //console.log( $(document).height() - $(e).scrollTop() - $(e).height() );
@@ -557,7 +558,12 @@
 			      if($navbar.length > 0 && ($(document).height() - $(document).scrollTop()) > $(e).height()) {
 
 				  //$(e).css('top', $(e).offset().top + $(window).scrollTop());
+				  $(e).addClass('affixed');
+
 				  $(e).css('top', offsetTop + $(window).scrollTop() - $(document).data('LafayetteDssModal.navbar.offset.top') );
+			      } else {
+
+				  $(e).removeClass('affixed');
 			      }
 			  });
 

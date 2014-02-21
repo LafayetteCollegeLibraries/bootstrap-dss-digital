@@ -105,6 +105,16 @@ div#contact.shown div.modal-dialog div.modal-content div.modal-body section#bloc
     max-height: none;
 }
 
+#contact {
+
+    height: calc(100% - 197px);
+}
+
+#contact.affixed {
+
+    height:calc(100% - 55px);
+}
+
 /**
  * Bootstrap Popover widgets
  *
