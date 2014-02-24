@@ -1429,9 +1429,20 @@ body {
     float: right;
     padding: 10px;
     text-align: center;
-    width:175px;
+    width:195px;
     min-height:150px;
     margin-left:10px;
+}
+
+.browse-block > ul {
+	
+	margin:0px;
+	list-style:none;
+}
+
+.browse-block > p {
+	
+	text-decoration:underline;
 }
 
 /* make styling on single-page item viewer match multi-page item viewer */
