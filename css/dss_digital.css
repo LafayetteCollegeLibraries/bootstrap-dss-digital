@@ -1511,7 +1511,17 @@ body.no-sidebars .islandora-large-image-content {
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     outline: medium none;
     width: 500px;
-    margin-top:10%;
+    margin-top:15%;
+}
+
+#contact > div.modal-dialog > div.modal-content {
+	
+	height:545px;
+}
+
+.modal-contact-body {
+	
+	height:456px;
 }
 
 /* style pdf viewer */
