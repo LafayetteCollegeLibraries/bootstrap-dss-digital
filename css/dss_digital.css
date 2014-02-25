@@ -666,6 +666,7 @@ ul.quicktabs-tabs > li.active {
 	clear:both;
 	margin-left:0px;
 	min-height:240px;
+	margin-right:0px;
 }
 
 .east-asia-sub-collection > p, .east-asia-sub-collection > h2 {
@@ -1430,9 +1431,10 @@ body {
     padding: 10px;
     text-align: center;
     width:195px;
-    min-height:135px;
+    min-height:145px;
     margin-left:10px;
     margin-bottom:3px;
+    padding-bottom:0px;
 }
 
 .browse-block > ul {
@@ -1442,6 +1444,32 @@ body {
 }
 
 .browse-block > p {
+	
+	text-decoration:underline;
+}
+
+.browse-block-east-asia {
+	
+	background-color: #F5F5F5;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    float: right;
+    padding: 10px;
+    text-align: center;
+    width:215px;
+    min-height:145px;
+    margin-left:10px;
+    margin-bottom:3px;
+    padding-bottom:0px;
+}
+
+.browse-block-east-asia > ul {
+	
+	margin:0px;
+	list-style:none;
+}
+
+.browse-block-east-asia > p {
 	
 	text-decoration:underline;
 }
@@ -1517,7 +1545,7 @@ body.no-sidebars .islandora-large-image-content {
 
 #contact > div.modal-dialog > div.modal-content {
 	
-	height:545px;
+	height:550px;
 }
 
 .modal-contact-body {
@@ -1561,13 +1589,14 @@ body.no-sidebars .islandora-large-image-content {
 .referencestrip {
 	
 	margin-left:0px !important;
-	width:183px !important;
-	vertical-align:middle;
+	width:187px !important;
 	margin-top:8px !important;
-	background-color:#FFFFFF !important;
-	height:244px !important;
-	border:1px solid #AAAAAA !important;
+	background-color:#F5F5F5 !important;
+	min-height:244px !important;
+	border:2px solid #AAAAAA !important;
 	border-radius:2px;
+	max-height:452px !important;
+	overflow-y:scroll !important;
 }
 
 .openseadragon-controls-container > span {
@@ -1583,7 +1612,7 @@ body.no-sidebars .islandora-large-image-content {
 .referencestrip > div {
 	
 	width:177px !important;
-	background-color:#FFFFFF !important;
+	background-color:#F5F5F5 !important;
 	border-radius:2px !important;
 	margin-top:5px !important;
 	margin-bottom:5px !important;
@@ -1591,6 +1620,16 @@ body.no-sidebars .islandora-large-image-content {
 	margin-right:3px !important;
 	padding-left:0px !important;
 	padding-right:0px !important;
+}
+
+.referencestrip > div > form > div > canvas {
+	
+	background-color:#F5F5F5 !important;
+}
+
+.referencestrip-selected {
+	
+	border:2px solid #AAAAAA !important;
 }
 
 /* suppress view of thumbnail navigation on single-page image objects */
