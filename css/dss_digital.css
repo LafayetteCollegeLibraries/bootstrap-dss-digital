@@ -1432,6 +1432,7 @@ body {
     width:195px;
     min-height:135px;
     margin-left:10px;
+    margin-bottom:3px;
 }
 
 .browse-block > ul {
