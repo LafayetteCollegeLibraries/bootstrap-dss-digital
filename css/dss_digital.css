@@ -1592,6 +1592,13 @@ body.no-sidebars .islandora-large-image-content {
 	padding-right:0px !important;
 }
 
+/* suppress view of thumbnail navigation on single-page image objects */
+
+.islandora-large-image-content > div > form > div > span > div.referencestrip {
+	
+	display:none !important;
+}
+
 
 
 
