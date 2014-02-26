@@ -1637,16 +1637,23 @@ body.no-sidebars .islandora-large-image-content {
 	box-sizing:border-box !important;
 }
 
-/*.openseadragon-controls-container {
-	
-	background-color:blue !important;
-}*/
-
 /* suppress view of thumbnail navigation on single-page image objects */
 
 .islandora-large-image-content > div > form > div > span > div.referencestrip {
 	
 	display:none !important;
+}
+
+/* center refined date slider buttons when accessing browse page via date link on item */
+
+.ui-slider-left.date-slider-handle-refined {
+	
+	margin-left:41%;
+}
+
+.ui-slider-right.date-slider-handle-refined {
+	
+	margin-left:50%;
 }
 
 
