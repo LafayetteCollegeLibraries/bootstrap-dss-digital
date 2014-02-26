@@ -1586,17 +1586,21 @@ body.no-sidebars .islandora-large-image-content {
 
 /* style multi-page image viewer thumbnail navigation controls */ 
 
+.referencestrip-container {
+	
+	height:460px !important;
+	border:2px solid #AAAAAA !important;
+	border-radius:2px;
+	width:174px !important;
+	margin-left:0px !important;
+	opacity:1 !important;
+}
+
 .referencestrip {
 	
 	margin-left:0px !important;
-	width:187px !important;
-	margin-top:8px !important;
 	background-color:#F5F5F5 !important;
-	min-height:244px !important;
-	border:2px solid #AAAAAA !important;
-	border-radius:2px;
-	max-height:452px !important;
-	overflow-y:scroll !important;
+	width:174px !important;
 }
 
 .openseadragon-controls-container > span {
@@ -1611,13 +1615,8 @@ body.no-sidebars .islandora-large-image-content {
 
 .referencestrip > div {
 	
-	width:177px !important;
+	width:174px !important;
 	background-color:#F5F5F5 !important;
-	border-radius:2px !important;
-	margin-top:5px !important;
-	margin-bottom:5px !important;
-	margin-left:3px !important;
-	margin-right:3px !important;
 	padding-left:0px !important;
 	padding-right:0px !important;
 }
@@ -1629,8 +1628,19 @@ body.no-sidebars .islandora-large-image-content {
 
 .referencestrip-selected {
 	
-	border:2px solid #AAAAAA !important;
+	border-left:3px solid #AAAAAA !important;
+	border-right:3px solid #AAAAAA !important;
+	border-top:2px solid #AAAAAA !important;
+	border-bottom:2px solid #AAAAAA !important;
+	-moz-box-sizing:border-box !important;
+	-webkit-box-sizing:border-box !important;
+	box-sizing:border-box !important;
 }
+
+/*.openseadragon-controls-container {
+	
+	background-color:blue !important;
+}*/
 
 /* suppress view of thumbnail navigation on single-page image objects */
 

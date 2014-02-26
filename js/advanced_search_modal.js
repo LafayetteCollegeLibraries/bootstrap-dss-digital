@@ -386,6 +386,20 @@
 				  });
 		      } else {
 			  
+			  /*
+			  $('<div class="alert alert-block alert-error"><a href="#" data-dismiss="alert" class="close">×</a><h4 class="element-invisible">Error message</h4><ul><li>Your Name field is required.</li><li>Your E-Mail Address field is required.</li><li>Subject field is required.</li><li>Message field is required.</li></ul></div>').hide().prependTo($(this).prev())
+			      .show($.extend('slide', { direction: 'down' }, function() {
+					  //.show($.extend('drop', options, function() {
+					  
+					  setTimeout(function() {
+						  
+						  //$(document).data('LafayetteDssModal.lastForm').parent().find('.alert').hide('scale');
+						  $(document).data('LafayetteDssModal.lastForm').parent().find('.alert').hide('slide', { direction: 'up' });
+						  //$(document).data('LafayetteDssModal.lastForm').parent().find('.alert').hide('drop', { direction: 'up' });
+					      }, 1500 );
+					  //}}));
+				      }));
+			  */
 			  $('<div class="alert alert-block alert-error"><a href="#" data-dismiss="alert" class="close">×</a><h4 class="element-invisible">Error message</h4><ul><li>Your Name field is required.</li><li>Your E-Mail Address field is required.</li><li>Subject field is required.</li><li>Message field is required.</li></ul></div>').hide().prependTo($(this).prev())
 			      .show($.extend('slide', { direction: 'down' }, function() {
 					  //.show($.extend('drop', options, function() {
@@ -449,7 +463,18 @@
 	  that.$element.insertAfter($('.navbar-inner'));
 
 	  //that.$element.show('drop', {direction: 'up'}, 500, function() {
-	  that.$element.show({effect: 'slide', direction: 'up', duration: 500, complete: function() {
+	  //that.$element.show({effect: 'slide', direction: 'up', duration: 500, complete: function() {
+	  //that.$element.show().removeClass('shown-faded').addClass('shown-faded');
+
+	  //that.$element.show().children('.modal-dialog').addClass('shown-faded');
+
+	  that.$element.show();
+	  window.setTimeout(function() {
+
+		  jQuery('#contact.lafayette-dss-modal .modal-dialog').addClass('shown-faded');
+	      }, 500);
+
+	  //that.$element.show({effect: 'fade', duration: 500, complete: function() {
 
 		  //$._data($(this)[0], 'events');
 
@@ -463,10 +488,15 @@
 		      }, 3000);
 		  */
 
-	          //$(document).data('LafayetteDssModal.offset.top', $(this).offset().top);
-	          $(document).data('LafayetteDssModal.' + $(this).attr('id') + '.offset.top', $(this).offset().top);
+	  var targetElement = that.$element;
 
-		  $(this).find('input.form-text:first').focus();
+	          //$(document).data('LafayetteDssModal.offset.top', $(this).offset().top);
+
+	  ////$(document).data('LafayetteDssModal.' + $(this).attr('id') + '.offset.top', $(this).offset().top);
+	  $(document).data('LafayetteDssModal.' + $(targetElement).attr('id') + '.offset.top', $(targetElement).offset().top);
+
+	  ////$(this).find('input.form-text:first').focus();
+	  $(targetElement).find('input.form-text:first').focus();
 
 		  // Hide when losing focus
 		  //$(this).focusout(function(e) {
@@ -478,7 +508,8 @@
 		   * @todo Refactor
 		   *
 		   */
-		  $(this)
+	  ////$(this)
+	  $(targetElement)
 		      .focusin(function(e) {
 
 			      $(document).data('LafayetteDssModal.focusedModal', that);
@@ -496,7 +527,8 @@
 				      if(focusedModal) {
 
 					  // Ensure that the last element clicked does not lie within a modal...
-					  if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
+					  ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
+					  if(!$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
 					     !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length ) {
 					      
 					      //that.hide();
@@ -512,7 +544,7 @@
 		   * For handling when scrolling while a modal is open
 		   *
 		   */
-		  $(window).scroll(function() {
+	          $(window).scroll(function() {
 
 			  $('.lafayette-dss-modal.shown').each(function(i,e) {
 
@@ -520,8 +552,6 @@
 			      var offsetTop = $(document).data('LafayetteDssModal.' + $(e).attr('id') + '.offset.top');
 			      var navbarOffsetTop = $('.navbar-inner').offset().top;
 
-
-			      
 			      if(! $(document).data('LafayetteDssModal.navbar.offset.top') || $(window).scrollTop() == 0) {
 
 				  $(document).data('LafayetteDssModal.navbar.offset.top', navbarOffsetTop);
@@ -577,7 +607,8 @@
 			  */
 		      });
 		  //});
-		  }});
+
+	  ////}}); // jQuery show() invocation with jQueryUI animation
 
 	  that.$element.addClass('shown');
 
@@ -608,8 +639,7 @@
 	  that.$element.focus().trigger('shown');
 	  */
 
-	      
-      },
+      }, // show() method
 
       /**
        * Overriding the hide method
@@ -700,10 +730,18 @@
 	  var options = $.extend(options, { direction: 'up' });
 
 	  //this.$element.hide('scale');
-	  this.$element.hide('slide', options);
 	  //this.$element.hide($.extend(options, {effect: 'slide'}));
 	  //this.$element.hide($.extend(options, {effect: 'slide'}));
 	  //this.$element.hide('drop', options);
+
+	  //this.$element.hide('slide', options);
+	  //that.$element.removeClass('shown').hide();
+
+	  jQuery('#contact.lafayette-dss-modal .modal-dialog').removeClass('shown-faded');
+	  window.setTimeout(function() {
+
+		  that.$element.hide();
+	      }, 500);
 
 	  this.backdrop(function () {
 
