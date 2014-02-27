@@ -3,7 +3,7 @@
  *
  */
   
-/* set color for background of and minimum width for all pages*/
+/* set color for background, minimum width, and text alignment for all pages*/
 
 body{
 	
@@ -291,6 +291,11 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	margin-left:1%;
 	margin-right:1%;
 	height:250px;
+}
+
+.project-grid-item > p {
+	
+	text-align:center;
 }
 
 /* style people divs */
@@ -1446,6 +1451,7 @@ body {
 .browse-block > p {
 	
 	text-decoration:underline;
+	text-align:center;
 }
 
 .browse-block-east-asia {
@@ -1472,6 +1478,7 @@ body {
 .browse-block-east-asia > p {
 	
 	text-decoration:underline;
+	text-align:center;
 }
 
 /* make styling on single-page item viewer match multi-page item viewer */
@@ -1654,6 +1661,13 @@ body.no-sidebars .islandora-large-image-content {
 .ui-slider-right.date-slider-handle-refined {
 	
 	margin-left:50%;
+}
+
+/* justified text across entire site (where necessary) */
+
+p {
+	
+	text-align:justify;
 }
 
 
