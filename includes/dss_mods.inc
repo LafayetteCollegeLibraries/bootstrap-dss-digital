@@ -83,14 +83,14 @@ class DssMods extends SimpleXMLElement {
     dpm( $relation_is_part_of_value  );
 
     $template_map = array(
-			    'Genre' => "./mods:genre",
-			    'Location' => "./mods:subject/mods:geographic",
-			    'Topic' => "./mods:subject/mods:topic",
-			    //'Note' => "./mods:note",
-			    'Publisher' => "./mods:originInfo/mods:publisher",
-			    'Date of Publication' => "(./mods:originInfo/mods:dateOther)[1]",
-			    'Date of Digitization' => "(./mods:originInfo/mods:dateOther)[2]",
-			    'Rights' => "./mods:accessCondition",
+			  'Genre' => "./mods:genre",
+			  'Location' => "./mods:subject/mods:geographic",
+			  'Topic' => "./mods:subject/mods:topic",
+			  //'Note' => "./mods:note",
+			  'Publisher' => "./mods:originInfo/mods:publisher",
+			  'Date of Publication' => "(./mods:originInfo/mods:dateOther)[1]",
+			  'Date of Digitization' => "(./mods:originInfo/mods:dateOther)[2]",
+			  'Rights' => "./mods:accessCondition",
 
 			  /*
 			    East Asia Image Collections
@@ -488,7 +488,7 @@ class DssMods extends SimpleXMLElement {
     case 'Lafayette World War II Casualties':
 
       $template_map = array(
-			    'Title' => "./mods:titleInfo/mods:title",
+			    'Name' => "./mods:titleInfo/mods:title",
 
 			    'Graduating Class' => array('xpath' => './mods:note[@type="lafayette-class"]',
 							'facet' => true),
@@ -528,6 +528,24 @@ class DssMods extends SimpleXMLElement {
 			    'Rights' => "./mods:accessCondition",
 			    );
 
+      break;
+
+    case 'Lafayette Newspaper Collection':
+
+      $template_map = array(
+			    'Title' => "./mods:titleInfo/mods:title",
+			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateIssued",
+							'facet' => true,
+							'date' => true),
+			    'Coverage' => "./mods:subject/mods:hierarchicalGeographic/mods:continent",
+			    'Description' => "./mods:note",
+			    'Subject' => "./mods:genre",
+			    'Rights' => "./mods:accessCondition",
+			    'Publisher' => "./mods:originInfo/mods:publisher",
+			    'Source Material' => array('xpath' => "./mods:subject/mods:topic",
+						       'facet' => true),
+			    'Medium' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title",
+			    );
       break;
 
     default:

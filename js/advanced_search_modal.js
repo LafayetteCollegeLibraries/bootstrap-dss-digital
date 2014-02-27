@@ -463,101 +463,80 @@
 	  that.$element.insertAfter($('.navbar-inner'));
 
 	  //that.$element.show('drop', {direction: 'up'}, 500, function() {
-	  //that.$element.show({effect: 'slide', direction: 'up', duration: 500, complete: function() {
-	  //that.$element.show().removeClass('shown-faded').addClass('shown-faded');
+	  if(that.$element.attr('id') == 'contact') {
 
-	  //that.$element.show().children('.modal-dialog').addClass('shown-faded');
+	      that.$element.show();
+	      window.setTimeout(function() {
 
-	  that.$element.show();
-	  window.setTimeout(function() {
+		      jQuery('#contact.lafayette-dss-modal .modal-dialog').addClass('shown-faded');
+		  }, 500);
 
-		  jQuery('#contact.lafayette-dss-modal .modal-dialog').addClass('shown-faded');
-	      }, 500);
+	      var targetElement = that.$element;
+	      $(document).data('LafayetteDssModal.' + $(targetElement).attr('id') + '.offset.top', $(targetElement).offset().top);
 
-	  //that.$element.show({effect: 'fade', duration: 500, complete: function() {
+	      ////$(this).find('input.form-text:first').focus();
+	      $(targetElement).find('input.form-text:first').focus();
 
-		  //$._data($(this)[0], 'events');
+	      // Hide when losing focus
+	      //$(this).focusout(function(e) {
 
-		  // Ensure that the modal is hidden after 3 seconds
-		  /*
-		  setTimeout(function() {
+	      /**
+	       * Work-around
+	       * This can only be set after the "hide" method has been explicitly inherited from the Twitter Modal Object
+	       * Attempting to implement this within the constructor raises an error, as hide(e) has not yet been appended
+	       * @todo Refactor
+	       *
+	       */
+	      ////$(this)
+	      $(targetElement)
+		  .focusin(function(e) {
 
-			  //$( "#effect:visible" ).removeAttr( "style" ).fadeOut();
-			  //that.$element.fadeOut();
-			  that.hide();
-		      }, 3000);
-		  */
+			  $(document).data('LafayetteDssModal.focusedModal', that);
+		      })
+		  .off('focusout')
+		  .focusout(function(e) {
+			  
+			  $(document).data('LafayetteDssModal.focusedModal', null);
 
-	  var targetElement = that.$element;
+			  // Ensure that the modal is hidden after 3 seconds
+			  setTimeout(function() {
+				  
+				  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
+				  
+				  if(focusedModal) {
 
-	          //$(document).data('LafayetteDssModal.offset.top', $(this).offset().top);
-
-	  ////$(document).data('LafayetteDssModal.' + $(this).attr('id') + '.offset.top', $(this).offset().top);
-	  $(document).data('LafayetteDssModal.' + $(targetElement).attr('id') + '.offset.top', $(targetElement).offset().top);
-
-	  ////$(this).find('input.form-text:first').focus();
-	  $(targetElement).find('input.form-text:first').focus();
-
-		  // Hide when losing focus
-		  //$(this).focusout(function(e) {
-
-		  /**
-		   * Work-around
-		   * This can only be set after the "hide" method has been explicitly inherited from the Twitter Modal Object
-		   * Attempting to implement this within the constructor raises an error, as hide(e) has not yet been appended
-		   * @todo Refactor
-		   *
-		   */
-	  ////$(this)
-	  $(targetElement)
-		      .focusin(function(e) {
-
-			      $(document).data('LafayetteDssModal.focusedModal', that);
-			  })
-		      .off('focusout')
-		      .focusout(function(e) {
-
-			      $(document).data('LafayetteDssModal.focusedModal', null);
-
-			      // Ensure that the modal is hidden after 3 seconds
-			      setTimeout(function() {
-
-				      var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
-
-				      if(focusedModal) {
-
-					  // Ensure that the last element clicked does not lie within a modal...
-					  ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
-					  if(!$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
-					     !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length ) {
+				      // Ensure that the last element clicked does not lie within a modal...
+				      ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
+				      if(!$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
+					 !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length ) {
 					      
-					      //that.hide();
-					  }
-				      } else {
-
 					  //that.hide();
 				      }
-				  }, 3000);
-			  });
+				  } else {
 
-		  /**
-		   * For handling when scrolling while a modal is open
-		   *
-		   */
-	          $(window).scroll(function() {
+				      //that.hide();
+				  }
+			      }, 3000);
+		      });
 
-			  $('.lafayette-dss-modal.shown').each(function(i,e) {
+	      /**
+	       * For handling when scrolling while a modal is open
+	       *
+	       */
+	      $(window).scroll(function() {
+
+		      $('.lafayette-dss-modal.shown').each(function(i,e) {
 
 			      //var offsetTop = $(document).data('LafayetteDssModal.offset.top');
 			      var offsetTop = $(document).data('LafayetteDssModal.' + $(e).attr('id') + '.offset.top');
 			      var navbarOffsetTop = $('.navbar-inner').offset().top;
 
-			      if(! $(document).data('LafayetteDssModal.navbar.offset.top') || $(window).scrollTop() == 0) {
+			      if(!$(document).data('LafayetteDssModal.navbar.offset.top') || $(window).scrollTop() == 0) {
 
 				  $(document).data('LafayetteDssModal.navbar.offset.top', navbarOffsetTop);
 
 				  if($(window).scrollTop() == 0) {
-				  //if( $('.navbar-inner.affix').length == 0 ) {
+				      //if( $('.navbar-inner.affix').length == 0 ) {
 
 				      //$(e).css('top', offsetTop );
 				      if($(document).height() - $(e).scrollTop() - $(e).height()) {
@@ -570,32 +549,153 @@
 
 			      if($(window).scrollTop() < navbarOffsetTop) {
 
-				  //$(e).css('top', offsetTop );
-				  //if($(document).height() - $(e).scrollTop() - $(e).height() > 0) {
 				  if(($(document).height() - $(document).scrollTop()) > $(e).height()) {
-
-				      console.log('trace2');
-				      //console.log( $(document).height() - $(e).scrollTop() - $(e).height() );
-				      //console.log(  $(document).height() - $(document).scrollTop() );
 
 				      $(e).css('top', offsetTop );
 				  }
 			      }
-
+			      
 			      var $navbar = $('.navbar-inner.affix');
-			      //if($navbar.length > 0) {
-			      //if($navbar.length > 0 && ($('body').height() - $('body').scrollTop()) != $('body').height()) {
 			      if($navbar.length > 0 && ($(document).height() - $(document).scrollTop()) > $(e).height()) {
 
-				  //$(e).css('top', $(e).offset().top + $(window).scrollTop());
 				  $(e).addClass('affixed');
-
 				  $(e).css('top', offsetTop + $(window).scrollTop() - $(document).data('LafayetteDssModal.navbar.offset.top') );
 			      } else {
 
 				  $(e).removeClass('affixed');
 			      }
 			  });
+		  });
+	  } else {
+
+	      that.$element.show({effect: 'slide', direction: 'up', duration: 500, complete: function() {
+
+			  //that.$element.show().removeClass('shown-faded').addClass('shown-faded');
+			  //that.$element.show().children('.modal-dialog').addClass('shown-faded');
+
+
+			  //that.$element.show({effect: 'fade', duration: 500, complete: function() {
+
+			  //$._data($(this)[0], 'events');
+
+			  // Ensure that the modal is hidden after 3 seconds
+			  /*
+			    setTimeout(function() {
+
+			    //$( "#effect:visible" ).removeAttr( "style" ).fadeOut();
+			    //that.$element.fadeOut();
+			    that.hide();
+			    }, 3000);
+			  */
+
+			  var targetElement = that.$element;
+
+			  //$(document).data('LafayetteDssModal.offset.top', $(this).offset().top);
+
+			  $(document).data('LafayetteDssModal.' + $(this).attr('id') + '.offset.top', $(this).offset().top);
+			  ////$(document).data('LafayetteDssModal.' + $(targetElement).attr('id') + '.offset.top', $(targetElement).offset().top);
+
+			  $(this).find('input.form-text:first').focus();
+			  ////$(targetElement).find('input.form-text:first').focus();
+
+			  // Hide when losing focus
+			  //$(this).focusout(function(e) {
+
+			  /**
+			   * Work-around
+			   * This can only be set after the "hide" method has been explicitly inherited from the Twitter Modal Object
+			   * Attempting to implement this within the constructor raises an error, as hide(e) has not yet been appended
+			   * @todo Refactor
+			   *
+			   */
+			  $(this)
+			  ////$(targetElement)
+			  .focusin(function(e) {
+
+				  $(document).data('LafayetteDssModal.focusedModal', that);
+			      })
+			  .off('focusout')
+			  .focusout(function(e) {
+
+				  $(document).data('LafayetteDssModal.focusedModal', null);
+
+				  // Ensure that the modal is hidden after 3 seconds
+				  setTimeout(function() {
+
+					  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
+
+					  if(focusedModal) {
+
+					      // Ensure that the last element clicked does not lie within a modal...
+					      if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
+						 ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
+						 !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length ) {
+					      
+						  //that.hide();
+					      }
+					  } else {
+
+					      //that.hide();
+					  }
+				      }, 3000);
+			      });
+
+			  /**
+			   * For handling when scrolling while a modal is open
+			   *
+			   */
+			  $(window).scroll(function() {
+
+				  $('.lafayette-dss-modal.shown').each(function(i,e) {
+
+					  //var offsetTop = $(document).data('LafayetteDssModal.offset.top');
+					  var offsetTop = $(document).data('LafayetteDssModal.' + $(e).attr('id') + '.offset.top');
+					  var navbarOffsetTop = $('.navbar-inner').offset().top;
+
+					  if(! $(document).data('LafayetteDssModal.navbar.offset.top') || $(window).scrollTop() == 0) {
+
+					      $(document).data('LafayetteDssModal.navbar.offset.top', navbarOffsetTop);
+
+					      if($(window).scrollTop() == 0) {
+						  //if( $('.navbar-inner.affix').length == 0 ) {
+
+						  //$(e).css('top', offsetTop );
+						  if($(document).height() - $(e).scrollTop() - $(e).height()) {
+
+						      //console.log('trace1');
+						      $(e).css('top', offsetTop );
+						  }
+					      }
+					  }
+
+					  if($(window).scrollTop() < navbarOffsetTop) {
+
+					      //$(e).css('top', offsetTop );
+					      //if($(document).height() - $(e).scrollTop() - $(e).height() > 0) {
+					      if(($(document).height() - $(document).scrollTop()) > $(e).height()) {
+
+						  console.log('trace2');
+						  //console.log( $(document).height() - $(e).scrollTop() - $(e).height() );
+						  //console.log(  $(document).height() - $(document).scrollTop() );
+
+						  $(e).css('top', offsetTop );
+					      }
+					  }
+
+					  var $navbar = $('.navbar-inner.affix');
+					  //if($navbar.length > 0) {
+					  //if($navbar.length > 0 && ($('body').height() - $('body').scrollTop()) != $('body').height()) {
+					  if($navbar.length > 0 && ($(document).height() - $(document).scrollTop()) > $(e).height()) {
+
+					      //$(e).css('top', $(e).offset().top + $(window).scrollTop());
+					      $(e).addClass('affixed');
+
+					      $(e).css('top', offsetTop + $(window).scrollTop() - $(document).data('LafayetteDssModal.navbar.offset.top') );
+					  } else {
+
+					      $(e).removeClass('affixed');
+					  }
+				      });
 
 			  /*
 			  var activeElement = $(document).data('LafayetteDssModal').$element;
@@ -605,10 +705,11 @@
 			     activeElement.css('top', activeElement.css('top') + $(window).scrollTop());
 			  }
 			  */
-		      });
-		  //});
+			      });
+			  //});
 
-	  ////}}); // jQuery show() invocation with jQueryUI animation
+		      }}); // jQuery show() invocation with jQueryUI animation
+	  }
 
 	  that.$element.addClass('shown');
 

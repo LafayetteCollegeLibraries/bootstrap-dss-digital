@@ -1595,12 +1595,13 @@ body.no-sidebars .islandora-large-image-content {
 
 .referencestrip-container {
 	
-	height:460px !important;
-	border:2px solid #AAAAAA !important;
+	max-height:462px !important;
+	border:1px solid #AAAAAA !important;
 	border-radius:2px;
 	width:174px !important;
 	margin-left:0px !important;
 	opacity:1 !important;
+	background-color:#F5F5F5 !important;
 }
 
 .referencestrip {
@@ -1608,10 +1609,6 @@ body.no-sidebars .islandora-large-image-content {
 	margin-left:0px !important;
 	background-color:#F5F5F5 !important;
 	width:174px !important;
-}
-
-.openseadragon-controls-container > span {
-	
 	opacity:1 !important;
 }
 
@@ -1635,10 +1632,8 @@ body.no-sidebars .islandora-large-image-content {
 
 .referencestrip-selected {
 	
-	border-left:3px solid #AAAAAA !important;
-	border-right:3px solid #AAAAAA !important;
-	border-top:2px solid #AAAAAA !important;
-	border-bottom:2px solid #AAAAAA !important;
+	border-top:1px solid #AAAAAA !important;
+	border-bottom:1px solid #AAAAAA !important;
 	-moz-box-sizing:border-box !important;
 	-webkit-box-sizing:border-box !important;
 	box-sizing:border-box !important;
@@ -1647,6 +1642,11 @@ body.no-sidebars .islandora-large-image-content {
 /* suppress view of thumbnail navigation on single-page image objects */
 
 .islandora-large-image-content > div > form > div > span > div.referencestrip {
+	
+	display:none !important;
+}
+
+.islandora-large-image-content > div > form > div > span.referencestrip-container {
 	
 	display:none !important;
 }
