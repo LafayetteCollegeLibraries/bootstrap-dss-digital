@@ -450,8 +450,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
 
     dpm($mods_str);
-
     dpm(islandora_solr_get_fields('result_fields', FALSE));
+
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
     
@@ -556,7 +556,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
   // For the truncation of individual breadcrumbs
   $breadcrumbs_length = 0;
 
-
   $path = current_path();
   $path_segments = explode('/', $path);
 
@@ -626,6 +625,8 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				     'Taiwan Photographic Monthly',
 				     );
 
+    
+
     // Accessing via Search This Collection: Home / [collection name] / Search
     if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
 
@@ -675,7 +676,34 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
     } else { // Home / Search
 
-      $_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Search';
+      dpm($solr_query);
+      switch($solr_query) {
+
+      case 'node/2':
+
+	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = t('Copyright & Use');
+	break;
+
+      case 'node/3':
+
+	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Services';
+	break;
+
+      case 'node/4':
+
+	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Repositories';
+	break;
+
+      case 'node/45':
+
+	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Collections';
+	break;
+
+      default:
+
+	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Search';
+	break;
+      }
     }
   }
 
@@ -720,9 +748,11 @@ function bootstrap_dss_digital_breadcrumb($variables) {
     case 'node/32':
     case 'node/33':
     case 'node/34':
+    case 'node/42':
+    case 'node/43':
 
-      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Projects',
-									      'href' => 'node/12')), array_slice($breadcrumbs, -1));
+      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Collections',
+										'href' => 'node/45')), array_slice($breadcrumbs, -1));
     $count++;
     break;
 

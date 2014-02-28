@@ -469,7 +469,7 @@
 	      window.setTimeout(function() {
 
 		      jQuery('#contact.lafayette-dss-modal .modal-dialog').addClass('shown-faded');
-		  }, 500);
+		  }, 100);
 
 	      var targetElement = that.$element;
 	      $(document).data('LafayetteDssModal.' + $(targetElement).attr('id') + '.offset.top', $(targetElement).offset().top);
@@ -568,7 +568,7 @@
 		  });
 	  } else {
 
-	      that.$element.show({effect: 'slide', direction: 'up', duration: 500, complete: function() {
+	      that.$element.show({ effect: 'slide', direction: 'up', duration: 500, complete: function() {
 
 			  //that.$element.show().removeClass('shown-faded').addClass('shown-faded');
 			  //that.$element.show().children('.modal-dialog').addClass('shown-faded');
@@ -652,7 +652,7 @@
 					  var offsetTop = $(document).data('LafayetteDssModal.' + $(e).attr('id') + '.offset.top');
 					  var navbarOffsetTop = $('.navbar-inner').offset().top;
 
-					  if(! $(document).data('LafayetteDssModal.navbar.offset.top') || $(window).scrollTop() == 0) {
+					  if(!$(document).data('LafayetteDssModal.navbar.offset.top') || $(window).scrollTop() == 0) {
 
 					      $(document).data('LafayetteDssModal.navbar.offset.top', navbarOffsetTop);
 
@@ -832,17 +832,23 @@
 
 	  //this.$element.hide('scale');
 	  //this.$element.hide($.extend(options, {effect: 'slide'}));
-	  //this.$element.hide($.extend(options, {effect: 'slide'}));
+
 	  //this.$element.hide('drop', options);
 
 	  //this.$element.hide('slide', options);
 	  //that.$element.removeClass('shown').hide();
 
-	  jQuery('#contact.lafayette-dss-modal .modal-dialog').removeClass('shown-faded');
-	  window.setTimeout(function() {
+	  if(that.$element.attr('id') == 'contact') {
 
-		  that.$element.hide();
-	      }, 500);
+	      jQuery('#contact.lafayette-dss-modal .modal-dialog').removeClass('shown-faded');
+	      window.setTimeout(function() {
+
+		      that.$element.hide();
+		  }, 100);
+	  } else {
+
+	      this.$element.hide($.extend(options, { effect: 'slide' }));
+	  }
 
 	  this.backdrop(function () {
 

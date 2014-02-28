@@ -105,7 +105,19 @@
                   endif;
 
                   // Construct the PID link.
-                  print l($value['value'], $result['object_url'], $options);
+                  dpm($result['object_url']);
+
+dpm(drupal_get_path_alias('/' . $result['object_url']));
+dpm(drupal_get_normal_path('/' . $result['object_url']));
+
+//dpm(drupal_get_path_alias('islandora/object/islandora:33654'));
+//dpm(drupal_get_normal_path('islandora/object/islandora:33654'));
+
+dpm('trace: ' . drupal_lookup_path('source', 'collections/eastasia/imperial-postcards/ip0706'));
+dpm('trace2: ' . drupal_lookup_path('alias', 'islandora/object/islandora:33654'));
+dpm('trace3: ' . drupal_lookup_path('alias', 'islandora/object/islandora:22184'));
+
+                  print l($value['value'], drupal_get_path_alias($result['object_url']), $options);
 
 		else:
 

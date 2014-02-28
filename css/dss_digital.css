@@ -1652,7 +1652,7 @@ body.no-sidebars .islandora-large-image-content {
 }
 
 /* center refined date slider buttons when accessing browse page via date link on item */
-
+/*
 .ui-slider-left.date-slider-handle-refined {
 	
 	margin-left:41%;
@@ -1662,7 +1662,7 @@ body.no-sidebars .islandora-large-image-content {
 	
 	margin-left:50%;
 }
-
+*/
 /* justified text across entire site (where necessary) */
 
 p {
