@@ -619,7 +619,10 @@ class DssMods extends SimpleXMLElement {
 		     );
       };
 
+      //dpm($xpath);
+
       $mods_elements = array_map($map, $this->xpath($xpath));
+      //dpm($mods_elements);
 
       for($i = 0; $i < sizeof($mods_elements); $i++) {
 
@@ -648,7 +651,6 @@ class DssMods extends SimpleXMLElement {
 
 	    $element['facet'] = $facet;
 	  }
-	  //$element['facet'] = $facet;
 
 	  if($is_date) {
 
@@ -715,6 +717,8 @@ class DssMods extends SimpleXMLElement {
       */
 
     }
+
+    dpm( $mods_array);
 
     return $mods_array;
   }

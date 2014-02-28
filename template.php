@@ -466,7 +466,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
 
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
-  dpm($variables);
+  //dpm($variables);
   
   $rendered_fields = array();
   foreach($variables['mods_object'] as $key => &$value) {

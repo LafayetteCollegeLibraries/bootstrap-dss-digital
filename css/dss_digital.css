@@ -1600,7 +1600,6 @@ body.no-sidebars .islandora-large-image-content {
 	border-radius:2px;
 	width:174px !important;
 	margin-left:0px !important;
-	opacity:1 !important;
 	background-color:#F5F5F5 !important;
 }
 
@@ -1609,7 +1608,6 @@ body.no-sidebars .islandora-large-image-content {
 	margin-left:0px !important;
 	background-color:#F5F5F5 !important;
 	width:174px !important;
-	opacity:1 !important;
 }
 
 .referencestrip > div > form > textarea {
@@ -1651,18 +1649,6 @@ body.no-sidebars .islandora-large-image-content {
 	display:none !important;
 }
 
-/* center refined date slider buttons when accessing browse page via date link on item */
-/*
-.ui-slider-left.date-slider-handle-refined {
-	
-	margin-left:41%;
-}
-
-.ui-slider-right.date-slider-handle-refined {
-	
-	margin-left:50%;
-}
-*/
 /* justified text across entire site (where necessary) */
 
 p {
