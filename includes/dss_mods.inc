@@ -80,7 +80,7 @@ class DssMods extends SimpleXMLElement {
      */
 
     $relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
-    dpm( $relation_is_part_of_value  );
+    //dpm( $relation_is_part_of_value  );
 
     $template_map = array(
 			  'Genre' => "./mods:genre",
@@ -281,16 +281,21 @@ class DssMods extends SimpleXMLElement {
 			    'Description.Ethnicity' => array('xpath' => "./mods:note[@type='ethnicity']",
 							     'facet' => true),
 			    'Contributor' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='ctb']/../../mods:namePart",
-							    'facet' => true),
+						   'facet' => true,
+						   'field' => 'eastasia.Contributors.Digital'),
+
 			    //'Relation.SeeAlso' => "./mods:relatedItem[@type='references']/mods:note[@type='citation']",
 			    'Relation.SeeAlso' => array('xpath' => "./mods:note[@type='admin']",
+							'field' => 'cdm.Relation.IsPartOf', // Work-around; Resolve using Solr interface
 							'facet' => true),
 
 			    'Description.Citation' => "./mods:note[@type='citation']",
 			    'Format.Medium' => array('xpath' => "./mods:physicalDescription/mods:form",
+						     'field' => 'eastasia.Format.Medium', // Work-around; Resolve using Solr interface
 						     'facet' => true),
 
 			    'Creator.Company' => array('xpath' => "./mods:originInfo/mods:publisher",
+						       'field' => 'eastasia.Creator.Company', // Work-around; Resolve using Solr interface
 						       'facet' => true),
 
 			    'Creator.Maker' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='pht']/../../mods:namePart",
@@ -299,15 +304,19 @@ class DssMods extends SimpleXMLElement {
 
 			    'Date.Artifact.Upper' => array('xpath' => "./mods:originInfo/mods:dateIssued[@point='end']",
 							   'facet' => true,
+							   'field' => 'eastasia.Date.Artifact.Upper', // Work-around; Resolve using Solr interface
 							   'date' => true),
 			    'Date.Artifact.Lower' => array('xpath' => "./mods:originInfo/mods:dateIssued[@point='start']",
 							   'facet' => true,
+							   'field' => 'eastasia.Date.Artifact.Lower', // Work-around; Resolve using Solr interface
 							   'date' => true),
 			    'Date.Image.Upper' => array('xpath' => "./mods:originInfo/mods:dateCreated[@point='end']",
 							'facet' => true,
+							'field' => 'eastasia.Date.Image.Upper', // Work-around; Resolve using Solr interface
 							'date' => true),
 			    'Date.Image.Lower' => array('xpath' => "./mods:originInfo/mods:dateCreated[@point='start']",
 							'facet' => true,
+							'field' => 'eastasia.Date.Image.Lower', // Work-around; Resolve using Solr interface
 							'date' => true),
 			    'Date.Original' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='original']",
 						     'facet' => true,
@@ -330,29 +339,38 @@ class DssMods extends SimpleXMLElement {
 
 			    'Description.Note' => "./mods:note[@type='description']",
 
-			    'Creator' => "./mods:name/mods:role/mods:roleTerm[text() = 'cre']/../../mods:namePart",
+			    'Creator' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text() = 'cre']/../../mods:namePart",
+					       'facet' => true),
 			    'Subject.LCSH' => array('xpath' => "./mods:subject[@authority='lcsh']/mods:topic",
 						    'facet' => true),
-			    'Publisher.Original' => "./mods:originInfo/mods:publisher",
-			    'Date.Original' => "./mods:originInfo/mods:dateCreated",
+			    'Publisher.Original' => array('xpath' => "./mods:originInfo/mods:publisher",
+							  'facet' => true),
 
-			    'Format.Medium' => '/mods:physicalDescription/mods:form',
+			    'Date.Original' => array('xpath' => "./mods:originInfo/mods:dateCreated",
+						      'facet' => true,
+						      'date' => true),
+
+			    'Format.Medium' => array('xpath' => './mods:physicalDescription/mods:form',
+						     'facet' => true),
+
 			    'Format.Extent' => "./mods:physicalDescription/mods:extent",
 
 			    'Description' => "./mods:abstract",
 
 			    // 'Description.Condition' => array()
-			    'Description.Provenance' => "/mods:note[@type='ownership']",
-			    'Description.Series' => "/mods:note[@type='series']",
+			    'Description.Provenance' => "./mods:note[@type='ownership']",
+			    'Description.Series' => array('xpath' => "./mods:note[@type='series']",
+							  'facet' => true),
 
-			    'Identifier.Item.Number' => "./mods:identifier[@type='item-number']",
+			    'Identifier.ItemNumber' => array('xpath' => "./mods:identifier[@type='item-number']",
+							     'facet' => true),
+
 			    'Rights.Digital' => "./mods:accessCondition",
 			    'Publisher.Digital' => "./mods:note[@type='statement of responsibility']",
 			    'Source' => './mods:location/mods:physicallocation[@displaylabel="Source"]',
 			    'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
-							'facet' => true),
-			    'Format.Digital' => array('xpath' => "/mods:note[@type='digital format']",
-						      'facet' => true),
+							 'facet' => true),
+			    'Format.Digital' => "./mods:note[@type='digital format']",
 
 			    /*
 			    'Digital Publisher' => array('xpath' => "./mods:name/mods:namePart",
@@ -401,12 +419,18 @@ class DssMods extends SimpleXMLElement {
 
       $template_map = array(
 			    'Title' => "./mods:titleInfo/mods:title",
+
 			    'Subject' => array('xpath' => "./mods:subject/mods:topic",
 					       'facet' => true),
-			    'Vantage Point' => "./mods:note[@type='vantagepoint']",
+
+			    'Vantage Point' => array('xpath' => "./mods:note[@type='vantagepoint']",
+						     'facet' => true),
+
 			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='original']",
 							'facet' => true,
+							'field' => 'geology_slides_esi.date.original',
 							'date' => true),
+
 			    'Description' => "./mods:abstract",
 
 			    'Coverage' => "./mods:subject/mods:geographic",
@@ -427,7 +451,9 @@ class DssMods extends SimpleXMLElement {
 			    'See Also' => "/mods:relatedItem[@type='host']/mods:note[@type='citation']",
 			    
 			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
-						  'facet' => true),
+						  'facet' => true,
+						  'field' => 'cdm.Relation.IsPartOf'),
+
 			    'Rights' => "./mods:accessCondition",
 			    );
       break;
@@ -491,39 +517,45 @@ class DssMods extends SimpleXMLElement {
 			    'Name' => "./mods:titleInfo/mods:title",
 
 			    'Graduating Class' => array('xpath' => './mods:note[@type="lafayette-class"]',
-							'facet' => true),
+							'facet' => true,
+							'field' => 'war_casualties.description.class'), // Work-around: Refactor
 			    'Date of Birth' => array('xpath' => './mods:originInfo/mods:dateOther[@type="birth-display"]',
 						     'facet' => true,
 						     'date' => true),
 			    'Place of Birth' => array('xpath' => './mods:note[@type="place-birth"]',
-						      'facet' => true),
-
+						      'facet' => true,
+						      'field' => 'war_casualties.coverage.place.birth'), // Work-around: Refactor
 			    'Branch' => array('xpath' => "./mods:note[@type='military-branch']",
-					      'facet' => true),
+					      'facet' => true,
+					      'field' => 'war_casualties.description.military.branch'), // Work-around: Refactor
 			    'Rank' => array('xpath' => "./mods:note[@type='military-rank']",
-					    'facet' => true),
+					    'facet' => true,
+					    'field' => 'war_casualties.description.military.rank'), // Work-around: Refactor
 			    'Unit' => array('xpath' => "./mods:note[@type='military-unit']",
-					    'facet' => true),
+					    'facet' => true,
+					    'field' => 'war_casualties.contributor.military.unit'), // Work-around: Refactor
 
 			    'Date of Death' => array('xpath' => './mods:originInfo/mods:dateOther[@type="death-display"]',
 						     'facet' => true,
 						     'date' => true),
-			    
+
 			    'Place of Death' => array('xpath' => "./mods:note[@type='place-death']",
 						      'facet' => true),
 
 			    'Cause of Death' => "./mods:note[@type='cause-death']",
 
 			    'Honors' => array('xpath' => "./mods:note[@type='military-honors']",
-					      'facet' => true),
+					      'facet' => true,
+					      'field' => 'war_casualties.description.honors'),
 
 			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
-						  'facet' => true),
+						  'facet' => true,
+						  'field' => 'cdm.Relation.IsPartOf'), // Work-around: Refactor
 			    
 			    'Source Material' => "./mods:physicalDescription/mods:note[@type='format-analog']",
 
-			    'Digital.Format' => "./mods:note[@type='digital format']",
-			    'Digital.Publisher' => "./mods:note[@type='statement of responsibility']",
+			    'Digital Format' => "./mods:note[@type='digital format']",
+			    'Digital Publisher' => "./mods:note[@type='statement of responsibility']",
 
 			    'Rights' => "./mods:accessCondition",
 			    );
@@ -582,6 +614,19 @@ class DssMods extends SimpleXMLElement {
 	$xpath = $value['xpath'];
 	$is_facet = $value['facet'];
 
+	/**
+	 * Hard-coded value
+	 * @todo Abstract and refactor
+	 *
+	 */
+	if($is_facet && array_key_exists('field', $value)) {
+
+	  //dpm($value['field']);
+
+	  //$facet_field = $value['field'];
+	  $facet_field = $value['field'];
+	}
+
 	if(array_key_exists('date', $value)) {
 
 	  $is_date = $value['date'];
@@ -619,10 +664,12 @@ class DssMods extends SimpleXMLElement {
 		     );
       };
 
+      //dpm($facet);
       //dpm($xpath);
 
       $mods_elements = array_map($map, $this->xpath($xpath));
       //dpm($mods_elements);
+      //dpm($label_map);
 
       for($i = 0; $i < sizeof($mods_elements); $i++) {
 
@@ -639,17 +686,31 @@ class DssMods extends SimpleXMLElement {
 	}
       }
 
+      $collection_facets = 0;
+
       // Refactor
       foreach($mods_elements as $i => &$element) {
 
 	if($is_facet) {
 
-	  if(array_key_exists($facet, $label_map)) {
+	  //dpm( $facet);
+
+	  /**
+	   * Hard-coded mapping
+	   * @todo Refactor
+	   *
+	   */
+	  if(isset($facet_field) && $facet_field) {
+
+	    //$element['field'] = $facet;
+	    $element['facet'] = $facet_field;
+	  } elseif(array_key_exists($facet, $label_map)) {
 
 	    $element['facet'] = $label_map[$facet];
 	  } else {
 
 	    $element['facet'] = $facet;
+
 	  }
 
 	  if($is_date) {
@@ -659,11 +720,97 @@ class DssMods extends SimpleXMLElement {
 	  
 	    $element['facet_value'] = '"' . $element['value'] . '"';
 	  }
+
+	  /*
+	  $facet_params_map = function($element) {
+
+	    return array('cdm.Relation.IsPartOf', (string) $element);
+	  };
+	  $facet_params_values = array_map($facet_params_map, $this->xpath("./mods:note[@type='admin']"));
+	  */
+
+	  $facet_params_values = array();
+	  $facet_params = array();
+
+	  if($element['facet'] == 'cdm.Relation.IsPartOf') {
+
+	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
+
+	    for($i=0; $i<$collection_facets; $i++) {
+
+	      $facet_params["f[{$i}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
+	    }
+
+	    $facet_params["f[{$i}]"] = $element['facet'] . ':"' . $element['value'] . '"';
+	    $collection_facets++;
+	  } else {
+
+	    dpm(array('trace'));
+
+	    $facet_index = 0;
+	    foreach($this->xpath("./mods:note[@type='admin']") as $collection_element) {
+
+	      dpm(array('trace' => (string) $collection_element));
+
+	      //$facet_params_values[] = (string) $facet_params_value;
+	      $facet_params["f[{$facet_index}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_element . '"';
+	      $facet_index++;
+	    }
+
+	    $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['value'] . '"';
+	  }
+
+	  /*
+	  //$facet_params_values[] = array($element['facet'] => $element['value']);
+	  $facet_params_values[$element['facet']] = $element['value'];
+
+	  //for($facet_index=0; $facet_index < count($facet_params_values); $facet_index++) {
+
+	  $facet_index = 0;
+	  foreach($facet_params_values as $facet_field => $facet_value) {
+
+	    $facet_params["f[{$facet_index}]"] = $facet_field . ':"' . $facet_value . '"';
+	    $facet_index++;
+	  }
+	  */
+
+	  //dpm($facet_params);
+
+	  $element['facet_href'] = l($element['value'], "islandora/search/*:*", array('query' => $facet_params,
+										      ));
+
+	  /*
+	  $element['facet_href'] = l($value['value'], "islandora/search/*:*", array('query' => array(
+												     "f[{$facet_index}]" => $value['facet'] . ':' . $value['facet_value'] . ''),
+										    ));
+	  */
+	  //print l($value['value'], "islandora/search/*:*", array('query' => array('f[0]' => $value['facet'] . ':' . $value['facet_value'] . '')));
 	}
 
 	if($is_date) {
 
 	  $element['date_value'] = date('Y-m-d', strtotime($element['value']));
+
+	  /*
+	  $facet_params_values = array();
+	  $facet_params = array();
+
+	  $facet_index = 0;
+	  foreach($this->xpath("./mods:note[@type='admin']") as $collection_element) {
+
+	    //$facet_params_values[] = (string) $facet_params_value;
+	    $facet_params["f[{$facet_index}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_element . '"';
+	    $facet_index++;
+	  }
+	  $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['value'] . '"';
+
+	  dpm($facet_params);
+	  */
+
+	  //$element['facet_value'] = '[' . $element['value'] . ' TO ' . $element['value'] . ']';
+	  $facet_params["f[{$facet_index}]"] = $element['facet'] . ':[' . $element['value'] . ' TO ' . $element['value'] . ']';
+	  $element['facet_href'] = l($element['date_value'], "islandora/search/*:*", array('query' => $facet_params,
+											   ));
 	}
 
 	if($is_link) {

@@ -1454,7 +1454,7 @@ body {
 	text-align:center;
 }
 
-.browse-block-east-asia {
+.browse-block.east-asia {
 	
 	background-color: #F5F5F5;
     border: 1px solid #AAAAAA;
@@ -1469,13 +1469,13 @@ body {
     padding-bottom:0px;
 }
 
-.browse-block-east-asia > ul {
+.browse-block.east-asia > ul {
 	
 	margin:0px;
 	list-style:none;
 }
 
-.browse-block-east-asia > p {
+.browse-block.east-asia > p {
 	
 	text-decoration:underline;
 	text-align:center;

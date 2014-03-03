@@ -415,6 +415,10 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
   }
 
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
+  //$facet_pages_fields_data = variable_get('islandora_solr_facet_pages_fields_data', array());
+  //$label_map = array();
+
+  //$element['facet'] = $label_map[$facet];
 
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
   
@@ -541,6 +545,23 @@ define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 52);
 //define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 41);
 
 function bootstrap_dss_digital_breadcrumb($variables) {
+
+  //dpm($variables);
+
+  if(array_key_exists(2, $variables)) {
+
+    if(array_key_exists('map', $variables[2])) {
+
+      //dpm($variables[2]);
+
+      //$variables[2]['map'];
+
+      if(array_key_exists(2, $variables[2]['map'])) {
+
+	dpm($variables[2]['map'][2]);
+      }
+    }
+  }
 
   $output = '<ul class="breadcrumb">';
 
