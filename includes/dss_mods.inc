@@ -468,7 +468,8 @@ class DssMods extends SimpleXMLElement {
 
 			    'Note' => './mods:note[@type="description"]',
 			    'Medium' => array('xpath' => "./mods:physicalDescription[2]/mods:form",
-						     'facet' => true),
+					      'field' => 'eastasia.Format.Medium', // Work-around: Refactor
+					      'facet' => true),
 
 			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='display']",
 							'facet' => true,
@@ -485,6 +486,7 @@ class DssMods extends SimpleXMLElement {
 
 			    'Rights' => "./mods:accessCondition",
 			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
+						  'field' => 'cdm.Relation.IsPartOf',  // Work-around: Refactor
 						  'facet' => true),
 
 			    'Source' => "./mods:originInfo/mods:place/mods:placeTerm",
@@ -503,11 +505,11 @@ class DssMods extends SimpleXMLElement {
 							'date' => true),
 			    'Medium' => "./mods:note[2]",
 			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
+						  'field' => 'cdm.Relation.IsPartOf', // Work-around: Refactor
 						  'facet' => true),
 			    'Source' => array('xpath' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title"),
 			    'Rights' => "./mods:accessCondition",
-			    'Digital Format' => array('xpath' => "./mods:physicalDescription/mods:note",
-						      'facet' => true),
+			    'Digital Format' => "./mods:physicalDescription/mods:note",
 			    );
       break;
 
@@ -521,6 +523,7 @@ class DssMods extends SimpleXMLElement {
 							'field' => 'war_casualties.description.class'), // Work-around: Refactor
 			    'Date of Birth' => array('xpath' => './mods:originInfo/mods:dateOther[@type="birth-display"]',
 						     'facet' => true,
+						     'field' => 'war_casualties.date.birth.display', //  Work-around: Refactor
 						     'date' => true),
 			    'Place of Birth' => array('xpath' => './mods:note[@type="place-birth"]',
 						      'facet' => true,
@@ -537,10 +540,12 @@ class DssMods extends SimpleXMLElement {
 
 			    'Date of Death' => array('xpath' => './mods:originInfo/mods:dateOther[@type="death-display"]',
 						     'facet' => true,
+						     'field' => 'war_casualties.date.death.display', //  Work-around: Refactor
 						     'date' => true),
 
 			    'Place of Death' => array('xpath' => "./mods:note[@type='place-death']",
-						      'facet' => true),
+						      'facet' => true,
+						      'field' => 'war_casualties.coverage.place.death'), // Work-around: Refactor
 
 			    'Cause of Death' => "./mods:note[@type='cause-death']",
 
@@ -736,19 +741,32 @@ class DssMods extends SimpleXMLElement {
 
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
 
+	    dpm($element['value']);
+	    dpm( (string) $collection_elements[$i]);
+
 	    for($i=0; $i<$collection_facets; $i++) {
 
-	      $facet_params["f[{$i}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
+	      if($element['value'] != (string) $collection_elements[$i]) {
+		//if(true) {
+
+		$facet_params["f[{$i}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
+	      }
 	    }
 
 	    $facet_params["f[{$i}]"] = $element['facet'] . ':"' . $element['value'] . '"';
 	    $collection_facets++;
 	  } else {
 
+	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
+
 	    dpm(array('trace'));
+	    dpm($element['value']);
+	    dpm( (string) $collection_elements[$i]);
+	    dpm( $element);
 
 	    $facet_index = 0;
-	    foreach($this->xpath("./mods:note[@type='admin']") as $collection_element) {
+	    //foreach($this->xpath("./mods:note[@type='admin']") as $collection_element) {
+	    foreach($collection_elements as $collection_element) {
 
 	      dpm(array('trace' => (string) $collection_element));
 

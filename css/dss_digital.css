@@ -1595,12 +1595,13 @@ body.no-sidebars .islandora-large-image-content {
 
 .referencestrip-container {
 	
-	max-height:462px !important;
+	/*max-height:462px !important;*/
 	border:1px solid #AAAAAA !important;
 	border-radius:2px;
 	width:174px !important;
 	margin-left:0px !important;
 	background-color:#F5F5F5 !important;
+	opacity:1 !important;
 }
 
 .referencestrip {
@@ -1618,12 +1619,16 @@ body.no-sidebars .islandora-large-image-content {
 .referencestrip > div {
 	
 	width:174px !important;
-	background-color:#F5F5F5 !important;
 	padding-left:0px !important;
 	padding-right:0px !important;
 }
 
-.referencestrip > div > form > div > canvas {
+.referencestrip-unselected > form > div > canvas {
+	
+	background-color:#F5F5F5 !important;
+}
+
+.referencestrip-unselected {
 	
 	background-color:#F5F5F5 !important;
 }
@@ -1635,6 +1640,12 @@ body.no-sidebars .islandora-large-image-content {
 	-moz-box-sizing:border-box !important;
 	-webkit-box-sizing:border-box !important;
 	box-sizing:border-box !important;
+	background-color:#E9E9E9 !important;
+}
+
+.referencestrip-selected > form > div > canvas {
+	
+	background-color:#E9E9E9 !important;
 }
 
 /* suppress view of thumbnail navigation on single-page image objects */
@@ -1654,6 +1665,18 @@ body.no-sidebars .islandora-large-image-content {
 p {
 	
 	text-align:justify;
+}
+
+/* style navigator on image viewer */
+
+.navigator {
+	
+	border: 1px solid #555555 !important;
+}
+
+.displayregion {
+	
+	border: 1px solid #990000 !important;
 }
 
 

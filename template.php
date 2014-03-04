@@ -546,19 +546,20 @@ define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 52);
 
 function bootstrap_dss_digital_breadcrumb($variables) {
 
-  //dpm($variables);
+  dpm($variables);
 
   if(array_key_exists(2, $variables)) {
 
     if(array_key_exists('map', $variables[2])) {
 
       //dpm($variables[2]);
-
       //$variables[2]['map'];
 
       if(array_key_exists(2, $variables[2]['map'])) {
 
-	dpm($variables[2]['map'][2]);
+	$object = dpm($variables[2]['map'][2]);
+	//$parent_pids = $object->getParents();
+	//dpm( array('trace' => $parent_pids));
       }
     }
   }
@@ -646,10 +647,63 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				     'Taiwan Photographic Monthly',
 				     );
 
-    
+    /**
+     * Work-around for linking Page Nodes to Islandora Collections
+     * @todo Refactor
+     *
+     */
+
+    /*
+    case 'node/26':
+    case 'node/30':
+    case 'node/31':
+    case 'node/19':
+    case 'node/20':
+    case 'node/21':
+    case 'node/27':
+    case 'node/32':
+    case 'node/33':
+    case 'node/34':
+    case 'node/42':
+    case 'node/43':
+     */
+    $collection_node_map = array(
+				 'East Asia Image Collections' => 'node/26',
+				 'Easton Library Company' => 'node/30',
+				 'Experimental Printmaking Institute Collection' => 'node/31',
+				 'Geology Slide Collection' => 'node/19',
+				 'Historical Photograph Collection' => 'node/20',
+				 'Lafayette Newspaper Collection' => 'node/21',
+				 'Marquis de Lafayette Prints Collection' => 'node/27',
+				 'Silk Road Instrument Database' => 'node/32',
+				 'Swift Poems Project' => 'node/33',
+				 'Visual Resources Collection' => 'node/34',
+				 'McKelvy House Photograph Collection' => 'node/42',
+				 'Lafayette World War II Casualties' => 'node/43',
+				 );
+
+    if(isset($object)) {
+
+      //$this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
+      //$this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
+      //$relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
+
+      $mods_doc = new SimpleXMLElement($object['MODS']->content);
+      $mods_doc->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
+      $mods_doc->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
+      
+      foreach($mods_doc->xpath("./mods:note[@type='admin']") as $collection_element) {
+
+	$collection_content = (string) $collection_element;
+	$_breadcrumbs[] = array('title' => $collection_content, 'href' => '/islandora/search/*:*?f[0]=cdm.Relation.IsPartOf:"' . $collection_content . '"');
+	dpm($collection_content);
+
+	$count++;
+      }
 
     // Accessing via Search This Collection: Home / [collection name] / Search
-    if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
+    //if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
+    } elseif(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
 
       $title = $m[1];
 
@@ -689,10 +743,13 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
 	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
 
-	$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
+	//$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
+	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
+	
+	$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $collection_node_map[$facets['cdm.Relation.IsPartOf']]);
       }
 
-      $_breadcrumbs[] = array('title' => 'Browse', 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+      $_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
       $count += 2;
 
     } else { // Home / Search
