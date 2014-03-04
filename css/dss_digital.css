@@ -1425,7 +1425,7 @@ body {
 	text-shadow:none;
 }
 
-/* style div around browse links on single-page collection pages */
+/* style div around browse links on collection pages */
 
 .browse-block {
 	
@@ -1435,10 +1435,7 @@ body {
     float: right;
     padding: 10px;
     text-align: center;
-    width:195px;
-    min-height:145px;
     margin-left:10px;
-    margin-bottom:3px;
     padding-bottom:0px;
 }
 
@@ -1454,31 +1451,65 @@ body {
 	text-align:center;
 }
 
+.browse-block > div > p {
+	
+	text-align:center;
+	margin-top:10px;
+}
+
+.browse-block > div > p > img {
+	
+	vertical-align:bottom;
+}
+
 .browse-block.east-asia {
 	
-	background-color: #F5F5F5;
-    border: 1px solid #AAAAAA;
-    border-radius: 2px;
-    float: right;
-    padding: 10px;
-    text-align: center;
     width:215px;
-    min-height:145px;
-    margin-left:10px;
-    margin-bottom:3px;
-    padding-bottom:0px;
+    height:160px;
+    margin-bottom:8px;
 }
 
-.browse-block.east-asia > ul {
+.browse-block.geology {
 	
-	margin:0px;
-	list-style:none;
+	width:200px;
+	height:160px;
 }
 
-.browse-block.east-asia > p {
+.browse-block.visual {
 	
-	text-decoration:underline;
-	text-align:center;
+	width:165px;
+	height:115px;
+}
+
+.browse-block.historical {
+	
+	width:200px;
+	height:140px;
+}
+
+.browse-block.wwii {
+	
+	width:200px;
+	height:140px;
+}
+
+.browse-block.newspaper {
+	
+	width:200px;
+	height:120px;
+}
+
+.browse-block.mdlp {
+	
+	width:165px;
+	height:140px;
+	margin-bottom:8px;
+}
+
+.browse-block.mckelvy {
+	
+	width:200px;
+	height:120px;
 }
 
 /* make styling on single-page item viewer match multi-page item viewer */
