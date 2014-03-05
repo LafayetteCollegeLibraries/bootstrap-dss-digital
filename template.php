@@ -490,12 +490,12 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
    * @todo Refactor either into hook_menu_alter() or hook_preprocess_HOOK() implementations
    *
    */
-  if(!user_is_logged_in()) {
-
-    drupal_goto('cas');
-  }
-
   $object = $variables['islandora_object'];
+
+  if(in_array('islandora:geologySlidesEsi', $object->getParents()) and !user_is_logged_in()) {
+
+    drupal_goto('cas', array('query' => array('destination' => current_path())));
+  }
 
   // Refactor
   // Retrieve the MODS Metadata
@@ -555,8 +555,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     dpm($mods_str);
     dpm(islandora_solr_get_fields('result_fields', FALSE));
 
-    //$mods_object = new DssMods($mods_str);
-    $mods_object = new DssDc($object['DC']->content);
+    $mods_object = new DssMods($mods_str);
+    //$mods_object = new DssDc($object['DC']->content);
   } catch (Exception $e) {
     
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
@@ -768,6 +768,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
      */
     $collection_node_map = array(
 				 'East Asia Image Collections' => 'node/26',
+				 'East Asia Image Collection' => 'node/26',
 				 'Easton Library Company' => 'node/30',
 				 'Experimental Printmaking Institute Collection' => 'node/31',
 				 'Geology Department Slide Collection' => 'node/19',
