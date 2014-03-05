@@ -30,7 +30,7 @@
 
 	<?php if($result['restricted']): ?>
 
-	  <div class="solr-restricted"><span>LOCK</span></div>
+	  <div class="solr-restricted"><img src="/sites/digital.lafayette.edu/files/u78/lock.png" alt="restricted access lock" /></div>
 	<?php endif; ?>
 
 	  <!-- Thumbnail -->

@@ -13,6 +13,7 @@ require_once dirname(__FILE__) . '/includes/blocks.inc';
 require_once dirname(__FILE__) . '/includes/forms.inc';
 require_once dirname(__FILE__) . '/includes/menus.inc';
 require_once dirname(__FILE__) . '/includes/dss_mods.inc';
+require_once dirname(__FILE__) . '/includes/dss_dc.inc';
 require_once dirname(__FILE__) . '/includes/pager.inc';
 require_once dirname(__FILE__) . '/includes/islandora_solr.inc';
 require_once dirname(__FILE__) . '/includes/islandora_basic_collection.inc';
@@ -359,6 +360,91 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
 }
 */
 
+/**
+ * Checks whether the user can access the given object.
+ *
+ * Checks for object existance, accessiblitly, namespace permissions,
+ * and user permissions
+ *
+ * @param string $perm
+ *   User permission to test for.
+ * @param FedoraObject $object
+ *   The object to test, if NULL given the object doesn't exist or is
+ *   inaccessible.
+ *
+ * @return bool
+ *   TRUE if the user is allowed to access this object, FALSE otherwise.
+ */
+function bootstrap_dss_digital_object_access_callback($perm, $object = NULL) {
+
+  /*
+  module_load_include('inc', 'islandora', 'includes/utilities');
+
+  if (!$object && !islandora_describe_repository()) {
+    islandora_display_repository_inaccessible_message();
+    return FALSE;
+  }
+
+  return user_access($perm) && is_object($object) && islandora_namespace_accessible($object->id);
+  */
+
+  dpm('access trace');
+
+  return TRUE;
+}
+
+function bootstrap_dss_digital_theme($existing, $type, $theme, $path) {
+
+  /*
+  $existing['islandora/object/%islandora_object'] = array(
+							  //'title' => 'Repository',
+							  'title' => 'Digital Collections',
+							  'page callback' => 'islandora_view_object',
+							  'page arguments' => array(2),
+							  'type' => MENU_NORMAL_ITEM,
+							  'access callback' => 'islandora_object_access_callback',
+							  'access arguments' => array(FEDORA_VIEW_OBJECTS, 2),
+							  );
+  */
+
+  /*
+  $registry['islandora/object/%islandora_object']['title'] = 'Digital Collections';
+  //$registry['islandora/object/%islandora_object']['access callback'] = array('bootstrap_dss_digital_object_access_callback', 'islandora_object_access_callback');
+  $registry['islandora/object/%islandora_object']['access callback'] = 'bootstrap_dss_digital_object_access_callback';
+  */
+
+  $items = array();
+  /*
+
+  $items['islandora/object/%islandora_object'] = array(
+    'title' => 'Collections',
+    'page callback' => 'islandora_view_object',
+    'page arguments' => array(2),
+    'type' => MENU_NORMAL_ITEM,
+    //'access callback' => 'islandora_object_access_callback',
+    'access callback' => 'bootstrap_dss_digital_object_access_callback',
+    'access arguments' => array(FEDORA_VIEW_OBJECTS, 2),
+  );
+  */
+
+  /*
+  $existing['islandora/object/%islandora_object']['title'] = 'Collections';
+  $existing['islandora/object/%islandora_object']['access callback'] = 'bootstrap_dss_digital_object_access_callback';
+
+  return array('islandora/object/%islandora_object' => $existing['islandora/object/%islandora_object']);
+  */
+  dpm($existing);
+
+  dpm($items);
+
+  return $items;
+}
+
+function bootstrap_dss_digital_menu_alter(&$items) {
+
+  dpm($items);
+}
+
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
   $registry['hybridauth_widget']['file'] = 'template';
@@ -374,6 +460,9 @@ function bootstrap_dss_digital_theme_registry_alter(&$registry) {
       'template' => 'theme/islandora-basic-collection-wrapper',
       'variables' => array('islandora_object' => NULL),
   */
+
+  dpm(array_keys($registry));
+  dpm($registry['islandora_default']);
 }
 
 /**
@@ -395,6 +484,16 @@ function hybridauth_theme($existing, $type, $theme, $path) {
 */
 
 function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variables) {
+
+  /**
+   * Work-around given the issues for hook_menu_alter() and hook_preprocess_HOOK() implementations
+   * @todo Refactor either into hook_menu_alter() or hook_preprocess_HOOK() implementations
+   *
+   */
+  if(!user_is_logged_in()) {
+
+    drupal_goto('cas');
+  }
 
   $object = $variables['islandora_object'];
 
@@ -456,7 +555,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     dpm($mods_str);
     dpm(islandora_solr_get_fields('result_fields', FALSE));
 
-    $mods_object = new DssMods($mods_str);
+    //$mods_object = new DssMods($mods_str);
+    $mods_object = new DssDc($object['DC']->content);
   } catch (Exception $e) {
     
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
@@ -470,7 +570,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
 
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
-  //dpm($variables);
+  dpm($variables);
   
   $rendered_fields = array();
   foreach($variables['mods_object'] as $key => &$value) {
@@ -615,9 +715,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	  $facet_value = implode(':', $facet_split);
 	  //$facets[$facet_field] = $facet_value;
 
-	  preg_match('/"(.+?)"/', $facet_value, $facet_value_match);
-
-	  if(!array_key_exists($facet_field, $facets)) {
+	  if(!array_key_exists($facet_field, $facets) and preg_match('/"(.+?)"/', $facet_value, $facet_value_match)) {
 
 	    $facets[$facet_field] = $facet_value_match[1];
 	  }
