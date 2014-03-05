@@ -705,6 +705,11 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
       $collection_elements = array();
       //foreach($mods_doc->xpath("./mods:note[@type='admin']") as $mdl_series_elem)
+
+      /**
+       * Just use the top-level collection element
+       *
+       */
       //$collection_elements = array_merge($collection_elements, array_map($map, $mods_doc->xpath("./mods:note[@type='admin']")));
       $collection_elements = array_merge($collection_elements, array(array('cdm.Relation.IsPartOf' => array_shift($mods_doc->xpath("./mods:note[@type='admin']")))));
 
@@ -721,8 +726,9 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       $_breadcrumbs[] = array('title' => $top_collection, 'href' => $collection_node_map[$top_collection]);
       $count++;
 
-      $facet_params = '?';
+      //$facet_params = '?';
       //for($i=0; $i<$count($collection_elements); $i++) {
+      $facet_params = array();
 
       $i=0;
       //foreach($collection_elements as $collection_facet => $facet_value) {
@@ -733,19 +739,24 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
 	foreach($facets as $facet => $facet_value) {
 
-	  $facet_params .= "f[{$i}]=" . $facet . '"' . $facet_value . '"';
+	  /*
+	  $facet_params .= "f[{$i}]=" . $facet . ':"' . $facet_value . '"';
 	  //if($i < count($facet_params - 1)) {
 	  if($i < count($collection_elements) - 1) {
 
 	    $facet_params .= '&';
 	  }
+	  */
+
+	  $facet_params["f[{$i}]"] = $facet . ':"' . $facet_value . '"';
 	  $i++;
 	}
-
-
       }
 
-      $_breadcrumbs[] = array('title' => 'Browse', 'href' => '/islandora/search/*:*' . $facet_params);
+      $_breadcrumbs[] = array('title' => 'Browse', 'href' => 'islandora/search/*:*', 'options' => array('query' => $facet_params));
+
+    //dpm(  url('islandora/search/*:*', array('query' => $facet_params)));
+    //$_breadcrumbs[] = array('title' => 'Browse', 'href' => url('islandora/search/*:*', array('query' => $facet_params)));
       $count++;
 
       /*
@@ -758,6 +769,8 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	$count++;
       }
       */
+
+      dpm($_breadcrumbs);
 
     // Accessing via Search This Collection: Home / [collection name] / Search
     //if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
@@ -784,11 +797,17 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
     } else if(array_key_exists('mdl_prints.description.series', $facets)) { // Home / Projects / [collection name] / [MDL series name] / Search
 
+      //dpm($_breadcrumbs);
       $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Collections', 'href' => 'projects');
+      //$_breadcrumbs[] = array('title' => 'Collections', 'href' => 'projects');
       $_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $collection_node_map[$facets['cdm.Relation.IsPartOf']]);
+
       //$_breadcrumbs[] = array('title' => $facets['mdl_prints.description.series'], 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"' . '?f[1]=mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"');
       //$_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-      $_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"' . '?f[1]=mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"');
+      //$_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"' . '?f[1]=mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"');
+      $_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query, 'options' => array('query' => array('f[0]' => 'cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"',
+													      'f[1]' => 'mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"')));
+
       $count += 2;
 
     } else if(array_key_exists('cdm.Relation.IsPartOf', $facets)) { // Home / Projects / [collection name] / Browse
@@ -804,7 +823,10 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
 	//$count++;
 
-	$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
+	//$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
+
+	$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query, 'options' => array('query' => array('f[0]' => 'cdm.Relation.IsPartOf:"East Asia Image Collection"'
+																			   )));
       } else {
 
 	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
@@ -816,7 +838,9 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $collection_node_map[$facets['cdm.Relation.IsPartOf']]);
       }
 
-      $_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+      //$_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+      $_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query, 'options' => array('query' => array('f[0]' => 'cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"'
+													      )));
       $count += 2;
 
     } else { // Home / Search
@@ -937,12 +961,17 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
     if(isset($breadcrumb['href'])) {
 
+      if(!isset($breadcrumb['options'])) {
+
+	$breadcrumb['options'] = array();
+      }
+
       if ($count != $key) {
 
-	$output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href']) . '<span class="divider">/</span></li>';
+	$output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '<span class="divider">/</span></li>';
       } else {
 
-	$output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href']) . '</li>';
+	$output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '</li>';
       }
     }
   }
