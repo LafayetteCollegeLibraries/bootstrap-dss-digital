@@ -494,7 +494,48 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
 
   if(in_array('islandora:geologySlidesEsi', $object->getParents()) and !user_is_logged_in()) {
 
-    drupal_goto('cas', array('query' => array('destination' => current_path())));
+    /**
+     * Functionality for redirecting authentication requests over HTTPS
+     * @see securelogin_secure_redirect()
+     * @todo Refactor
+     *
+     */
+
+    global $is_https;
+
+    // POST requests are not redirected, to prevent unintentional redirects which
+    // result in lost POST data. HTTPS requests are also not redirected.
+    if(!$is_https) {
+
+      $path = $_GET['q'];
+      $http_response_code = 301;
+      // Do not permit redirecting to an external URL.
+      $options = array('query' => drupal_get_query_parameters(), 'https' => TRUE, 'external' => FALSE);
+      // We don't use drupal_goto() here because we want to be able to use the
+      // page cache, but let's pretend that we are.
+      drupal_alter('drupal_goto', $path, $options, $http_response_code);
+      // The 'Location' HTTP header must be absolute.
+      $options['absolute'] = TRUE;
+      $url = url($path, $options);
+      $status = "$http_response_code Moved Permanently";
+      drupal_add_http_header('Status', $status);
+      drupal_add_http_header('Location', $url);
+      // Drupal page cache requires a non-empty page body for some reason.
+      print $status;
+      // Mimic drupal_exit() and drupal_page_footer() and then exit.
+      module_invoke_all('exit', $url);
+      drupal_session_commit();
+      if (variable_get('cache', 0) && ($cache = drupal_page_set_cache())) {
+	drupal_serve_page_from_cache($cache);
+      } else {
+	ob_flush();
+      }
+
+      exit;
+    } else {
+
+      drupal_goto('cas', array('query' => array('destination' => current_path())));
+    }
   }
 
   // Refactor
