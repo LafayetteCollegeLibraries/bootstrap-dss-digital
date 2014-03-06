@@ -60,17 +60,34 @@ body{
 	text-shadow:none;
 }
 
-html.js body.html div.main-container div.row-fluid section.span12 div#breadcrumb-container ul.breadcrumb {
+#breadcrumb-container {
 	
-	padding-left:8px;
-	padding-right:8px;
-	width:49%;
+	font-size:0px;
+}
+
+ul.breadcrumb {
+	
+	padding-left:15px;
+	padding-right:15px;
+	max-width:calc(100% - 30px);
+	width:auto;
+	font-size:14px;
 }
 
 #page-site-links-container {
 	
 	width:auto;
-	max-width:48%;
+	font-size:14px;
+}
+
+#contact-container {
+	
+	width:71px;
+}
+
+#copyright-container {
+	
+	width:103px;
 }
 
 /* style contact link */

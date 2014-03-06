@@ -34,7 +34,7 @@ class DssDc extends SimpleXMLElement {
 
     $template_map = array(
 			  'Title' => "./dc:title",
-			  'Publication Date' => array('xpath' => "./dc:date",
+			  'Publication Date' => array('xpath' => "./dc:date[1]",
 						      'facet' => true,
 						      'field' => 'dc.date',
 						      'date' => true),
@@ -226,7 +226,7 @@ class DssDc extends SimpleXMLElement {
 
 	if($is_date) {
 
-	  $element['date_value'] = date('Y-m-d', strtotime($element['value']));
+	  $element['date_value'] = gmdate('Y-m-d', strtotime($element['value']));
 
 	  $facet_params["f[{$facet_index}]"] = $element['facet'] . ':[' . $element['value'] . ' TO ' . $element['value'] . ']';
 	  $element['facet_href'] = l($element['date_value'], "islandora/search/*:*", array('query' => $facet_params,

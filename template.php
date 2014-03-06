@@ -591,6 +591,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
    */
   if(in_array('islandora:newspaper', $object->getParents())) {
 
+    
     $mods_object = new DssDc($object['DC']->content);
   } else {
 
@@ -830,15 +831,40 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
     dpm($facets);
 
-    if(isset($object)) {
+    $collection_elements = array();
+
+    if(isset($object) and isset($object['MODS'])) {
 
       //$this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
       //$this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
       //$relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
 
-      $mods_doc = new SimpleXMLElement($object['MODS']->content);
-      $mods_doc->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-      $mods_doc->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
+      dpm( $object['MODS']->content);
+
+      try {
+
+	$mods_doc = new SimpleXMLElement($object['MODS']->content);
+	$mods_doc->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
+	$mods_doc->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
+
+	/**
+	 * Just use the top-level collection element
+	 *
+	 */
+	//$collection_elements = array_merge($collection_elements, array_map($map, $mods_doc->xpath("./mods:note[@type='admin']")));
+	$collection_elements = array_merge($collection_elements, array(array('cdm.Relation.IsPartOf' => array_shift($mods_doc->xpath("./mods:note[@type='admin']")))));
+
+	// For MDL
+	$map = function($element) {
+
+	  return array('mdl_prints.description.series' => $element);
+	};
+	$collection_elements = array_merge($collection_elements, array_map($map, $mods_doc->xpath("./mods:note[@type='series']")));
+
+      } catch (Exception $e) {
+
+	drupal_set_message(t('Error parsing the MODS metadata for the object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
+      }
 
       unset($_breadcrumbs[count($_breadcrumbs) - 1]);
       $_breadcrumbs[count($breadcrumbs) - 2] = array('title' => 'Collections', 'href' => 'projects');
@@ -848,77 +874,61 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	return array('cdm.Relation.IsPartOf' => $element);
       };
 
-      $collection_elements = array();
-      //foreach($mods_doc->xpath("./mods:note[@type='admin']") as $mdl_series_elem)
+      if(!empty($collection_elements)) {
 
-      /**
-       * Just use the top-level collection element
-       *
-       */
-      //$collection_elements = array_merge($collection_elements, array_map($map, $mods_doc->xpath("./mods:note[@type='admin']")));
-      $collection_elements = array_merge($collection_elements, array(array('cdm.Relation.IsPartOf' => array_shift($mods_doc->xpath("./mods:note[@type='admin']")))));
-
-      // For MDL
-      $map = function($element) {
-
-	return array('mdl_prints.description.series' => $element);
-      };
-      $collection_elements = array_merge($collection_elements, array_map($map, $mods_doc->xpath("./mods:note[@type='series']")));
-
-      //dpm($collection_elements[0]);
-
-      $top_collection = (string) $collection_elements[0]['cdm.Relation.IsPartOf'];
-      $_breadcrumbs[] = array('title' => $top_collection, 'href' => $collection_node_map[$top_collection]);
-      $count++;
-
-      //$facet_params = '?';
-      //for($i=0; $i<$count($collection_elements); $i++) {
-      $facet_params = array();
-
-      $i=0;
-      //foreach($collection_elements as $collection_facet => $facet_value) {
-      foreach($collection_elements as $collection_facet => $facets) {
-
-	//$facet_params .= "f[{$i}]=" . $collection_facet . '"' . $facet_value . '"';
-	//'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
-
-	foreach($facets as $facet => $facet_value) {
-
-	  /*
-	  $facet_params .= "f[{$i}]=" . $facet . ':"' . $facet_value . '"';
-	  //if($i < count($facet_params - 1)) {
-	  if($i < count($collection_elements) - 1) {
-
-	    $facet_params .= '&';
-	  }
-	  */
-
-	  $facet_params["f[{$i}]"] = $facet . ':"' . $facet_value . '"';
-	  $i++;
-	}
-      }
-
-      $_breadcrumbs[] = array('title' => 'Browse', 'href' => 'islandora/search/*:*', 'options' => array('query' => $facet_params));
-
-    //dpm(  url('islandora/search/*:*', array('query' => $facet_params)));
-    //$_breadcrumbs[] = array('title' => 'Browse', 'href' => url('islandora/search/*:*', array('query' => $facet_params)));
-      $count++;
-
-      /*
-      foreach($collection_elements as $collection_element) {
-
-	$collection_content = (string) $collection_element;
-	$_breadcrumbs[] = array('title' => 'Browse', 'href' => '/islandora/search/*:*?f[0]=cdm.Relation.IsPartOf:"' . $collection_content . '"');
-	//dpm($collection_content);
-
+	$top_collection = (string) $collection_elements[0]['cdm.Relation.IsPartOf'];
+	$_breadcrumbs[] = array('title' => $top_collection, 'href' => $collection_node_map[$top_collection]);
 	$count++;
+
+	//$facet_params = '?';
+	//for($i=0; $i<$count($collection_elements); $i++) {
+	$facet_params = array();
+
+	$i=0;
+	//foreach($collection_elements as $collection_facet => $facet_value) {
+	foreach($collection_elements as $collection_facet => $facets) {
+
+	  //$facet_params .= "f[{$i}]=" . $collection_facet . '"' . $facet_value . '"';
+	  //'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
+
+	  foreach($facets as $facet => $facet_value) {
+
+	    /*
+	      $facet_params .= "f[{$i}]=" . $facet . ':"' . $facet_value . '"';
+	      //if($i < count($facet_params - 1)) {
+	      if($i < count($collection_elements) - 1) {
+
+	      $facet_params .= '&';
+	      }
+	    */
+
+	    $facet_params["f[{$i}]"] = $facet . ':"' . $facet_value . '"';
+	    $i++;
+	  }
+	}
+
+	$_breadcrumbs[] = array('title' => 'Browse', 'href' => 'islandora/search/*:*', 'options' => array('query' => $facet_params));
+
+	//dpm(  url('islandora/search/*:*', array('query' => $facet_params)));
+	//$_breadcrumbs[] = array('title' => 'Browse', 'href' => url('islandora/search/*:*', array('query' => $facet_params)));
+	$count++;
+
+	/*
+	  foreach($collection_elements as $collection_element) {
+
+	  $collection_content = (string) $collection_element;
+	  $_breadcrumbs[] = array('title' => 'Browse', 'href' => '/islandora/search/*:*?f[0]=cdm.Relation.IsPartOf:"' . $collection_content . '"');
+	  //dpm($collection_content);
+
+	  $count++;
+	  }
+	*/
+
+	//dpm($_breadcrumbs);
       }
-      */
 
-      dpm($_breadcrumbs);
-
-    // Accessing via Search This Collection: Home / [collection name] / Search
-    //if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
+      // Accessing via Search This Collection: Home / [collection name] / Search
+      //if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
     } elseif(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
 
       $title = $m[1];

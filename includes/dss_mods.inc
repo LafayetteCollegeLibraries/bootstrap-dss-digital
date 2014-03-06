@@ -800,7 +800,7 @@ class DssMods extends SimpleXMLElement {
 
 	if($is_date) {
 
-	  $element['date_value'] = date('Y-m-d', strtotime($element['value']));
+	  $element['date_value'] = gmdate('Y-m-d', strtotime($element['value']));
 
 	  /*
 	  $facet_params_values = array();
@@ -1114,7 +1114,7 @@ class PresidentsMods extends DssMods {
 
 	if($is_date) {
 
-	  $element['date_value'] = date('Y-m-d', strtotime($element['value']));
+	  $element['date_value'] = gmdate('Y-m-d', strtotime($element['value']));
 	}
 
 	if($is_link) {
