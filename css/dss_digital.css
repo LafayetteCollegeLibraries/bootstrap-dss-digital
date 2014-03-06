@@ -1363,8 +1363,12 @@ html.js fieldset.collapsed {
 	box-sizing:border-box;
 	border-right: 1px solid #CCCCCC;
 	margin-right: -1px;
-	border-top:1px solid #CCCCCC;
 	text-align:left;
+}
+
+.islandora-inline-metadata-displayed {
+	
+	border-top:1px solid #CCCCCC;
 }
 
 .islandora-inline-metadata > dd {
@@ -1720,6 +1724,14 @@ p {
 .displayregion {
 	
 	border: 1px solid #990000 !important;
+}
+
+/* underline item detail heading on item pages */
+
+.islandora-image-details {
+	
+	border-bottom: 1px solid #000000;
+    line-height: 24px;
 }
 
 
