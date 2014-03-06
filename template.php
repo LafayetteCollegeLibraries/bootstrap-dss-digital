@@ -414,8 +414,8 @@ function bootstrap_dss_digital_theme($existing, $type, $theme, $path) {
   */
 
   $items = array();
-  /*
 
+  /*
   $items['islandora/object/%islandora_object'] = array(
     'title' => 'Collections',
     'page callback' => 'islandora_view_object',
@@ -433,16 +433,16 @@ function bootstrap_dss_digital_theme($existing, $type, $theme, $path) {
 
   return array('islandora/object/%islandora_object' => $existing['islandora/object/%islandora_object']);
   */
-  dpm($existing);
 
-  dpm($items);
+  //dpm($existing);
+  //dpm($items);
 
   return $items;
 }
 
 function bootstrap_dss_digital_menu_alter(&$items) {
 
-  dpm($items);
+  //dpm($items);
 }
 
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
@@ -461,8 +461,8 @@ function bootstrap_dss_digital_theme_registry_alter(&$registry) {
       'variables' => array('islandora_object' => NULL),
   */
 
-  dpm(array_keys($registry));
-  dpm($registry['islandora_default']);
+  //dpm(array_keys($registry));
+  //dpm($registry['islandora_default']);
 }
 
 /**
@@ -584,34 +584,39 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
   $object = $variables['object'];
 
-  // Refactor
-  // Retrieve the MODS Metadata
-  try {
+  /**
+   * Work-around for displaying metadata
+   * Refactor after re-indexing as transformed MODS
+   *
+   */
+  if(in_array('islandora:newspaper', $object->getParents())) {
 
-    $mods_str = $object['MODS']->content;
+    $mods_object = new DssDc($object['DC']->content);
+  } else {
 
-    $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
-    //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
+    // Refactor
+    // Retrieve the MODS Metadata
+    try {
 
-    dpm($mods_str);
-    dpm(islandora_solr_get_fields('result_fields', FALSE));
+      $mods_str = $object['MODS']->content;
 
-    $mods_object = new DssMods($mods_str);
-    //$mods_object = new DssDc($object['DC']->content);
-  } catch (Exception $e) {
+      $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
+      //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
+
+      //dpm($mods_str);
+      //dpm(islandora_solr_get_fields('result_fields', FALSE));
+
+      $mods_object = new DssMods($mods_str);
+    } catch (Exception $e) {
     
-    drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
+      drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
+    }
   }
-
-  //dpm($mods_object->toArray());
-  //dpm( islandora_solr_get_fields('result_fields', FALSE));
-  //$dc_str = $object['DC']->content;
-  //dpm($dc_str);
 
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
 
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
-  dpm($variables);
+  //dpm($variables);
   
   $rendered_fields = array();
   foreach($variables['mods_object'] as $key => &$value) {
@@ -687,7 +692,7 @@ define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 52);
 
 function bootstrap_dss_digital_breadcrumb($variables) {
 
-  dpm($variables);
+  //dpm($variables);
 
   if(array_key_exists(2, $variables)) {
 

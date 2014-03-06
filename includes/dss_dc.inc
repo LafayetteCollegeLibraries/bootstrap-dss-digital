@@ -170,8 +170,8 @@ class DssDc extends SimpleXMLElement {
 	    $element['facet_value'] = '"' . $element['value'] . '"';
 	  }
 
-	  dpm(array('trace' => $element['facet']));
-	  dpm(array('trace' => $element['facet_value']));
+	  //dpm(array('trace' => $element['facet']));
+	  //dpm(array('trace' => $element['facet_value']));
 
 	  $facet_params_values = array();
 	  $facet_params = array();
@@ -198,10 +198,10 @@ class DssDc extends SimpleXMLElement {
 
 	    //$collection_elements = $this->xpath("./mods:note[@type='admin']");
 
-	    dpm(array('trace'));
-	    dpm($element['value']);
+	    //dpm(array('trace'));
+	    //dpm($element['value']);
 	    //dpm( (string) $collection_elements[$i]);
-	    dpm( $element);
+	    //dpm( $element);
 
 	    $facet_index = 0;
 	    /*
@@ -245,7 +245,7 @@ class DssDc extends SimpleXMLElement {
 
     $collection_elements = array();
 
-    dpm( $mods_array);
+    //dpm( $mods_array);
 
     return $mods_array;
   }
