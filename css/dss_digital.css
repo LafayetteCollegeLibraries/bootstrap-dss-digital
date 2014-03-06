@@ -1683,7 +1683,7 @@ body.no-sidebars .islandora-large-image-content {
 
 .islandora-large-image-content > div > form > div > span.referencestrip-container {
 	
-	display:none !important;
+	display:none !important;	
 }
 
 /* justified text across entire site (where necessary) */
