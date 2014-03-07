@@ -1755,6 +1755,18 @@ p {
     line-height: 24px;
 }
 
+/* fix text height issue for pdf viewer page number input and zoom dropdown selector */
+
+#pageNumber {
+	
+	padding:0px 2px;
+}
+
+#scaleSelect {
+	
+	line-height:20px;
+}
+
 
 
 
