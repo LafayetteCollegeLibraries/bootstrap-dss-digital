@@ -284,7 +284,33 @@
 		    $('.snap-drawers').toggleClass('snap-expand-left');
 		}).parent().toggleClass('loaded').children().toggleClass('shown').children('img').toggleClass('shown');
 
-	    //$('.snap-trigger').click();
+	    /**
+	     * Work-around for ensuring that the panel is displayed after parsing a search
+	     * Resolves DSSSM-487
+	     *
+	     * @todo Refactor
+	     */
+
+	    // Shamelessly copied from the thread at http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+	    var getParams = (function(a) {
+
+		    if (a == "") return {};
+		    var b = {};
+		    for (var i = 0; i < a.length; ++i)
+			{
+			    var p=a[i].split('=');
+			    if (p.length != 2) continue;
+			    b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+			}
+		    return b;
+		})(window.location.search.substr(1).split('&'));
+
+	    var isSearch = Object.keys(getParams).map(function(e, i) { return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) }).reduce(function(u, v) { return u || v });
+
+	    if(isSearch) {
+
+		$('.snap-trigger').click();
+	    }
 	}
 
 	/*
