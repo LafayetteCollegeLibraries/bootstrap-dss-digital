@@ -1188,9 +1188,9 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	
 	background-color:#F5F5F5;
 	-moz-box-sizing:content-box;
-	padding: 1px 6px 1px 5px;
+	padding: 1px 6px 3px 5px;
 	height:auto;
-	vertical-align:text-top;
+	vertical-align:auto;
 }
 
 .islandora-solr-facet-token:hover {
@@ -1203,7 +1203,7 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	color: #7E7E7E;
     opacity: 1;
     float:left;
-    margin-top:-2px;
+    margin-top:-1px;
     margin-right:4px;
 }
 
