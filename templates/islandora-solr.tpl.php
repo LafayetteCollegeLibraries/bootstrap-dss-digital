@@ -10,6 +10,12 @@
  */
 ?>
 
+<?php if (array_key_exists('restricted_results', $variables) and $variables['restricted_results']): ?>
+
+    <div class="islandora islandora-solr-search-alert">Some Objects are restricted from anonymous access.</div>
+
+<?php endif; ?>
+
 <div class="islandora islandora-solr-search-results">
 <?php if($display == 'list'): ?>
 
@@ -36,9 +42,22 @@
 	  <!-- Thumbnail -->
           <dl class="solr-thumb">
           <dt>
-            <?php
+	    <?php if($result['restricted']): ?>
 
+            <?php
+		$image = "<img src='/" . drupal_get_path('theme', 'bootstrap_dss_digital') . "/files/BigLock.jpg' />";
+            ?>
+
+	    <?php else: ?>
+
+            <?php
               $image = '<img src="' . url($result['thumbnail_url'], array('query' => $result['thumbnail_url_params'])) . '" />';
+            ?>
+
+	    <?php endif; ?>
+
+<?php
+
               // Construct options array for l() function call.  Only include
               // what is needed.  Can accept standard url parameters and a
               // single anchor tag (fragment) at the end.
@@ -53,7 +72,9 @@
               endif;
               // Construct the thumbnail link.
               print l($image, $result['object_url'], $options);
-            ?>
+
+?>
+
           </dt>
           <dd></dd>
         </dl>
