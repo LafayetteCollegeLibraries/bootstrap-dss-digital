@@ -1181,7 +1181,6 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 .islandora-solr-facet-token-list {
 	
 	list-style:none;
-	margin-left:10px;
 	margin-top:12px;
 }
 
@@ -1189,8 +1188,9 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	
 	background-color:#F5F5F5;
 	-moz-box-sizing:content-box;
-	padding: 1px 4px 1px 5px;
+	padding: 1px 6px 1px 5px;
 	height:auto;
+	vertical-align:text-top;
 }
 
 .islandora-solr-facet-token:hover {
@@ -1201,9 +1201,10 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 .islandora-solr-facet-token > span.close {
 	
 	color: #7E7E7E;
-    margin-left: 8px;
     opacity: 1;
+    float:left;
     margin-top:-2px;
+    margin-right:4px;
 }
 
 /* style show more lightbox from search refinement */
