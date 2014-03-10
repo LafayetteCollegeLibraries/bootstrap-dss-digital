@@ -1169,13 +1169,6 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	box-sizing:border-box;
 }
 
-/* enure pagination controls do not display on search results */
-
-.pagination-count {
-	
-	display:none;
-}
-
 /* style facet removal controls */
 
 .islandora-solr-facet-token-list {
@@ -1772,6 +1765,13 @@ p {
 .download-block.metadb {
 	
 	margin-left:10px;
+}
+
+/* style pagination controls */
+
+.pagination {
+	
+	margin-bottom:0px;
 }
 
 
