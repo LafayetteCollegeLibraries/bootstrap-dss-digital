@@ -1801,6 +1801,17 @@ p {
 	background-color:#FFFFFF;
 } 
 
+/* reset background color for search hits in pdf viewer */
+
+.textLayer .highlight.selected {
+	
+	background-color:rgba(243, 243, 21, 0.5);
+}
+
+.textLayer .highlight {
+	
+	background-color:rgba(0, 118, 245, 0.3);
+}
 
 
 
