@@ -1774,6 +1774,13 @@ p {
 	margin-bottom:0px;
 }
 
+/* center title in contact block on home page */
+
+#block-nodeblock-7 > .block-title {
+	
+	text-align:center;
+}
+
 
 
 
