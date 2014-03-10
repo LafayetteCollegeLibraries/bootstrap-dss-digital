@@ -1782,6 +1782,26 @@ p {
 	text-align:center;
 }
 
+/* style search results authentication alert */
+
+.islandora-solr-search-alert {
+	
+	background:none;
+	border:none;
+	font-weight:bold;
+	font-size:18px;
+	margin-top:10px;
+}
+
+/* ensure font color in PDF viewer search box */
+
+#findInput, #findInput:hover, #findInput:focus {
+	
+	color:#000000;
+	background-color:#FFFFFF;
+} 
+
+
 
 
 
