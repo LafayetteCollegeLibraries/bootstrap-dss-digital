@@ -375,23 +375,13 @@ function template_preprocess_hybridauth_widget(&$vars, $hook) {
  * @return bool
  *   TRUE if the user is allowed to access this object, FALSE otherwise.
  */
+
+/*
 function bootstrap_dss_digital_object_access_callback($perm, $object = NULL) {
-
-  /*
-  module_load_include('inc', 'islandora', 'includes/utilities');
-
-  if (!$object && !islandora_describe_repository()) {
-    islandora_display_repository_inaccessible_message();
-    return FALSE;
-  }
-
-  return user_access($perm) && is_object($object) && islandora_namespace_accessible($object->id);
-  */
-
-  dpm('access trace');
 
   return TRUE;
 }
+*/
 
 function bootstrap_dss_digital_theme($existing, $type, $theme, $path) {
 
