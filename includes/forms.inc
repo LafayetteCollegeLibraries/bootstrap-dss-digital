@@ -19,8 +19,6 @@ function bootstrap_dss_digital_form_alter(&$form, $form_state, $form_id) {
 
   case 'islandora_dss_solr_advanced_search_form':
 
-    
-
     foreach($form['terms'] as $key => &$term) {
 
       if(is_numeric($key)) {
@@ -98,11 +96,9 @@ function bootstrap_dss_digital_preprocess_bootstrap_lafayette_lib_dss_islandora_
   //foreach($form['terms'] as $key => &$value) {
   foreach($variables['form']['terms'] as $key => &$value) {
 
-    dpm('trace1');
-
     if(is_numeric($key)) {
 
-      $value['add']['#value'] = '<span class="icon-large icon-plus-sign"></span>';
+      $value['add']['#value'] = '<span class="icon-large"></span>';
       /*
 	$value['add']['#value'] = '<span class="icon-large icon-plus-sign"></span>';
 	$value['add']['#ajax']['callback'] = '_bootstrap_dss_digital_islandora_solr_advanced_search_terms';

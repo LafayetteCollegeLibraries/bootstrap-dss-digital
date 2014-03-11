@@ -287,7 +287,7 @@ function bootstrap_dss_digital_block_view_islandora_solr_advanced_alter(&$data, 
 
     if(is_numeric($key)) {
 
-      $value['add']['#value'] = '<i class="icon-large icon-plus-sign"></i>';
+      $value['add']['#value'] = '<i class="icon-large"></i>';
       $value['add']['#ajax']['callback'] = '_bootstrap_dss_digital_islandora_solr_advanced_search_terms';
 
       $value['search']['#value'] = '';
