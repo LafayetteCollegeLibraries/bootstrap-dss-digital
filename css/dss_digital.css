@@ -11,6 +11,21 @@ body{
 	min-width:532px;
 }
 
+/**
+ * @author griffinj@lafayette.edu
+ *
+ */
+#block-menu-menu-authentication-cas .menu li {
+
+    width: auto;
+    border-right: none;
+}
+
+#block-menu-menu-authentication-cas .menu .first a {
+
+    color: #1A98DB;
+}
+
 /* style log out hyperlink */
 
 .navbar-inner a {
@@ -1175,6 +1190,7 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	
 	list-style:none;
 	margin-top:12px;
+	margin-left:0px;
 }
 
 .islandora-solr-facet-token {
@@ -1811,6 +1827,13 @@ p {
 .textLayer .highlight {
 	
 	background-color:rgba(0, 118, 245, 0.3);
+}
+
+/* ensure pagination div is below other search control elements */
+
+.pagination-count {
+	
+	clear:both;
 }
 
 

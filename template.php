@@ -34,6 +34,17 @@ function bootstrap_dss_digital_preprocess_hybridauth_widget(&$vars) {
   }
 }
 
+function bootstrap_dss_digital_preprocess_region(&$variables) {
+
+  switch($variables['region']) {
+
+  case 'auth':
+
+    dpm($variables);
+    break;
+  }
+}
+
 /**
  * Preprocess variables for page.tpl.php
  *

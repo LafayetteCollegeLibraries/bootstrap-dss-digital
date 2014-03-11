@@ -97,6 +97,20 @@ function bootstrap_dss_digital_menu_link__menu_footer_menu(&$variables) {
 }
 
 /**
+ * Implements theme_menu_link__MENU_NAME
+ *
+ * @see https://drupal.org/node/345624
+ * For handling CAS menu styling (custom menu added as a Drupal administrator)
+ *
+ */
+function bootstrap_dss_digital_menu_link__menu_authentication_cas(&$variables) {
+
+  dpm($variables);
+
+  return theme_menu_link($variables);
+}
+
+/**
  * Implements template_preprocess_menu_tree()
  *
  */
@@ -104,7 +118,6 @@ function bootstrap_dss_digital_menu_link__menu_footer_menu(&$variables) {
 /*
 function bootstrap_dss_digital_preprocess_menu_link(&$variables) {
 
-  //dpm($variables);
+  dpm($variables);
 }
 */
-
