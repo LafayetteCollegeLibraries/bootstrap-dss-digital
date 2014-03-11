@@ -75,10 +75,27 @@ class DssMods extends SimpleXMLElement {
     mdl_prints.publisher.digital (String, 17 characters ) Publisher.Digital
     mdl_prints.format.digital (String, 14 characters ) Format.Digital
     cdm.Relation.IsPartOf (String, 17 characters ) Relation.IsPartOf
-
-
      */
 
+    /**
+     * Work-around for resolving issues related to MARC terms
+     *
+     * This resolves DSS-167
+     * This resolves DSS-170
+     */
+    $ISLANDORA_MARC_METADB_MAP = array('East Asia Image Collection' => array('form' => array(
+											     "photonegative" => 'Photographic negative',
+											     "photoprint" => 'Photographic print',
+											     "slide" => 'Photographic slide',
+											     "picture postcard" => 'Picture postcard',
+											     ),
+									     ),
+				       'Marquis de Lafayette Prints Collection' => array('form' => array(
+													 "photoprint" => 'lithograph',
+													 )
+											 ),
+				       );
+    
     $relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
     //dpm( $relation_is_part_of_value  );
 
@@ -685,9 +702,12 @@ class DssMods extends SimpleXMLElement {
 	  $prev_element = $mods_elements[$i - 1];
 	  if($element['label'] == $prev_element['label'] &&
 	     $element['language'] == $prev_element['language']) {
-	    
+
 	    $element['class'] .= ' metadata-value-set';
+
 	  }
+
+
 	}
       }
 
@@ -696,9 +716,26 @@ class DssMods extends SimpleXMLElement {
       // Refactor
       foreach($mods_elements as $i => &$element) {
 
-	if($is_facet) {
+	/**
+	 * Work-around for DSS-167
+	 * Work-around for DSS-170
+	 *
+	 */
+	//dpm(array($relation_is_part_of_value, $element['label'], $element['value']));
+	
+	if(array_key_exists($relation_is_part_of_value, $ISLANDORA_MARC_METADB_MAP)) {
 
-	  //dpm( $facet);
+	  if(array_key_exists($element['label'], $ISLANDORA_MARC_METADB_MAP[$relation_is_part_of_value])) {
+
+	    if(array_key_exists($element['value'], $ISLANDORA_MARC_METADB_MAP[$relation_is_part_of_value][$element['label']])) {
+	      
+	      $element['raw_value'] = $element['value'];
+	      $element['value'] = $ISLANDORA_MARC_METADB_MAP[$relation_is_part_of_value][$element['label']][$element['value']];
+	    }
+	  }
+	}
+
+	if($is_facet) {
 
 	  /**
 	   * Hard-coded mapping
@@ -715,7 +752,6 @@ class DssMods extends SimpleXMLElement {
 	  } else {
 
 	    $element['facet'] = $facet;
-
 	  }
 
 	  if($is_date) {
@@ -768,7 +804,13 @@ class DssMods extends SimpleXMLElement {
 	      $facet_index++;
 	    }
 
-	    $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['value'] . '"';
+	    /**
+	     * Work-around for DSS-167
+	     * Work-around for DSS-170
+	     *
+	     */
+	    //$facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['value'] . '"';
+	    $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['raw_value'] . '"';
 	  }
 
 	  /*
@@ -785,8 +827,10 @@ class DssMods extends SimpleXMLElement {
 	  }
 	  */
 
-	  //dpm($facet_params);
-
+	  /*
+	  $element['facet_href'] = l($element['value'], "islandora/search/*:*", array('query' => $facet_params,
+										      ));
+	  */
 	  $element['facet_href'] = l($element['value'], "islandora/search/*:*", array('query' => $facet_params,
 										      ));
 
@@ -829,6 +873,8 @@ class DssMods extends SimpleXMLElement {
 	  $element['href'] = $element['value'];
 	}
 	$element['label'] = $facet;
+
+
       }
 
       $mods_array = array_merge($mods_array, $mods_elements);

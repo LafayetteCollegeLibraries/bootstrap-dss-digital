@@ -47,9 +47,23 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
   //$variables['view_links'] = array($grid_link, $list_link);
   //$islandora_object = $variables['islandora_object'];
 
-
-  //dpm(array_keys($variables));
-  //dpm($variables['results']);
+  /**
+   * Work-around for resolving issues related to MARC terms
+   *
+   * This resolves DSS-167
+   * This resolves DSS-170
+   */
+  $ISLANDORA_MARC_METADB_MAP = array(
+				     'eastasia.Format.Medium' => array(
+								       "photonegative" => 'Photographic negative',
+								       "photoprint" => 'Photographic print',
+								       "slide" => 'Photographic slide',
+								       "picture postcard" => 'Picture postcard',
+								       ),
+				     'mdl_prints.format.medium' => array(
+									 "photoprint" => 'lithograph',
+									 )
+				     );
 
   if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', current_path(), $m)) {
 
@@ -87,13 +101,29 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
       
       foreach($result['solr_doc'] as $field_name => &$field) {
 
+
 	if(in_array($relation, $relation_is_part_of_dc_field_map)) {
 
 	    if(in_array($field_name, $relation_is_part_of_dc_field_map[$relation])) {
 	  
 	      unset($result['solr_doc'][$field_name]);
 	    }
+
 	}
+
+	/*
+	if(array_key_exists($relation_is_part_of_value, $ISLANDORA_MARC_METADB_MAP)) {
+
+	  if(array_key_exists($element['label'], $ISLANDORA_MARC_METADB_MAP[$relation_is_part_of_value])) {
+	    
+	    if(array_key_exists($element['value'], $ISLANDORA_MARC_METADB_MAP[$relation_is_part_of_value][$element['label']])) {
+	      
+	      $element['raw_value'] = $element['value'];
+	      $element['value'] = $ISLANDORA_MARC_METADB_MAP[$relation_is_part_of_value][$element['label']][$element['value']];
+	    }
+	  }
+	}
+	*/
 
 	/*
 	if(in_array($field_name, $relation_is_part_of_dc_field_map[$relation])) {
@@ -105,6 +135,25 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
     }
   }
 
+  foreach($variables['results'] as &$result) {
+      
+    foreach($result['solr_doc'] as $field_name => &$field) {
+
+      /**
+       * Work-around for DSS-167
+       * Work-around for DSS-170
+       *
+       */
+      if(array_key_exists($field_name, $ISLANDORA_MARC_METADB_MAP)) {
+	
+	if(array_key_exists($field['value'], $ISLANDORA_MARC_METADB_MAP[$field_name])) {
+	  
+	  $field['value'] = $ISLANDORA_MARC_METADB_MAP[$field_name][$field['value']];
+	}
+      }
+    }
+  }
+  
   // For rendering non-grid content
   drupal_add_css(drupal_get_path('module', 'islandora_basic_collection') . '/css/islandora_basic_collection.base.css');
   drupal_add_css(drupal_get_path('module', 'islandora_basic_collection') . '/css/islandora_basic_collection.theme.css');
