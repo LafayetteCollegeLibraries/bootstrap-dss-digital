@@ -105,9 +105,18 @@ function bootstrap_dss_digital_menu_link__menu_footer_menu(&$variables) {
  */
 function bootstrap_dss_digital_menu_link__menu_authentication_cas(&$variables) {
 
+  //$element = $variables['element'];
+
+  // $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+  /*
+  $variables['element']['#children'] = array('#type' => 'markup',
+					     '#markup' => '<span>ICON</span><span>Lafayette College</span>');
+  */
+  $variables['element']['#title'] = '<span title="Lafayette College" class="hybridauth-icon hybridauth-icon-hybridauth-32 hybridauth-icon-hybridauth-32-lafayette"></span><span>&nbsp;Lafayette College</span>';
+  $variables['element']['#localized_options']['html'] = TRUE;
+
   dpm($variables);
-  $element = $variables['element'];
-  $element['children'] = array('');
+
 
   return theme_menu_link($variables);
 }

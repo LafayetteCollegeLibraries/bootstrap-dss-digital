@@ -15,6 +15,11 @@ body{
  * @author griffinj@lafayette.edu
  *
  */
+#block-menu-menu-authentication-cas .menu {
+
+    margin-bottom: 0px;
+}
+
 #block-menu-menu-authentication-cas .menu li {
 
     width: auto;
@@ -24,6 +29,12 @@ body{
 #block-menu-menu-authentication-cas .menu .first a {
 
     color: #1A98DB;
+}
+
+#block-menu-menu-authentication-cas .menu .first a:hover {
+
+    background-color: transparent;
+    text-decoration: underline;
 }
 
 /* style log out hyperlink */
