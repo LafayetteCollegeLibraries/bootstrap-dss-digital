@@ -52,7 +52,7 @@ function bootstrap_dss_digital_form_alter(&$form, $form_state, $form_id) {
     $form['simple']['islandora_simple_search_query']['#default_value'] = 'Search...';
 
     // Insert the glyphicon for searching
-    //$form['simple']['submit']['#value'] = '<span class="icon-large icon-search"></span>';
+    //$form['simple']['submit']['#value'] = '<span class="icon-large"></span>';
 
     // Default to site-scoped search
     $form['simple']['submit']['#value'] = 'Search this site';
@@ -100,7 +100,7 @@ function bootstrap_dss_digital_preprocess_bootstrap_lafayette_lib_dss_islandora_
 
       $value['add']['#value'] = '<span class="icon-large"></span>';
       /*
-	$value['add']['#value'] = '<span class="icon-large icon-plus-sign"></span>';
+	$value['add']['#value'] = '<span class="icon-large"></span>';
 	$value['add']['#ajax']['callback'] = '_bootstrap_dss_digital_islandora_solr_advanced_search_terms';
 
 	$value['search']['#value'] = '';
