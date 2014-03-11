@@ -305,7 +305,16 @@
 		    return b;
 		})(window.location.search.substr(1).split('&'));
 
-	    var isSearch = Object.keys(getParams).map(function(e, i) { return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) }).reduce(function(u, v) { return u || v });
+	    /**
+	     * Work-around for paginated results
+	     * Resolves DSSSM-511
+	     *
+	     * @todo Refactor into a single logical condition
+	     */
+	    var isSearch = Object.keys(getParams).map(function(e, i) {
+
+		    return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) && e != 'page';
+		}).reduce(function(u, v) { return u || v });
 
 	    if(isSearch) {
 
