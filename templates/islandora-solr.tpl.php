@@ -12,7 +12,7 @@
 
 <?php if (array_key_exists('restricted_results', $variables) and $variables['restricted_results']): ?>
 
-    <div class="islandora islandora-solr-search-alert">Some Objects are restricted from anonymous access.</div>
+    <div class="islandora islandora-solr-search-alert">Warning: You must be authenticated to access items from the Geology Slide and Visual Resources collections.</div>
 
 <?php endif; ?>
 

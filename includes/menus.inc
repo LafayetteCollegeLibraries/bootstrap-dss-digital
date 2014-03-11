@@ -106,6 +106,8 @@ function bootstrap_dss_digital_menu_link__menu_footer_menu(&$variables) {
 function bootstrap_dss_digital_menu_link__menu_authentication_cas(&$variables) {
 
   dpm($variables);
+  $element = $variables['element'];
+  $element['children'] = array('');
 
   return theme_menu_link($variables);
 }
