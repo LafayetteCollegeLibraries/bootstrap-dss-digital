@@ -1642,7 +1642,13 @@ body.no-sidebars .islandora-large-image-content {
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     outline: medium none;
     width: 500px;
-    margin-top:15%;
+
+    /**
+     * @author griffinj
+     * Resolving DSSSM-517
+     *
+     */
+    /* margin-top:15%; */
 }
 
 #contact > div.modal-dialog > div.modal-content {

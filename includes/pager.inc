@@ -105,7 +105,12 @@ function bootstrap_dss_digital_pager($variables) {
         if ($i == $pager_current) {
           $items[] = array(
 			   //'class' => array('active'), // Add the active class
-			   'class' => array('pager-item'), // Add the active class
+			   /**
+			    * For styling the active pagination element
+			    * This resolves DSSSM-513
+			    *
+			    */
+			   'class' => array('pager-item', 'pager-current'), // Add the active class
 			   'data' => l($i, '#', array('fragment' => '','external' => TRUE)),
 			   );
         }
