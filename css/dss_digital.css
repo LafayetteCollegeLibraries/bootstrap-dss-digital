@@ -1874,6 +1874,16 @@ p {
 	margin-bottom:10px;
 }
 
+/* style pagination to indicate current page */
+
+.pager-current > a {
+	
+	background-color:#E2E2E2 !important;
+	box-shadow: inset 0px 0px 5px 1px #EAEAEA;
+	-moz-box-shadow: inset 0px 0px 5px 1px #EAEAEA;
+	-webkit-box-shadow: inset 0px 0px 5px 1px #EAEAEA;
+}
+
 
 
 
