@@ -745,6 +745,52 @@ ul.quicktabs-tabs > li.active {
 	margin:10px;
 }
 
+/* prevent subcollection and series text for EAIC and MDLP to wrap beneath thumbnails */
+
+.lafayette-prints-subcollection > a > img {
+	
+	float:none;
+}
+
+.lafayette-prints-subcollection-content {
+	
+	width:calc(100% - 250px);
+	float:right;
+	margin-left:0px;
+	margin-top:0px;
+	margin-bottom:10px;
+}
+
+.lafayette-prints-subcollection > h2 {
+	
+	width:calc(100% - 250px);
+	float:right;
+	margin-left:0px;
+	margin-top:0px;
+}
+
+.east-asia-sub-collection > a > img {
+	
+	float:none;
+}
+
+.east-asia-sub-collection-content {
+	
+	width:calc(100% - 250px);
+	float:right;
+	margin-left:0px;
+	margin-top:0px;
+	margin-bottom:10px;
+}
+
+.east-asia-sub-collection > h2 {
+	
+	width:calc(100% - 250px);
+	float:right;
+	margin-left:0px;
+	margin-top:0px;
+	
+}
 
 /* style margins around nodes */
 
@@ -1852,26 +1898,6 @@ p {
 .pagination-count {
 	
 	clear:both;
-}
-
-/* prevent subcollection and series text for EAIC and MDLP to wrap beneath thumbnails */
-
-.lafayette-prints-subcollection-content {
-	
-	/*width:calc(100% - 250px);
-	float:right;
-	margin-left:0px;
-	margin-top:0px;*/
-	margin-bottom:10px;
-}
-
-.east-asia-sub-collection-content {
-	
-	/*width:calc(100% - 250px);
-	float:right;
-	margin-left:0px;
-	margin-top:0px;*/
-	margin-bottom:10px;
 }
 
 /* style pagination to indicate current page */
