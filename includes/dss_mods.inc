@@ -729,11 +729,11 @@ class DssMods extends SimpleXMLElement {
 
 	    if(array_key_exists($element['value'], $ISLANDORA_MARC_METADB_MAP[$relation_is_part_of_value][$element['label']])) {
 	      
-	      $element['raw_value'] = $element['value'];
 	      $element['value'] = $ISLANDORA_MARC_METADB_MAP[$relation_is_part_of_value][$element['label']][$element['value']];
 	    }
 	  }
 	}
+	$element['raw_value'] = $element['value'];
 
 	if($is_facet) {
 
