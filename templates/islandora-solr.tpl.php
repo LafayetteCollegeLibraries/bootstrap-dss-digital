@@ -34,7 +34,7 @@
         <!-- Search result -->
 	<li class="islandora-solr-search-result clear-block <?php print $row_result % 2 == 0 ? 'odd' : 'even'; ?>">
 
-	<?php if($result['restricted']): ?>
+	<?php if(array_key_exists('restricted', $result) AND $result['restricted']): ?>
 
 	  <div class="solr-restricted"><img src="/sites/digital.lafayette.edu/files/u78/lock.png" alt="restricted access lock" /></div>
 	<?php endif; ?>

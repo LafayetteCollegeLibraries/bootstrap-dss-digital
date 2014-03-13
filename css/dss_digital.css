@@ -716,11 +716,7 @@ ul.quicktabs-tabs > li.active {
 	margin-left:0px;
 	min-height:240px;
 	margin-right:0px;
-}
-
-.east-asia-sub-collection > p, .east-asia-sub-collection > h2 {
-	
-	margin:10px;
+	overflow:auto;
 }
 
 .east-asia-sub-collection > a > img {
@@ -736,11 +732,14 @@ ul.quicktabs-tabs > li.active {
 	border:1px solid #AAAAAA;
 	border-radius:2px;
 	margin:10px;
+	clear:both;
 	margin-left:0px;
 	min-height:240px;
+	margin-right:0px;
+	overflow:auto;	
 }
 
-.lafayette-prints-subcollection > p, .lafayette-prints-subcollection > h2	 {
+.lafayette-prints-subcollection > a > img {
 	
 	margin:10px;
 }
@@ -756,17 +755,20 @@ ul.quicktabs-tabs > li.active {
 	
 	width:calc(100% - 250px);
 	float:right;
-	margin-left:0px;
-	margin-top:0px;
+	margin-right:10px;
 	margin-bottom:10px;
+	margin-top:0px;
+	margin-left:0px;
 }
 
 .lafayette-prints-subcollection > h2 {
 	
 	width:calc(100% - 250px);
 	float:right;
+	margin-bottom:10px;
+	margin-top:10px;
+	margin-right:10px;
 	margin-left:0px;
-	margin-top:0px;
 }
 
 .east-asia-sub-collection > a > img {
@@ -778,18 +780,20 @@ ul.quicktabs-tabs > li.active {
 	
 	width:calc(100% - 250px);
 	float:right;
+	margin-right:10px;
+	margin-bottom:10px;
 	margin-left:0px;
 	margin-top:0px;
-	margin-bottom:10px;
 }
 
 .east-asia-sub-collection > h2 {
 	
 	width:calc(100% - 250px);
 	float:right;
+	margin-bottom:10px;
+	margin-top:10px;
+	margin-right:10px;
 	margin-left:0px;
-	margin-top:0px;
-	
 }
 
 /* style margins around nodes */
