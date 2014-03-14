@@ -236,6 +236,16 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 
   $variables['menu_toggle_container'] = $menu_toggle_container;
 
+  /*
+  if(preg_match('/islandora\/search/', current_path())) {
+
+    $variables['lead_content'] = $variables['title'];
+  } else {
+
+    $variables['lead_content'] = l($variables['title'], current_path());
+  }
+  */
+
   // Carousel
   $variables['carousel'] = '
 

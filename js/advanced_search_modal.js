@@ -257,10 +257,9 @@
    */
   var LafayetteDssModal = function(element, options) {
 
-      this.options = $.extend({width: 262,
-			       widthOffset: 0,
-			       heightOffset: 0
-	  }, options);
+      this.options = $.extend({ width: 262,
+			        widthOffset: 0,
+			        heightOffset: 0 }, options);
 
       // Work-around
       // Refactor
@@ -462,6 +461,10 @@
 
 	  that.$element.insertAfter($('.navbar-inner'));
 
+	  /**
+	   * Functionality for the contact form dialog
+	   *
+	   */
 	  //that.$element.show('drop', {direction: 'up'}, 500, function() {
 	  if(that.$element.attr('id') == 'contact') {
 
@@ -531,6 +534,7 @@
 			      var offsetTop = $(document).data('LafayetteDssModal.' + $(e).attr('id') + '.offset.top');
 			      var navbarOffsetTop = $('.navbar-inner').offset().top;
 
+			      // If the browser is at the top of the page...
 			      if(!$(document).data('LafayetteDssModal.navbar.offset.top') || $(window).scrollTop() == 0) {
 
 				  $(document).data('LafayetteDssModal.navbar.offset.top', navbarOffsetTop);
@@ -539,6 +543,7 @@
 				      //if( $('.navbar-inner.affix').length == 0 ) {
 
 				      //$(e).css('top', offsetTop );
+
 				      if($(document).height() - $(e).scrollTop() - $(e).height()) {
 
 					  //console.log('trace1');
@@ -547,19 +552,37 @@
 				  }
 			      }
 
+			      // If the navbar has yet to be affixed...
 			      if($(window).scrollTop() < navbarOffsetTop) {
 
 				  if(($(document).height() - $(document).scrollTop()) > $(e).height()) {
 
+				      // ...ensure that the dialog is adjusted as the user scrolls.
 				      $(e).css('top', offsetTop );
 				  }
 			      }
 			      
 			      var $navbar = $('.navbar-inner.affix');
+
+			      // If the navbar has been affixed and the user hasn't reached the bottom of the page...
 			      if($navbar.length > 0 && ($(document).height() - $(document).scrollTop()) > $(e).height()) {
 
+				  console.log('case 3');
+
+				  /**
+				   * This relates to DSSSM-517
+				   *
+				   */
 				  $(e).addClass('affixed');
-				  $(e).css('top', offsetTop + $(window).scrollTop() - $(document).data('LafayetteDssModal.navbar.offset.top') );
+
+				  // Offset from the top + the number of pixels between the scrollbar and the top of the page
+				  //$(e).css('top', offsetTop + $(window).scrollTop());
+				  
+				  console.log( $(window).scrollTop());
+				  $(e).css('top', $(e).css('top') + $(window).scrollTop());
+
+				  // More pixels need to be subtracted
+				  //$(e).css('top', offsetTop + $(window).scrollTop() - $(document).data('LafayetteDssModal.navbar.offset.top') );
 			      } else {
 
 				  $(e).removeClass('affixed');
@@ -568,6 +591,10 @@
 		  });
 	  } else {
 
+	      /**
+	       * Functionality for the advanced search, share, and authentication dialogs
+	       *
+	       */
 	      that.$element.show({ effect: 'slide', direction: 'up', duration: 500, complete: function() {
 
 			  //that.$element.show().removeClass('shown-faded').addClass('shown-faded');

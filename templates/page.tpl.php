@@ -6,7 +6,7 @@
    <h2><?php print l('Skillman Library', 'http://library.lafayette.edu/'); ?> at <?php print l('Lafayette College', 'http://www.lafayette.edu/'); ?></h2>
 
    <?php if(!empty($title)): ?>
-																			<h1><?php print l('Digital Scholarship Services', '', array('absolute' => TRUE)); ?></h1>
+      <h1><?php print l('Digital Scholarship Services', '', array('absolute' => TRUE)); ?></h1>
    <?php endif; ?>
   </div>
 
@@ -101,8 +101,19 @@
 <div class="main-container container">
 
   <header role="banner" id="page-header">
-   <p class="lead"><?php print l($title, current_path()); ?></p>
 
+<?php
+
+  // Refactor into preprocess_page implementation
+  if(preg_match('/islandora\/search/', current_path())) {
+
+    $lead_content = $title;
+  } else {
+
+    $lead_content = l($title, current_path());
+  }
+?>
+     <p class="lead"><?php print $lead_content ?></p>
      <?php print render($page['header']); ?>
   </header> <!-- /#header -->
 
