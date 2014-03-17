@@ -1085,12 +1085,15 @@ body > div#islandora-openseadragon {
 
 /* style image viewer controls */
 
-#openseadragon-size-transform-container > span > fieldgroup > button {
+.openseadragon-controls-navigator > fieldgroup > button {
 	
 	background-color:#EEEEEE !important;
 	border:1px solid #AAAAAA !important;
 	border-radius:2px;
-	margin:2px !important;
+	margin-top:2px !important;
+	margin-right:4px !important;
+	margin-bottom:2px !important;
+	margin-left:0px !important;
 }
 
 #openseadragon-size-transform-container > span > fieldgroup > button > img {
@@ -1669,7 +1672,7 @@ body.no-sidebars .islandora-large-image-content {
 
 #contact {
 	
-    left: 0 !important;
+	left: 0 !important;
 	background-color:rgba(0, 0, 0, 0.2) !important;
     border: none;
     border-radius: 0px;
@@ -1738,20 +1741,12 @@ body.no-sidebars .islandora-large-image-content {
 
 /* style multi-page image viewer thumbnail navigation controls */ 
 
-.referencestrip-container {
-	
-	border:1px solid #AAAAAA !important;
-	border-radius:2px;
-	width:174px !important;
-	margin-left:0px !important;
-	background-color:#F5F5F5 !important;
-}
-
 .referencestrip {
 	
 	margin-left:0px !important;
 	background-color:#F5F5F5 !important;
 	width:174px !important;
+	opacity:1 !important;
 }
 
 .referencestrip > div > form > textarea {
@@ -1906,6 +1901,20 @@ p {
 	box-shadow: inset 0px 0px 5px 1px #EAEAEA;
 	-moz-box-shadow: inset 0px 0px 5px 1px #EAEAEA;
 	-webkit-box-shadow: inset 0px 0px 5px 1px #EAEAEA;
+}
+
+/* fix color of page heading on search results */
+
+.lead {
+	
+	color:#1A98DB;
+}
+
+/* reset carousel transition times */
+
+.carousel-inner > .item {
+	
+	transition:left 3s ease-in-out 3s;
 }
 
 
