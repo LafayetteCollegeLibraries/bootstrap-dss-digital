@@ -1092,7 +1092,7 @@ body > div#islandora-openseadragon {
 	border-radius:2px;
 	margin-top:2px !important;
 	margin-right:4px !important;
-	margin-bottom:2px !important;
+	margin-bottom:5px !important;
 	margin-left:0px !important;
 }
 
@@ -1747,6 +1747,9 @@ body.no-sidebars .islandora-large-image-content {
 	background-color:#F5F5F5 !important;
 	width:174px !important;
 	opacity:1 !important;
+	height:auto !important;
+	border:1px solid #CCCCCC !important;
+	border-radius:2px !important;
 }
 
 .referencestrip > div > form > textarea {
