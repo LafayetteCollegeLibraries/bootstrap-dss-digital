@@ -223,6 +223,12 @@
 		$('#carousel-featured-collection').carousel('pause');
 	    });
 
+	/**
+	 * Carousel implementation does not permit one to chain methods
+	 * Resolves issue originating from the request for increased intervals between sliding carousel images
+	 *
+	 */
+	$('#carousel-featured-collection').carousel({interval: 8000});
 	$('#carousel-featured-collection').carousel('cycle');
 
 	// maxPosition: 216

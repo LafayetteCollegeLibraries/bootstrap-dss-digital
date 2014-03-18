@@ -1914,7 +1914,7 @@ p {
 
 .carousel-inner > .item {
 	
-	transition:left 3s ease-in-out 3s;
+	transition:left 3s ease-in-out 0s;
 }
 
 

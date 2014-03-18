@@ -250,7 +250,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
   $variables['carousel'] = '
 
    <!-- Carousel -->
-<div id="carousel-featured-collection" class="carousel slide" data-ride="carousel" >
+   <div id="carousel-featured-collection" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#carousel-featured-collection" data-slide-to="0" class="active"></li>
