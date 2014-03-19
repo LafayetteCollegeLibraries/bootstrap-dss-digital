@@ -6,6 +6,72 @@
    *
    */
 
+function bootstrap_dss_digital_pager_first($variables) {
+
+  $text = $variables['text'];
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  global $pager_page_array;
+
+  return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array(0, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters));
+  }
+
+function bootstrap_dss_digital_pager_previous($variables) {
+
+  $text = $variables['text'];
+  $element = $variables['element'];
+  $interval = $variables['interval'];
+  $parameters = $variables['parameters'];
+  global $pager_page_array;
+
+  $output = '';
+
+  $page_new = pager_load_array($pager_page_array[$element] - $interval, $element, $pager_page_array);
+
+  // If the previous page is the first page, mark the link as such.
+  if ($page_new[$element] == 0) {
+
+    $output = theme('pager_first', array('text' => $text, 'element' => $element, 'parameters' => $parameters));
+  } else { // The previous page is not the first page.
+
+    $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters));
+  }
+
+  return $output;
+}
+
+function bootstrap_dss_digital_pager_next($variables) {
+
+  $text = $variables['text'];
+  $element = $variables['element'];
+  $interval = $variables['interval'];
+  $parameters = $variables['parameters'];
+  global $pager_page_array, $pager_total;
+  $output = '';
+
+  $page_new = pager_load_array($pager_page_array[$element] + $interval, $element, $pager_page_array);
+  // If the next page is the last page, mark the link as such.
+  if ($page_new[$element] == ($pager_total[$element] - 1)) {
+
+    $output = theme('pager_last', array('text' => $text, 'element' => $element, 'parameters' => $parameters));
+  } else {   // The next page is not the last page.
+
+    $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters));
+  }
+
+  return $output;
+}
+
+function bootstrap_dss_digital_pager_last($variables) {
+
+  $text = $variables['text'];
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  global $pager_page_array, $pager_total;
+
+  return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters));
+}
+
   /**
    * Returns HTML for a query pager.
    *
@@ -109,6 +175,8 @@ function bootstrap_dss_digital_pager($variables) {
 
     // When there is more than one page, create the pager list.
     if ($i != $pager_max) {
+
+      // Prepend the ellipsis
       if ($i > 1) {
         $items[] = array(
           'class' => array('pager-ellipsis', 'disabled'),
