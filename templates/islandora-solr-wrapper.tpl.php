@@ -28,9 +28,12 @@
     <div class="islandora-discovery-inner-container">
 
       <div class="islandora-page-controls">
-
-    <form id="islandora-discovery-form" action="/" >
       </div><!--/.islandora-page-controls -->
+
+<!--
+      <?php print $islandora_discovery_form; ?>
+-->
+    <form id="islandora-discovery-form" action="/" >
 
       <div class="islandora-discovery-control title-sort-control">
 

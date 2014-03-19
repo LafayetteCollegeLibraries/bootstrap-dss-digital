@@ -161,6 +161,78 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
   dpm($variables);
 }
 
+function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $collection_fields, $sorted_field) {
+
+  $form = array('#attributes' => array('id' =>'islandora-discovery-form'));
+
+  /*
+    <form id="islandora-discovery-form" action="/" >
+
+      <div class="islandora-discovery-control title-sort-control">
+
+        <span>Sort by:</span>
+        <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
+        <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
+        <select id="field-sort-select">
+
+          <?php foreach($collection_fields as $value => $title): ?>
+	    <option value="<?php print $value; ?>"><?php print $title; ?></option>
+	  <?php endforeach; ?>
+        </select>
+      </div><!-- /.islandora-discovery-control -->
+    </form>
+   */
+
+  /*
+				     '#attributes' => array('class' => array('islandora-discovery-control',
+									     'title-sort-control')),
+
+   */
+  $prefix = '<div class="islandora-discovery-control title-sort-control"><span>Sort by:</span>';
+  $prefix .= l('A to Z', NULL, array('attributes' => array('class' => array('field-sort'),
+							   'id' => 'field-sort-asc'),
+				     'external' => TRUE,
+				     'fragment' => FALSE));
+  $prefix .= l('Z to A', NULL, array('attributes' => array('class' => array('field-sort', 'active'),
+							   'id' => 'field-sort-desc'),
+				     'external' => TRUE,
+				     'fragment' => FALSE));
+  $suffix = '</div>';
+
+  /*
+  $prefix = '<span>Sort by:</span>
+<a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
+<a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>';
+  */
+
+  /*
+  $form['islandora-discovery-control'] = array('#type' => 'fieldset',
+					       '#attributes' => array('class' => array('islandora-discovery-control',
+												 'title-sort-control')),
+					       'field_sort_select' => array('#type' => 'select',
+									    //'#title' => t('Sort by:'),
+									    '#options' => $collection_fields,
+									    '#default_value' => $sorted_field,
+									    //'#description' => t('Sorting fields'),
+									    '#attributes' => array('id' => 'field-sort-select'),
+									    '#prefix' => $prefix,
+									    ));
+  */
+
+  $form['field_sort_select'] = array('#type' => 'fieldset',
+				     'field_sort_select' => array('#type' => 'select',
+								  //'#title' => t('Sort by:'),
+								  '#options' => $collection_fields,
+								  '#default_value' => $sorted_field,
+								  //'#description' => t('Sorting fields'),
+								  '#attributes' => array('id' => 'field-sort-select'),
+								  '#prefix' => $prefix,
+								  '#suffix' => $suffix,
+								  ));
+
+  return $form;
+}
+
 function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   $display = (empty($_GET['display'])) ? variable_get('islandora_basic_collection_default_view', 'grid') : $_GET['display'];
@@ -247,6 +319,36 @@ v  $elements = $variables['elements'];
 
   $elements = $variables['elements'];
   drupal_set_title($elements['solr_total'] . ' Items Found');
+
+  $collection_fields = $variables['collection_fields'];
+
+  if(array_key_exists('sort', $_GET) and preg_match('/(.+?) /', $_GET['sort'], $m)) {
+
+    $sorted_field = $m[1];
+  } else {
+
+    $sorted_field = 'dc.title';
+  }
+
+  $variables['islandora_discovery_form'] = drupal_render_children(drupal_get_form('bootstrap_dss_digital_islandora_discovery_form', $collection_fields, $sorted_field));
+
+  /*
+    <form id="islandora-discovery-form" action="/" >
+
+      <div class="islandora-discovery-control title-sort-control">
+
+        <span>Sort by:</span>
+        <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
+        <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
+        <select id="field-sort-select">
+
+          <?php foreach($collection_fields as $value => $title): ?>
+	    <option value="<?php print $value; ?>"><?php print $title; ?></option>
+	  <?php endforeach; ?>
+        </select>
+      </div><!-- /.islandora-discovery-control -->
+    </form>
+  */
 
   dpm($variables);
 }
