@@ -56,33 +56,55 @@ function bootstrap_dss_digital_pager($variables) {
     $i = 1;
   }
 
+
+  /**
+   * Interval of 1
+   *
+   */
+
   // End of generation loop preparation.
-  $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('first')), 'element' => $element, 'parameters' => $parameters));
-  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('<< Prev')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('Next >>')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('last')), 'element' => $element, 'parameters' => $parameters));
+  // First
+  $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('|<')), 'element' => $element, 'parameters' => $parameters));
+  // Interval of 10
+  $li_previous_set = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('<<')), 'element' => $element, 'interval' => 10, 'parameters' => $parameters));
+  // Interval of 1
+  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('<')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+
+  // Interval of 1
+  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('>')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  // Interval of 10
+  $li_next_set = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('>>')), 'element' => $element, 'interval' => 10, 'parameters' => $parameters));
+  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('>|')), 'element' => $element, 'parameters' => $parameters));
 
   if ($pager_total[$element] > 1) {
 
-    /*
     if ($li_first) {
       $items[] = array(
         'class' => array('pager-first'),
         'data' => $li_first,
       );
     }
-    */
+
+    if ($li_previous_set) {
+      $items[] = array(
+		       'class' => array('prev'),
+		       'data' => $li_previous_set,
+		       );
+    }
 
     if ($li_previous) {
       $items[] = array(
 		       'class' => array('prev'),
 		       'data' => $li_previous,
 		       );
+      /*
     } else {
 
       $items[] = array('class' => array('disabled'),
 		       'data' => '<span>' . (isset($tags[1]) ? $tags[1] : t('<< Prev')) . '</span>'
 		       );
+    }
+      */
     }
 
     // When there is more than one page, create the pager list.
@@ -138,21 +160,30 @@ function bootstrap_dss_digital_pager($variables) {
         'class' => array('next'),
         'data' => $li_next,
       );
+      /*
     } else {
 
       $items[] = array('class' => array('disabled'),
 		       'data' => '<span>' . (isset($tags[1]) ? $tags[1] : t('Next >>')) . '</span>'
 		       );
     }
+      */
+    }
 
-    /*
+    if ($li_next_set) {
+
+      $items[] = array(
+        'class' => array('next'),
+        'data' => $li_next_set,
+      );
+    }
+
     if ($li_last) {
       $items[] = array(
         'class' => array('pager-last'),
         'data' => $li_last,
       );
     }
-    */
 
     return '<div class="pagination pagination-centered">'. theme('item_list', array(
       'items' => $items,
