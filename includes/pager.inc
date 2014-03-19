@@ -13,7 +13,7 @@ function bootstrap_dss_digital_pager_first($variables) {
   $parameters = $variables['parameters'];
   global $pager_page_array;
 
-  return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array(0, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters));
+  return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array(0, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'First Item')));
   }
 
 function bootstrap_dss_digital_pager_previous($variables) {
@@ -22,6 +22,27 @@ function bootstrap_dss_digital_pager_previous($variables) {
   $element = $variables['element'];
   $interval = $variables['interval'];
   $parameters = $variables['parameters'];
+
+  // Implementing for the @title attribute
+  if(array_key_exists('attributes', $variables)) {
+
+    $attributes = $variables['attributes'];
+  } else {
+
+    $attributes = array();
+  }
+  switch($interval) {
+
+  case 1:
+
+    $attributes['title'] = "Previous Item";
+    break;
+  case 10:
+
+    $attributes['title'] = "Previous $interval Items";
+    break;
+  }
+
   global $pager_page_array;
 
   $output = '';
@@ -31,10 +52,10 @@ function bootstrap_dss_digital_pager_previous($variables) {
   // If the previous page is the first page, mark the link as such.
   if ($page_new[$element] == 0) {
 
-    $output = theme('pager_first', array('text' => $text, 'element' => $element, 'parameters' => $parameters));
+    $output = theme('pager_first', array('text' => $text, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
   } else { // The previous page is not the first page.
 
-    $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters));
+    $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
   }
 
   return $output;
@@ -46,6 +67,27 @@ function bootstrap_dss_digital_pager_next($variables) {
   $element = $variables['element'];
   $interval = $variables['interval'];
   $parameters = $variables['parameters'];
+
+  // Implementing for the @title attribute
+  if(array_key_exists('attributes', $variables)) {
+
+    $attributes = $variables['attributes'];
+  } else {
+
+    $attributes = array();
+  }
+  switch($interval) {
+
+  case 1:
+
+    $attributes['title'] = "Next Item";
+    break;
+  case 10:
+
+    $attributes['title'] = "Next $interval Items";
+    break;
+  }
+
   global $pager_page_array, $pager_total;
   $output = '';
 
@@ -53,10 +95,10 @@ function bootstrap_dss_digital_pager_next($variables) {
   // If the next page is the last page, mark the link as such.
   if ($page_new[$element] == ($pager_total[$element] - 1)) {
 
-    $output = theme('pager_last', array('text' => $text, 'element' => $element, 'parameters' => $parameters));
+    $output = theme('pager_last', array('text' => $text, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
   } else {   // The next page is not the last page.
 
-    $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters));
+    $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
   }
 
   return $output;
@@ -69,7 +111,7 @@ function bootstrap_dss_digital_pager_last($variables) {
   $parameters = $variables['parameters'];
   global $pager_page_array, $pager_total;
 
-  return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters));
+  return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'Last Item')));
 }
 
   /**
