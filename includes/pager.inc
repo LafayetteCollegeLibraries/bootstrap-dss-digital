@@ -6,16 +6,31 @@
    *
    */
 
+/**
+ * Implements theme_pager_first().
+ * @todo Refactor into a hook_process_HOOK implementation
+ */
 function bootstrap_dss_digital_pager_first($variables) {
 
   $text = $variables['text'];
   $element = $variables['element'];
   $parameters = $variables['parameters'];
   global $pager_page_array;
+  $output = '';
 
-  return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array(0, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'First Item')));
+  // If we are anywhere but the first page
+  if ($pager_page_array[$element] > 0) {
+    
+    $output = theme('pager_link', array('text' => $text, 'page_new' => pager_load_array(0, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'First Page')));
   }
 
+  return $output;
+  }
+
+/**
+ * Implements theme_pager_previous().
+ *
+ */
 function bootstrap_dss_digital_pager_previous($variables) {
 
   $text = $variables['text'];
@@ -35,11 +50,15 @@ function bootstrap_dss_digital_pager_previous($variables) {
 
   case 1:
 
-    $attributes['title'] = "Previous Item";
+    $attributes['title'] = "Back 1 Page";
     break;
   case 10:
 
-    $attributes['title'] = "Previous $interval Items";
+    $attributes['title'] = "Back $interval Pages";
+    break;
+  default:
+
+    unset($attributes['title']);
     break;
   }
 
@@ -47,20 +66,28 @@ function bootstrap_dss_digital_pager_previous($variables) {
 
   $output = '';
 
-  $page_new = pager_load_array($pager_page_array[$element] - $interval, $element, $pager_page_array);
+  // If we are anywhere but the first page
+  if (($interval == 10 and $pager_page_array[$element] > 9) or ($interval <= 3 and $pager_page_array[$element] > 0)) {
 
-  // If the previous page is the first page, mark the link as such.
-  if ($page_new[$element] == 0) {
+    $page_new = pager_load_array($pager_page_array[$element] - $interval, $element, $pager_page_array);
 
-    $output = theme('pager_first', array('text' => $text, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
-  } else { // The previous page is not the first page.
+    // If the previous page is the first page, mark the link as such.
+    if ($page_new[$element] == 0) {
 
-    $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
+      $output = theme('pager_first', array('text' => $text, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
+    } else { // The previous page is not the first page.
+
+      $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
+    }
   }
 
   return $output;
 }
 
+/**
+ * Implements theme_pager_next().
+ *
+ */
 function bootstrap_dss_digital_pager_next($variables) {
 
   $text = $variables['text'];
@@ -80,38 +107,57 @@ function bootstrap_dss_digital_pager_next($variables) {
 
   case 1:
 
-    $attributes['title'] = "Next Item";
+    $attributes['title'] = "Next 1 Page";
     break;
   case 10:
 
-    $attributes['title'] = "Next $interval Items";
+    $attributes['title'] = "Next $interval Pages";
+    break;
+  default:
+
+    unset($attributes['title']);
     break;
   }
 
   global $pager_page_array, $pager_total;
   $output = '';
 
-  $page_new = pager_load_array($pager_page_array[$element] + $interval, $element, $pager_page_array);
-  // If the next page is the last page, mark the link as such.
-  if ($page_new[$element] == ($pager_total[$element] - 1)) {
+  // If we are anywhere but the last page (for an interval of 1)
+  if (($interval == 10 and $pager_page_array[$element] < ($pager_total[$element] - 10)) or ($interval <= 3 and $pager_page_array[$element] < ($pager_total[$element] - 1))) {
 
-    $output = theme('pager_last', array('text' => $text, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
-  } else {   // The next page is not the last page.
+    $page_new = pager_load_array($pager_page_array[$element] + $interval, $element, $pager_page_array);
+    // If the next page is the last page, mark the link as such.
+    if ($page_new[$element] == ($pager_total[$element] - 1)) {
 
-    $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
+      $output = theme('pager_last', array('text' => $text, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
+    } else {   // The next page is not the last page.
+
+      $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
+    }
   }
 
   return $output;
 }
 
+/**
+ * Implements theme_pager_last().
+ * @todo Refactor into a hook_process_HOOK implementation
+ */
 function bootstrap_dss_digital_pager_last($variables) {
 
   $text = $variables['text'];
   $element = $variables['element'];
   $parameters = $variables['parameters'];
   global $pager_page_array, $pager_total;
+  $output = '';
 
-  return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'Last Item')));
+  // If we are anywhere but the last page
+  if ($pager_page_array[$element] < ($pager_total[$element] - 1)) {  
+
+    return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'Last Page')));
+  }
+
+  return $output;
 }
 
   /**
