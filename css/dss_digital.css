@@ -1913,11 +1913,18 @@ p {
 	color:#1A98DB;
 }
 
-/* reset carousel transition times */
+/* reset carousel transition length */
 
 .carousel-inner > .item {
 	
 	transition:left 2.5s ease-in-out 0s;
+}
+
+/* set color of active dot on carousel */
+
+.carousel-indicators .active {
+	
+	background-color: #F5F5F5;
 }
 
 
