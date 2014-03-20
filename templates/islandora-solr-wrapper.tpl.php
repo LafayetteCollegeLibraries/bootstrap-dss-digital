@@ -30,24 +30,7 @@
       <div class="islandora-page-controls">
       </div><!--/.islandora-page-controls -->
 
-<!--
       <?php print $islandora_discovery_form; ?>
--->
-    <form id="islandora-discovery-form" action="/" >
-
-      <div class="islandora-discovery-control title-sort-control">
-
-        <span>Sort by:</span>
-        <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
-        <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
-        <select id="field-sort-select">
-
-          <?php foreach($collection_fields as $value => $title): ?>
-	    <option value="<?php print $value; ?>"><?php print $title; ?></option>
-	  <?php endforeach; ?>
-        </select>
-      </div><!-- /.islandora-discovery-control -->
-    </form>
 
     <span class="islandora-basic-collection-display-switch">
       <ul class="links inline">

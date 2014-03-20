@@ -777,8 +777,8 @@ class DssMods extends SimpleXMLElement {
 
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
 
-	    dpm($element['value']);
-	    dpm( (string) $collection_elements[$i]);
+	    //dpm($element['value']);
+	    //dpm( (string) $collection_elements[$i]);
 
 	    for($i=0; $i<$collection_facets; $i++) {
 
@@ -922,7 +922,7 @@ class DssMods extends SimpleXMLElement {
 
     }
 
-    dpm( $mods_array);
+    //dpm( $mods_array);
 
     return $mods_array;
   }

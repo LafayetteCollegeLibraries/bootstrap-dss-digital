@@ -158,7 +158,7 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
   drupal_add_css(drupal_get_path('module', 'islandora_basic_collection') . '/css/islandora_basic_collection.base.css');
   drupal_add_css(drupal_get_path('module', 'islandora_basic_collection') . '/css/islandora_basic_collection.theme.css');
 
-  dpm($variables);
+  //dpm($variables);
 }
 
 function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $collection_fields, $sorted_field) {
@@ -219,16 +219,14 @@ function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $co
 									    ));
   */
 
-  $form['field_sort_select'] = array('#type' => 'fieldset',
-				     'field_sort_select' => array('#type' => 'select',
-								  //'#title' => t('Sort by:'),
-								  '#options' => $collection_fields,
-								  '#default_value' => $sorted_field,
-								  //'#description' => t('Sorting fields'),
-								  '#attributes' => array('id' => 'field-sort-select'),
-								  '#prefix' => $prefix,
-								  '#suffix' => $suffix,
-								  ));
+  $form['field_sort_select'] = array('#type' => 'select',
+				     '#options' => $collection_fields,
+				     '#default_value' => $sorted_field,
+				     //'#default_value' => 'dc.date.sort',
+				     '#attributes' => array('id' => 'field-sort-select'),
+				     '#prefix' => $prefix,
+				     '#suffix' => $suffix,
+				     );
 
   return $form;
 }
@@ -350,5 +348,5 @@ v  $elements = $variables['elements'];
     </form>
   */
 
-  dpm($variables);
+  //dpm($variables);
 }
