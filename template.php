@@ -885,7 +885,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       }
 
       unset($_breadcrumbs[count($_breadcrumbs) - 1]);
-      $_breadcrumbs[count($breadcrumbs) - 2] = array('title' => 'Collections', 'href' => 'projects');
+      $_breadcrumbs[count($breadcrumbs) - 2] = array('title' => 'Collections', 'href' => 'collections');
 
       $map = function($element) {
 
@@ -968,11 +968,11 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       $_breadcrumbs[] = array('title' => 'Search', 'href' => current_path());
       $count++;
 
-    } else if(array_key_exists('mdl_prints.description.series', $facets)) { // Home / Projects / [collection name] / [MDL series name] / Search
+    } else if(array_key_exists('mdl_prints.description.series', $facets)) { // Home / Collections / [collection name] / [MDL series name] / Search
 
       //dpm($_breadcrumbs);
-      $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Collections', 'href' => 'projects');
-      //$_breadcrumbs[] = array('title' => 'Collections', 'href' => 'projects');
+      $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Collections', 'href' => 'collections');
+      //$_breadcrumbs[] = array('title' => 'Collections', 'href' => 'collections');
       $_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $collection_node_map[$facets['cdm.Relation.IsPartOf']]);
 
       //$_breadcrumbs[] = array('title' => $facets['mdl_prints.description.series'], 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"' . '?f[1]=mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"');
@@ -983,10 +983,10 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
       $count += 2;
 
-    } else if(array_key_exists('cdm.Relation.IsPartOf', $facets)) { // Home / Projects / [collection name] / Browse
+    } else if(array_key_exists('cdm.Relation.IsPartOf', $facets)) { // Home / Collections / [collection name] / Browse
 
-      $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Collections', 'href' => 'projects');
-      //$_breadcrumbs[] = array('title' => 'Projects', 'href' => '/projects');
+      $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Collections', 'href' => 'collections');
+      //$_breadcrumbs[] = array('title' => 'Collections', 'href' => '/collections');
 
       // Hierarchical collections
       if(in_array($facets['cdm.Relation.IsPartOf'], $eastasia_subcollections)) {
