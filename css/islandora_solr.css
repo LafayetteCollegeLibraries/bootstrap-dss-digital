@@ -42,3 +42,12 @@ form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-ter
 
     margin-right: 15px;
 }
+
+/**
+ * Disable the metadata fields from being displayed within the grid layout
+ *
+ */
+.grid-solr-label, .grid-solr-value {
+
+    display: none;
+}

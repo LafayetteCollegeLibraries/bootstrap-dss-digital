@@ -8,7 +8,7 @@
 body{
 	
 	background-color:#FFFFFF;
-	min-width:532px;
+	min-width:580px;
 }
 
 /**
@@ -863,7 +863,7 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 
 .islandora-solr-search-results {
 	
-	margin-left:1%;
+	margin-left:2%;
 	margin-right:1%;
 } 
 
@@ -933,8 +933,6 @@ dd.solr-value {
 	
 	float:left;
 	clear:left;
-	margin-left:1%;
-	margin-right:1%;
 	width: 50%;
 }
 
@@ -972,6 +970,12 @@ dd.solr-value {
 	border-radius:2px;
 }
 
+.islandora-discovery-controls {
+	
+	margin-left:1%;
+	margin-right:1%;
+}
+
 /**
  * @author griffinj@lafayette.edu
  *
@@ -990,11 +994,6 @@ dd.solr-value {
     display: inline-block;
     margin-left: 1%;
     margin-right: 1%;    
-}
-
-.islandora-basic-collection-display-switch {
-	
-	margin-right:1%;
 }
 
 /* style grid view search results */
@@ -1131,6 +1130,16 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	
 	font-size: 15px;
     font-weight: bold;
+}
+
+.islandora-solr-facet-list {
+	
+	word-wrap:break-word;
+}
+
+.islandora-solr-facet {
+	
+	word-wrap:break-word;
 }
 
 /* get rid of styling on div surrounding each projects tab "page" within projects page */
@@ -1851,6 +1860,11 @@ p {
 	margin-bottom:0px;
 }
 
+.pagination ul > li > a, .pagination ul > li > span {
+	
+	padding:4px 10px;
+}
+
 /* center title in contact block on home page */
 
 #block-nodeblock-7 > .block-title {
@@ -1917,14 +1931,14 @@ p {
 
 .carousel-inner > .item {
 	
-	transition:left 2.5s ease-in-out 0s;
+	transition:left 2s ease-in-out 0s;
 }
 
 /* set color of active dot on carousel */
 
 .carousel-indicators .active {
 	
-	background-color: #F5F5F5;
+	background-color: #EEEEEE;
 }
 
 

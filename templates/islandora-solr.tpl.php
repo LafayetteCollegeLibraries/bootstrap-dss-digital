@@ -17,6 +17,7 @@
 <?php endif; ?>
 
 <div class="islandora islandora-solr-search-results">
+<!-- For the list layout -->
 <?php if($display == 'list'): ?>
 
     <?php if (empty($results)): ?>
@@ -163,6 +164,7 @@
     </ol><!-- /.islandora-solr-search-result-list -->
 
   <?php endif; ?>
+  <!-- For the grid layout -->
   <?php else: ?>
 
     <?php if (empty($results)): ?>
@@ -178,7 +180,7 @@
       ?>
 
       <dl class="islandora-basic-collection-object">
-          <dt class="islandora-basic-collection-thumb">
+        <dt class="islandora-basic-collection-thumb">
               <?php
                 $image = '<img src="' . url($result['thumbnail_url'], array('query' => $result['thumbnail_url_params'])) . '" />';
                 // Construct options array for l() function call.  Only include
@@ -195,7 +197,7 @@
               print l($image, $result['object_url'], $options);
             ?>
         </dt>
-        <dd class="islandora-basic-collection-caption">
+        <dd class="islandora-basic-collection-caption <?php print $result['class']; ?>">
 
 	      <?php
 
@@ -220,6 +222,22 @@
                   print l($result['solr_doc']['dc.title']['value'], $result['object_url'], $options);
               ?>
 	</dd>
+
+	<!-- Metadata fields for the purposes of sorting -->
+        <?php foreach($result['solr_doc'] as $key => $value): ?>
+          <dt class="grid-solr-label solr-label
+              <?php
+                print $value['class'];
+                print $row_field == 0 ? ' first' : '';
+                print $row_field == $max_rows ? ' last' : '';
+              ?>">
+              <?php print $value['label']; ?>
+          </dt>
+          <dd class="grid-solr-value solr-value <?php print $value['class']; ?>">
+
+              <?php print preg_match('/(?:Lower|Upper)/', $value['label']) ? date('F, Y', strtotime($value['value'])) : $value['value']; ?>
+          </dd>
+        <?php endforeach; ?>
     </dl><!--/.islandora-basic-collection-object -->
   
   <?php
