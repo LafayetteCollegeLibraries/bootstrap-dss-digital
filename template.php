@@ -45,6 +45,52 @@ function bootstrap_dss_digital_preprocess_region(&$variables) {
   }
 }
 
+function _bootstrap_dss_digital_user_logout($account) {
+
+  if (variable_get('user_pictures', 0)) {
+    
+    if (!empty($account->picture)) {
+
+      if (is_numeric($account->picture)) {
+
+        $account->picture = file_load($account->picture);
+      }
+      if (!empty($account->picture->uri)) {
+
+        $filepath = $account->picture->uri;
+      }
+    } elseif (variable_get('user_picture_default', '')) {
+
+      $filepath = variable_get('user_picture_default', '');
+    }
+
+    if (isset($filepath)) {
+
+      $alt = t("@user's picture", array('@user' => format_username($account)));
+      // If the image does not have a valid Drupal scheme (for eg. HTTP),
+      // don't load image styles.
+      if (module_exists('image') && file_valid_uri($filepath) && $style = variable_get('user_picture_style', '')) {
+
+        $user_picture = theme('image_style', array('style_name' => $style, 'path' => $filepath, 'alt' => $alt, 'title' => $alt));
+      }
+      else {
+
+        $user_picture = theme('image', array('path' => $filepath, 'alt' => $alt, 'title' => $alt));
+      }
+
+      /*
+       * Generate the CAS logout link
+       *
+       */
+      $attributes = array('https' => TRUE,
+			  'attributes' => array('title' => t('View user profile.')),
+			  'html' => TRUE,
+			  );
+      return l($user_picture, "user/logout", $attributes);
+    }
+  }
+}
+
 /**
  * Preprocess variables for page.tpl.php
  *
@@ -164,10 +210,16 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 
     // For the user thumbnail
     global $user;
-    $user_view = user_view($user);
-    $variables['user_picture'] = drupal_render($user_view['user_picture']);
+
+    //$user_view = user_view($user);
+    //$variables['user_picture'] = drupal_render($user_view['user_picture']);
+    $variables['user_picture'] = _bootstrap_dss_digital_user_logout($user);
   }
 
+  /**
+   * Variables for the Islandora simple_search Block
+   *
+   */
   // A search button must be passed if this is being viewed with a mobile browser
 
   $search_icon = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/SearchIcon.png',
