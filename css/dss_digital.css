@@ -1970,3 +1970,28 @@ header {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+
+
+
+
+
+/* printing style sheet */
+
+@media print {
+	
+	.navbar-inner {
+		
+		display:none;
+	}
+	
+	a:after {
+		
+		display:none;
+	}
+	
+	p.lead {
+		
+		text-align:left;
+	}
+}
