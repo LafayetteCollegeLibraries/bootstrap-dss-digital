@@ -228,7 +228,8 @@
 	 * Resolves issue originating from the request for increased intervals between sliding carousel images
 	 *
 	 */
-	$('#carousel-featured-collection').carousel({interval: 8000});
+	//$('#carousel-featured-collection').carousel({interval: 8000});
+	$('#carousel-featured-collection').carousel({interval: 2000});
 	$('#carousel-featured-collection').carousel('cycle');
 
 	// maxPosition: 216

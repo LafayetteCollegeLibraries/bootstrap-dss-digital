@@ -351,14 +351,30 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	border:1px solid;
 	border-color:#AAAAAA;
 	border-radius:2px;
-	max-width:570px;
-	min-height:304px;
+	width:515px;
+	height:220px;
+	clear:none !important;
+	float:left;
+	margin-right:20px;
 }
 
 .contact-profile > p, .contact-profile > h4, .contact-profile > h5 {
 	
 	margin-left:10px;
 	text-align:left;
+}
+
+.contact-profile > img {
+	
+	width:150px !important;
+	height:205px !important;
+}
+
+#node-11 {
+	
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 /* carousel caption styling */
