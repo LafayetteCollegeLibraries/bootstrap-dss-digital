@@ -19,7 +19,7 @@
         <div class="modal-body">
 
           <?php print render($content); ?>
-          <button id="share-modal-help" class="btn btn-default" data-content="Share help message." data-placement="bottom" data-toggle="popover" data-container="body" type="button"><i class="icon-large" title="Click for more information"></i></button>
+          <button id="share-modal-help" class="btn btn-default" data-content="To post a link to the page of our site you are currently on to your Facebook or Twitter account, click either of these buttons to automatically do so." data-placement="bottom" data-toggle="popover" data-container="body" type="button"><i class="icon-large" title="Click for more information"></i></button>
         </div>
 
 
