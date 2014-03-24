@@ -351,30 +351,45 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	border:1px solid;
 	border-color:#AAAAAA;
 	border-radius:2px;
-	width:515px;
-	height:220px;
-	clear:none !important;
+	width:425px;
+	height:215px;
+	clear:none;
 	float:left;
-	margin-right:20px;
+	margin-left:1%;
 }
 
 .contact-profile > p, .contact-profile > h4, .contact-profile > h5 {
 	
-	margin-left:10px;
 	text-align:left;
+	float:right;
+	width:265px;
+}
+
+.contact-profile > p {
+	
+	margin-bottom:10px;
+}
+
+.contact-profile > h4 {
+	
+	margin:5px 0px;
+}
+
+.contact-profile > h5 {
+	
+	margin-top:5px;
+	margin-bottom:10px;
 }
 
 .contact-profile > img {
 	
-	width:150px !important;
-	height:205px !important;
-}
-
-#node-11 {
-	
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
+	width:140px;
+	height:191px;
+	float:left; 
+	margin-bottom:10px;
+	margin-left:5px;  
+	margin-right:15px;
+	margin-top:5px;
 }
 
 /* carousel caption styling */
@@ -671,11 +686,6 @@ html.js body.html header#navbar.navbar div#share-modal.lafayette-dss-modal div.m
 	padding:6px;
 	margin-left:5px;
 	display:none;
-}
-
-.contact-profile > p {
-	
-	margin-bottom:15px;
 }
 
 /* style browsing tabs for larger collections */
@@ -1992,6 +2002,7 @@ header {
 
 
 
+
 /* printing style sheet */
 
 @media print {
@@ -2010,4 +2021,26 @@ header {
 		
 		text-align:left;
 	}
+	
+	.navigator {
+		
+		display:none !important;
+	}
+	
+	.openseadragon-controls-navigator {
+		
+		display:none !important;
+	}
+	
+	.referencestrip {
+		
+		display:none !important;
+	}
+	
+	.openseadragon-controls-container > canvas {
+		
+		max-height:100% !important;
+		height:auto !important;
+	}
+	
 }
