@@ -1088,6 +1088,11 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Repositories';
 	break;
 
+      case 'node/11':
+
+	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'People';
+	break;
+
       case 'node/45':
 
 	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Collections';
