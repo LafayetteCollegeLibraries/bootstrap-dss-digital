@@ -20,7 +20,8 @@
 
           <?php print $content; ?>
         </div>
-          <button id="search-modal-help" class="btn btn-default" data-content="Search help text." data-placement="bottom" data-toggle="popover" data-container="body" type="button"><i class="icon-large" title="Click for more information"></i></button>
+          <button id="search-modal-help" class="btn btn-default" data-content="Search help text." data-placement="bottom" data-toggle="popover" data-container="body" type="button"><i class="icon-large" 
+          	title="Click for more information"></i></button>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
