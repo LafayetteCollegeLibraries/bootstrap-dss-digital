@@ -339,7 +339,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.jpg" alt="1896 portrait of football team on steps of Pardee Hall" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/historicalphotos">Historical Photograph Collection</a></p> 
-                <p class="carousel-caption-text"><a href="collections/historicalphotos">Portrait of the Class of 1900 at the Senior Fence</a></p>
+                <p class="carousel-caption-text"><a href="https://digital.stage.lafayette.edu/islandora/object/islandora:59065">Portrait of the Class of 1900 at the Senior Fence</a></p>
             </div>
         </div>
         <div class="item">
@@ -353,7 +353,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.jpg" alt="Predella scene from a lithograph portrait of Lafayette by Antoine Maurin (1797-1860)" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/lafayetteprints">Marquis de Lafayette Prints Collection</a></p> 
-                <p class="carousel-caption-text"><a href="collections/lafayetteprints">Scene from a portrait of Lafayette by Antoine Maurin</a></p>
+                <p class="carousel-caption-text"><a href="https://digital.stage.lafayette.edu/collections/lafayetteprints/mdl-prints-0330">Scene from a portrait of Lafayette by Antoine Maurin</a></p>
             </div>
         </div>                         
         <div class="item">
