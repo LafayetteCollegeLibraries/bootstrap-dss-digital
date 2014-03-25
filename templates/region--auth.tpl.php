@@ -20,7 +20,7 @@
 
           <?php print render($content); ?>
 
-	  <button id="auth-modal-help" class="btn btn-default" data-content="Authentication help message." data-placement="bottom" data-toggle="popover" data-container="body" type="button" data-original-title="" title=""><i class="icon-large" title="Click for more information"></i></button>
+	  <button id="auth-modal-help" class="btn btn-default" data-content="Logging in with Lafayette College credentials can grant access to restricted content, while logging in through credentials from another site will enable social feature such as liking on Facebook." data-placement="bottom" data-toggle="popover" data-container="body" type="button" data-original-title="" title=""><i class="icon-large" title="Click for more information"></i></button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
