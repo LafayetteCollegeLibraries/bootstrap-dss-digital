@@ -1992,6 +1992,13 @@ p {
 #node-3 > div > div > div > h1, #node-3 > div > div > div > h2, #node-3 > div > div > div > h3 {
 	
 	line-height:24px;
+}
+
+/* style navbar widget help popovers */
+
+.popover-content {
+	
+	text-align:justify;
 } 
 
 
