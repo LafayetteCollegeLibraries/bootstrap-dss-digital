@@ -346,7 +346,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.jpg" alt="June 2, 1893 issue" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/newspaper">Lafayette Newspaper</a></p> 
-                <p class="carousel-caption-text"><a href="collections/newspaper">June 2, 1893 issue</a></p>
+                <p class="carousel-caption-text"><a href="http://digital.stage.lafayette.edu/islandora/object/islandora:50527">June 2, 1893 issue</a></p>
             </div>
         </div>
         <div class="item">
