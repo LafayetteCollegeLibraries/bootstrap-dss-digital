@@ -723,6 +723,7 @@ class DssMods extends SimpleXMLElement {
 	 */
 	//dpm(array($relation_is_part_of_value, $element['label'], $element['value']));
 	
+	$element['raw_value'] = $element['value'];
 	if(array_key_exists($relation_is_part_of_value, $ISLANDORA_MARC_METADB_MAP)) {
 
 	  if(array_key_exists($element['label'], $ISLANDORA_MARC_METADB_MAP[$relation_is_part_of_value])) {
@@ -733,7 +734,6 @@ class DssMods extends SimpleXMLElement {
 	    }
 	  }
 	}
-	$element['raw_value'] = $element['value'];
 
 	if($is_facet) {
 
