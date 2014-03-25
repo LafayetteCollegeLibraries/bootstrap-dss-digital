@@ -19,8 +19,12 @@
         <div class="modal-body">
 
           <?php print $content; ?>
+          <button id="search-modal-help" class="btn btn-default" data-content="Search help message." data-placement="bottom" data-toggle="popover" data-container="body" type="button"><i class="icon-large" title="Click for more information"></i></button>
         </div>
+<<<<<<< HEAD
           <button id="search-modal-help" class="btn btn-default" data-content="To add multiple search terms to your query, please use the \"+\" button above.  Each one you add can be set to a different field using the dropdown to the left of each, and you can also choose whether or not each field will be joined by an \"and,\" \"or,\" or \"not\" operator." data-placement="bottom" data-toggle="popover" data-container="body" type="button"><i class="icon-large" title="Click for more information"></i></button>
+=======
+>>>>>>> parent of 5ee006e... DSSSM-598 #time 17m added text to both
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
