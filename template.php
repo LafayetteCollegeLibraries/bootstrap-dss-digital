@@ -357,10 +357,10 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             </div>
         </div>                         
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening lines of Ode to the Athenian Society, first printing, 1692." />
+            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening lines of Baucis and Philemon, London, 1711" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/spp">Swift Poems Project</a></p>
-                <p class="carousel-caption-text"><a href="collections/spp">Opening lines of "Ode to the Athenian Society," first printing, 1692.</a></p>
+                <p class="carousel-caption-text"><a href="collections/spp">Opening lines of "Baucis and Philemon," London, 1711</a></p>
             </div>
         </div>
     </div>
