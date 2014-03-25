@@ -324,8 +324,8 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
         <div class="item active">
             <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.jpg" alt="Detail of a Japanese postcard depicting the ceremony for rebuilding Ise Shrine, ca. 1918-31." />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading"><a href="collections/eastasia">East Asia Image Collections</a></p>
-                <p class="carousel-caption-text"><a href="http://digital.stage.lafayette.edu/islandora/object/islandora%3A33684">Japanese postcard depicting Ise Shrine rebuilding ceremony</a></p>
+                <p class="carousel-caption-heading"><a href="collections/eastasia">East Asia Image Collection</a></p>
+                <p class="carousel-caption-text"><a href="http://digital.lafayette.edu/collections/eastasia/pa-koshitsu/ia0002">Japanese postcard depicting Ise Shrine rebuilding ceremony</a></p>
             </div>
         </div>
         <div class="item">
