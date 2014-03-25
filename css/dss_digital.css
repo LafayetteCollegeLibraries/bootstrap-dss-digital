@@ -394,6 +394,13 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	margin-top:5px;
 }
 
+#postdoc > img {
+	
+	width:133px;
+	height:182px;
+	border:1px solid #CCCCCC;
+}
+
 /* carousel caption styling */
 
 .carousel-caption {
