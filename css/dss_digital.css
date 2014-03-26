@@ -2011,6 +2011,13 @@ p {
 	display:block;
 }
 
+/* text-justification for page headings */
+
+#page-header > p {
+	
+	text-align:left;
+}
+
 
 
 
