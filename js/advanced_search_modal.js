@@ -469,6 +469,9 @@
 	  if(that.$element.attr('id') == 'contact') {
 
 	      that.$element.show();
+
+	      // Refactor into CSS (?)
+	      // Explicitly modify the classes using an invocation of window.setTimeout()
 	      window.setTimeout(function() {
 
 		      jQuery('#contact.lafayette-dss-modal .modal-dialog').addClass('shown-faded');
@@ -513,10 +516,18 @@
 				      if(!$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
 					 !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length ) {
 					      
+					  /**
+					   * @todo Enable this before deployment
+					   *
+					   */
 					  //that.hide();
 				      }
 				  } else {
 
+				      /**
+				       * @todo Enable this before deployment
+				       *
+				       */
 				      //that.hide();
 				  }
 			      }, 3000);

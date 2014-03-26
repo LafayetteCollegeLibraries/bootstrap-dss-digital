@@ -110,7 +110,8 @@
     $lead_content = $title;
   } else {
 
-    $lead_content = l($title, current_path());
+    dpm(array($title));
+    $lead_content = l($title, current_path(), array('HTML' => TRUE));
   }
 ?>
      <p class="lead"><?php print $lead_content ?></p>

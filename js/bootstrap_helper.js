@@ -232,42 +232,20 @@
 	//$('#carousel-featured-collection').carousel({interval: 2000});
 	$('#carousel-featured-collection').carousel('cycle');
 
+	/**
+	 * Functionality for the Snap.js integration
+	 *
+	 */
 	// maxPosition: 216
 	// maxPosition: 240
 
-	/*
-	var snapper = new Snap({
-
-                element: document.getElementById('content'),
-		disable: 'right',
-		tapToClose: false,
-		touchToDrag: false,
-		maxPosition: 1
-            });
-	*/
-
 	// Work-around
-	//$(document).data('animating.lastSnapperState', 'closed');
 	$(document).data('lastSnapperState', 'closed');
 
-	/*
-	snapper.on('animating', function(e) {
-
-	    }).on('animated', function(e) {
-		    
-		    if(snapper.state().state != $(document).data('lastSnapperState')) {
-
-			$('#content .main-container').toggleClass('snap-expand-left');
-			//$('#content').toggleClass('snap-expand-left');
-			$('.drawers .left-drawer').toggleClass('snap-expand-left');
-		    }
-
-		    $(document).data('lastSnapperState', snapper.state().state);
-		});
-
-
-	*/
-
+	/**
+	 * For restricting the rendering of the panel to islandora/search paths
+	 *
+	 */
 	// Work-around
 	// Integrate into the Drupal Object
 	if(/\/islandora/.exec(document.URL)) {
@@ -329,26 +307,6 @@
 	    }
 	}
 
-	/*
-	$("#slide-panel").buildMbExtruder({
-
-                position:"left",
-		    width:300,
-		    extruderOpacity:.8,
-
-		    hidePanelsOnClose:false,
-		    accordionPanels:false,
-		    onExtOpen:function(){},
-		    onExtContentLoad:function(){$("#slide-panel").openPanel();},
-		    onExtClose:function(){}
-            });
-
-	$("#slide-panel-button").click(function(e) {
-
-		$('#slide-panel').openMbExtruder(true);
-		//$('#slide-panel').openPanels();
-	    });
-	*/
     };
 
     // Ensure that the execution of all bootstrap functionality lies within a modular, Drupal-compliant context

@@ -99,6 +99,8 @@ function _bootstrap_dss_digital_user_logout($account) {
 
 function bootstrap_dss_digital_preprocess_page(&$variables) {
 
+  dpm($variables);
+
   // Add information about the number of sidebars.
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
     $variables['columns'] = 3;
