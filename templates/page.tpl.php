@@ -116,7 +116,8 @@
      * @todo Refactor
      * @todo Identify where Object labels are processed
      */
-    $title = htmlspecialchars_decode($title);
+    $title = html_entity_decode($title);
+    $title = preg_replace('/&#039;/', "'", $title);
     $lead_content = l($title, current_path(), array('HTML' => TRUE));
   }
 ?>
