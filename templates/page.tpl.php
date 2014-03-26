@@ -110,7 +110,13 @@
     $lead_content = $title;
   } else {
 
-    dpm(array($title));
+    /**
+     * Implemented for the sake of conserving time
+     * Resolves DSSSM-423
+     * @todo Refactor
+     * @todo Identify where Object labels are processed
+     */
+    $title = htmlspecialchars_decode($title);
     $lead_content = l($title, current_path(), array('HTML' => TRUE));
   }
 ?>
