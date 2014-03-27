@@ -121,6 +121,7 @@ function bootstrap_dss_digital_pager_next($variables) {
 
   global $pager_page_array, $pager_total;
 
+  /*
   dpm( array('trace'));
   dpm($pager_page_array);
   dpm($pager_total);
@@ -128,6 +129,7 @@ function bootstrap_dss_digital_pager_next($variables) {
   dpm($element);
   dpm($interval);
   dpm($parameters);
+  */
 
   $output = '';
 

@@ -901,7 +901,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				 'Lafayette World War II Casualties' => 'node/43',
 				 );
 
-    dpm($facets);
+    //dpm($facets);
 
     $collection_elements = array();
 
@@ -911,7 +911,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       //$this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
       //$relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
 
-      dpm( $object['MODS']->content);
+      //dpm( $object['MODS']->content);
 
       try {
 

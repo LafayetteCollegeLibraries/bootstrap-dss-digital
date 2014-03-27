@@ -512,12 +512,18 @@ form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-sco
 
 /* style dropdown for collection radio selection */
 
+/**
+ * Disabled by griffinj in response to issue DSSSM-617
+ *
+ */
+/*
 form#islandora-dss-solr-advanced-search-form div div.control-group.form-type-select.form-item-collection.form-item {
 	
 	float:right;
 	padding-right:144px;
 	padding-top:46px;
 }
+*/
 
 /* set width of search selection fields */
 
