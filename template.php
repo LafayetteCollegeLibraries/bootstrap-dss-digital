@@ -676,7 +676,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
       $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
       //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
 
-      //dpm($mods_str);
+      dpm($mods_str);
       //dpm(islandora_solr_get_fields('result_fields', FALSE));
 
       $mods_object = new DssMods($mods_str);

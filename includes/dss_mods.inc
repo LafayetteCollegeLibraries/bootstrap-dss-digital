@@ -291,6 +291,8 @@ class DssMods extends SimpleXMLElement {
 			    //'Description.Indicia.Japanese' => "./mods:note[@xml:lang='en-US']",
 			    //'Description.Indicia.Korean' => "./mods:note[@xml:lang='en-US']",
 
+			    'Description.Text.English' => './mods:abstract[@xml:lang="en-US"]',
+
 			    'Coverage.Location' => array('xpath' => "./mods:subject/mods:geographic",
 							 'facet' => true),
 			    'Coverage.Location.Country' => array('xpath' => "./mods:subject/mods:hierarchicalGeographic/mods:country",
@@ -301,10 +303,9 @@ class DssMods extends SimpleXMLElement {
 						   'facet' => true,
 						   'field' => 'eastasia.Contributors.Digital'),
 
-			    //'Relation.SeeAlso' => "./mods:relatedItem[@type='references']/mods:note[@type='citation']",
-			    'Relation.SeeAlso' => array('xpath' => "./mods:note[@type='admin']",
-							'field' => 'cdm.Relation.IsPartOf', // Work-around; Resolve using Solr interface
-							'facet' => true),
+			    'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
+							 'field' => 'cdm.Relation.IsPartOf', // Work-around; Resolve using Solr interface
+							 'facet' => true),
 
 			    'Description.Citation' => "./mods:note[@type='citation']",
 			    'Format.Medium' => array('xpath' => "./mods:physicalDescription/mods:form",

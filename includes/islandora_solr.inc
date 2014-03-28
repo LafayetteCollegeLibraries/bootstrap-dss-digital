@@ -189,11 +189,11 @@ function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $co
 
    */
   $prefix = '<div class="islandora-discovery-control title-sort-control"><span>Sort by:</span>';
-  $prefix .= l('Asc', NULL, array('attributes' => array('class' => array('field-sort'),
+  $prefix .= l('Asc', NULL, array('attributes' => array('class' => array('field-sort', 'active'),
 							   'id' => 'field-sort-asc'),
 				     'external' => TRUE,
 				     'fragment' => FALSE));
-  $prefix .= l('Desc', NULL, array('attributes' => array('class' => array('field-sort', 'active'),
+  $prefix .= l('Desc', NULL, array('attributes' => array('class' => array('field-sort'),
 							   'id' => 'field-sort-desc'),
 				     'external' => TRUE,
 				     'fragment' => FALSE));
