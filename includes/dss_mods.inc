@@ -292,6 +292,9 @@ class DssMods extends SimpleXMLElement {
 			    //'Description.Indicia.Korean' => "./mods:note[@xml:lang='en-US']",
 
 			    'Description.Text.English' => './mods:abstract[@xml:lang="en-US"]',
+			    'Description.Text.Chinese' => "./mods:abstract[@xml:lang='zh']",
+			    'Description.Text.Japanese' => "./mods:abstract[@xml:lang='Jpan']",
+			    'Description.Text.Korean' => "./mods:abstract[@xml:lang='Kore']",
 
 			    'Coverage.Location' => array('xpath' => "./mods:subject/mods:geographic",
 							 'facet' => true),
@@ -339,6 +342,7 @@ class DssMods extends SimpleXMLElement {
 			    'Date.Original' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='original']",
 						     'facet' => true,
 						     'date' => true),
+			    'Contributor.Donor' => "./mods:note[@type='acquisition']",
 
 			    /*
 			    'Creator.Digital' => "./mods:note[@type='creation credits']",
