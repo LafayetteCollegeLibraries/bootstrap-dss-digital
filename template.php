@@ -83,9 +83,18 @@ function _bootstrap_dss_digital_user_logout($account) {
        *
        */
       $attributes = array('https' => TRUE,
-			  'attributes' => array('title' => t('View user profile.')),
+			  'attributes' => array('title' => t('Log out.')),
 			  'html' => TRUE,
 			  );
+
+      // If we're currently authenticated by CAS, this apparently does not function...
+      if(cas_user_is_logged_in()) {
+
+	global $base_url;
+	$attributes['query'] = array('destination' => current_path());
+	return l($user_picture, 'caslogout', $attributes);
+      }
+
       return l($user_picture, "user/logout", $attributes);
     }
   }
@@ -183,10 +192,25 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
    */
   //  $variables['auth_anchor'] = '<a data-toggle="lafayette-dss-modal" data-target="#auth-modal" data-width-offset="0px" data-height-offset="30px"><div class="auth-icon navbar-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/UserIcon.png" /><span>Log In</span></div></a>';
   global $base_url;
-  $variables['auth_anchor'] = l('<div class="auth-icon navbar-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/UserIcon.png" /><span>Log In</span></div>', 'cas', array('html' => TRUE, 'https' => true));
+  $variables['auth_anchor'] = l('<div class="auth-icon navbar-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/UserIcon.png" /><span>Log In</span></div>',
+				'cas',
+				array('html' => TRUE,
+				      'https' => true,
+				      'query' => array('destination' => current_path())
+				      )
+				);
 
   // The "Log Out" link
-  $variables['logout_anchor'] = l(t('Log Out'), 'user/logout');
+  // This needs to be refactored for integration with the CAS module
+  // If we're currently authenticated by CAS, this apparently does not function...
+  if(cas_user_is_logged_in()) {
+
+    global $base_url;
+    $variables['logout_anchor'] = l(t('Log Out'), 'caslogout', array('query' => array('destination' => current_path())));
+  } else {
+
+    $variables['logout_anchor'] = l(t('Log Out'), 'user/logout');
+  }
 
   // The "Share" link
   //$variables['share_anchor'] = l(t('Share'), '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
