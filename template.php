@@ -348,53 +348,55 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.jpg" alt="Detail of a Japanese postcard depicting the ceremony for rebuilding Ise Shrine, ca. 1918-31." />
+            <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.jpg" alt="Detail of a Japanese postcard depicting the ceremony for rebuilding Ise Shrine, ca. 1918-31." />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/eastasia">East Asia Image Collection</a></p>
                 <p class="carousel-caption-text"><a href="http://digital.lafayette.edu/collections/eastasia/pa-koshitsu/ia0002">Japanese postcard depicting Ise Shrine rebuilding ceremony</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselELC.jpg" alt="1811 loan records for George Wolf, later Governor of Pennsylvania" />
+            <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselELC.jpg" alt="1811 loan records for George Wolf, later Governor of Pennsylvania" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/eastonlibrary">Easton Library Company Database</a></p>
                 <p class="carousel-caption-text"><a href="collections/eastonlibrary">1811 loan records for George Wolf, Governor of Pennsylvania</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.jpg" alt="1896 portrait of football team on steps of Pardee Hall" />
+            <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.jpg" alt="1896 portrait of football team on steps of Pardee Hall" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/historicalphotos">Historical Photograph Collection</a></p> 
                 <p class="carousel-caption-text"><a href="https://digital.stage.lafayette.edu/islandora/object/islandora:59065">Portrait of the Class of 1900 at the Senior Fence</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.jpg" alt="June 2, 1893 issue" />
+            <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.jpg" alt="June 2, 1893 issue" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/newspaper">Lafayette Newspaper</a></p> 
                 <p class="carousel-caption-text"><a href="http://digital.stage.lafayette.edu/islandora/object/islandora:50527">June 2, 1893 issue</a></p>
             </div>
         </div>
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.jpg" alt="Predella scene from a lithograph portrait of Lafayette by Antoine Maurin (1797-1860)" />
+            <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.jpg" alt="Predella scene from a lithograph portrait of Lafayette by Antoine Maurin (1797-1860)" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/lafayetteprints">Marquis de Lafayette Prints Collection</a></p> 
                 <p class="carousel-caption-text"><a href="https://digital.stage.lafayette.edu/collections/lafayetteprints/mdl-prints-0330">Scene from a portrait of Lafayette by Antoine Maurin</a></p>
             </div>
         </div>                         
         <div class="item">
-            <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening lines of Baucis and Philemon, London, 1711" />
+            <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening lines of Baucis and Philemon, London, 1711" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/spp">Swift Poems Project</a></p>
                 <p class="carousel-caption-text"><a href="collections/spp">Opening lines of "Baucis and Philemon," London, 1711</a></p>
             </div>
         </div>
     </div>
-    <!-- Controls --> <a class="left carousel-control" href="#carousel-featured-collection" data-slide="prev">                                                                                                                 
-    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselLeft.png" alt="carousel left nav button" />
-   </a>  <a class="right carousel-control" href="#carousel-featured-collection" data-slide="next">                                                                                                                
-    <img src="sites/all/themes/bootstrap_dss_digital/files/CarouselRight.png" alt="carousel right nav button" />
-   </a> 
+
+    <!-- Controls --> <a class="left carousel-control" href="#carousel-featured-collection" data-slide="prev">
+    <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselLeft.png" alt="carousel left nav button" />
+
+   </a>  <a class="right carousel-control" href="#carousel-featured-collection" data-slide="next">
+    <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselRight.png" alt="carousel right nav button" />
+   </a>
 </div>';
     
   // Adding the tabs for certain nodes
