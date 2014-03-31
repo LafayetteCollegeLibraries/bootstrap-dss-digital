@@ -143,16 +143,36 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     $variables['secondary_nav']['#theme_wrappers'] = array('menu_tree__secondary');
   }
 
-  // The "Contact Us" link
-  $variables['contact_anchor'] = l(t('Contact Us'), '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
-										    'data-target' => '#contact',
-										    'data-anchor-align' => 'false'),
-							      'fragment' => ' ',
-							      'external' => TRUE));
-
+  /**
+   *browscap integration
+   * Capture from the User-Agent value the type of device being used to browse the page
+   * (Probably should be decoupled and integrated into CSS and JavaScript)
+   *
+   */
   $browser = browscap_get_browser();
-
   $is_smartphone_browser = $browser['ismobiledevice'] && preg_match('/iPhone|(?:Android.*?Mobile)|(?:Windows Phone)/', $browser['useragent']);
+
+  /**
+   * Ensure that the "Contact Us" link directs users to the Drupal Node only for non-smartphone devices
+   * Resolves DSSSM-635
+   * @todo Refactor for specifying the path to the "Contact Us" form
+   *
+   */
+  if($is_smartphone_browser) {
+
+    // The "Contact Us" link (to the path "contact")
+    $variables['contact_anchor'] = l(t('Contact Us'), 'contact');
+  } else {
+  
+    // The "Contact Us" link
+    $variables['contact_anchor'] = l(t('Contact Us'), '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
+										      'data-target' => '#contact',
+										      'data-anchor-align' => 'false'),
+								'fragment' => ' ',
+								'external' => TRUE));
+  }
+
+
 
   // Different images must be passed based upon the browser type
 
