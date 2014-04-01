@@ -296,14 +296,19 @@
 	     *
 	     * @todo Refactor into a single logical condition
 	     */
-	    var isSearch = Object.keys(getParams).map(function(e, i) {
 
-		    return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) && !/dc\.date\.sort/.exec(getParams[e]) && e != 'page';
-		}).reduce(function(u, v) { return u || v });
+	    // This can break OpenSeadragon
+	    if(Object.keys(getParams).length > 0) {
 
-	    if(isSearch) {
+		var isSearch = Object.keys(getParams).map(function(e, i) {
 
-		$('.snap-trigger').click();
+			return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) && !/dc\.date\.sort/.exec(getParams[e]) && e != 'page';
+		    }).reduce(function(u, v) { return u || v });
+
+		if(isSearch) {
+		    
+		    $('.snap-trigger').click();
+		}
 	    }
 	}
 
