@@ -2171,4 +2171,40 @@ header {
 		height:auto !important;
 	}
 	
+	#book-viewer {
+		
+		height:280px;
+	}
+	
+	.islandora-large-image-content-wrapper {
+		
+		height:280px;
+	}
+	
+	.contact-profile {
+		
+		clear:both;
+		float:none;
+	}
+	
+	#john {
+		
+		page-break-after:always;
+	}
+	
+	#paul {
+		
+		page-break-after:always;
+	}
+	
+	#toolbar, .nav.nav-tabs, .alert.alert-block.alert-success {
+		
+		display:none;
+	}
+	
+	#page-header {
+		
+		text-align:left;
+	}
+	
 }
