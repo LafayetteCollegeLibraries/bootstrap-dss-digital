@@ -1759,6 +1759,28 @@ body.no-sidebars .islandora-large-image-content {
 	height:456px;
 }
 
+/* style contact form labels */
+
+#webform-component-your-name > label {
+	
+	width:82px;
+}
+
+#webform-component-your-e-mail-address > label {
+	
+	width:140px;
+}
+
+#webform-component-subject > label {
+	
+	width:60px;
+}
+
+#webform-component-message > label {
+	
+	width:68px;
+}
+
 /* style pdf viewer */
 
 .toolbarField:hover, .toolbarField:focus {
