@@ -527,6 +527,11 @@ form#islandora-dss-solr-advanced-search-form div div.control-group.form-type-sel
 
 /* set width of search selection fields */
 
+#edit-collection {
+	
+	width:344px;
+}
+
 div.controls {
 	
 	width:220px;
