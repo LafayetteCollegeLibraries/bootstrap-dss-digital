@@ -21,7 +21,7 @@ function bootstrap_dss_digital_pager_first($variables) {
   // If we are anywhere but the first page
   if ($pager_page_array[$element] > 0) {
     
-    $output = theme('pager_link', array('text' => $text, 'page_new' => pager_load_array(0, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'First Page')));
+    $output = theme('pager_link', array('text' => $text, 'page_new' => pager_load_array(0, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'Go to First Page')));
   }
 
   return $output;
@@ -46,6 +46,12 @@ function bootstrap_dss_digital_pager_previous($variables) {
 
     $attributes = array();
   }
+
+  /**
+   * @author griffinj
+   * This permits one to override the title value based upon the interval passed during the function invocation
+   *
+   */
   switch($interval) {
 
   case 1:
@@ -107,11 +113,11 @@ function bootstrap_dss_digital_pager_next($variables) {
 
   case 1:
 
-    $attributes['title'] = "Next 1 Page";
+    $attributes['title'] = "Forward 1 Page";
     break;
   case 10:
 
-    $attributes['title'] = "Next $interval Pages";
+    $attributes['title'] = "Forward $interval Pages";
     break;
   default:
 
@@ -165,7 +171,7 @@ function bootstrap_dss_digital_pager_last($variables) {
   // If we are anywhere but the last page
   if ($pager_page_array[$element] < ($pager_total[$element] - 1)) {  
 
-    return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'Last Page')));
+    return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'Go to Last Page')));
   }
 
   return $output;
