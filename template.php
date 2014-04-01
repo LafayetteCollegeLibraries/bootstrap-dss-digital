@@ -108,8 +108,6 @@ function _bootstrap_dss_digital_user_logout($account) {
 
 function bootstrap_dss_digital_preprocess_page(&$variables) {
 
-  dpm($variables);
-
   // Add information about the number of sidebars.
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
     $variables['columns'] = 3;
@@ -552,22 +550,12 @@ function bootstrap_dss_digital_theme($existing, $type, $theme, $path) {
   return array('islandora/object/%islandora_object' => $existing['islandora/object/%islandora_object']);
   */
 
-  //dpm($existing);
-  //dpm($items);
-
   return $items;
-}
-
-function bootstrap_dss_digital_menu_alter(&$items) {
-
-  //dpm($items);
 }
 
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
   $registry['hybridauth_widget']['file'] = 'template';
-  
-  //dpm($registry['pager']);
 
   // Work-around
   //$registry['islandora_basic_collection_wrapper']['preprocess functions'] = array('bootstrap_dss_digital_preprocess_islandora_basic_collection');
@@ -665,7 +653,7 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
     //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
 
-    dpm($mods_str);
+    //dpm($mods_str);
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
     
@@ -692,8 +680,6 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
       $value['label'] = '';
     }
   }
-
-  dpm($variables);
 }
 
 //module_load_include('inc', 'bootstrap_dss_digital', 'includes/dssMods');
@@ -721,9 +707,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
       $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
       //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
-
-      dpm($mods_str);
-      //dpm(islandora_solr_get_fields('result_fields', FALSE));
 
       $mods_object = new DssMods($mods_str);
     } catch (Exception $e) {
@@ -763,8 +746,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables)
 
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
     //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
-
-    //dpm($mods_str);
 
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
@@ -811,20 +792,14 @@ define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 52);
 
 function bootstrap_dss_digital_breadcrumb($variables) {
 
-  //dpm($variables);
-
   if(array_key_exists(2, $variables)) {
 
     if(array_key_exists('map', $variables[2])) {
 
-      //dpm($variables[2]);
-      //$variables[2]['map'];
-
       if(array_key_exists(2, $variables[2]['map'])) {
 
-	$object = dpm($variables[2]['map'][2]);
+	$object = $variables[2]['map'][2];
 	//$parent_pids = $object->getParents();
-	//dpm( array('trace' => $parent_pids));
       }
     }
   }
@@ -947,8 +922,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				 'Lafayette World War II Casualties' => 'node/43',
 				 );
 
-    //dpm($facets);
-
     $collection_elements = array();
 
     if(isset($object) and isset($object['MODS'])) {
@@ -956,8 +929,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       //$this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
       //$this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
       //$relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
-
-      //dpm( $object['MODS']->content);
 
       try {
 
@@ -1041,8 +1012,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	  $count++;
 	  }
 	*/
-
-	//dpm($_breadcrumbs);
       }
 
       // Accessing via Search This Collection: Home / [collection name] / Search

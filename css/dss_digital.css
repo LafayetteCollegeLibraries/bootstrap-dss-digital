@@ -562,7 +562,7 @@ form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-ter
 	box-shadow:none;
 }
 
-.islandora-solr-search-remove:hover {
+.islandora-solr-search-remove:hover, .islandora-solr-search-remove:focus {
 	
 	background:#F5F5F5;
 	background-image:url("../files/MinusIcon.png");
@@ -1640,6 +1640,11 @@ body {
 	
 	width:205px;
 	height:160px;
+}
+
+.browse-block.geology > div > p > img {
+	
+	margin-right:1px;
 }
 
 .browse-block.visual {
