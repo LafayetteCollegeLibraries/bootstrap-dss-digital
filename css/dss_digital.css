@@ -861,7 +861,7 @@ ul.quicktabs-tabs > li.active {
 	max-height:none;
 }
 
-#edit-submit--4 {
+#edit-submit--4, #edit-submit--5 {
 	
 	background: none repeat scroll 0 0 #F5F5F5;
     border: 1px solid #AAAAAA;
@@ -1785,6 +1785,43 @@ body.no-sidebars .islandora-large-image-content {
 #webform-component-message > label {
 	
 	width:68px;
+}
+
+/* style contact page for smartphone users */
+
+.span12 > #node-9 > div {
+	
+	font-size:16px;
+}
+
+.span12 > #node-9 > form > div > div > div > textarea {
+	
+	height:150px;
+}
+
+.span12 > #node-9 > form > div > div > label {
+	
+	font-weight:bold;
+}
+
+.span12 > #node-9 > form > div > div#webform-component-your-name > label {
+	
+	width:85px;
+}
+
+.span12 > #node-9 > form > div > div#webform-component-your-e-mail-address > label {
+	
+	width:150px;
+}
+
+.span12 > #node-9 > form > div > div#webform-component-subject > label {
+	
+	width:65px;
+}
+
+.span12 > #node-9 > form > div > div#webform-component-message > label {
+	
+	width:75px;
 }
 
 /* style pdf viewer */
