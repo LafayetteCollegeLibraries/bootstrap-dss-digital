@@ -55,5 +55,10 @@
 
   <?php print $results; ?>
   <?php print $solr_debug; ?>
-  <?php print $solr_pager; ?>
+
+  <div class="pagination-count-bottom">
+
+    <?php print $solr_pager; ?>
+  </div><!-- /.pagination-count -->
+
 </div>
