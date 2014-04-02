@@ -2108,6 +2108,42 @@ p {
 	text-align:left;
 }
 
+/* styling results page for searching within site */
+
+#search-form {
+	
+	display:none;
+}
+
+.search-result > h3 {
+	
+	font-size:23px;
+	line-height:25px;
+	margin:0px;
+}
+
+.search-result > h3 > a {
+	
+	font-weight:normal;
+}
+
+.search-snippet-info {
+	
+	margin-top:4px;
+}
+
+.search-info {
+	
+	display:none;
+}
+
+.search-results.node-results {
+	
+	margin-left:1%;
+	margin-right:1%;
+	list-style:none;
+}
+
 
 
 
