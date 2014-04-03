@@ -210,11 +210,19 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
    */
   //  $variables['auth_anchor'] = '<a data-toggle="lafayette-dss-modal" data-target="#auth-modal" data-width-offset="0px" data-height-offset="30px"><div class="auth-icon navbar-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/UserIcon.png" /><span>Log In</span></div></a>';
   global $base_url;
+
+  /**
+   * Work-around for submitting GET parameters within the "destination" parameter for CAS redirection
+   * Resolves DSS-192
+   *
+   */
+  $GET_params = $_SERVER['QUERY_STRING'];
+
   $variables['auth_anchor'] = l('<div class="auth-icon navbar-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/UserIcon.png" /><span>Log In</span></div>',
 				'cas',
 				array('html' => TRUE,
 				      'https' => true,
-				      'query' => array('destination' => current_path())
+				      'query' => array('destination' => current_path() . '?' . $GET_params )
 				      )
 				);
 
