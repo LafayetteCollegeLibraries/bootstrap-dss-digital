@@ -302,7 +302,15 @@
 
 		var isSearch = Object.keys(getParams).map(function(e, i) {
 
-			return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) && !/dc\.date\.sort/.exec(getParams[e]) && e != 'page';
+			
+			//return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) && !/dc\.date\.sort/.exec(getParams[e]) && e != 'page';
+			/**
+			 * Disabled for collection and sub-collection browsing
+			 * Should probably be deprecated and removed
+			 * Resolves DSSSM-662
+			 *
+			 */
+			return e != 'page';
 		    }).reduce(function(u, v) { return u || v });
 
 		if(isSearch) {
