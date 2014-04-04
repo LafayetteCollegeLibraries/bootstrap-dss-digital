@@ -597,6 +597,20 @@ function hybridauth_theme($existing, $type, $theme, $path) {
 }
 */
 
+/**
+ * Please see http://www.php.net/manual/en/function.ip2long.php#82397
+ * @todo Integrate with islandora_dss_solr_net_match()
+ * @see islandora_dss_solr_net_match().
+ *
+ * This assumes a subnet of 139.147.0.0/16 for Lafayette College servers
+ * This assumes a subnet of 192.168.101.0/24 for the VPN
+ */
+function bootstrap_dss_digital_net_match($CIDR, $IP) {
+
+  list($net, $mask) = explode('/', $CIDR);
+  return ( ip2long ($IP) & ~((1 << (32 - $mask)) - 1) ) == ip2long ($net);
+} 
+
 function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variables) {
 
   /**
@@ -606,7 +620,13 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
    */
   $object = $variables['islandora_object'];
 
-  if(in_array('islandora:geologySlidesEsi', $object->getParents()) and !user_is_logged_in()) {
+  $client_ip = ip_address();
+  $is_anon_non_lafayette_user = !bootstrap_dss_digital_net_match('192.168.101.0/24', $client_ip) and // Not on the VPN...
+    !bootstrap_dss_digital_net_match('139.147.0.0/16', $client_ip) and // ...not within the campus network...
+    !user_is_logged_in(); // ...and not authenticated.
+
+  //if(in_array('islandora:geologySlidesEsi', $object->getParents()) and !user_is_logged_in()) {
+  if(in_array('islandora:geologySlidesEsi', $object->getParents()) and $is_anon_non_lafayette_user) {
 
     /**
      * Functionality for redirecting authentication requests over HTTPS
@@ -688,6 +708,25 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
       $value['label'] = '';
     }
   }
+
+  /**
+   * Work-around for appended site-generated resource metadata into the Object
+   * Refactor (or, ideally, update the MODS when Drush creates or updates the path alias)
+   * Resolves DSS-243
+   *
+   */
+
+  global $base_url;
+  // The proper approach (production)
+  //$path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
+  // The less proper approach (enforce HTTP while ensuring that other linked metadata field values are possibly tunneled through TLS/SSL)
+  //$path_alias = str_replace('https', 'http', $base_url) . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
+  // Specific to the production environment
+  $path_alias = 'http://digital.lafayette.edu/' . drupal_get_path_alias("islandora/object/{$object->id}");
+  $variables['mods_object']['drupal_path'] = array('class' => '',
+						   'label' => 'URL',
+						   'value' => $path_alias,
+						   'href' =>  $path_alias);
 }
 
 //module_load_include('inc', 'bootstrap_dss_digital', 'includes/dssMods');
@@ -726,7 +765,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
 
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
-  //dpm($variables);
   
   $rendered_fields = array();
   foreach($variables['mods_object'] as $key => &$value) {
@@ -740,6 +778,25 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
       $value['label'] = '';
     }
   }
+
+  /**
+   * Work-around for appended site-generated resource metadata into the Object
+   * Refactor (or, ideally, update the MODS when Drush creates or updates the path alias)
+   * Resolves DSS-243
+   *
+   */
+
+  global $base_url;
+  // The proper approach (production)
+  //$path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
+  // The less proper approach (enforce HTTP while ensuring that other linked metadata field values are possibly tunneled through TLS/SSL)
+  //$path_alias = str_replace('https', 'http', $base_url) . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
+  // Specific to the production environment
+  $path_alias = 'http://digital.lafayette.edu/' . drupal_get_path_alias("islandora/object/{$object->id}");
+  $variables['mods_object']['drupal_path'] = array('class' => '',
+						   'label' => 'URL',
+						   'value' => $path_alias,
+						   'href' =>  $path_alias);
 }
 
 function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {
