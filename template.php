@@ -1188,6 +1188,8 @@ function bootstrap_dss_digital_breadcrumb($variables) {
     }
   }
 
+  dpm($breadcrumbs[count($breadcrumbs) - 1]['href']);
+
   if(isset($breadcrumbs[count($breadcrumbs) - 1])) {
     switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
 
@@ -1242,6 +1244,18 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Repositories',
 										'href' => 'node/4')), array_slice($breadcrumbs, -1));
       $count++;
+      
+      break;
+
+    case 'search/node/test':
+
+      /**
+       * For apachesolr search queries
+       * This resolves DSSSM-651
+       *
+       */
+      $_breadcrumbs = array_slice($breadcrumbs, 0, 2);
+      $count = 1;
       
       break;
     }
