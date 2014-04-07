@@ -2101,8 +2101,6 @@ p {
 	display:block;
 }
 
-
-
 /* text-justification for page headings */
 
 #page-header > p {
@@ -2145,6 +2143,14 @@ p {
 	margin-right:1%;
 	list-style:none;
 }
+
+/* hide drupal tabs on dss search results */
+
+/*.nav.nav-tabs {
+	
+	display:none;
+}  -- this disables drupal tabs on whole site -- */
+
 
 
 
