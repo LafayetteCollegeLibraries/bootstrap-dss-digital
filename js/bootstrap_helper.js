@@ -302,7 +302,6 @@
 
 		var isSearch = Object.keys(getParams).map(function(e, i) {
 
-			
 			//return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) && !/dc\.date\.sort/.exec(getParams[e]) && e != 'page';
 			/**
 			 * Disabled for collection and sub-collection browsing
@@ -310,7 +309,13 @@
 			 * Resolves DSSSM-662
 			 *
 			 */
+
+			/**
+			 * Refinements shouldn't be displayed for all collection-level "browsing" links (i. e. links which permit the user to sort the entire collection by a certain field)
+			 *
+			 */
 			return e != 'page';
+			//return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) && !/dc\.date\.sort/.exec(getParams[e]) && e != 'page';
 		    }).reduce(function(u, v) { return u || v });
 
 		if(isSearch) {

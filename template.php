@@ -1188,66 +1188,9 @@ function bootstrap_dss_digital_breadcrumb($variables) {
     }
   }
 
-  dpm($breadcrumbs[count($breadcrumbs) - 1]['href']);
-
   if(isset($breadcrumbs[count($breadcrumbs) - 1])) {
-    switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
 
-    case 'islandora/object/islandora:root':
-
-      $_breadcrumbs = array($breadcrumbs[0], $breadcrumbs[count($breadcrumbs) - 1]);
-      $count--;
-      break;
-
-    case 'islandora/object/islandora:eastAsia':
-    case 'islandora/object/islandora:newspaper':
-    case 'islandora/object/islandora:academicPublications':
-    case 'islandora/object/islandora:administrativeArchive':
-    case 'islandora/object/islandora:cap':
-    case 'islandora/object/islandora:mdl':
-    case 'islandora/object/islandora:geologySlidesEsi':
-    case 'islandora/object/islandora:mckelvyHouse':
-    case 'islandora/object/islandora:warCasualties':
-    case 'islandora/object/islandora:presidents':
-
-      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
-										'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
-    $count++;
-    break;
-
-    case 'node/1':
-    
-      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1));
-      $count--;
-      break;
-
-    case 'node/26':
-    case 'node/30':
-    case 'node/31':
-    case 'node/19':
-    case 'node/20':
-    case 'node/21':
-    case 'node/27':
-    case 'node/32':
-    case 'node/33':
-    case 'node/34':
-    case 'node/42':
-    case 'node/43':
-
-      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Collections',
-										'href' => 'node/45')), array_slice($breadcrumbs, -1));
-    $count++;
-    break;
-
-    case 'node/29':
-
-      $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Repositories',
-										'href' => 'node/4')), array_slice($breadcrumbs, -1));
-      $count++;
-      
-      break;
-
-    case 'search/node/test':
+    if(preg_match('/search\/node/', $breadcrumbs[count($breadcrumbs) - 1]['href'])) {
 
       /**
        * For apachesolr search queries
@@ -1256,52 +1199,110 @@ function bootstrap_dss_digital_breadcrumb($variables) {
        */
       $_breadcrumbs = array_slice($breadcrumbs, 0, 2);
       $count = 1;
-      
+    } else {
+
+      switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
+	
+      case 'islandora/object/islandora:root':
+	
+	$_breadcrumbs = array($breadcrumbs[0], $breadcrumbs[count($breadcrumbs) - 1]);
+	$count--;
+	break;
+	
+      case 'islandora/object/islandora:eastAsia':
+      case 'islandora/object/islandora:newspaper':
+      case 'islandora/object/islandora:academicPublications':
+      case 'islandora/object/islandora:administrativeArchive':
+      case 'islandora/object/islandora:cap':
+      case 'islandora/object/islandora:mdl':
+      case 'islandora/object/islandora:geologySlidesEsi':
+      case 'islandora/object/islandora:mckelvyHouse':
+      case 'islandora/object/islandora:warCasualties':
+      case 'islandora/object/islandora:presidents':
+
+	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
+										'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
+      $count++;
       break;
+    
+      case 'node/1':
+    
+	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1));
+	$count--;
+	break;
+
+      case 'node/26':
+      case 'node/30':
+      case 'node/31':
+      case 'node/19':
+      case 'node/20':
+      case 'node/21':
+      case 'node/27':
+      case 'node/32':
+      case 'node/33':
+      case 'node/34':
+      case 'node/42':
+      case 'node/43':
+
+	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Collections',
+										'href' => 'node/45')), array_slice($breadcrumbs, -1));
+      $count++;
+      break;
+
+      case 'node/29':
+
+	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Repositories',
+										'href' => 'node/4')), array_slice($breadcrumbs, -1));
+	$count++;
+      
+	break;
+
+      }
     }
-  }
 
-  $breadcrumbs = $_breadcrumbs;
-
-  $i = 1;
-  foreach($breadcrumbs as $key => $breadcrumb) {
-
-    if(isset($breadcrumb['href'])) {
-
-      $breadcrumbs_length += strlen($breadcrumb['title']);
-
-      if($breadcrumbs_length > BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX) {
-
-	if($key != count($breadcrumbs) - 1) {
+    $breadcrumbs = $_breadcrumbs;
+    
+    $i = 1;
+    foreach($breadcrumbs as $key => $breadcrumb) {
+      
+      if(isset($breadcrumb['href'])) {
+	
+	$breadcrumbs_length += strlen($breadcrumb['title']);
+	
+	if($breadcrumbs_length > BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX) {
 	  
-	  $breadcrumbs[$i]['title'] = '…';
-	  $breadcrumbs_length -= strlen($breadcrumb['title']) - 1;
-
-	  $i++;
+	  if($key != count($breadcrumbs) - 1) {
+	    
+	    $breadcrumbs[$i]['title'] = '…';
+	    $breadcrumbs_length -= strlen($breadcrumb['title']) - 1;
+	    
+	    $i++;
+	  }
 	}
       }
     }
-  }
 
-  foreach($breadcrumbs as $key => $breadcrumb) {
+    foreach($breadcrumbs as $key => $breadcrumb) {
+      
+      if(isset($breadcrumb['href'])) {
+	
+	if(!isset($breadcrumb['options'])) {
+	  
+	  $breadcrumb['options'] = array();
+	}
+	
+	if ($count != $key) {
 
-    if(isset($breadcrumb['href'])) {
-
-      if(!isset($breadcrumb['options'])) {
-
-	$breadcrumb['options'] = array();
-      }
-
-      if ($count != $key) {
-
-	$output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '<span class="divider">/</span></li>';
-      } else {
-
-	$output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '</li>';
+	  $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '<span class="divider">/</span></li>';
+	} else {
+	  
+	  $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '</li>';
+	}
       }
     }
+    
+    $output .= '</ul>';
+    return $output;
   }
-
-  $output .= '</ul>';
-  return $output;
 }
+
