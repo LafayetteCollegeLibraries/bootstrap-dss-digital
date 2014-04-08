@@ -188,12 +188,23 @@ function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $co
 									     'title-sort-control')),
 
    */
+
+  if(!array_key_exists('sort', $_GET) or stripos($_GET['sort'], 'asc')) {
+
+    $asc_anchor_classes = array('field-sort', 'active');
+    $desc_anchor_classes = array('field-sort');
+  } else {
+
+    $asc_anchor_classes = array('field-sort');
+    $desc_anchor_classes = array('field-sort', 'active');
+  }
+
   $prefix = '<div class="islandora-discovery-control title-sort-control"><span>Sort by:</span>';
-  $prefix .= l('Asc', NULL, array('attributes' => array('class' => array('field-sort', 'active'),
+  $prefix .= l('Asc', NULL, array('attributes' => array('class' => $asc_anchor_classes,
 							   'id' => 'field-sort-asc'),
 				     'external' => TRUE,
 				     'fragment' => FALSE));
-  $prefix .= l('Desc', NULL, array('attributes' => array('class' => array('field-sort'),
+  $prefix .= l('Desc', NULL, array('attributes' => array('class' => $desc_anchor_classes,
 							   'id' => 'field-sort-desc'),
 				     'external' => TRUE,
 				     'fragment' => FALSE));

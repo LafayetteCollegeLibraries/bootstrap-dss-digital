@@ -37,7 +37,7 @@
 
 	<?php if(array_key_exists('restricted', $result) AND $result['restricted']): ?>
 
-	  <div class="solr-restricted"><img src="/sites/digital.lafayette.edu/files/u78/lock.png" alt="restricted access lock" /></div>
+	  <div class="solr-restricted"></div>
 	<?php endif; ?>
 
 	  <!-- Thumbnail -->
