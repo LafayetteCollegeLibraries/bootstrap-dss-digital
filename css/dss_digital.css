@@ -1687,7 +1687,7 @@ body {
 .browse-block.newspaper {
 	
 	width:205px;
-	height:120px;
+	height:100px;
 }
 
 .browse-block.mdlp {
@@ -2110,11 +2110,6 @@ p {
 
 /* styling results page for searching within site */
 
-#search-form {
-	
-	display:none;
-}
-
 .search-result > h3 {
 	
 	font-size:23px;
@@ -2132,11 +2127,6 @@ p {
 	margin-top:4px;
 }
 
-.search-info {
-	
-	display:none;
-}
-
 .search-results.node-results {
 	
 	margin-left:1%;
@@ -2144,12 +2134,6 @@ p {
 	list-style:none;
 }
 
-/* hide drupal tabs on dss search results */
-
-/*.nav.nav-tabs {
-	
-	display:none;
-}  -- this disables drupal tabs on whole site -- */
 
 
 
