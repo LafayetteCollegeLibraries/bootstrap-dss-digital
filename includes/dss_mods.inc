@@ -800,6 +800,13 @@ class DssMods extends SimpleXMLElement {
 
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
 
+	    /**
+	     * Disabled in response to issue
+	     * Resolves DSS-251
+	     *
+	     */
+	    $collection_elements = array(array_shift($collection_elements));
+
 	    $facet_index = 0;
 	    //foreach($this->xpath("./mods:note[@type='admin']") as $collection_element) {
 	    foreach($collection_elements as $collection_element) {
