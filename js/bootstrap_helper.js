@@ -248,7 +248,7 @@
 	 */
 	// Work-around
 	// Integrate into the Drupal Object
-	if(/\/islandora/.exec(document.URL)) {
+	if(/\/islandora/.exec(document.URL) || /\/browse/.exec(document.URL) ) {
 
 	    $('.main-container').addClass('snap-collapse-left');
 	
