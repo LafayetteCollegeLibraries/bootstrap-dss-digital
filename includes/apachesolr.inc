@@ -6,12 +6,7 @@
    *
    */
 
-function bootstrap_dss_digital_preprocess_search_result(&$variables) {
-
-  dpm($variables);
-  }
-
 function bootstrap_dss_digital_preprocess_search_results(&$variables) {
 
-  dpm($variables);
-  }
+  // Migrated functionality into bootstrap_dss_digital_page_process() and templates/search-results--node.tpl.php
+}

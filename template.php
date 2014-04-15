@@ -487,6 +487,19 @@ function bootstrap_dss_digital_preprocess_html(&$variables) {
 }
 
 /**
+ * Work-around for ensuring that the search form is not forcibly displayed within search results
+ * See https://drupal.org/comment/4573218#comment-4573218
+ *
+ */
+function bootstrap_dss_digital_process_page(&$variables) {
+
+  if(array_key_exists('search_form', $variables['page']['content']['system_main'])) {
+
+    hide($variables['page']['content']['system_main']['search_form']);
+  }
+}
+
+/**
  * Template preprocess function for hybridauth_widget.
  */
 /*
