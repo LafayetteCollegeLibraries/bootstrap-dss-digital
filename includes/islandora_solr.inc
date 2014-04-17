@@ -65,6 +65,8 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
 									 )
 				     );
 
+  dpm($variables['results']);
+
   if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', current_path(), $m)) {
 
     $relation = $m[1];
@@ -330,6 +332,8 @@ v  $elements = $variables['elements'];
   drupal_set_title($elements['solr_total'] . ' Items Found');
 
   $collection_fields = $variables['collection_fields'];
+
+  dpm($collection_fields);
 
   if(array_key_exists('sort', $_GET) and preg_match('/(.+?) /', $_GET['sort'], $m)) {
 

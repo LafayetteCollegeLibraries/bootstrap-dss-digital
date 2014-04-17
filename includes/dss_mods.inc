@@ -490,14 +490,17 @@ class DssMods extends SimpleXMLElement {
 
 			    'Note' => './mods:note[@type="description"]',
 			    'Medium' => array('xpath' => "./mods:physicalDescription[2]/mods:form",
-					      'field' => 'eastasia.Format.Medium', // Work-around: Refactor
+					      'field' => 'mdl_prints.format.medium',
 					      'facet' => true),
 
 			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther[@type='display']",
+							'field' => 'mckelvy.date.original.display',
 							'facet' => true,
 							'date' => true),
 
-			    'Dimensions' => "./mods:physicalDescription[1]/mods:form",
+			    'Dimensions' => array('xpath' => "./mods:physicalDescription[1]/mods:form",
+						  'field' => 'mdl_prints.format.medium',
+						  'facet' => true),
 
 			    'Digital Publisher' => "./mods:note[@type='statement of responsibility']",
 			    'Digital Format' => "./mods:note[@type='digital format']",
@@ -525,7 +528,9 @@ class DssMods extends SimpleXMLElement {
 			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
 							'facet' => true,
 							'date' => true),
-			    'Medium' => "./mods:note[2]",
+			    //'Medium' => "./mods:genre",
+			    'Medium' => array('xpath' => "./mods:genre",
+					      'facet' => true),
 			    'Collection' => array('xpath' => "./mods:note[@type='admin']",
 						  'field' => 'cdm.Relation.IsPartOf', // Work-around: Refactor
 						  'facet' => true),
@@ -630,6 +635,8 @@ class DssMods extends SimpleXMLElement {
 
     //$this->xpath("./mods:note[@type='admin']");
 
+    //dpm($template_map);
+
     foreach($template_map as $facet => $value) {
 
       $is_facet = false;
@@ -711,12 +718,12 @@ class DssMods extends SimpleXMLElement {
 	    $element['class'] .= ' metadata-value-set';
 
 	  }
-
-
 	}
       }
 
       $collection_facets = 0;
+      $ISLANDORA_DSS_MODS_FIELDS = array('Historical Photograph Collection' => array('geology_slides_esi.subject' => 'dc.subject',
+										     'Medium' => 'dc.type'));
 
       // Refactor
       foreach($mods_elements as $i => &$element) {
@@ -741,6 +748,8 @@ class DssMods extends SimpleXMLElement {
 	}
 
 	if($is_facet) {
+
+	  dpm('trace1');
 
 	  /**
 	   * Hard-coded mapping
@@ -783,7 +792,6 @@ class DssMods extends SimpleXMLElement {
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
 
 	    //dpm($element['value']);
-	    //dpm( (string) $collection_elements[$i]);
 
 	    for($i=0; $i<$collection_facets; $i++) {
 
@@ -799,6 +807,7 @@ class DssMods extends SimpleXMLElement {
 	  } else {
 
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
+	    dpm( 'trace');
 
 	    /**
 	     * Disabled in response to issue
@@ -816,13 +825,20 @@ class DssMods extends SimpleXMLElement {
 	      $facet_index++;
 	    }
 
-	    /**
-	     * Work-around for DSS-167
-	     * Work-around for DSS-170
-	     *
-	     */
-	    //$facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['value'] . '"';
-	    $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['raw_value'] . '"';
+
+	    if(array_key_exists($relation_is_part_of_value, $ISLANDORA_DSS_MODS_FIELDS) and array_key_exists($element['facet'], $ISLANDORA_DSS_MODS_FIELDS[$relation_is_part_of_value])) {
+
+	      $facet_params["f[{$facet_index}]"] = $ISLANDORA_DSS_MODS_FIELDS[$relation_is_part_of_value][$element['facet']] . ':"' . $element['raw_value'] . '"';
+	    } else {
+
+	      /**
+	       * Work-around for DSS-167
+	       * Work-around for DSS-170
+	       *
+	       */
+	      //$facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['value'] . '"';
+	      $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['raw_value'] . '"';
+	    }
 	  }
 
 	  /*

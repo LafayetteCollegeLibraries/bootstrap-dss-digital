@@ -181,7 +181,7 @@ class DssDc extends SimpleXMLElement {
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
 
 	    //dpm($element['value']);
-	    //dpm( (string) $collection_elements[$i]);
+	    
 
 	    for($i=0; $i<$collection_facets; $i++) {
 
@@ -196,27 +196,14 @@ class DssDc extends SimpleXMLElement {
 	    $collection_facets++;
 	  } else {
 
-	    //$collection_elements = $this->xpath("./mods:note[@type='admin']");
+	    /**
+	     * @todo Refactor
+	     * Resolves DSS-261
+	     *
+	     */
+	    $facet_index = 1;
+	    $facet_params["f[0]"] = 'cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"';
 
-	    //dpm(array('trace'));
-	    //dpm($element['value']);
-	    //dpm( (string) $collection_elements[$i]);
-	    //dpm( $element);
-
-	    $facet_index = 0;
-	    /*
-
-	    //foreach($this->xpath("./mods:note[@type='admin']") as $collection_element) {
-	    foreach($collection_elements as $collection_element) {
-
-	      dpm(array('trace' => (string) $collection_element));
-
-	      //$facet_params_values[] = (string) $facet_params_value;
-	      $facet_params["f[{$facet_index}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_element . '"';
-	      $facet_index++;
-	    }
-
-	    */
 	    $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['value'] . '"';
 	  }
 

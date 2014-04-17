@@ -695,7 +695,7 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
     //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
 
-    //dpm($mods_str);
+    dpm($mods_str);
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
     
@@ -707,6 +707,12 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
   //$label_map = array();
 
   //$element['facet'] = $label_map[$facet];
+
+  /**
+   * Resolves DSS-261
+   *
+   */
+  dpm($label_map);
 
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
   
@@ -756,7 +762,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
    */
   if(in_array('islandora:newspaper', $object->getParents())) {
 
-    
     $mods_object = new DssDc($object['DC']->content);
   } else {
 
