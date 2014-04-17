@@ -316,15 +316,18 @@
 			 */
 			return e != 'page';
 			//return !/cdm\.Relation\.IsPartOf/.exec(getParams[e]) && !/mdl_prints\.description\.series/.exec(getParams[e]) && !/dc\.date\.sort/.exec(getParams[e]) && e != 'page';
-		    }).reduce(function(u, v) { return u || v });
+		    }).reduce(function(u, v) { return u || v }) || /\/browse/.exec(document.URL);
 
-		if(isSearch) {
+	    } else {
+
+		var isSearch = /\/browse/.exec(document.URL);
+	    }
+
+	    if(isSearch) {
 		    
-		    $('.snap-trigger').click();
-		}
+		$('.snap-trigger').click();
 	    }
 	}
-
     };
 
     // Ensure that the execution of all bootstrap functionality lies within a modular, Drupal-compliant context
