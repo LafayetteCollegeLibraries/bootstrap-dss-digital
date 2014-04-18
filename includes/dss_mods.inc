@@ -722,8 +722,12 @@ class DssMods extends SimpleXMLElement {
       }
 
       $collection_facets = 0;
+
+      /*
       $ISLANDORA_DSS_MODS_FIELDS = array('Historical Photograph Collection' => array('geology_slides_esi.subject' => 'dc.subject',
 										     'Medium' => 'dc.type'));
+      */
+      $ISLANDORA_DSS_MODS_FIELDS = array('Historical Photograph Collection' => array('Medium' => 'dc.type'));
 
       // Refactor
       foreach($mods_elements as $i => &$element) {
@@ -748,8 +752,6 @@ class DssMods extends SimpleXMLElement {
 	}
 
 	if($is_facet) {
-
-	  dpm('trace1');
 
 	  /**
 	   * Hard-coded mapping
@@ -807,7 +809,6 @@ class DssMods extends SimpleXMLElement {
 	  } else {
 
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
-	    dpm( 'trace');
 
 	    /**
 	     * Disabled in response to issue
