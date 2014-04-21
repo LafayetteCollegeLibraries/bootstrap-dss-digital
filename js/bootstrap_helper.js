@@ -320,7 +320,7 @@
 
 	    } else {
 
-		var isSearch = /\/browse/.exec(document.URL);
+		var isSearch = /\/browse/.exec(document.URL) || /islandora\/search\/(?!\*)/.exec(document.URL);
 	    }
 
 	    if(isSearch) {
