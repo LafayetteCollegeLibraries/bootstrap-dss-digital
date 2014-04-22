@@ -341,7 +341,7 @@ v  $elements = $variables['elements'];
   if(!array_key_exists('f', $_GET)) {
 
     $collection_fields = array('dc.title' => 'Title',
-			       'dc.contributor' => 'Author',
+			       //'dc.publisher.sort' => 'Author',
 			       );
   }
 
@@ -352,8 +352,20 @@ v  $elements = $variables['elements'];
 
     $sorted_field = 'dc.title';
   }
+  
+  /**
+   * Work-around for disabling sorting for global repository browsing and searches
+   * @todo Render once Solr has indexed the appropriate fields for sorting
+   * Resolves DSSSM-793
+   *
+   */
+  if(!array_key_exists('f', $_GET)) {
 
-  $variables['islandora_discovery_form'] = drupal_render_children(drupal_get_form('bootstrap_dss_digital_islandora_discovery_form', $collection_fields, $sorted_field));
+    $variables['islandora_discovery_form'] = '';
+  } else {
+
+    $variables['islandora_discovery_form'] = drupal_render_children(drupal_get_form('bootstrap_dss_digital_islandora_discovery_form', $collection_fields, $sorted_field));
+  }
 
   /*
     <form id="islandora-discovery-form" action="/" >
