@@ -191,8 +191,6 @@ function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $co
 
    */
 
-  dpm($_GET);
-
   if(!array_key_exists('sort', $_GET) or stripos($_GET['sort'], 'asc')) {
 
     $asc_anchor_classes = array('field-sort', 'active');
@@ -335,8 +333,17 @@ v  $elements = $variables['elements'];
 
   $collection_fields = $variables['collection_fields'];
 
-  //dpm($collection_fields);
-  dpm($_GET);
+  /**
+   * Ensures that searching within and browsing all repository content only permits sorting by the dc.title and dc.contributor fields
+   * Resolves DSSSM-789
+   *
+   */
+  if(!array_key_exists('f', $_GET)) {
+
+    $collection_fields = array('dc.title' => 'Title',
+			       'dc.contributor' => 'Author',
+			       );
+  }
 
   if(array_key_exists('sort', $_GET) and preg_match('/(.+?) /', $_GET['sort'], $m)) {
 
