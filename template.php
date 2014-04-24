@@ -370,7 +370,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
         <li data-target="#carousel-featured-collection" data-slide-to="2"></li>
         <li data-target="#carousel-featured-collection" data-slide-to="3"></li>
         <li data-target="#carousel-featured-collection" data-slide-to="4"></li>
-        <li data-target="#carousel-featured-collection" data-slide-to="6"></li>
+        <li data-target="#carousel-featured-collection" data-slide-to="5"></li>
     </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
@@ -378,7 +378,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselEAIC.jpg" alt="Detail of a Japanese postcard depicting the ceremony for rebuilding Ise Shrine, ca. 1918-31." />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/eastasia">East Asia Image Collection</a></p>
-                <p class="carousel-caption-text"><a href="collections/eastasia/pa-koshitsu/ia0002">Japanese postcard depicting Ise Shrine rebuilding ceremony</a></p>
+                <p class="carousel-caption-text"><a href="collections/eastasia/pa-koshitsu/ia0064">Japanese postcard depicting Ise Shrine rebuilding ceremony</a></p>
             </div>
         </div>
         <div class="item">
