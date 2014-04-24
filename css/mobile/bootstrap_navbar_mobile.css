@@ -41,13 +41,103 @@ and (max-device-width : 1024px) {
 
 @media only screen 
 and (min-device-width : 320px) 
-and (max-device-width : 480px) {
+and (max-device-width : 580px) {
 
-	body {
+	/* styling by Thom to address search results page with and without refine panel */
+
+	.islandora-basic-collection-display-switch {
 		
-		max-width:480px;
-		min-width: 0px;
+		clear:both;
+		float:left;
 	}
+	
+	#field-sort-select {
+		
+		margin-top:10px;
+	}
+
+	.drawers.snap-drawers.snap-expand-left {
+		width:39%;
+	}
+	
+	.main-container.container.snap-collapse-left.snap-expand-left {
+		
+		width:59%;
+		margin-left:1%;
+	}
+	
+	.pagination ul > li > a, .pagination ul > li > span {
+		
+		padding:2px 6px !important;
+	}
+	/* end of styling for search results page */
+	
+	/* styling for home page by Thom */
+	
+	.main-container section.block-aggregator, .main-container section.block-nodeblock {
+		
+		width:calc(98% - 10px) !important;
+		margin-left:0px !important;
+		margin-right:0px !important;
+		float:none !important;
+		padding:5px !important;
+	}
+	
+	/* end of home page */
+	
+	/* search widget window styling by Thom */
+	
+	#advanced-search-modal {
+		
+		width:400px !important;
+	}
+	
+	.controls {
+		
+		width:180px !important;
+	}
+	
+	#edit-collection {
+		
+		width:180px !important;
+	}
+	
+	#edit-collection > option {
+		
+		width:180px !important;
+	}
+	
+	#islandora-solr-advanced-scoping {
+		
+		padding-bottom:0px !important;
+	}
+	
+	.islandora-solr-search-field.form-select {
+		
+		width:180px !important;
+	}
+	
+	.controls > input {
+		
+		width:180px !important;
+	}
+	
+	.control-group.form-type-textfield {
+		
+		margin-left:0px !important;
+	}
+	
+	.islandora-solr-search-add {
+		
+		display:none !important;
+	}
+	
+	#search-modal-help {
+		
+		display:none !important;
+	}
+	
+	/* end of search widget */
 
     #simple-search-item {
 

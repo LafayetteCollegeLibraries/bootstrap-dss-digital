@@ -65,8 +65,6 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
 									 )
 				     );
 
-  dpm($variables['results']);
-
   if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', current_path(), $m)) {
 
     $relation = $m[1];
@@ -299,11 +297,8 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
   /*
   $results = $variables['results'];
-v  $elements = $variables['elements'];
+  $elements = $variables['elements'];
   $pids = $variables['pids'];
-
-  //dpm($results);
-  //dpm($elements);
 
   if ($display == 'grid') {
 
@@ -324,8 +319,6 @@ v  $elements = $variables['elements'];
   }
 
   $variables['content'] = $content;
-
-
   */
 
   $elements = $variables['elements'];
