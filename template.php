@@ -635,9 +635,12 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
   $object = $variables['islandora_object'];
 
   $client_ip = ip_address();
-  $is_anon_non_lafayette_user = !bootstrap_dss_digital_net_match('192.168.101.0/24', $client_ip) and // Not on the VPN...
-    !bootstrap_dss_digital_net_match('139.147.0.0/16', $client_ip) and // ...not within the campus network...
-    !user_is_logged_in(); // ...and not authenticated.
+
+  // Not on the VPN...
+  $is_anon_non_lafayette_user = !islandora_dss_solr_net_match('192.168.101.0/24', $client_ip);
+  // ...not within the campus network...
+  $is_anon_non_lafayette_user &= !islandora_dss_solr_net_match('139.147.0.0/16', $client_ip);
+  $is_anon_non_lafayette_user &= !user_is_logged_in(); // ...and not authenticated.
 
   //if(in_array('islandora:geologySlidesEsi', $object->getParents()) and !user_is_logged_in()) {
   if(in_array('islandora:geologySlidesEsi', $object->getParents()) and $is_anon_non_lafayette_user) {
