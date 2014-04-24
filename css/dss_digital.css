@@ -2133,6 +2133,26 @@ p {
 	list-style:none;
 }
 
+/* styling for newspaper content dm access page */
+
+.section {
+	
+	width:250px;
+	float:right;
+	margin-left:15px;
+}
+
+#context-search-form {
+	
+	padding:10px;
+	margin:0px;
+}
+
+#context-search-form > h5, #context-search-form > h6,  #context-search-form > p {
+	
+	text-align:center;
+}
+
 
 
 
