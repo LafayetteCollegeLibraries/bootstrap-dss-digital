@@ -160,17 +160,26 @@ and (max-device-width : 580px) {
     /* Refactor */
     .navbar-header h2 {
 	
-	font-size: medium !important;
+		font-size: 17px !important;
+		margin-right:0px !important;
+		line-height:17px !important;
+		margin-top:70px !important;
     }
 
     div.navbar-header h1 a {
 
-	font-size: large;
+		font-size: 23px !important;
+    }
+    
+    div.navbar-header h1 {
+    	
+    	margin-right:0px !important;
+    	line-height: 23px !important;
     }
 
     .navbar .logo {
 
-	margin-left: inherit;
+		margin-left: inherit;
     }
 
 
