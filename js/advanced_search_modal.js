@@ -513,8 +513,10 @@
 
 				      // Ensure that the last element clicked does not lie within a modal...
 				      ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
-				      if(!$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
-					 !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length ) {
+				      if(
+					 typeof($(document).data('LafayetteDssModal')) == 'undefined' || (
+										   !$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
+										   !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length )) {
 					      
 					  /**
 					   * @todo Enable this before deployment
