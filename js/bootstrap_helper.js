@@ -242,16 +242,9 @@
 	// Work-around
 	$(document).data('lastSnapperState', 'closed');
 
-	/**
-	 * For restricting the rendering of the panel to islandora/search paths
-	 *
-	 */
-	// Work-around
-	// Integrate into the Drupal Object
-	if(/\/islandora/.exec(document.URL) || /\/browse/.exec(document.URL) ) {
+	// This needs to be invoked from other scripts
+	var snapTriggerHandler = function() {
 
-	    $('.main-container').addClass('snap-collapse-left');
-	
 	    $('.snap-trigger').click(function(e) {
 		    
 		    if(/Refine/.exec($(this).text())) {
@@ -268,7 +261,39 @@
 		    $('.main-container').toggleClass('snap-expand-left');
 		    $('.snap-drawers').toggleClass('snap-expand-left');
 		}).parent().toggleClass('loaded').children().toggleClass('shown').children('img').toggleClass('shown');
+	};
+	$(document).data('snapTriggerHandler', snapTriggerHandler);
 
+	/**
+	 * For restricting the rendering of the panel to islandora/search paths
+	 *
+	 */
+	// Work-around
+	// Integrate into the Drupal Object
+	if(/\/islandora/.exec(document.URL) || /\/browse/.exec(document.URL) ) {
+
+	    $('.main-container').addClass('snap-collapse-left');
+	
+	    /*
+	    $('.snap-trigger').click(function(e) {
+		    
+		    if(/Refine/.exec($(this).text())) {
+
+			//$(this).text('Hide');
+			$(this).html( $(this).html().replace('Refine', 'Hide') );
+		    } else {
+
+			//$(this).text('Refine');
+			//$(this).html();
+			$(this).html( $(this).html().replace('Hide', 'Refine') );
+		    }
+
+		    $('.main-container').toggleClass('snap-expand-left');
+		    $('.snap-drawers').toggleClass('snap-expand-left');
+		}).parent().toggleClass('loaded').children().toggleClass('shown').children('img').toggleClass('shown');
+	    */
+	    snapTriggerHandler();
+	    
 	    /**
 	     * Work-around for ensuring that the panel is displayed after parsing a search
 	     * Resolves DSSSM-487
@@ -276,7 +301,7 @@
 	     * @todo Refactor
 	     */
 
-	    // Shamelessly copied from the thread at http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+	    // Please see http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 	    var getParams = (function(a) {
 
 		    if (a == "") return {};
