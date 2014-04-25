@@ -181,8 +181,18 @@
 
       <dl class="islandora-basic-collection-object">
         <dt class="islandora-basic-collection-thumb">
-              <?php
+
+	  <?php if($result['restricted']): ?>
+
+	  <?php
+	      $image = "<img src='/" . drupal_get_path('theme', 'bootstrap_dss_digital') . "/files/BigLock.jpg' />";
+          ?>
+
+	  <?php else: ?>
+
                 $image = '<img src="' . url($result['thumbnail_url'], array('query' => $result['thumbnail_url_params'])) . '" />';
+          <?php endif; ?>
+	  <?php
                 // Construct options array for l() function call.  Only include
                 // what is needed.  Can accept standard url parameters and a
                 // single anchor tag (fragment) at the end.
@@ -193,9 +203,10 @@
               if (isset($result['object_url_fragment'])):
                 $options['fragment'] = $result['object_url_fragment'];
               endif;
+
               // Construct the thumbnail link.
               print l($image, $result['object_url'], $options);
-            ?>
+          ?>
         </dt>
         <dd class="islandora-basic-collection-caption <?php print $result['class']; ?>">
 

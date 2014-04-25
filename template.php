@@ -35,17 +35,6 @@ function bootstrap_dss_digital_preprocess_hybridauth_widget(&$vars) {
   }
 }
 
-function bootstrap_dss_digital_preprocess_region(&$variables) {
-
-  switch($variables['region']) {
-
-  case 'auth':
-
-    dpm($variables);
-    break;
-  }
-}
-
 function _bootstrap_dss_digital_user_logout($account) {
 
   if (variable_get('user_pictures', 0)) {
@@ -623,7 +612,7 @@ function bootstrap_dss_digital_net_match($CIDR, $IP) {
 
   list($net, $mask) = explode('/', $CIDR);
   return ( ip2long ($IP) & ~((1 << (32 - $mask)) - 1) ) == ip2long ($net);
-} 
+}
 
 function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variables) {
 
