@@ -642,7 +642,9 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
   $is_anon_non_lafayette_user &= !islandora_dss_solr_net_match('139.147.0.0/16', $client_ip);
   $is_anon_non_lafayette_user &= !user_is_logged_in(); // ...and not authenticated.
 
-  //if(in_array('islandora:geologySlidesEsi', $object->getParents()) and !user_is_logged_in()) {
+  // This fully resolves DSS-280
+  $is_anon_non_lafayette_user = (bool) $is_anon_non_lafayette_user;
+
   if(in_array('islandora:geologySlidesEsi', $object->getParents()) and $is_anon_non_lafayette_user) {
 
     /**
@@ -696,9 +698,6 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
     $mods_str = $object['MODS']->content;
 
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
-    //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
-
-    dpm($mods_str);
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
     
@@ -715,8 +714,6 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
    * Resolves DSS-261
    *
    */
-  dpm($label_map);
-
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
   
   $rendered_fields = array();
