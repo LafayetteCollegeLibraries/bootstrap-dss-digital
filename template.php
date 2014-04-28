@@ -19,6 +19,61 @@ require_once dirname(__FILE__) . '/includes/apachesolr.inc';
 require_once dirname(__FILE__) . '/includes/islandora_solr.inc';
 require_once dirname(__FILE__) . '/includes/islandora_basic_collection.inc';
 
+function bootstrap_dss_digital_preprocess_node(&$vars) {
+
+  if($vars['page']) {
+
+    // Add header meta tag for IE to head
+    global $base_url;
+    $meta_element_open_graph_type = array('#type' => 'html_tag',
+					  '#tag' => 'meta',
+					  '#attributes' => array('property' =>  'og:type',
+								 'content' => 'article'),
+					  );
+
+    $meta_element_open_graph_url = array('#type' => 'html_tag',
+					 '#tag' => 'meta',
+					 '#attributes' => array('property' =>  'og:url',
+								'content' => $base_url . '/' . drupal_get_path_alias()
+								),
+					 );
+    
+    $meta_element_open_graph_author = array('#type' => 'html_tag',
+					    '#tag' => 'meta',
+					    '#attributes' => array('property' =>  'og:author',
+								   'content' => 'https://www.facebook.com/LafayetteCollegeLibrary',
+								   )
+					    );
+    
+    $meta_element_open_graph_title = array('#type' => 'html_tag',
+					   '#tag' => 'meta',
+					   '#attributes' => array('property' =>  'og:title',
+								  'content' => $vars['title'],
+								  )
+					   );
+
+    // For all <meta> elements
+    $meta_elements = array(
+			   'meta_element_open_graph_type' => $meta_element_open_graph_type,
+			   'meta_element_open_graph_url' => $meta_element_open_graph_url,
+			   'meta_element_open_graph_author' => $meta_element_open_graph_author,
+			   'meta_element_open_graph_title' => $meta_element_open_graph_title,
+			   );
+    $meta_elements['meta_element_open_graph_site_name'] = array('#type' => 'html_tag',
+								'#tag' => 'meta',
+								'#attributes' => array('property' =>  'og:site_name',
+										       'content' => 'Digital Scholarship Services',
+										       )
+								);
+
+    foreach($meta_elements as $key => $meta_element) {
+
+      // Add header meta tag for IE to head
+      drupal_add_html_head($meta_element, $key);
+    }
+  }
+}
+
 /**
  * Implements template_preprocess_hybridauth_widget
  * @griffinj
