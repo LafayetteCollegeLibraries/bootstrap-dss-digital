@@ -320,6 +320,7 @@ class DssMods extends SimpleXMLElement {
 						       'facet' => true),
 
 			    'Creator.Maker' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='pht']/../../mods:namePart",
+						     'field' => 'eastasia.Creator.Maker', // Work-around; Resolve using Solr interface
 						     'facet' => true),
 			    'Format.Extent' => "./mods:physicalDescription/mods:extent",
 
