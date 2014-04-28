@@ -189,8 +189,10 @@
           ?>
 
 	  <?php else: ?>
+<?php
 
                 $image = '<img src="' . url($result['thumbnail_url'], array('query' => $result['thumbnail_url_params'])) . '" />';
+?>
           <?php endif; ?>
 	  <?php
                 // Construct options array for l() function call.  Only include
