@@ -380,7 +380,6 @@
 				  that.hide();
 			      }).fail(function(data) {
 				      
-				      console.log('error');
 				      that.hide();
 				  });
 		      } else {
@@ -522,7 +521,7 @@
 					   * @todo Enable this before deployment
 					   *
 					   */
-					  //that.hide();
+					  that.hide();
 				      }
 				  } else {
 
@@ -530,7 +529,7 @@
 				       * @todo Enable this before deployment
 				       *
 				       */
-				      //that.hide();
+				      that.hide();
 				  }
 			      }, 3000);
 		      });

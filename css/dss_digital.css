@@ -2153,6 +2153,13 @@ p {
 	text-align:center;
 }
 
+/* style paragraphs on repositories page */
+
+#node-4 > div > div > div > p, #node-4 > div > div > div > ul {
+	
+	padding-left:40px;
+}
+
 
 
 

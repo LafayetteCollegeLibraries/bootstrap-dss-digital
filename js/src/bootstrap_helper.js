@@ -53,6 +53,7 @@
 
 	    // Ensure that the menu items are displayed in a format appropriate to smartphone and tablet devices
 	    if($( window ).width() <= 480) {
+	    //if($( window ).width() <= 500) {
 
 		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
 

@@ -139,6 +139,34 @@ and (max-device-width : 580px) {
 	
 	/* end of search widget */
 	
+	/* breadcrumb, copyright, and contact by Thom */
+	
+	ul.breadcrumb {
+		
+		float:none;
+		width:100%;
+		margin-bottom:2px;
+	}
+	
+	#page-site-links-container {
+		
+		float:none;
+		width:100%;
+		text-align:center;
+	}
+	
+	#contact-container {
+		
+		width:calc(50% - 31px) !important;
+	}
+	
+	#copyright-container {
+		
+		width:calc(50% - 31px) !important;
+	}
+	
+	/* end of breadcrumb, copyright, and contact */
+	
     #simple-search-item {
 
 	/* width: 100%; */
