@@ -208,11 +208,14 @@ and (max-device-width : 580px) {
     .navbar-inner-container {
 
 	display: none;
+
+	clear: none;
+	overflow: visible;
     }
 
     .navbar .logo {
 
-	width: 74px;
+	/* width: 74px; */
     }
 
 
@@ -252,6 +255,11 @@ and (max-device-width : 580px) {
     .logo-container a img {
 
 	height: 50px;
+    }
+
+    .logo-container {
+
+	width: 70px;
     }
 
     div.simple-search-icon img {

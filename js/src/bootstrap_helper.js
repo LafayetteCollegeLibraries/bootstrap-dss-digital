@@ -191,25 +191,6 @@
 	}
 
 	/**
-	 * Work-arounds handling feature requests for the responsive navbar
-	 *
-	 */
-
-	if($( window ).width() <= 1156 ) {
-
-	    if( $( window ).width() > 1024) {
-
-		//$('.menu-toggle-container').css('height', 0);
-	    } else {
-
-		//$('.menu-toggle-container').height('height', '54px');
-	    }
-	} else {
-
-	    //$('.menu-toggle-container').height('height', '54px');
-	}
-
-	/**
 	 * Carousel implementation
 	 *
 	 */
