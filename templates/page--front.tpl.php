@@ -104,7 +104,7 @@
   <?php print $carousel; ?>
 
   <header role="banner" id="page-header">
-   <p class="lead"><?php print l($title, current_path()); ?></p>
+   <p class="lead"><?php print l($title, '<front>'); ?></p>
 
     <?php print render($page['header']); ?>
   </header> <!-- /#header -->
