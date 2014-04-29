@@ -205,9 +205,14 @@ and (max-device-width : 580px) {
     	line-height: 23px !important;
     }
 
+    .navbar-inner-container {
+
+	display: none;
+    }
+
     .navbar .logo {
 
-		margin-left: inherit;
+	width: 74px;
     }
 
 
@@ -247,16 +252,6 @@ and (max-device-width : 580px) {
     .logo-container a img {
 
 	height: 50px;
-    }
-
-    /**
-     * For dev
-     *
-     */
-
-    div.navbar-collapse-toggle div span.btn-navbar {
-
-	display: none !important;
     }
 
     div.simple-search-icon img {

@@ -52,25 +52,20 @@
 	    }
 
 	    // Ensure that the menu items are displayed in a format appropriate to smartphone and tablet devices
-	    if($( window ).width() <= 480) {
-	    //if($( window ).width() <= 500) {
+	    //if($( window ).width() <= 480) {
+	    if($( window ).width() < 1008) {
 
 		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.appVersion) ) {
 
-	    } else if($( window ).width() < 1008) {
-		//} else if($( window ).width() < 993) {
-
-		
-		//$('.navbar-inner-container').removeClass('desktop');
-		$('.navbar-inner-container').insertAfter($('.menu-toggle-container'));
-		//$('.navbar-inner-container').addClass('tablet');
+		    $('.navbar-inner-container').show();
+		}
 	    } else {
 
 		$('.navbar-inner-container').insertBefore($('.auth-share-simple-search-container'));
 		//$('.navbar-inner-container').addClass('desktop');
 		//$('#menu-toggle-control-container').css('display', 'none');
 	    }
-
 
 	    // Adjust the DSS link in response to the size of the browser
 	    //if($( window ).width() <= 754 ) {
