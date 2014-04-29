@@ -442,7 +442,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
             <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.jpg" alt="1896 portrait of football team on steps of Pardee Hall" />
             <div class="carousel-caption">
                 <p class="carousel-caption-heading"><a href="collections/historicalphotos">Historical Photograph Collection</a></p> 
-                <p class="carousel-caption-text"><a href="islandora/object/islandora:59065">Portrait of the Class of 1900 at the Senior Fence</a></p>
+                <p class="carousel-caption-text"><a href="collections/historicalphotos/hpc-1155">Portrait of the Class of 1900 at the Senior Fence</a></p>
             </div>
         </div>
         <div class="item">
