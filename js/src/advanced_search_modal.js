@@ -492,7 +492,6 @@
 	       * @todo Refactor
 	       *
 	       */
-	      ////$(this)
 	      $(targetElement)
 		  .focusin(function(e) {
 
@@ -503,35 +502,31 @@
 			  
 			  $(document).data('LafayetteDssModal.focusedModal', null);
 
-			  // Ensure that the modal is hidden after 3 seconds
-			  setTimeout(function() {
+			  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
 				  
-				  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
-				  
-				  if(focusedModal) {
+			  if(focusedModal) {
 
-				      // Ensure that the last element clicked does not lie within a modal...
-				      ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
-				      if(
-					 typeof($(document).data('LafayetteDssModal')) == 'undefined' || (
-										   !$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
-										   !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length )) {
+			      // Ensure that the last element clicked does not lie within a modal...
+			      ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
+			      if(
+				 typeof($(document).data('LafayetteDssModal')) == 'undefined' || (
+												  !$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
+												  !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length )) {
 					      
-					  /**
-					   * @todo Enable this before deployment
-					   *
-					   */
-					  that.hide();
-				      }
-				  } else {
+				  /**
+				   * @todo Enable this before deployment
+				   *
+				   */
+				  that.hide();
+			      }
+			  } else {
 
-				      /**
-				       * @todo Enable this before deployment
-				       *
-				       */
-				      that.hide();
-				  }
-			      }, 3000);
+			      /**
+			       * @todo Enable this before deployment
+			       *
+			       */
+			      that.hide();
+			  }
 		      });
 
 	      /**
@@ -558,7 +553,6 @@
 
 				      if($(document).height() - $(e).scrollTop() - $(e).height()) {
 
-					  //console.log('trace1');
 					  $(e).css('top', offsetTop );
 				      }
 				  }
@@ -579,8 +573,6 @@
 			      // If the navbar has been affixed and the user hasn't reached the bottom of the page...
 			      if($navbar.length > 0 && ($(document).height() - $(document).scrollTop()) > $(e).height()) {
 
-				  console.log('case 3');
-
 				  /**
 				   * This relates to DSSSM-517
 				   *
@@ -590,7 +582,6 @@
 				  // Offset from the top + the number of pixels between the scrollbar and the top of the page
 				  //$(e).css('top', offsetTop + $(window).scrollTop());
 				  
-				  console.log( $(window).scrollTop());
 				  $(e).css('top', $(e).css('top') + $(window).scrollTop());
 
 				  // More pixels need to be subtracted
@@ -634,8 +625,20 @@
 			  $(document).data('LafayetteDssModal.' + $(this).attr('id') + '.offset.top', $(this).offset().top);
 			  ////$(document).data('LafayetteDssModal.' + $(targetElement).attr('id') + '.offset.top', $(targetElement).offset().top);
 
-			  $(this).find('input.form-text:first').focus();
-			  ////$(targetElement).find('input.form-text:first').focus();
+			  /**
+			   * Ensure that the initial term field within the advanced search form always receives focus
+			   * @todo Refactor
+			   *
+			   */
+			  if( $(this).attr('id') == 'advanced-search-modal') {
+
+			      $(this).find('input.form-text:first').focus();
+			  } else {
+
+			      $(this).focus();
+			  }
+
+			  $(document).data('LafayetteDssModal.focusedModal', that);
 
 			  // Hide when losing focus
 			  //$(this).focusout(function(e) {
@@ -656,27 +659,21 @@
 			  .off('focusout')
 			  .focusout(function(e) {
 
-				  $(document).data('LafayetteDssModal.focusedModal', null);
+				  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
 
-				  // Ensure that the modal is hidden after 3 seconds
-				  setTimeout(function() {
+				  if(focusedModal) {
 
-					  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
+				      // Ensure that the last element clicked does not lie within a modal...
+				      if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
+					 ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
+					 !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length ) {
+					  
+					  that.hide();
+				      }
+				  } else {
 
-					  if(focusedModal) {
-
-					      // Ensure that the last element clicked does not lie within a modal...
-					      if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
-						 ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
-						 !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length ) {
-					      
-						  //that.hide();
-					      }
-					  } else {
-
-					      //that.hide();
-					  }
-				      }, 3000);
+				      that.hide();
+				  }
 			      });
 
 			  /**
@@ -701,7 +698,6 @@
 						  //$(e).css('top', offsetTop );
 						  if($(document).height() - $(e).scrollTop() - $(e).height()) {
 
-						      //console.log('trace1');
 						      $(e).css('top', offsetTop );
 						  }
 					      }
@@ -712,10 +708,6 @@
 					      //$(e).css('top', offsetTop );
 					      //if($(document).height() - $(e).scrollTop() - $(e).height() > 0) {
 					      if(($(document).height() - $(document).scrollTop()) > $(e).height()) {
-
-						  console.log('trace2');
-						  //console.log( $(document).height() - $(e).scrollTop() - $(e).height() );
-						  //console.log(  $(document).height() - $(document).scrollTop() );
 
 						  $(e).css('top', offsetTop );
 					      }
