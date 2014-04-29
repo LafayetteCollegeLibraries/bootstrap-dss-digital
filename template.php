@@ -62,7 +62,7 @@ function bootstrap_dss_digital_preprocess_node(&$vars) {
     $meta_elements['meta_element_open_graph_image'] = array('#type' => 'html_tag',
 							    '#tag' => 'meta',
 							    '#attributes' => array('property' =>  'og:image',
-										   'content' => $base_url . '/' . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/dss_logo.png',
+										   'content' => $base_url . '/' . drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/dss_logo_full.png',
 										   ),
 							    );
     $meta_elements['meta_element_open_graph_site_name'] = array('#type' => 'html_tag',
