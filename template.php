@@ -78,6 +78,18 @@ function bootstrap_dss_digital_preprocess_node(&$vars) {
       drupal_add_html_head($meta_element, $key);
     }
   }
+
+  /**
+   * Implements redirection for the Repository Migration page
+   * @todo Refactor
+   * Resolves DSSSM-826
+   */
+  if($vars['node_url'] == '/redirect') {
+
+    drupal_add_js('jQuery(document).ready(function() { setTimeout(function() { window.location.replace("/"); }, 5000); });',
+		  array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)
+		  );
+  }
 }
 
 /**
