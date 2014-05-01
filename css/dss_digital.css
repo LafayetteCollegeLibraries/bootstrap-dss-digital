@@ -2160,9 +2160,19 @@ p {
 	padding-left:40px;
 }
 
+/* style redirect page */
 
-
-
+#node-47 > div > div > div {
+	
+	background-color: #F5F5F5;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    font-size: 16px;
+    margin: 20px auto 25px;
+    padding: 8px 10px 10px;
+    text-align: justify;
+    width: 82%;
+}
 
 
 
