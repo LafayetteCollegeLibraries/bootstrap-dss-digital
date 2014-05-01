@@ -662,8 +662,6 @@
 			  .off('focusout')
 			  .focusout(function(e) {
 
-				  alert('trace1');
-
 				  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
 
 				  if(focusedModal) {
