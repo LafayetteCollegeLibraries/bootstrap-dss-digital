@@ -86,7 +86,7 @@ function bootstrap_dss_digital_preprocess_node(&$vars) {
    */
   if($vars['node_url'] == '/redirect') {
 
-    drupal_add_js('jQuery(document).ready(function() { setTimeout(function() { window.location.replace("/"); }, 5000); });',
+    drupal_add_js('jQuery(document).ready(function() { setTimeout(function() { window.location.replace("/"); }, 7000); });',
 		  array('type' => 'inline', 'scope' => 'footer', 'weight' => 5)
 		  );
   }
