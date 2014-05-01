@@ -1048,20 +1048,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
      *
      */
 
-    /*
-    case 'node/26':
-    case 'node/30':
-    case 'node/31':
-    case 'node/19':
-    case 'node/20':
-    case 'node/21':
-    case 'node/27':
-    case 'node/32':
-    case 'node/33':
-    case 'node/34':
-    case 'node/42':
-    case 'node/43':
-     */
     $collection_node_map = array(
 				 'East Asia Image Collections' => 'node/26',
 				 'East Asia Image Collection' => 'node/26',
@@ -1076,6 +1062,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				 'Visual Resources Collection' => 'node/34',
 				 'McKelvy House Photograph Collection' => 'node/42',
 				 'Lafayette World War II Casualties' => 'node/43',
+				 'Presidents of Lafayette College' => 'node/41',
 				 );
 
     $collection_elements = array();
@@ -1243,7 +1230,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
     } else { // Home / Search
 
-      //dpm($solr_query);
       switch($solr_query) {
 
       case 'node/2':
@@ -1259,6 +1245,11 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       case 'node/4':
 
 	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Repositories';
+	break;
+
+      case 'node/9':
+
+	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Contact Digital Scholarship Services';
 	break;
 
       case 'node/11':
