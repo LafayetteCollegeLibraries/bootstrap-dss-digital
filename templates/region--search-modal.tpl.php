@@ -14,7 +14,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close advanced-search-modal-close" data-dismiss="modal" data-width="560" aria-hidden="true">Close</button>
-	  <h4 class="modal-title">Advanced Search</h4>
+	  <h4 class="modal-title">Search</h4>
         </div>
         <div class="modal-body">
 

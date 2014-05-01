@@ -492,6 +492,7 @@
 	       * @todo Refactor
 	       *
 	       */
+
 	      $(targetElement)
 		  .focusin(function(e) {
 
@@ -499,7 +500,7 @@
 		      })
 		  .off('focusout')
 		  .focusout(function(e) {
-			  
+
 			  $(document).data('LafayetteDssModal.focusedModal', null);
 
 			  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
@@ -633,6 +634,8 @@
 			  if( $(this).attr('id') == 'advanced-search-modal') {
 
 			      $(this).find('input.form-text:first').focus();
+
+			      $(this).focus();
 			  } else {
 
 			      $(this).focus();
@@ -658,6 +661,8 @@
 			      })
 			  .off('focusout')
 			  .focusout(function(e) {
+
+				  alert('trace1');
 
 				  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
 

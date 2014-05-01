@@ -89,22 +89,30 @@ and (max-device-width : 580px) {
 	
 	#advanced-search-modal {
 		
-		width:400px !important;
+		width:320px !important;
+		/*left:calc((100% - 320px) / 2) !important; won't work without also modifying ui-effects-wrapper class */
+		right:0px !important;
+	}
+	
+	.control-group {
+		
+		padding:0px !important;
+		width:100% !important
 	}
 	
 	.controls {
 		
-		width:180px !important;
+		width:100% !important;
 	}
 	
 	#edit-collection {
 		
-		width:180px !important;
+		width:100% !important;
 	}
 	
 	#edit-collection > option {
 		
-		width:180px !important;
+		width:100% !important;
 	}
 	
 	#islandora-solr-advanced-scoping {
@@ -114,12 +122,12 @@ and (max-device-width : 580px) {
 	
 	.islandora-solr-search-field.form-select {
 		
-		width:180px !important;
+		width:100% !important;
 	}
 	
 	.controls > input {
 		
-		width:180px !important;
+		width:calc(100% - 16px) !important;
 	}
 	
 	.control-group.form-type-textfield {
