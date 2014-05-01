@@ -1249,7 +1249,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
       case 'node/9':
 
-	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Contact Digital Scholarship Services';
+	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Contact DSS';
 	break;
 
       case 'node/11':
