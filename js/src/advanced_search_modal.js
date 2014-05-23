@@ -481,6 +481,7 @@
 
 	      ////$(this).find('input.form-text:first').focus();
 	      $(targetElement).find('input.form-text:first').focus();
+	      $(document).data('LafayetteDssModal.focusedModal', that);
 
 	      // Hide when losing focus
 	      //$(this).focusout(function(e) {
@@ -492,7 +493,6 @@
 	       * @todo Refactor
 	       *
 	       */
-
 	      $(targetElement)
 		  .focusin(function(e) {
 
@@ -500,17 +500,14 @@
 		      })
 		  .off('focusout')
 		  .focusout(function(e) {
-
-			  $(document).data('LafayetteDssModal.focusedModal', null);
-
+			  
 			  var focusedModal = $(document).data('LafayetteDssModal.focusedModal');
-				  
+
 			  if(focusedModal) {
 
 			      // Ensure that the last element clicked does not lie within a modal...
 			      ////if(!$(document).data('LafayetteDssModal').$lastTarget.is($(this)) &&
-			      if(
-				 typeof($(document).data('LafayetteDssModal')) == 'undefined' || (
+			      if(typeof($(document).data('LafayetteDssModal')) == 'undefined' || (
 												  !$(document).data('LafayetteDssModal').$lastTarget.is($(targetElement)) &&
 												  !$(document).data('LafayetteDssModal').$lastTarget.parents('#' + focusedModal.$element.attr('id')).length )) {
 					      
@@ -519,6 +516,7 @@
 				   *
 				   */
 				  that.hide();
+				  $(document).data('LafayetteDssModal.focusedModal', null);
 			      }
 			  } else {
 
@@ -634,8 +632,6 @@
 			  if( $(this).attr('id') == 'advanced-search-modal') {
 
 			      $(this).find('input.form-text:first').focus();
-
-			      $(this).focus();
 			  } else {
 
 			      $(this).focus();
