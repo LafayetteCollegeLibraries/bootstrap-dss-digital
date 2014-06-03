@@ -343,21 +343,7 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
     $sorted_field = $m[1];
   } else {
 
-    /**
-     * If this is a member of the newspaper collection, sort by the publication date
-     * Resolves DSSSM-865
-     *
-     */
     $sorted_field = 'dc.title';
-    $params = $_GET;
-
-    if(array_key_exists('f', $params) and !empty($params['f'])) {
-
-      if($params['f'][0] == 'cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"') {
-
-	$sorted_field = 'dc.date.sort';
-      }
-    }
   }
   
   /**
