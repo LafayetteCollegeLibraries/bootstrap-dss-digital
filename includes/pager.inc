@@ -127,16 +127,6 @@ function bootstrap_dss_digital_pager_next($variables) {
 
   global $pager_page_array, $pager_total;
 
-  /*
-  dpm( array('trace'));
-  dpm($pager_page_array);
-  dpm($pager_total);
-  dpm($text);
-  dpm($element);
-  dpm($interval);
-  dpm($parameters);
-  */
-
   $output = '';
 
   // If we are anywhere but the last page (for an interval of 1)
@@ -318,9 +308,6 @@ function bootstrap_dss_digital_pager($variables) {
           );
         }
       }
-      dpm($pager_max);
-      dpm($i);
-      dpm(array('trace1'));
 
       if ($i < $pager_max) {
         $items[] = array(

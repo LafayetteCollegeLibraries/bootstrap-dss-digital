@@ -546,6 +546,8 @@ function bootstrap_dss_digital_preprocess_html(&$variables) {
   drupal_add_library('system', 'effects.slide');
 
   //$variables['slide_panel'] = $variables['page']['slide_panel'];
+
+  drupal_add_js('http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.js', 'external');
 }
 
 /**
