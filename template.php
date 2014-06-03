@@ -544,8 +544,6 @@ function bootstrap_dss_digital_preprocess_html(&$variables) {
 
   drupal_add_library('system', 'effects.drop');
   drupal_add_library('system', 'effects.slide');
-
-  //$variables['slide_panel'] = $variables['page']['slide_panel'];
 }
 
 /**
