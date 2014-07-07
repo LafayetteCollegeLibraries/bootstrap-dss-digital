@@ -634,10 +634,6 @@ class DssMods extends SimpleXMLElement {
       break;
     }
 
-    dpm($relation_is_part_of_value);
-    dpm($template_map);
-    dpm($this->asXML());
-
     foreach($template_map as $facet => $value) {
 
       $is_facet = false;
@@ -877,12 +873,12 @@ class DssMods extends SimpleXMLElement {
 	   * Addressing the issue for ...
 	   * Resolves DSSSM-885
 	   */
-	  if($relation_is_part_of_value == 'Historical Photograph Collection') {
+	  if($relation_is_part_of_value == 'Historical Photograph Collection' or $relation_is_part_of_value == 'McKelvy House Photograph Collection') {
 
 	    if($date_value->format('m-d') == '01-01') {
 
 	      $element['date_value'] = $date_value->format('Y');
-	      if(preg_match('/\d0/', $date_value->format('y'))) {
+	      if(preg_match('/\d0/', $date_value->format('y')) and $relation_is_part_of_value == 'Historical Photograph Collection' ) {
 
 		$element['date_value'] .= "'s";
 	      }
