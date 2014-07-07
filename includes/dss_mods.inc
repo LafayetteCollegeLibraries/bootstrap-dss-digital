@@ -526,7 +526,7 @@ class DssMods extends SimpleXMLElement {
 			    'Subject' => array('xpath' => "./mods:subject/mods:topic",
 					       'facet' => true),
 			    'Description' => "./mods:note[1]",
-			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
+			    'Publication Date' => array('xpath' => './mods:originInfo/mods:dateCreated[@point="start"]',
 							'facet' => true,
 							'date' => true),
 			    //'Medium' => "./mods:genre",
@@ -634,9 +634,9 @@ class DssMods extends SimpleXMLElement {
       break;
     }
 
-    //$this->xpath("./mods:note[@type='admin']");
-
-    //dpm($template_map);
+    dpm($relation_is_part_of_value);
+    dpm($template_map);
+    dpm($this->asXML());
 
     foreach($template_map as $facet => $value) {
 
@@ -655,8 +655,6 @@ class DssMods extends SimpleXMLElement {
 	 *
 	 */
 	if($is_facet && array_key_exists('field', $value)) {
-
-	  //dpm($value['field']);
 
 	  //$facet_field = $value['field'];
 	  $facet_field = $value['field'];
@@ -699,12 +697,7 @@ class DssMods extends SimpleXMLElement {
 		     );
       };
 
-      //dpm($facet);
-      //dpm($xpath);
-
       $mods_elements = array_map($map, $this->xpath($xpath));
-      //dpm($mods_elements);
-      //dpm($label_map);
 
       for($i = 0; $i < sizeof($mods_elements); $i++) {
 
@@ -739,8 +732,7 @@ class DssMods extends SimpleXMLElement {
 	 * Work-around for DSS-170
 	 *
 	 */
-	//dpm(array($relation_is_part_of_value, $element['label'], $element['value']));
-	
+
 	$element['raw_value'] = $element['value'];
 	if(array_key_exists($relation_is_part_of_value, $ISLANDORA_MARC_METADB_MAP)) {
 
@@ -875,7 +867,27 @@ class DssMods extends SimpleXMLElement {
 
 	if($is_date) {
 
-	  $element['date_value'] = gmdate('Y-m-d', strtotime($element['value']));
+	  //$element['date_value'] = gmdate('Y-m-d', strtotime($element['value']));
+
+	  $date_value = new DateTime($element['value'], new DateTimeZone('GMT'));
+	  //$element['date_value'] = date_format($date_value, 'Y-m-d');
+	  $element['date_value'] = $date_value->format('Y-m-d');
+
+	  /**
+	   * Addressing the issue for ...
+	   * Resolves DSSSM-885
+	   */
+	  if($relation_is_part_of_value == 'Historical Photograph Collection') {
+
+	    if($date_value->format('m-d') == '01-01') {
+
+	      $element['date_value'] = $date_value->format('Y');
+	      if(preg_match('/\d0/', $date_value->format('y'))) {
+
+		$element['date_value'] .= "'s";
+	      }
+	    }
+	  }
 
 	  /*
 	  $facet_params_values = array();
@@ -903,9 +915,8 @@ class DssMods extends SimpleXMLElement {
 
 	  $element['href'] = $element['value'];
 	}
+
 	$element['label'] = $facet;
-
-
       }
 
       $mods_array = array_merge($mods_array, $mods_elements);
