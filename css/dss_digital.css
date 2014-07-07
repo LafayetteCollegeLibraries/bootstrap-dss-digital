@@ -2174,6 +2174,54 @@ p {
     width: 82%;
 }
 
+/* by Thom: style updated collections that no longer has quicktabs */
+
+#node-45 {
+	
+	margin:0px;
+}
+
+#digitalScholarship, #lafayetteLibrariesCollections {
+	
+	float:left;
+	width:100%;
+	padding-top: 45px;
+	margin-top: -45px;
+}
+
+#lafayetteLibrariesCollections {
+	
+	margin-bottom:10px;
+}
+
+#lafayetteLibrariesCollections h2 {
+	
+	margin-top:0px;
+}
+
+#collectionsJumpNav {
+	
+	margin-left:10px;
+	margin-right:10px;
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding: 10px 10px 5px;
+    width: 220px;
+    margin-bottom:10px;
+}
+
+#collectionsJumpNav ul {
+	
+	list-style:none;
+}
+
+#collectionsJumpNav p {
+	
+	margin:0px;
+	font-weight:bold;
+}
+
 
 
 
