@@ -363,7 +363,7 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 	
 	text-align:left;
 	float:right;
-	width:265px;
+	width:270px;
 }
 
 .contact-profile > p {
@@ -384,20 +384,13 @@ html.js body.html div.main-container div.row-fluid section.span12 article#node-2
 
 .contact-profile > img {
 	
-	width:140px;
-	height:191px;
+	width:135px;
+	height:184px;
 	float:left; 
 	margin-bottom:10px;
 	margin-left:5px;  
 	margin-right:15px;
 	margin-top:5px;
-}
-
-#postdoc > img {
-	
-	width:133px;
-	height:182px;
-	border:1px solid #CCCCCC;
 }
 
 /* carousel caption styling */
