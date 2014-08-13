@@ -357,58 +357,32 @@ class DssMods extends SimpleXMLElement {
 
     case 'Marquis de Lafayette Prints Collection':
 
-      $template_map = array(
-			    'Title' => "./mods:titleInfo/mods:title",
-
+      $template_map = array('Title' => "./mods:titleInfo/mods:title",
 			    'Description.Note' => "./mods:note[@type='description']",
-
 			    'Creator' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text() = 'cre']/../../mods:namePart",
 					       'facet' => true),
 			    'Subject.LCSH' => array('xpath' => "./mods:subject[@authority='lcsh']/mods:topic",
 						    'facet' => true),
 			    'Publisher.Original' => array('xpath' => "./mods:originInfo/mods:publisher",
 							  'facet' => true),
-
 			    'Date.Original' => array('xpath' => "./mods:originInfo/mods:dateCreated",
 						      'facet' => true,
 						      'date' => true),
-
 			    'Format.Medium' => array('xpath' => './mods:physicalDescription/mods:form',
 						     'facet' => true),
-
 			    'Format.Extent' => "./mods:physicalDescription/mods:extent",
-
 			    'Description' => "./mods:abstract",
-
-			    // 'Description.Condition' => array()
 			    'Description.Provenance' => "./mods:note[@type='ownership']",
 			    'Description.Series' => array('xpath' => "./mods:note[@type='series']",
 							  'facet' => true),
-
 			    'Identifier.ItemNumber' => array('xpath' => "./mods:identifier[@type='item-number']",
 							     'facet' => true),
-
 			    'Rights.Digital' => "./mods:accessCondition",
 			    'Publisher.Digital' => "./mods:note[@type='statement of responsibility']",
-			    'Source' => './mods:location/mods:physicallocation[@displaylabel="Source"]',
+			    'Source' => './mods:location/mods:physicalLocation',
 			    'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
 							 'facet' => true),
 			    'Format.Digital' => "./mods:note[@type='digital format']",
-
-			    /*
-			    'Digital Publisher' => array('xpath' => "./mods:name/mods:namePart",
-							 'facet' => true),
-			    'Digitization Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
-							 'facet' => true,
-							 'date' => true),
-			    */
-			    /*
-			    'Digital Format' => array('xpath' => "./mods:physicalDescription/mods:note",
-						      'facet' => true),
-			    'Source' => array('xpath' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title"),
-			    'Language' => array('xpath' => "./mods:language/mods:languageTerm[@type='text']"),
-			    */
-
 			    );
       break;
 
