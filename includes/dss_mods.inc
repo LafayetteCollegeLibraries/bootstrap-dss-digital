@@ -10,7 +10,7 @@
 
 class DssMods extends SimpleXMLElement {
 
-  public function toArray($label_map=array()) {
+  public function toArray($label_map = array()) {
 
     $this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
     $this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
@@ -123,7 +123,8 @@ class DssMods extends SimpleXMLElement {
 			  /*
 			    MDL
 			  */
-			  'Source' => './mods:location/mods:physicalLocation',
+			  'Source' => array('xpath' => './mods:location/mods:physicalLocation',
+					    'facet' => true),
 			  'Subject.LCSH' => array('xpath' => "./mods:subject[@authority='lcsh']/mods:topic",
 						  'facet' => true),
 
@@ -379,7 +380,9 @@ class DssMods extends SimpleXMLElement {
 							     'facet' => true),
 			    'Rights.Digital' => "./mods:accessCondition",
 			    'Publisher.Digital' => "./mods:note[@type='statement of responsibility']",
-			    'Source' => './mods:location/mods:physicalLocation',
+			    //'Source' => './mods:location/mods:physicalLocation',
+			    'Source' => array('xpath' => './mods:location/mods:physicalLocation',
+					      'facet' => true),
 			    'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
 							 'facet' => true),
 			    'Format.Digital' => "./mods:note[@type='digital format']",
@@ -837,9 +840,23 @@ class DssMods extends SimpleXMLElement {
 
 	if($is_date) {
 
-	  //$element['date_value'] = gmdate('Y-m-d', strtotime($element['value']));
+	  // Handling for improperly structured datestamps
+	  // Resolves DSS-349	      
+	  if(!preg_match('/^\d{4}\-\d{2}\-(.+)/', $element['value'])) {
 
-	  $date_value = new DateTime($element['value'], new DateTimeZone('GMT'));
+	    try {
+
+	      // Attempt to transform the date
+	      $element['value'] = preg_replace('/^(\d{4})(\d{2})\d{2}\-\d{2}(.+)/', '\1-\2\3', $element['value']);
+	      $date_value = new DateTime($element['value'], new DateTimeZone('GMT'));
+	    } catch(Exception $e) {
+	    
+	      $date_value = new DateTime('1970-01-01', new DateTimeZone('GMT'));
+	    }
+	  } else {
+
+	    $date_value = new DateTime($element['value'], new DateTimeZone('GMT'));
+	  }
 	  //$element['date_value'] = date_format($date_value, 'Y-m-d');
 	  $element['date_value'] = $date_value->format('Y-m-d');
 
@@ -859,26 +876,9 @@ class DssMods extends SimpleXMLElement {
 	    }
 	  }
 
-	  /*
-	  $facet_params_values = array();
-	  $facet_params = array();
-
-	  $facet_index = 0;
-	  foreach($this->xpath("./mods:note[@type='admin']") as $collection_element) {
-
-	    //$facet_params_values[] = (string) $facet_params_value;
-	    $facet_params["f[{$facet_index}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_element . '"';
-	    $facet_index++;
-	  }
-	  $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['value'] . '"';
-
-	  dpm($facet_params);
-	  */
-
 	  //$element['facet_value'] = '[' . $element['value'] . ' TO ' . $element['value'] . ']';
 	  $facet_params["f[{$facet_index}]"] = $element['facet'] . ':[' . $element['value'] . ' TO ' . $element['value'] . ']';
-	  $element['facet_href'] = l($element['date_value'], "islandora/search/*:*", array('query' => $facet_params,
-											   ));
+	  $element['facet_href'] = l($element['date_value'], "islandora/search/*:*", array('query' => $facet_params));
 	}
 
 	if($is_link) {
@@ -893,49 +893,6 @@ class DssMods extends SimpleXMLElement {
     }
 
     $collection_elements = array();
-
-    // Filter MODS elements based upon the parent collection
-    if(array_key_exists('', $mods_elements)) {
-
-      /*
-      switch($mods_elements['Relation.IsPartOf']) {
-
-      case 'Historical Photograph Collection':
-
-	$collection_elements = array(
-				     'Title',
-				     'Genre',
-				     'Description',
-				     'Date of Publication',
-				     'Type',
-				     'Relation.IsPartOf',
-				     'Source',
-				     'Rights',
-				     'Format.Digital',
-				     );
-
-	$_mods_elements = array();
-	foreach($mods_elements as $mods_element) {
-
-	  in_array($mods_element['label'], $collection_elements);
-	  $_mods_elements[] = $mods_element;
-	}
-
-	$mods_elements = $_mods_elements;
-
-	break;
-
-      default:
-      
-	break;
-      }
-    }
-      */
-
-    }
-
-    //dpm( $mods_array);
-
     return $mods_array;
   }
   }
