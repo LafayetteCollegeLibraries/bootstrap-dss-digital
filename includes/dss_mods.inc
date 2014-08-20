@@ -83,24 +83,20 @@ class DssMods extends SimpleXMLElement {
      * This resolves DSS-167
      * This resolves DSS-170
      */
-    $ISLANDORA_MARC_METADB_MAP = array('East Asia Image Collection' => array('form' => array(
-											     "photonegative" => 'Photographic negative',
+    $ISLANDORA_MARC_METADB_MAP = array('East Asia Image Collection' => array('form' => array("photonegative" => 'Photographic negative',
 											     "photoprint" => 'Photographic print',
 											     "slide" => 'Photographic slide',
 											     "picture postcard" => 'Picture postcard',
 											     ),
 									     ),
-				       'Marquis de Lafayette Prints Collection' => array('form' => array(
-													 "photoprint" => 'lithograph',
+				       'Marquis de Lafayette Prints Collection' => array('form' => array("photoprint" => 'lithograph',
 													 )
 											 ),
 				       );
     
     $relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
-    //dpm( $relation_is_part_of_value  );
 
-    $template_map = array(
-			  'Genre' => "./mods:genre",
+    $template_map = array('Genre' => "./mods:genre",
 			  'Location' => "./mods:subject/mods:geographic",
 			  'Topic' => "./mods:subject/mods:topic",
 			  //'Note' => "./mods:note",
@@ -380,11 +376,12 @@ class DssMods extends SimpleXMLElement {
 							     'facet' => true),
 			    'Rights.Digital' => "./mods:accessCondition",
 			    'Publisher.Digital' => "./mods:note[@type='statement of responsibility']",
-			    //'Source' => './mods:location/mods:physicalLocation',
 			    'Source' => array('xpath' => './mods:location/mods:physicalLocation',
-					      'facet' => true),
+					      'facet' => true,
+					      'field' => 'mdl_prints.source'),
 			    'Relation.IsPartOf' => array('xpath' => "./mods:note[@type='admin']",
-							 'facet' => true),
+							 'facet' => true,
+							 'field' => 'cdm.Relation.IsPartOf'),
 			    'Format.Digital' => "./mods:note[@type='digital format']",
 			    );
       break;
@@ -574,8 +571,7 @@ class DssMods extends SimpleXMLElement {
 
     case 'Lafayette Newspaper Collection':
 
-      $template_map = array(
-			    'Title' => "./mods:titleInfo/mods:title",
+      $template_map = array('Title' => "./mods:titleInfo/mods:title",
 			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateIssued",
 							'facet' => true,
 							'date' => true),
@@ -593,8 +589,7 @@ class DssMods extends SimpleXMLElement {
     default:
 
       // Newspapers and other anomalous Objects
-      $template_map = array(
-			    'Title' => "./mods:titleInfo/mods:title",
+      $template_map = array('Title' => "./mods:titleInfo/mods:title",
 			    'Publication Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
 							'facet' => true,
 							'date' => true),
@@ -693,10 +688,6 @@ class DssMods extends SimpleXMLElement {
       $ISLANDORA_DSS_MODS_FIELDS = array('Historical Photograph Collection' => array('geology_slides_esi.subject' => 'dc.subject',
 										     'Medium' => 'dc.type'));
 
-      /*
-      $ISLANDORA_DSS_MODS_FIELDS = array('Historical Photograph Collection' => array('Medium' => 'dc.type'));
-      */
-
       // Refactor
       foreach($mods_elements as $i => &$element) {
 
@@ -718,6 +709,7 @@ class DssMods extends SimpleXMLElement {
 	  }
 	}
 
+	// If this field is a facet...
 	if($is_facet) {
 
 	  /**
@@ -725,18 +717,22 @@ class DssMods extends SimpleXMLElement {
 	   * @todo Refactor
 	   *
 	   */
+
+	  // ...and if the Solr field was explicitly given within the array...
 	  if(isset($facet_field) && $facet_field) {
 
-	    //$element['field'] = $facet;
 	    $element['facet'] = $facet_field;
 	  } elseif(array_key_exists($facet, $label_map)) {
 
+	    // ...and if the Solr field was mapped using islandora_solr_fields()
 	    $element['facet'] = $label_map[$facet];
 	  } else {
 
+	    // ...just set the facet to the human-readable name
 	    $element['facet'] = $facet;
 	  }
 
+	  // Provide proper facet query structure for date ranges
 	  if($is_date) {
 
 	    $element['facet_value'] = '[' . $element['value'] . ' TO ' . $element['value'] . ']';
@@ -745,27 +741,20 @@ class DssMods extends SimpleXMLElement {
 	    $element['facet_value'] = '"' . $element['value'] . '"';
 	  }
 
-	  /*
-	  $facet_params_map = function($element) {
-
-	    return array('cdm.Relation.IsPartOf', (string) $element);
-	  };
-	  $facet_params_values = array_map($facet_params_map, $this->xpath("./mods:note[@type='admin']"));
-	  */
-
 	  $facet_params_values = array();
 	  $facet_params = array();
 
+	  /**
+	   * If this is the facet used for storing relationships between collections (i. e. the ContentDM field Relation.IsPartOf), nest the links
+	   *
+	   */
 	  if($element['facet'] == 'cdm.Relation.IsPartOf') {
 
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
 
-	    //dpm($element['value']);
-
 	    for($i=0; $i<$collection_facets; $i++) {
 
 	      if($element['value'] != (string) $collection_elements[$i]) {
-		//if(true) {
 
 		$facet_params["f[{$i}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
 	      }
@@ -793,7 +782,6 @@ class DssMods extends SimpleXMLElement {
 	      $facet_index++;
 	    }
 
-
 	    if(array_key_exists($relation_is_part_of_value, $ISLANDORA_DSS_MODS_FIELDS) and array_key_exists($element['facet'], $ISLANDORA_DSS_MODS_FIELDS[$relation_is_part_of_value])) {
 
 	      $facet_params["f[{$facet_index}]"] = $ISLANDORA_DSS_MODS_FIELDS[$relation_is_part_of_value][$element['facet']] . ':"' . $element['raw_value'] . '"';
@@ -804,38 +792,12 @@ class DssMods extends SimpleXMLElement {
 	       * Work-around for DSS-170
 	       *
 	       */
-	      //$facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['value'] . '"';
 	      $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['raw_value'] . '"';
 	    }
 	  }
-
-	  /*
-	  //$facet_params_values[] = array($element['facet'] => $element['value']);
-	  $facet_params_values[$element['facet']] = $element['value'];
-
-	  //for($facet_index=0; $facet_index < count($facet_params_values); $facet_index++) {
-
-	  $facet_index = 0;
-	  foreach($facet_params_values as $facet_field => $facet_value) {
-
-	    $facet_params["f[{$facet_index}]"] = $facet_field . ':"' . $facet_value . '"';
-	    $facet_index++;
-	  }
-	  */
-
-	  /*
-	  $element['facet_href'] = l($element['value'], "islandora/search/*:*", array('query' => $facet_params,
-										      ));
-	  */
-	  $element['facet_href'] = l($element['value'], "islandora/search/*:*", array('query' => $facet_params,
-										      ));
-
-	  /*
-	  $element['facet_href'] = l($value['value'], "islandora/search/*:*", array('query' => array(
-												     "f[{$facet_index}]" => $value['facet'] . ':' . $value['facet_value'] . ''),
-										    ));
-	  */
-	  //print l($value['value'], "islandora/search/*:*", array('query' => array('f[0]' => $value['facet'] . ':' . $value['facet_value'] . '')));
+	  
+	  // Construct the URL for the islandora/search query path
+	  $element['facet_href'] = l($element['value'], "islandora/search/*:*", array('query' => $facet_params));
 	}
 
 	if($is_date) {
