@@ -524,10 +524,15 @@ form#islandora-dss-solr-advanced-search-form div div.control-group.form-type-sel
 	width:344px;
 }
 
-div.controls {
+/*  @author goodnowt	
+ * 
+ * From what I can tell, this styling rule is a holdover from an earlier state that is no longer necessary.  It was causing conflicts elsewhere, and so has been commented out. 
+ * 
+ *
+ *  div.controls {
 	
 	width:220px;
-}
+} */
 
 form#islandora-dss-solr-advanced-search-form div div#islandora-solr-advanced-terms div div.control-group {
 
