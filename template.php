@@ -787,8 +787,6 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
    */
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
 
-  dpm($variables['mods_object']);
-  
   $rendered_fields = array();
   foreach($variables['mods_object'] as $key => &$value) {
 
@@ -846,9 +844,10 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     try {
 
       $mods_str = $object['MODS']->content;
-
       $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
-      //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
+
+      dpm($mods_str);
+
 
       $mods_object = new DssMods($mods_str);
     } catch (Exception $e) {
