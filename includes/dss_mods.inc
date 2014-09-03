@@ -288,6 +288,8 @@ class DssMods extends SimpleXMLElement {
 			    //'Description.Indicia.Japanese' => "./mods:note[@xml:lang='en-US']",
 			    //'Description.Indicia.Korean' => "./mods:note[@xml:lang='en-US']",
 
+			    'Description.Inscription.Japanese' => './mods:note[@type="handwritten" and @xml:lang="Jpan"]',
+
 			    'Description.Text.English' => './mods:abstract[@xml:lang="en-US"]',
 			    'Description.Text.Chinese' => "./mods:abstract[@xml:lang='zh']",
 			    'Description.Text.Japanese' => "./mods:abstract[@xml:lang='Jpan']",
@@ -299,6 +301,7 @@ class DssMods extends SimpleXMLElement {
 								 'facet' => true),
 			    'Description.Ethnicity' => array('xpath' => "./mods:note[@type='ethnicity']",
 							     'facet' => true),
+			    'Relation.SeeAlso' => './mods:relatedItem[@displayLabel="See also" and @type="references"]/mods:note[@type="citation"]',
 			    'Contributor' => array('xpath' => "./mods:name/mods:role/mods:roleTerm[text()='ctb']/../../mods:namePart",
 						   'facet' => true,
 						   'field' => 'eastasia.Contributors.Digital'),
@@ -348,6 +351,8 @@ class DssMods extends SimpleXMLElement {
 			    //'Rights.Digital' => "./mods:accessCondition",
 			    'Format.Digital' => "./mods:note[@type='digital format']",
 			    */
+
+
 			    );
 
       break;
