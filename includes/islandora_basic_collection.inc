@@ -11,31 +11,24 @@ function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
   $islandora_object = $variables['islandora_object'];
   $collection_pid = $islandora_object->id;
 
-  //$slow_debug = FALSE;
-
   foreach($variables['associated_objects_array'] as &$associated_object) {
 
     $object = $associated_object['object'];
     $pid = $associated_object['pid'];
 
-    /*
-    if(!$slow_debug) {
-
-      dpm($object['dc_array']);
-      $slow_debug = TRUE;
-    }
-    */
-
     $title = $associated_object['title_link'];
     $thumbnail_img = $associated_object['thumbnail'];
     $object = $associated_object['object'];
 
-
     // Work-around
     // Refactor
+    /**
+     * Provides a mapping between sub-collection labels, PID's, and Solr collection field values
+     * @todo Integrate with variable_get().
+     *
+     */
 
-    $pid_relation_is_part_of_map = array(
-					 'eastAsia:imperialPostcards' => 'Imperial Postcard Collection',
+    $pid_relation_is_part_of_map = array('eastAsia:imperialPostcards' => 'Imperial Postcard Collection',
 					 'eastAsia:linPostcards' => 'Lin Chia-Feng Family Postcard Collection',
 					 'eastAsia:lewis' => 'Michael Lewis Taiwan Postcard Collection',
 					 'eastAsia:pacwarPostcards' => 'Pacific War Postcard Collection',
@@ -52,7 +45,7 @@ function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
 					   array('html' => TRUE,
 						 'alias' => TRUE,
 						 'attributes' => array('title' => $title)));
-    
+
       $associated_object['thumb_link'] = l($thumbnail_img,
 					   'islandora/search/cdm.Relation.IsPartOf:"'. $pid_relation_is_part_of_map[$pid] .'"',
 					   array('html' => TRUE,
@@ -66,7 +59,7 @@ function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
 					   array('html' => TRUE,
 						 'alias' => TRUE,
 						 'attributes' => array('title' => $title)));
-    
+
       $associated_object['thumb_link'] = l($thumbnail_img,
 					   'islandora/search/cdm.Relation.IsPartOf:"Historical Photograph Collection"',
 					   array('html' => TRUE,
@@ -94,7 +87,7 @@ function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
 					   array('html' => TRUE,
 						 'alias' => TRUE,
 						 'attributes' => array('title' => $title)));
-    
+
       $associated_object['thumb_link'] = l($thumbnail_img,
 					   'islandora/search/cdm.Relation.IsPartOf:"Marquis de Lafayette Prints Collection"',
 					   array('html' => TRUE,
@@ -103,36 +96,17 @@ function bootstrap_dss_digital_process_islandora_basic_collection(&$variables) {
     }
   }
 
-  
+
   }
 
 function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$variables) {
-  
+
   $variables['slide_drawers'] = TRUE;
 
   // For rendering non-grid content
   drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.base.css');
   drupal_add_css(drupal_get_path('module', 'islandora_solr') . '/css/islandora_solr.theme.css');
 
-  /*
-  $query_params['display'] = 'list';
-  $list_link = array(
-    'title' => t('List view'),
-    'attributes' => array(
-      'href' => url($path, array('query' => $query_params)),
-      'class' => array('islandora-view-list'),
-    ),
-  );
-
-  $query_params['display'] = 'grid';
-  $grid_link = array(
-    'title' => t('Grid view'),
-    'attributes' => array(
-      'href' => url($path, array('query' => $query_params)),
-      'class' => array('islandora-view-grid'),
-    ),
-  );
-  */
   $islandora_object = $variables['islandora_object'];
   $display = (empty($_GET['display'])) ? variable_get('islandora_basic_collection_default_view', 'grid') : $_GET['display'];
   $link_text = (empty($_GET['display'])) ? 'grid' : $_GET['display'];
@@ -143,17 +117,6 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$v
   if ($display == 'grid') {
 
     $query_params['display'] = 'list';
-    
-    /*
-    $list_link = array(
-		       'title' => 'List view',
-		       'href' => $base_url . '/islandora/object/' . $islandora_object->id,
-		       'attributes' => array(
-					     'class' => 'islandora-view-list',
-					     ),
-		       'query' => $query_params,
-		       );
-    */
 
     $list_link = l('List view',
 		   $base_url . '/islandora/object/' . $islandora_object->id,
@@ -162,15 +125,6 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$v
 
     unset($query_params['display']);
     $query_params['display'] = 'grid';
-
-    /*
-    $grid_link = array(
-      'title' => 'Grid view',
-      'href' => $base_url . '/islandora/object/' . $islandora_object->id,
-      'attributes' => array('class' => array('islandora-view-grid', 'active')),
-      'query' => $query_params,
-    );
-    */
 
     $grid_link = l('Grid view',
 		   $base_url . '/islandora/object/' . $islandora_object->id,
@@ -181,15 +135,6 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$v
 
     $query_params['display'] = 'list';
 
-    /*
-    $list_link = array(
-      'title' => 'List view',
-      'href' => $base_url . '/islandora/object/' . $islandora_object->id,
-      'attributes' => array('class' => array('islandora-view-list', 'active')),
-      'query' => $query_params,
-    );
-    */
-
     $list_link = l('List view',
 		   $base_url . '/islandora/object/' . $islandora_object->id,
 		   array('attributes' => array('class' => array('islandora-view-list', 'active')),
@@ -197,15 +142,6 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$v
 
     unset($query_params['display']);
     $query_params['display'] = 'grid';
-
-    /*
-      $grid_link = array(
-		       'title' => 'Grid view',
-		       'href' => $base_url . '/islandora/object/' . $islandora_object->id,
-		       'attributes' => array('class' => 'islandora-view-grid'),
-		       'query' => $query_params,
-		       );
-    */
 
     $grid_link = l(t('Grid view'),
 		   $base_url . '/islandora/object/' . $islandora_object->id,
@@ -216,12 +152,10 @@ function bootstrap_dss_digital_preprocess_islandora_basic_collection_wrapper(&$v
   $refine_link = l(t('Refine'),
 		   $base_url . '/islandora/object/' . $islandora_object->id . '#',
 		   array('attributes' => array('class' => array('snap-trigger'))));
-  
+
   $variables['view_links'] = array('refine' => $refine_link,
 				   'list' => $list_link,
 				   'grid' => $grid_link);
 
   $variables['display'] = $display;
-
-  dpm($variables);
 }
