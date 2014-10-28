@@ -20,7 +20,7 @@ function bootstrap_dss_digital_pager_first($variables) {
 
   // If we are anywhere but the first page
   if ($pager_page_array[$element] > 0) {
-    
+
     $output = theme('pager_link', array('text' => $text, 'page_new' => pager_load_array(0, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'Go to First Page')));
   }
 
@@ -127,16 +127,6 @@ function bootstrap_dss_digital_pager_next($variables) {
 
   global $pager_page_array, $pager_total;
 
-  /*
-  dpm( array('trace'));
-  dpm($pager_page_array);
-  dpm($pager_total);
-  dpm($text);
-  dpm($element);
-  dpm($interval);
-  dpm($parameters);
-  */
-
   $output = '';
 
   // If we are anywhere but the last page (for an interval of 1)
@@ -169,7 +159,7 @@ function bootstrap_dss_digital_pager_last($variables) {
   $output = '';
 
   // If we are anywhere but the last page
-  if ($pager_page_array[$element] < ($pager_total[$element] - 1)) {  
+  if ($pager_page_array[$element] < ($pager_total[$element] - 1)) {
 
     return theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => array('title' => 'Go to Last Page')));
   }
@@ -247,6 +237,12 @@ function bootstrap_dss_digital_pager($variables) {
   $li_next_set = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('>>')), 'element' => $element, 'interval' => 10, 'parameters' => $parameters));
   $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('>|')), 'element' => $element, 'parameters' => $parameters));
 
+  /**
+   * Replacing the functionality for handling the theming of individual pagination controls
+   * (Some of these are disabled or hidden within the bootstrap theme)
+   *
+   */
+
   if ($pager_total[$element] > 1) {
 
     if ($li_first) {
@@ -268,14 +264,6 @@ function bootstrap_dss_digital_pager($variables) {
 		       'class' => array('prev'),
 		       'data' => $li_previous,
 		       );
-      /*
-    } else {
-
-      $items[] = array('class' => array('disabled'),
-		       'data' => '<span>' . (isset($tags[1]) ? $tags[1] : t('<< Prev')) . '</span>'
-		       );
-    }
-      */
     }
 
     // When there is more than one page, create the pager list.
@@ -318,9 +306,6 @@ function bootstrap_dss_digital_pager($variables) {
           );
         }
       }
-      dpm($pager_max);
-      dpm($i);
-      dpm(array('trace1'));
 
       if ($i < $pager_max) {
         $items[] = array(
@@ -337,14 +322,6 @@ function bootstrap_dss_digital_pager($variables) {
         'class' => array('next'),
         'data' => $li_next,
       );
-      /*
-    } else {
-
-      $items[] = array('class' => array('disabled'),
-		       'data' => '<span>' . (isset($tags[1]) ? $tags[1] : t('Next >>')) . '</span>'
-		       );
-    }
-      */
     }
 
     if ($li_next_set) {
@@ -367,6 +344,6 @@ function bootstrap_dss_digital_pager($variables) {
       //'attributes' => array('class' => array('pager')),
     )) . '</div>';
   }
-  
+
   return $output;
 }
