@@ -1,7 +1,7 @@
 name = The Digital Scholarship Services Theme
 description = The Lafayette College Libraries Digital Scholarship Services Bootstrap Sub-theme
 core = 7.x
-base theme = bootstrap_lafayette_lib_dss
+base theme = bootstrap
 
 ; Regions
 regions[navigation]     = 'Navigation'
@@ -37,7 +37,6 @@ scripts[] = 'js/bootstrap.min.js'
 
 scripts[] = 'js/build/bootstrap_helper.min.js'
 scripts[] = 'js/build/advanced_search_modal.min.js'
-; scripts[] = 'js/src/advanced_search_modal.js'
 scripts[] = 'js/build/sharethis_helper.min.js'
 scripts[] = 'js/build/advanced_search_modal_helper.min.js'
 
@@ -59,10 +58,7 @@ stylesheets[all][] = css/lafayette_lib_dss_page.css
 stylesheets[all][] = css/lightbox2.css
 
 ; Snap.js
-; stylesheets[all][] = css/snap.css
 stylesheets[all][] = css/slide_panel.css
-
-; stylesheets[all][] = css/mbExtruder.css
 
 ; JavaScript
 stylesheets[all][] = css/modal.css
