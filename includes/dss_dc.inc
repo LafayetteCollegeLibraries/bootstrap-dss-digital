@@ -3,7 +3,7 @@
   /**
    * @file Object-oriented XML to Array transform
    * @author griffinj@lafayette.edu
-   
+
    * Project-specific
    *
    */
@@ -13,24 +13,9 @@ class DssDc extends SimpleXMLElement {
   public function toArray($label_map=array()) {
 
     $this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-    //$this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
     $this->registerXPathNamespace("dc", "http://purl.org/dc/elements/1.1/");
 
-    /*
-      dc:titleTitle
-      dc:datePublication Date
-      dc:coverageCoverage
-      dc:descriptionDescription
-      dc:subjectSubject
-      dc:rightsRights
-      dc:publisherPublisher
-      dc:sourceSource Material
-      dc:typeMedium
-     */
-
     $mods_array = array();
-
-    //$relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
 
     $template_map = array(
 			  'Title' => "./dc:title",
@@ -51,8 +36,6 @@ class DssDc extends SimpleXMLElement {
 					    'field' => 'dc.type'),
 			  );
 
-    //$this->xpath("./mods:note[@type='admin']");
-
     foreach($template_map as $facet => $value) {
 
       $is_facet = false;
@@ -71,9 +54,6 @@ class DssDc extends SimpleXMLElement {
 	 */
 	if($is_facet && array_key_exists('field', $value)) {
 
-	  //dpm($value['field']);
-
-	  //$facet_field = $value['field'];
 	  $facet_field = $value['field'];
 	}
 
@@ -114,12 +94,7 @@ class DssDc extends SimpleXMLElement {
 		     );
       };
 
-      //dpm($facet);
-      //dpm($xpath);
-
       $mods_elements = array_map($map, $this->xpath($xpath));
-      //dpm($mods_elements);
-      //dpm($label_map);
 
       for($i = 0; $i < sizeof($mods_elements); $i++) {
 
@@ -130,7 +105,7 @@ class DssDc extends SimpleXMLElement {
 	  $prev_element = $mods_elements[$i - 1];
 	  if($element['label'] == $prev_element['label'] &&
 	     $element['language'] == $prev_element['language']) {
-	    
+
 	    $element['class'] .= ' metadata-value-set';
 	  }
 	}
@@ -143,8 +118,6 @@ class DssDc extends SimpleXMLElement {
 
 	if($is_facet) {
 
-	  //dpm( $facet);
-
 	  /**
 	   * Hard-coded mapping
 	   * @todo Refactor
@@ -152,7 +125,6 @@ class DssDc extends SimpleXMLElement {
 	   */
 	  if(isset($facet_field) && $facet_field) {
 
-	    //$element['field'] = $facet;
 	    $element['facet'] = $facet_field;
 	  } elseif(array_key_exists($facet, $label_map)) {
 
@@ -166,12 +138,9 @@ class DssDc extends SimpleXMLElement {
 
 	    $element['facet_value'] = '[' . $element['value'] . ' TO ' . $element['value'] . ']';
 	  } else {
-	  
+
 	    $element['facet_value'] = '"' . $element['value'] . '"';
 	  }
-
-	  //dpm(array('trace' => $element['facet']));
-	  //dpm(array('trace' => $element['facet_value']));
 
 	  $facet_params_values = array();
 	  $facet_params = array();
@@ -180,13 +149,9 @@ class DssDc extends SimpleXMLElement {
 
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
 
-	    //dpm($element['value']);
-	    
-
 	    for($i=0; $i<$collection_facets; $i++) {
 
 	      if($element['value'] != (string) $collection_elements[$i]) {
-		//if(true) {
 
 		$facet_params["f[{$i}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
 	      }
@@ -231,8 +196,6 @@ class DssDc extends SimpleXMLElement {
     }
 
     $collection_elements = array();
-
-    //dpm( $mods_array);
 
     return $mods_array;
   }
