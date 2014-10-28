@@ -61,16 +61,14 @@ function bootstrap_dss_digital_menu_link__main_menu(&$variables) {
   // Ensure that buttons are only created for the top-level lists
   if(empty($element['#original_link']['depth']) ||
      (empty($element['#below']) && $element['#original_link']['depth'] == '1') || $element['#original_link']['plid'] == '0') {
-    
+
     $element['#attributes']['class'][] = 'btn';
   }
- 
+
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
   }
 
 function bootstrap_dss_digital_menu_tree__menu_footer_menu(&$variables) {
-
-  //dpm($variables);
 
   return theme_menu_tree($variables);
 }
@@ -84,15 +82,6 @@ function bootstrap_dss_digital_menu_link__menu_footer_menu(&$variables) {
 
   $variables['element']['#attributes']['class'][] = 'footer-menu-item';
 
-  // CSS for "piping" effect
-  // HTML for semantically encoded content
-  /*
-  if(!in_array('last', $variables['element']['#attributes']['class'])) {
-
-    $variables['element']['#below']['#markup'] = '<span class="footer-menu-divider">|</span>';
-  }
-  */
-
   return theme_menu_link($variables);
 }
 
@@ -105,30 +94,9 @@ function bootstrap_dss_digital_menu_link__menu_footer_menu(&$variables) {
  */
 function bootstrap_dss_digital_menu_link__menu_authentication_cas(&$variables) {
 
-  //$element = $variables['element'];
-
-  // $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  /*
-  $variables['element']['#children'] = array('#type' => 'markup',
-					     '#markup' => '<span>ICON</span><span>Lafayette College</span>');
-  */
+  //! @todo Restructure a rneder array
   $variables['element']['#title'] = '<span title="Lafayette College" class="hybridauth-icon hybridauth-icon-hybridauth-32 hybridauth-icon-hybridauth-32-lafayette"></span><span>&nbsp;Lafayette College</span>';
   $variables['element']['#localized_options']['html'] = TRUE;
 
-  dpm($variables);
-
-
   return theme_menu_link($variables);
 }
-
-/**
- * Implements template_preprocess_menu_tree()
- *
- */
-
-/*
-function bootstrap_dss_digital_preprocess_menu_link(&$variables) {
-
-  dpm($variables);
-}
-*/
