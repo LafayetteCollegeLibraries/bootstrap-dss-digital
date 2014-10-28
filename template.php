@@ -4,7 +4,7 @@
  * @file template.php
  * @author griffinj@lafayette.edu
  * This file contains the primary theme hooks found within any given Drupal 7.x theme
- * 
+ *
  * @todo Implement some Drupal theming hooks
  */
 
@@ -37,14 +37,14 @@ function bootstrap_dss_digital_preprocess_node(&$vars) {
 								'content' => $base_url . '/' . drupal_get_path_alias()
 								),
 					 );
-    
+
     $meta_element_open_graph_author = array('#type' => 'html_tag',
 					    '#tag' => 'meta',
 					    '#attributes' => array('property' =>  'og:author',
 								   'content' => 'https://www.facebook.com/LafayetteCollegeLibrary',
 								   )
 					    );
-    
+
     $meta_element_open_graph_title = array('#type' => 'html_tag',
 					   '#tag' => 'meta',
 					   '#attributes' => array('property' =>  'og:title',
@@ -93,25 +93,13 @@ function bootstrap_dss_digital_preprocess_node(&$vars) {
 }
 
 /**
- * Implements template_preprocess_hybridauth_widget
- * @griffinj
+ * Provides functionality for user thumbnails and the DSS departmental logo
  *
  */
-function bootstrap_dss_digital_preprocess_hybridauth_widget(&$vars) {
-
-  // Refactor
-  $i = 0;
-  foreach (hybridauth_get_enabled_providers() as $provider_id => $provider_name) {
-
-    //$vars['providers'][$i] = preg_replace('/(<\/span>)/', "</span><span>&nbsp;$provider_name</span>", $vars['providers'][$i]);
-    $i++;
-  }
-}
-
 function _bootstrap_dss_digital_user_logout($account) {
 
   if (variable_get('user_pictures', 0)) {
-    
+
     if (!empty($account->picture)) {
 
       if (is_numeric($account->picture)) {
@@ -153,9 +141,9 @@ function _bootstrap_dss_digital_user_logout($account) {
       // If we're currently authenticated by CAS, this apparently does not function...
       if(cas_user_is_logged_in()) {
 
-	global $base_url;
-	$attributes['query'] = array('destination' => current_path());
-	return l($user_picture, 'caslogout', $attributes);
+        global $base_url;
+        $attributes['query'] = array('destination' => current_path());
+        return l($user_picture, 'caslogout', $attributes);
       }
 
       return l($user_picture, "user/logout", $attributes);
@@ -168,7 +156,6 @@ function _bootstrap_dss_digital_user_logout($account) {
  *
  * @see page.tpl.php
  */
-
 function bootstrap_dss_digital_preprocess_page(&$variables) {
 
   // Add information about the number of sidebars.
@@ -205,9 +192,9 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
   }
 
   /**
-   *browscap integration
+   * browscap integration
    * Capture from the User-Agent value the type of device being used to browse the page
-   * (Probably should be decoupled and integrated into CSS and JavaScript)
+   * @todo (Probably should be decoupled and integrated into CSS and JavaScript)
    *
    */
   $browser = browscap_get_browser();
@@ -224,7 +211,7 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     // The "Contact Us" link (to the path "contact")
     $variables['contact_anchor'] = l(t('Contact Us'), 'contact');
   } else {
-  
+
     // The "Contact Us" link
     $variables['contact_anchor'] = l(t('Contact Us'), '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
 										      'data-target' => '#contact',
@@ -233,13 +220,10 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 								'external' => TRUE));
   }
 
-
-
   // Different images must be passed based upon the browser type
 
   // Shouldn't be parsing the string itself; refactor
   if($is_smartphone_browser) {
-    //if(TRUE) {
 
     $variables['dss_logo_image'] = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/dss_logo_mobile.png',
 						     'alt' => t('digital scholarship services logo'),
@@ -251,20 +235,6 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 						     'alt' => t('digital scholarship services logo'),
 						     'attributes' => array()));
   }
-
-  // The "Log In" link
-  //$variables['auth_anchor'] = l(t('Log In'), '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
-  /*
-  $variables['auth_anchor'] = l('<div class="auth-icon"><img src="/sites/all/themes/bootstrap_lafayette_lib_dss/files/UserIcon.png" /><span>Log In</span></div>', '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
-														    'data-target' => '#auth-modal',
-																								  'data-width-offset' => '10px',
-														    'data-height-offset' => '28px'),
-											      'fragment' => ' ',
-											      //'external' => TRUE));
-											      'external' => TRUE,
-											      'html' => TRUE
-											      ));
-  */
 
   /**
    * Disabled for the initial release of the site
@@ -301,21 +271,11 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     $variables['logout_anchor'] = l(t('Log Out'), 'user/logout');
   }
 
-  // The "Share" link
-  //$variables['share_anchor'] = l(t('Share'), '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
-  /*
-  $variables['share_anchor'] = l('<div class="share-icon"><img src="/sites/all/themes/bootstrap_lafayette_lib_dss/files/ShareIcon.png" /><span>Share</span></div>', '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
-									     'data-target' => '#share-modal',
-																								    'data-width-offset' => '10px',
-									     'data-height-offset' => '28px'
-									     ),
-						       'fragment' => ' ',
-						       //'external' => TRUE));
-						       'external' => TRUE,
-						       'html' => TRUE
-						       ));
-  */
-
+  /**
+   * Provide the share link
+   * This integrates with the sharethis_helper.js
+   *
+   */
   $variables['share_anchor'] = '<a data-toggle="lafayette-dss-modal" data-target="#share-modal" data-width-offset="10px" data-height-offset="28px"><div class="share-icon navbar-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/ShareIcon.png" /><span>Share</span></div></a>';
 
   // Render thumbnails for authenticated users
@@ -326,8 +286,6 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     // For the user thumbnail
     global $user;
 
-    //$user_view = user_view($user);
-    //$variables['user_picture'] = drupal_render($user_view['user_picture']);
     $variables['user_picture'] = _bootstrap_dss_digital_user_logout($user);
   }
 
@@ -341,35 +299,34 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 				   'alt' => t('search the site'),
 				   'attributes' => array()));
 
+  /**
+   * This was originally scoped for the insertion of a "simple search" block for smartphone devices
+   * @todo Integrate for < 768 devices
+   *
+   */
+
   $simple_search_mobile = '<a data-toggle="lafayette-dss-modal" data-target="#advanced-search-modal" data-width-offset="-286px" data-height-offset="28px">
 <div class="simple-search-icon">' . $search_icon . '<span>Search</span></div></a>' . render($variables['page']['simple_search']);
   unset($variables['page']['simple_search']);
-  //$variables['simple_share_mobile_container'] = '<div class="modal-container container"><div id="simple-search-control-container" class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
+
   $variables['search_container'] = '<div class="modal-container container"><div id="simple-search-control-container" class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
 
+  /**
+   * @todo Restructure into a render array
+   *
+   */
+  $auth_container = '<div class="auth-container modal-container container"><div id="auth-control-container" class="modal-control-container container">';
 
-  // Refactor
-  $auth_container = '
-     <div class="auth-container modal-container container">
-       <div id="auth-control-container" class="modal-control-container container">';
-
-  /*
-    <?php if (!empty($page['auth'])): ?>
-
-    <!-- <div class="auth-icon"><img src="/sites/all/themes/bootstrap_dss_islandora_dev/files/UserIcon.png" /></div> -->
-    <?php print $auth_anchor; ?>
-    <?php else: ?>
-    
-    <div class="auth-icon"><?php print $user_picture; ?></div>
-    <div class="auth-link"><?php print $logout_anchor; ?></div>
-    <?php endif; ?>
+  /**
+   * Insert the authentication link only if the user is anonymous
+   *
    */
 
   if(!empty($variables['page']['auth'])) {
 
     $auth_container .= $variables['auth_anchor'];
   } else {
-    
+
     $auth_container .= '
       <div class="auth-icon">' . $variables['user_picture'] . '</div>
       <div class="auth-link">' . $variables['logout_anchor'] . '</div>';
@@ -381,6 +338,10 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 
   $variables['auth_container'] = $auth_container;
 
+  /**
+   * @todo Refactor as a render array
+   *
+   */
   $share_container = '
      <div class="share-container modal-container container">
        <div id="share-control-container" class="modal-control-container container">
@@ -391,9 +352,13 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 
   $variables['share_container'] = $share_container;
 
+  /**
+   * Structuring of the menu icon for the navbar
+   *
+   */
   $menu_toggle_image = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/MenuIcon.png',
-					 'alt' => t('mobile menu'),
-					 'attributes' => array()));
+                         'alt' => t('mobile menu'),
+                         'attributes' => array()));
 
   $variables['menu_toggle_image'] = $menu_toggle_image;
 
@@ -410,17 +375,11 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 
   $variables['menu_toggle_container'] = $menu_toggle_container;
 
-  /*
-  if(preg_match('/islandora\/search/', current_path())) {
-
-    $variables['lead_content'] = $variables['title'];
-  } else {
-
-    $variables['lead_content'] = l($variables['title'], current_path());
-  }
-  */
-
-  // Carousel
+  /**
+   * Integration of the Bootstrap carousel
+   * @todo Refactor (possibly as a theme hook?)
+   *
+   */
   $variables['carousel'] = '
 
    <!-- Carousel -->
@@ -453,24 +412,24 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
         <div class="item">
             <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselHistoric.jpg" alt="1896 portrait of football team on steps of Pardee Hall" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading"><a href="collections/historicalphotos">Historical Photograph Collection</a></p> 
+                <p class="carousel-caption-heading"><a href="collections/historicalphotos">Historical Photograph Collection</a></p>
                 <p class="carousel-caption-text"><a href="collections/historicalphotos/hpc-1155">Portrait of the Class of 1900 at the Senior Fence</a></p>
             </div>
         </div>
         <div class="item">
             <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselNewspaper.jpg" alt="June 2, 1893 issue" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading"><a href="collections/newspaper">Lafayette Newspaper</a></p> 
+                <p class="carousel-caption-heading"><a href="collections/newspaper">Lafayette Newspaper</a></p>
                 <p class="carousel-caption-text"><a href="islandora/object/islandora:50527">June 2, 1893 issue</a></p>
             </div>
         </div>
         <div class="item">
             <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselMarquis.jpg" alt="Predella scene from a lithograph portrait of Lafayette by Antoine Maurin (1797-1860)" />
             <div class="carousel-caption">
-                <p class="carousel-caption-heading"><a href="collections/lafayetteprints">Marquis de Lafayette Prints Collection</a></p> 
+                <p class="carousel-caption-heading"><a href="collections/lafayetteprints">Marquis de Lafayette Prints Collection</a></p>
                 <p class="carousel-caption-text"><a href="collections/lafayetteprints/mdl-prints-0330">Scene from a portrait of Lafayette by Antoine Maurin</a></p>
             </div>
-        </div>                         
+        </div>
         <div class="item">
             <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselSwift.jpg" alt="Opening lines of Baucis and Philemon, London, 1711" />
             <div class="carousel-caption">
@@ -487,51 +446,17 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     <img src="/sites/all/themes/bootstrap_dss_digital/files/CarouselRight.png" alt="carousel right nav button" />
    </a>
 </div>';
-    
-  // Adding the tabs for certain nodes
-  /*
-  $eastasia_tabs = quicktabs_load('east_asia_image_collections');
-  $mdl_tabs = quicktabs_load('marquis_de_lafayette_prints_coll');
 
-  $variables['tabs'] = array('eastasia_tabs' => theme('quicktabs', (array) $eastasia_tabs),
-			     'mdl_tabs' => theme('quicktabs', (array) $mdl_tabs));
-  */
-
-
-
-  // Panel
-  /*
-  $slide_panel_container = '
-      <div id="menu" class="menu nav-collapse collapse width">
-        <div class="collapse-inner">
-          <div class="navbar navbar-inverse">
-            <div class="navbar-inner">
-              Menu
-            </div>
-          </div>
-        ' . $variables['page']['slide_panel'] . '
-        </div>
-      </div><!-- /#menu -->
-      <div class="view">
-        <div class="navbar navbar-inverse">
-          <div class="navbar-inner">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#menu">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-        </div><!-- /.view -->
-      </div>
-';
-  */
+  /**
+   * This was originally scoped for the insertion of a dynamic, sliding panel for the side (similar to what was offered for the Facebook mobile interface during 2013)
+   * @todo Integrate and refactor into a theming hook
+   *
+   */
   $slide_panel_container = '';
 
   $variables['slide_panel_container'] = $slide_panel_container;
 
   $variables['breadcrumb'] = theme('breadcrumb', menu_get_active_trail());
-  //$variables['breadcrumb'] = theme('breadcrumb', menu_get_active_breadcrumb());
-  //$variables['breadcrumb'] = theme('breadcrumb', drupal_get_breadcrumb());
 
   $variables['slide_drawers'] = TRUE;
 }
@@ -547,8 +472,11 @@ function bootstrap_dss_digital_preprocess_html(&$variables) {
 }
 
 /**
+ * Implements template_process_page().
+ *
  * Work-around for ensuring that the search form is not forcibly displayed within search results
  * See https://drupal.org/comment/4573218#comment-4573218
+ * @todo Identify where this can be better handled and avoid this approach
  *
  */
 function bootstrap_dss_digital_process_page(&$variables) {
@@ -560,119 +488,18 @@ function bootstrap_dss_digital_process_page(&$variables) {
 }
 
 /**
- * Template preprocess function for hybridauth_widget.
+ * Implements hook_theme_registry_alter().
+ *
  */
-/*
-function template_preprocess_hybridauth_widget(&$vars, $hook) {
-
-}
-*/
-
-/**
- * Checks whether the user can access the given object.
- *
- * Checks for object existance, accessiblitly, namespace permissions,
- * and user permissions
- *
- * @param string $perm
- *   User permission to test for.
- * @param FedoraObject $object
- *   The object to test, if NULL given the object doesn't exist or is
- *   inaccessible.
- *
- * @return bool
- *   TRUE if the user is allowed to access this object, FALSE otherwise.
- */
-
-/*
-function bootstrap_dss_digital_object_access_callback($perm, $object = NULL) {
-
-  return TRUE;
-}
-*/
-
-function bootstrap_dss_digital_theme($existing, $type, $theme, $path) {
-
-  /*
-  $existing['islandora/object/%islandora_object'] = array(
-							  //'title' => 'Repository',
-							  'title' => 'Digital Collections',
-							  'page callback' => 'islandora_view_object',
-							  'page arguments' => array(2),
-							  'type' => MENU_NORMAL_ITEM,
-							  'access callback' => 'islandora_object_access_callback',
-							  'access arguments' => array(FEDORA_VIEW_OBJECTS, 2),
-							  );
-  */
-
-  /*
-  $registry['islandora/object/%islandora_object']['title'] = 'Digital Collections';
-  //$registry['islandora/object/%islandora_object']['access callback'] = array('bootstrap_dss_digital_object_access_callback', 'islandora_object_access_callback');
-  $registry['islandora/object/%islandora_object']['access callback'] = 'bootstrap_dss_digital_object_access_callback';
-  */
-
-  $items = array();
-
-  /*
-  $items['islandora/object/%islandora_object'] = array(
-    'title' => 'Collections',
-    'page callback' => 'islandora_view_object',
-    'page arguments' => array(2),
-    'type' => MENU_NORMAL_ITEM,
-    //'access callback' => 'islandora_object_access_callback',
-    'access callback' => 'bootstrap_dss_digital_object_access_callback',
-    'access arguments' => array(FEDORA_VIEW_OBJECTS, 2),
-  );
-  */
-
-  /*
-  $existing['islandora/object/%islandora_object']['title'] = 'Collections';
-  $existing['islandora/object/%islandora_object']['access callback'] = 'bootstrap_dss_digital_object_access_callback';
-
-  return array('islandora/object/%islandora_object' => $existing['islandora/object/%islandora_object']);
-  */
-
-  return $items;
-}
-
 function bootstrap_dss_digital_theme_registry_alter(&$registry) {
 
   $registry['hybridauth_widget']['file'] = 'template';
-
-  // Work-around
-  //$registry['islandora_basic_collection_wrapper']['preprocess functions'] = array('bootstrap_dss_digital_preprocess_islandora_basic_collection');
-
-  /*
-    'islandora_basic_collection_wrapper' => array(
-      'file' => 'theme/theme.inc',
-      'template' => 'theme/islandora-basic-collection-wrapper',
-      'variables' => array('islandora_object' => NULL),
-  */
-
-  //dpm(array_keys($registry));
-  //dpm($registry['islandora_default']);
 }
-
-/**
- * Implements hook_theme().
- */
-/*
-function hybridauth_theme($existing, $type, $theme, $path) {
-  return array(
-    'hybridauth_admin_settings_providers_table' => array(
-      'render element' => 'form',
-      'file' => 'hybridauth.admin.inc',
-    ),
-    'hybridauth_widget' => array(
-      'render element' => 'element',
-      'template' => 'templates/hybridauth_widget',
-      'file' => 'hybridauth.theme.inc',
-    ),
-}
-*/
 
 /**
  * Please see http://www.php.net/manual/en/function.ip2long.php#82397
+ *
+ * @todo Refactor into a more proper IP-address-based access control module
  * @todo Integrate with islandora_dss_solr_net_match()
  * @see islandora_dss_solr_net_match().
  *
@@ -749,9 +576,11 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
       module_invoke_all('exit', $url);
       drupal_session_commit();
       if (variable_get('cache', 0) && ($cache = drupal_page_set_cache())) {
-	drupal_serve_page_from_cache($cache);
+
+        drupal_serve_page_from_cache($cache);
       } else {
-	ob_flush();
+
+        ob_flush();
       }
 
       exit;
@@ -761,8 +590,11 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
     }
   }
 
-  // Refactor
-  // Retrieve the MODS Metadata
+  /**
+   * Retrieve the label map from the MODS Document
+   * @todo Refactor and decouple into a Collections/Solr labeling Module?
+   *
+   */
   try {
 
     $mods_str = $object['MODS']->content;
@@ -771,15 +603,11 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
 
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
-    
+
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
   }
 
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
-  //$facet_pages_fields_data = variable_get('islandora_solr_facet_pages_fields_data', array());
-  //$label_map = array();
-
-  //$element['facet'] = $label_map[$facet];
 
   /**
    * Resolves DSS-261
@@ -792,7 +620,6 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
 
     if(!in_array($value['label'], $rendered_fields)) {
 
-      //$value['class'] .= ' islandora-inline-metadata-displayed';
       $rendered_fields[] = $value['label'];
     } else {
 
@@ -808,11 +635,6 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
    */
 
   global $base_url;
-  // The proper approach (production)
-  //$path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  // The less proper approach (enforce HTTP while ensuring that other linked metadata field values are possibly tunneled through TLS/SSL)
-  //$path_alias = str_replace('https', 'http', $base_url) . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  // Specific to the production environment
   $path_alias = 'http://digital.lafayette.edu/' . drupal_get_path_alias("islandora/object/{$object->id}");
   $variables['mods_object']['drupal_path'] = array('class' => '',
 						   'label' => 'URL',
@@ -832,6 +654,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   /**
    * Work-around for displaying metadata
    * Refactor after re-indexing as transformed MODS
+   * @todo Refactor and abstract for hook_islandora_large_image_preprocess().
    *
    */
   if(in_array('islandora:newspaper', $object->getParents())) {
@@ -845,13 +668,9 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
       $mods_str = $object['MODS']->content;
       $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
-
-      dpm($mods_str);
-
-
       $mods_object = new DssMods($mods_str);
     } catch (Exception $e) {
-    
+
       drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
     }
   }
@@ -861,13 +680,12 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
 
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
-  
+
   $rendered_fields = array();
   foreach($variables['mods_object'] as $key => &$value) {
 
     if(!in_array($value['label'], $rendered_fields)) {
 
-      //$value['class'] .= ' islandora-inline-metadata-displayed';
       $rendered_fields[] = $value['label'];
     } else {
 
@@ -883,11 +701,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
    */
 
   global $base_url;
-  // The proper approach (production)
-  //$path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  // The less proper approach (enforce HTTP while ensuring that other linked metadata field values are possibly tunneled through TLS/SSL)
-  //$path_alias = str_replace('https', 'http', $base_url) . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  // Specific to the production environment
   $path_alias = 'http://digital.lafayette.edu/' . drupal_get_path_alias("islandora/object/{$object->id}");
   $variables['mods_object']['drupal_path'] = array('class' => '',
 						   'label' => 'URL',
@@ -895,22 +708,28 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 						   'href' =>  $path_alias);
 }
 
+/**
+ * Preprocessing for variables generated by the islandora_book_page() implementations
+ * Implements hook_preprocess_HOOK().
+ *
+ */
 function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {
 
   $object = $variables['object'];
 
-  // Refactor
-  // Retrieve the MODS Metadata
+  /**
+   * Work-around for displaying metadata
+   * Refactor after re-indexing as transformed MODS
+   * @todo Refactor and abstract for hook_islandora_large_image_preprocess().
+   *
+   */
   try {
 
     $mods_str = $object['MODS']->content;
-
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
-    //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
-
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
-    
+
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
   }
 
@@ -927,47 +746,57 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
   $query_params = drupal_get_query_parameters($_GET);
 
   $variables['view_links'] = array(
-				   array(
-					 'title' => 'Grid view',
-					 'href' => url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
-					 'attributes' => array(
-							       'class' => "islandora-view-grid $grid_active",
-							       ),
-					 'query' => $query_params + array('display' => 'grid'),
-					 ),
-				   array(
-					 'title' => 'List view',
-					 'href' => url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
-					 'attributes' => array(
-							       'class' => "islandora-view-list $list_active",
-							       ),
-					 'query' => $query_params + array('display' => 'list'),
-					 ),
-				   );
+    array(
+      'title' => 'Grid view',
+      'href' => url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
+      'attributes' => array(
+        'class' => "islandora-view-grid $grid_active",
+      ),
+      'query' => $query_params + array('display' => 'grid'),
+    ),
+    array(
+      'title' => 'List view',
+      'href' => url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
+      'attributes' => array(
+        'class' => "islandora-view-list $list_active",
+      ),
+      'query' => $query_params + array('display' => 'list'),
+    ),
+  );
 }
 
+/**
+ * @todo Refactor in order to integrate with an administrative configuration interface
+ *
+ */
 define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 52);
-
-// "Home/Japanese Imperial House Postcard Album/Search"
-//define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 41);
 
 function bootstrap_dss_digital_breadcrumb($variables) {
 
+  /**
+   * Work-around: attempt to retrieve the Object from vars
+   * @todo Refactor (another theming hook?)
+   *
+   */
   if(array_key_exists(2, $variables)) {
 
     if(array_key_exists('map', $variables[2])) {
 
       if(array_key_exists(2, $variables[2]['map'])) {
 
-	$object = $variables[2]['map'][2];
-	//$parent_pids = $object->getParents();
+        $object = $variables[2]['map'][2];
       }
     }
   }
 
   $output = '<ul class="breadcrumb">';
 
-  // Work-around
+  /**
+   * Work-around
+   * @todo More properly integrate with core bootstrap theme functionality for breadcrumb generation
+   * Note: Drupal Modules typically generate breadcrumbs simply using site Content Nodes and tokens (i. e. cannot integrate readily with Islandora)
+   *
+   */
   if(array_key_exists('breadcrumb', $variables)) {
 
     unset($variables['breadcrumb']);
@@ -984,21 +813,14 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
   $_breadcrumbs = $breadcrumbs;
 
-  /*
-					      'Marquis de Lafayette Prints Collection' => array(
-												'dc.description',
-												'dc.format',
-												'dc.identifier',
-												'dc.rights',
-												'dc.subject',
-												'dc.type'
-												),
-					      'John S. Shelton Earth Science Image Collection' => array('dc.contributor',
-   */
-
   $searched_collection;
   $faceted_collection;
 
+  /**
+   * Unique to the islandora_solr_search Module
+   * Attempt to build the breadcrumbs for Islandora Search results
+   *
+   */
   if(array_key_exists('q', $_GET)) {
 
     $solr_query = $_GET['q'];
@@ -1007,23 +829,27 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
       if($param_key != 'q' && $param_key == 'f') {
 
-	//$facets[] = array($param_key => $param_value);
-	foreach($param_value as $facet) {
+        //$facets[] = array($param_key => $param_value);
+        foreach($param_value as $facet) {
 
-	  $facet_split = explode(':', $facet);
-	  //$facet_field = $facet_split[0];
-	  $facet_field = array_shift($facet_split);
-	  $facet_value = implode(':', $facet_split);
-	  //$facets[$facet_field] = $facet_value;
+          $facet_split = explode(':', $facet);
+          //$facet_field = $facet_split[0];
+          $facet_field = array_shift($facet_split);
+          $facet_value = implode(':', $facet_split);
+          //$facets[$facet_field] = $facet_value;
 
-	  if(!array_key_exists($facet_field, $facets) and preg_match('/"(.+?)"/', $facet_value, $facet_value_match)) {
+          if(!array_key_exists($facet_field, $facets) and preg_match('/"(.+?)"/', $facet_value, $facet_value_match)) {
 
-	    $facets[$facet_field] = $facet_value_match[1];
-	  }
-	}
+            $facets[$facet_field] = $facet_value_match[1];
+          }
+        }
       }
     }
 
+    /**
+     * @todo Abstract using variable_get()
+     *
+     */
     $eastasia_subcollections = array(
 				     'Japanese Imperial House Postcard Album',
 				     'T.W. Ingersoll Co. Stereoviews of the Siege of Port Arthur',
@@ -1049,7 +875,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
     /**
      * Work-around for linking Page Nodes to Islandora Collections
-     * @todo Refactor
+     * @todo Refactor for an admin. config. interface (Solr collection Content Node map)
      *
      */
 
@@ -1072,209 +898,174 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
     $collection_elements = array();
 
+    /**
+     * MODS-specific approach for generated nested collections
+     * If one were to, instead, query against Solr, there would be an additional delay
+     *
+     */
     if(isset($object) and isset($object['MODS'])) {
-
-      //$this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-      //$this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
-      //$relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
 
       try {
 
-	$mods_doc = new SimpleXMLElement($object['MODS']->content);
-	$mods_doc->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-	$mods_doc->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
+        $mods_doc = new SimpleXMLElement($object['MODS']->content);
+        $mods_doc->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
+        $mods_doc->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
 
-	/**
-	 * Just use the top-level collection element
-	 *
-	 */
-	//$collection_elements = array_merge($collection_elements, array_map($map, $mods_doc->xpath("./mods:note[@type='admin']")));
-	$collection_elements = array_merge($collection_elements, array(array('cdm.Relation.IsPartOf' => array_shift($mods_doc->xpath("./mods:note[@type='admin']")))));
+        /**
+         * Just use the top-level collection element
+         *
+         */
+        $collection_elements = array_merge($collection_elements, array(array('cdm.Relation.IsPartOf' => array_shift($mods_doc->xpath("./mods:note[@type='admin']")))));
 
-	// For MDL
-	$map = function($element) {
+        // Work-around for the Marquis de Lafayette Prints collection
+        $map = function($element) {
 
-	  return array('mdl_prints.description.series' => $element);
-	};
-	$collection_elements = array_merge($collection_elements, array_map($map, $mods_doc->xpath("./mods:note[@type='series']")));
+          return array('mdl_prints.description.series' => $element);
+        };
+        $collection_elements = array_merge($collection_elements, array_map($map, $mods_doc->xpath("./mods:note[@type='series']")));
 
       } catch (Exception $e) {
 
-	drupal_set_message(t('Error parsing the MODS metadata for the object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
+        drupal_set_message(t('Error parsing the MODS metadata for the object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
       }
 
       unset($_breadcrumbs[count($_breadcrumbs) - 1]);
       $_breadcrumbs[count($breadcrumbs) - 2] = array('title' => 'Collections', 'href' => 'collections');
 
+      //! @todo Abstract using variable_get()
       $map = function($element) {
 
-	return array('cdm.Relation.IsPartOf' => $element);
+        return array('cdm.Relation.IsPartOf' => $element);
       };
 
+      /**
+       * For building breadcrumbs from faceted search results from Solr
+       *
+       */
       if(!empty($collection_elements)) {
 
-	$top_collection = (string) $collection_elements[0]['cdm.Relation.IsPartOf'];
-	$_breadcrumbs[] = array('title' => $top_collection, 'href' => $collection_node_map[$top_collection]);
-	$count++;
+        $top_collection = (string) $collection_elements[0]['cdm.Relation.IsPartOf'];
+        $_breadcrumbs[] = array('title' => $top_collection, 'href' => $collection_node_map[$top_collection]);
+        $count++;
 
-	//$facet_params = '?';
-	//for($i=0; $i<$count($collection_elements); $i++) {
-	$facet_params = array();
+        $facet_params = array();
 
-	$i=0;
-	//foreach($collection_elements as $collection_facet => $facet_value) {
-	foreach($collection_elements as $collection_facet => $facets) {
+        $i=0;
+        foreach($collection_elements as $collection_facet => $facets) {
 
-	  //$facet_params .= "f[{$i}]=" . $collection_facet . '"' . $facet_value . '"';
-	  //'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
+          foreach($facets as $facet => $facet_value) {
 
-	  foreach($facets as $facet => $facet_value) {
+            $facet_params["f[{$i}]"] = $facet . ':"' . $facet_value . '"';
+            $i++;
+          }
+        }
 
-	    /*
-	      $facet_params .= "f[{$i}]=" . $facet . ':"' . $facet_value . '"';
-	      //if($i < count($facet_params - 1)) {
-	      if($i < count($collection_elements) - 1) {
+        $_breadcrumbs[] = array('title' => 'Browse', 'href' => 'islandora/search/*:*', 'options' => array('query' => $facet_params));
+        $count++;
 
-	      $facet_params .= '&';
-	      }
-	    */
-
-	    $facet_params["f[{$i}]"] = $facet . ':"' . $facet_value . '"';
-	    $i++;
-	  }
-	}
-
-	$_breadcrumbs[] = array('title' => 'Browse', 'href' => 'islandora/search/*:*', 'options' => array('query' => $facet_params));
-
-	//dpm(  url('islandora/search/*:*', array('query' => $facet_params)));
-	//$_breadcrumbs[] = array('title' => 'Browse', 'href' => url('islandora/search/*:*', array('query' => $facet_params)));
-	$count++;
-
-	/*
-	  foreach($collection_elements as $collection_element) {
-
-	  $collection_content = (string) $collection_element;
-	  $_breadcrumbs[] = array('title' => 'Browse', 'href' => '/islandora/search/*:*?f[0]=cdm.Relation.IsPartOf:"' . $collection_content . '"');
-	  //dpm($collection_content);
-
-	  $count++;
-	  }
-	*/
       }
 
-      // Accessing via Search This Collection: Home / [collection name] / Search
-      //if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
-    } elseif(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
+    } elseif(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) { //! Unique to collections accessed using a specific field
 
       $title = $m[1];
 
+      /**
+       * Determine whether or not this belongs to the East Asia Image Collection Sub-Collection
+       *
+       */
       if(in_array($title, $eastasia_subcollections)) {
 
-	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'East Asia Image Collection', 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
-	//$_breadcrumbs[] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
-	//$count++;
-
-	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
-	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
+        $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
       } else {
 
-	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
-	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
+        $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
       }
-      
+
       $_breadcrumbs[] = array('title' => 'Search', 'href' => current_path());
       $count++;
 
-    } else if(array_key_exists('mdl_prints.description.series', $facets)) { // Home / Collections / [collection name] / [MDL series name] / Search
+    } else if(array_key_exists('mdl_prints.description.series', $facets)) { //! Determine whether or not this is a series of the Marquis de Lafayette Prints collection
 
-      //dpm($_breadcrumbs);
       $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Collections', 'href' => 'collections');
-      //$_breadcrumbs[] = array('title' => 'Collections', 'href' => 'collections');
       $_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $collection_node_map[$facets['cdm.Relation.IsPartOf']]);
 
-      //$_breadcrumbs[] = array('title' => $facets['mdl_prints.description.series'], 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"' . '?f[1]=mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"');
-      //$_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-      //$_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"' . '?f[1]=mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"');
       $_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query, 'options' => array('query' => array('f[0]' => 'cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"',
 													      'f[1]' => 'mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"')));
 
       $count += 2;
 
-    } else if(array_key_exists('cdm.Relation.IsPartOf', $facets)) { // Home / Collections / [collection name] / Browse
+    } else if(array_key_exists('cdm.Relation.IsPartOf', $facets)) { //! Determine whether or not this belongs to any collection with no nested Solr sub-collections
 
       $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Collections', 'href' => 'collections');
-      //$_breadcrumbs[] = array('title' => 'Collections', 'href' => '/collections');
 
       // Hierarchical collections
       if(in_array($facets['cdm.Relation.IsPartOf'], $eastasia_subcollections)) {
 
-	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'East Asia Image Collection', 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[1]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-	//$count++;
-
-	//$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
-
-	$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query, 'options' => array('query' => array('f[0]' => 'cdm.Relation.IsPartOf:"East Asia Image Collection"'
+        $_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query, 'options' => array('query' => array('f[0]' => 'cdm.Relation.IsPartOf:"East Asia Image Collection"'
 																			   )));
       } else {
 
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-
-	//$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
-	
-	$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $collection_node_map[$facets['cdm.Relation.IsPartOf']]);
+        $_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $collection_node_map[$facets['cdm.Relation.IsPartOf']]);
       }
 
-      //$_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
+      /**
+       * Finally, provide the string "Browse" for the trailing breadcrumb element when browsing collections (as opposed to an explicit search
+       *
+       */
       $_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query, 'options' => array('query' => array('f[0]' => 'cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"'
-													      )));
+                                       )));
       $count += 2;
 
-    } else { // Home / Search
+    } else { //! Handling Drupal site Content
 
+      /**
+       * @todo Integrate with the crumbs Module
+       *
+       */
       switch($solr_query) {
 
-      case 'node/2':
+        case 'node/2':
 
-	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = t('Copyright & Use');
-	break;
+          $_breadcrumbs[count($breadcrumbs) - 1]['title'] = t('Copyright & Use');
+          break;
 
       case 'node/3':
 
-	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Services';
-	break;
+        $_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Services';
+        break;
 
-      case 'node/4':
+        case 'node/4':
 
-	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Repositories';
-	break;
+          $_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Repositories';
+          break;
 
-      case 'node/9':
+        case 'node/9':
 
-	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Contact DSS';
-	break;
+          $_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Contact DSS';
+          break;
 
       case 'node/11':
 
-	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'People';
-	break;
+        $_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'People';
+        break;
 
-      case 'node/45':
+        case 'node/45':
 
-	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Collections';
-	break;
+          $_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Collections';
+          break;
 
-      default:
+        default:
 
-	$_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Search';
-	break;
+          $_breadcrumbs[count($breadcrumbs) - 1]['title'] = 'Search';
+          break;
       }
     }
   }
 
+  /**
+   * For generating breadcrumbs for apachesolr (i. e. site-level) searches
+   *
+   */
   if(isset($breadcrumbs[count($breadcrumbs) - 1])) {
 
     if(preg_match('/search\/node/', $breadcrumbs[count($breadcrumbs) - 1]['href'])) {
@@ -1289,105 +1080,127 @@ function bootstrap_dss_digital_breadcrumb($variables) {
     } else {
 
       switch($breadcrumbs[count($breadcrumbs) - 1]['href']) {
-	
-      case 'islandora/object/islandora:root':
-	
-	$_breadcrumbs = array($breadcrumbs[0], $breadcrumbs[count($breadcrumbs) - 1]);
-	$count--;
-	break;
-	
-      case 'islandora/object/islandora:eastAsia':
-      case 'islandora/object/islandora:newspaper':
-      case 'islandora/object/islandora:academicPublications':
-      case 'islandora/object/islandora:administrativeArchive':
-      case 'islandora/object/islandora:cap':
-      case 'islandora/object/islandora:mdl':
-      case 'islandora/object/islandora:geologySlidesEsi':
-      case 'islandora/object/islandora:mckelvyHouse':
-      case 'islandora/object/islandora:warCasualties':
-      case 'islandora/object/islandora:presidents':
 
-	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
-										'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
-      $count++;
-      break;
-    
-      case 'node/1':
-    
+        /**
+         * For those (rare) cases where Collection Objects are accessed *without* using a Solr facet
+         * (These are likely legacy)
+         * @todo Identify whether or not these can be removed
+         *
+         */
+        case 'islandora/object/islandora:root':
+
+          $_breadcrumbs = array($breadcrumbs[0], $breadcrumbs[count($breadcrumbs) - 1]);
+          $count--;
+          break;
+
+        case 'islandora/object/islandora:eastAsia':
+        case 'islandora/object/islandora:newspaper':
+        case 'islandora/object/islandora:academicPublications':
+        case 'islandora/object/islandora:administrativeArchive':
+        case 'islandora/object/islandora:cap':
+        case 'islandora/object/islandora:mdl':
+        case 'islandora/object/islandora:geologySlidesEsi':
+        case 'islandora/object/islandora:mckelvyHouse':
+        case 'islandora/object/islandora:warCasualties':
+        case 'islandora/object/islandora:presidents':
+
+          $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
+                      'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
+          $count++;
+          break;
+
+        case 'node/1':
+
 	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1));
 	$count--;
 	break;
 
-      case 'node/26':
-      case 'node/30':
-      case 'node/31':
-      case 'node/19':
-      case 'node/20':
-      case 'node/21':
-      case 'node/27':
-      case 'node/32':
-      case 'node/33':
-      case 'node/34':
-      case 'node/42':
-      case 'node/43':
+        case 'node/26':
+        case 'node/30':
+        case 'node/31':
+        case 'node/19':
+        case 'node/20':
+        case 'node/21':
+        case 'node/27':
+        case 'node/32':
+        case 'node/33':
+        case 'node/34':
+        case 'node/42':
+        case 'node/43':
 
-	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Collections',
-										'href' => 'node/45')), array_slice($breadcrumbs, -1));
-      $count++;
+          /**
+           * Site-specific logic which must be refactored
+           * (These are pages for specific sub-collections)
+           * @todo Identify how best to restructure this
+           *
+           */
+
+          $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Collections',
+                              'href' => 'node/45')), array_slice($breadcrumbs, -1));
+          $count++;
       break;
 
-      case 'node/29':
+        case 'node/29':
 
-	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Repositories',
-										'href' => 'node/4')), array_slice($breadcrumbs, -1));
-	$count++;
-      
-	break;
+          $_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Repositories',
+                              'href' => 'node/4')), array_slice($breadcrumbs, -1));
+          $count++;
 
+          break;
       }
     }
 
     $breadcrumbs = $_breadcrumbs;
-    
+
     $i = 1;
+
+    /**
+     * For the insertion of ellipses for the terminal breadcrumb element
+     * @todo Invoke variable_get() in order to retrieve the maximum breadcrumbs
+     *
+     */
     foreach($breadcrumbs as $key => $breadcrumb) {
-      
+
       if(isset($breadcrumb['href'])) {
-	
-	$breadcrumbs_length += strlen($breadcrumb['title']);
-	
-	if($breadcrumbs_length > BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX) {
-	  
-	  if($key != count($breadcrumbs) - 1) {
-	    
-	    $breadcrumbs[$i]['title'] = '…';
-	    $breadcrumbs_length -= strlen($breadcrumb['title']) - 1;
-	    
-	    $i++;
-	  }
-	}
+
+        $breadcrumbs_length += strlen($breadcrumb['title']);
+
+        if($breadcrumbs_length > BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX) {
+
+          if($key != count($breadcrumbs) - 1) {
+
+            $breadcrumbs[$i]['title'] = '…';
+            $breadcrumbs_length -= strlen($breadcrumb['title']) - 1;
+
+            $i++;
+          }
+        }
       }
     }
 
+    /**
+     * For inserting a slash character ("/") between each breadcrumb
+     *
+     */
     foreach($breadcrumbs as $key => $breadcrumb) {
-      
-      if(isset($breadcrumb['href'])) {
-	
-	if(!isset($breadcrumb['options'])) {
-	  
-	  $breadcrumb['options'] = array();
-	}
-	
-	if ($count != $key) {
 
-	  $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '<span class="divider">/</span></li>';
-	} else {
-	  
-	  $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '</li>';
-	}
+      if(isset($breadcrumb['href'])) {
+
+        if(!isset($breadcrumb['options'])) {
+
+          $breadcrumb['options'] = array();
+        }
+
+        if ($count != $key) {
+
+          $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '<span class="divider">/</span></li>';
+        } else {
+
+          $output .= '<li>' . l($breadcrumb['title'], $breadcrumb['href'], $breadcrumb['options']) . '</li>';
+        }
       }
     }
-    
+
     $output .= '</ul>';
     return $output;
   }
