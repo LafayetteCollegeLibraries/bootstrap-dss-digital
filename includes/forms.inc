@@ -239,6 +239,13 @@ function bootstrap_dss_digital_form_alter(&$form, $form_state, $form_id) {
 
   case 'islandora_dss_solr_advanced_search_form':
 
+    /**
+     * @author griffinj@lafayette.edu
+     * Islandora (advanced) search functionality needed to be overridden within the Module islandora_dss_solr
+     * @see islandora_dss_solr_theme()
+     *
+     */
+
     foreach($form['terms'] as $key => &$term) {
 
       if(is_numeric($key)) {
@@ -248,22 +255,12 @@ function bootstrap_dss_digital_form_alter(&$form, $form_state, $form_id) {
     }
     break;
 
-    /**
-     * @author griffinj@lafayette.edu
-     * Islandora search functionality needed to be overridden
-     * @see islandora_dss_solr_theme()
-     *
-     */
-    /*
-  case 'islandora_solr_advanced_search_form':
-
-    // Push/append a theming callback on to the array of theming callbacks for the individual form element
-    $form['#theme'] = array('bootstrap_dss_digital_islandora_solr_advanced_search_form');
-    break;
-    */
-
   case 'islandora_solr_simple_search_form':
 
+    /**
+     * Handling for the Islandora Solr Simple Search form
+     *
+     */
     $form['simple']['#attributes']['id'] = 'islandora-simple-search-wrapper';
 
     // Increase the size of the text box
@@ -271,15 +268,11 @@ function bootstrap_dss_digital_form_alter(&$form, $form_state, $form_id) {
     $form['simple']['islandora_simple_search_query']['#value'] = 'Search...';
     $form['simple']['islandora_simple_search_query']['#default_value'] = 'Search...';
 
-    // Insert the glyphicon for searching
-    //$form['simple']['submit']['#value'] = '<span class="icon-large"></span>';
-
     // Default to site-scoped search
     $form['simple']['submit']['#value'] = 'Search this site';
 
     // Append a button for repository-scoped search
-    $form['simple']['submit-1'] = array(
-					'#value' => 'Search the collections',
+    $form['simple']['submit-1'] = array('#value' => 'Search the collections',
 					);
 
     // Providing a div wrapper for styling
@@ -289,43 +282,6 @@ function bootstrap_dss_digital_form_alter(&$form, $form_state, $form_id) {
     $form['simple']['submit-1']['#prefix'] = '<div class="islandora-simple-search-button-1-container">';
     $form['simple']['submit-1']['#suffix'] = '</div>';
 
-    //$form['simple']['submit']['#class'][] = 'icon-search';
-
-    /*
-    $form['simple']['#suffix'] = l('Advanced Search', '/', array('attributes' => array('data-toggle' => 'modal'),
-								 'class' => array('btn', 'btn-primary', 'btn-lg'),
-								 'fragment' => 'advanced-search-modal'));
-    */
-    //$form['simple']['#suffix'] = '<a href="#advanced-search-modal" data-toggle="lafayette-dss-modal">Advanced Search</a>';
-
-
-
     break;
-  }
-}
-
-/**
- * Preprocess variables for
- *
- * @see islandora-solr-advanced-search-form.tpl.php
- */
-function bootstrap_dss_digital_preprocess_bootstrap_lafayette_lib_dss_islandora_solr_advanced_search_form(&$variables) {
-
-  //$form = $variables['form'];
-
-  //foreach($form['terms'] as $key => &$value) {
-  foreach($variables['form']['terms'] as $key => &$value) {
-
-    if(is_numeric($key)) {
-
-      $value['add']['#value'] = '<span class="icon-large"></span>';
-      /*
-	$value['add']['#value'] = '<span class="icon-large"></span>';
-	$value['add']['#ajax']['callback'] = '_bootstrap_dss_digital_islandora_solr_advanced_search_terms';
-
-	$value['search']['#value'] = '';
-	//dpm($value);
-	*/
-    }
   }
 }
