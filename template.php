@@ -15,7 +15,6 @@ require_once dirname(__FILE__) . '/includes/menus.inc';
 require_once dirname(__FILE__) . '/includes/dss_mods.inc';
 require_once dirname(__FILE__) . '/includes/dss_dc.inc';
 require_once dirname(__FILE__) . '/includes/pager.inc';
-require_once dirname(__FILE__) . '/includes/apachesolr.inc';
 require_once dirname(__FILE__) . '/includes/islandora_solr.inc';
 require_once dirname(__FILE__) . '/includes/islandora_basic_collection.inc';
 
