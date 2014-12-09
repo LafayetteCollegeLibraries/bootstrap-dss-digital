@@ -358,6 +358,9 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
                                          'cdm.Relation.IsPartOf:"Historical Photograph Collection"'))) {
 	
         $sorted_field = 'dc.date.sort';
+      } elseif(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Alumni Publications"'))) {
+
+	$params['sort'] = 'MODS.mods.identifier.local_i asc';
       }
     }
   }

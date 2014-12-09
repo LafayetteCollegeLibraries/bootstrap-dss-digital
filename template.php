@@ -854,7 +854,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
       $mods_str = $object['MODS']->content;
       $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
 
-      dpm($mods_str);
+      //dpm($mods_str);
       $mods_object = new DssMods($mods_str);
     } catch (Exception $e) {
     
