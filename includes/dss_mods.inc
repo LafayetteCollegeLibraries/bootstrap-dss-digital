@@ -513,23 +513,39 @@ class DssMods extends SimpleXMLElement {
 	$element['raw_value'] = $element['value'];
 
 	// Extended handling for the Alumni Publications
-	if($collection_label == 'Alumni Publications' and $facet == 'Series') {
+	if($collection_label == 'Alumni Publications') {
 
-	  $volume_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:part/mods:text[@type="volume"]'); // ./mods:relatedItem[@type="host"]/mods:titleInfo/mods:title
+	  dpm($facet);
 
-	  if(!empty($volume_elements)) {
+	  if($facet == 'Series') {
 
-	    $volume_element = array_shift($volume_elements);
-	    $element['value'] .= ' (Volume ' . (string) $volume_element . ')';
-	  }
+	    //$volume_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:part/mods:text[@type="volume"]'); // ./mods:relatedItem[@type="host"]/mods:titleInfo/mods:title
+	    $volume_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:titleInfo/mods:title[text()="' . $element['raw_value'] . '"]/../../mods:part/mods:text[@type="volume"]');
 
-	  $issue_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:part/mods:text[@type="issue"]');
+	    if(!empty($volume_elements)) {
 
-	  if(!empty($issue_elements)) {
+	      $volume_element = array_shift($volume_elements);
+	      $element['value'] .= ' (Vol. ' . (string) $volume_element . ')';
 
-	    $issue_element = array_shift($issue_elements);
-	    $element['value'] = rtrim($element['value'], ')');
-	    $element['value'] .= ', no. ' . (string) $issue_element . ')';
+	      $issue_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:part/mods:text[@type="issue"]');
+	    
+	      if(!empty($issue_elements)) {
+
+		$issue_element = array_shift($issue_elements);
+		$element['value'] = rtrim($element['value'], ')');
+		$element['value'] .= ', no. ' . (string) $issue_element . ')';
+	      }
+	    } else {
+
+	      $date_elements = $this->xpath('(//mods:date[@qualifier="approximate"] | //mods:dateOrigin[@qualifier="approximate"] )[1]');
+
+	      if(!empty($date_elements)) {
+
+		$date_element = array_shift($date_elements);
+		//$element['value'] = $date_element;
+		$element['value'] .= ' (' . (string) $date_element . ')';
+	      }
+	    }
 	  }
 	}
 
@@ -679,6 +695,15 @@ class DssMods extends SimpleXMLElement {
 
 		$element['date_value'] .= "'s";
 	      }
+	    }
+	  } elseif($collection_label == 'Alumni Publications' and $facet == 'Date') {
+
+	    $date_elements = $this->xpath('(//mods:date[@qualifier="approximate"] | //mods:dateOrigin[@qualifier="approximate"] )[1]');
+
+	    if(!empty($date_elements)) {
+
+	      $date_element = array_shift($date_elements);
+	      $element['date_value'] = (string) $date_element;
 	    }
 	  }
 
