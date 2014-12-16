@@ -513,15 +513,15 @@ class DssMods extends SimpleXMLElement {
 	// Extended handling for the Alumni Publications
 	if($collection_label == 'Alumni Publications') {
 
+	  // Implemented in order to ensure that, when relatedItem entities feature volume and issue data, these are appended to the value specifying the title of the entity
 	  if($facet == 'Series') {
 
-	    //$volume_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:part/mods:text[@type="volume"]'); // ./mods:relatedItem[@type="host"]/mods:titleInfo/mods:title
 	    $volume_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:titleInfo/mods:title[text()="' . $element['raw_value'] . '"]/../../mods:part/mods:text[@type="volume"]');
 
 	    if(!empty($volume_elements)) {
 
 	      $volume_element = array_shift($volume_elements);
-	      $element['value'] .= ' (Vol. ' . (string) $volume_element . ')';
+	      $element['value'] .= ' (vol. ' . (string) $volume_element . ')';
 
 	      $issue_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:part/mods:text[@type="issue"]');
 	    
@@ -541,6 +541,15 @@ class DssMods extends SimpleXMLElement {
 		//$element['value'] = $date_element;
 		$element['value'] .= ' (' . (string) $date_element . ')';
 	      }
+	    }
+	  } elseif($facet == 'Title') {
+
+	    $non_sort_elements = $this->xpath('./mods:titleInfo/mods:nonSort');
+
+	    if(!empty($non_sort_elements)) {
+
+	      $non_sort_element = array_shift($non_sort_elements);
+	      $element['value'] = (string) $non_sort_element . ' ' . $element['value'];
 	    }
 	  }
 	}
