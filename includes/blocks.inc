@@ -390,7 +390,7 @@ function _bootstrap_dss_digital_sharethis_get_button_HTML($data_options, $mPath,
   }
 
   // This can only be further themed with JavaScript
-  drupal_add_js( drupal_get_path('theme', 'bootstrap_dss_digital') . '/js/sharethis_helper.js');
+  //drupal_add_js( drupal_get_path('theme', 'bootstrap_dss_digital') . '/js/sharethis_helper.js');
 
   // Provide the publisher ID.
   $stlight = drupal_json_encode(array(

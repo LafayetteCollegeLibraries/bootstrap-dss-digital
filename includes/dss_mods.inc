@@ -374,8 +374,6 @@ class DssMods extends SimpleXMLElement {
 
     case 'Alumni Publications':
 
-      // <text type="volume"> within <part> within <relatedItem>, i.e. non-normalized version will be displayed
-      // <text type="issue"> within <part> within <relatedItem>, i.e. non-normalized version will be displayed
       $template_map = array('Title' => "./mods:titleInfo/mods:title",
 			    'Subtitle' => './mods:titleInfo/mods:subTitle',
 			    'Part Of' => './mods:titleInfo/mods:partNumber',
@@ -515,8 +513,6 @@ class DssMods extends SimpleXMLElement {
 	// Extended handling for the Alumni Publications
 	if($collection_label == 'Alumni Publications') {
 
-	  dpm($facet);
-
 	  if($facet == 'Series') {
 
 	    //$volume_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:part/mods:text[@type="volume"]'); // ./mods:relatedItem[@type="host"]/mods:titleInfo/mods:title
@@ -655,9 +651,21 @@ class DssMods extends SimpleXMLElement {
 	      $facet_params["f[{$facet_index}]"] = $element['facet'] . ':"' . $element['raw_value'] . '"';
 	    }
 	  }
-	  
+
 	  // Construct the URL for the islandora/search query path
-	  $element['facet_href'] = l($element['value'], "islandora/search/*:*", array('query' => $facet_params));
+	  
+	  /**
+	   * Anomalous handling for the field MODS.mods.relatedItem.titleInfo.title_ss
+	   * Resolves DSS-413
+	   *
+	   */
+	  if($element['facet'] == 'MODS.mods.relatedItem.titleInfo.title_ss') {
+
+	    $element['facet_href'] = l($element['raw_value'], "islandora/search/*:*", array('query' => $facet_params)) . substr($element['value'], strlen($element['raw_value']) );
+	  } else {
+
+	    $element['facet_href'] = l($element['value'], "islandora/search/*:*", array('query' => $facet_params));
+	  }
 	}
 
 	if($is_date) {
