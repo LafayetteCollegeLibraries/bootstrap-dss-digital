@@ -854,7 +854,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
       $mods_str = $object['MODS']->content;
       $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
 
-      //dpm($mods_str);
       $mods_object = new DssMods($mods_str);
     } catch (Exception $e) {
     
@@ -1337,6 +1336,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       case 'node/34':
       case 'node/42':
       case 'node/43':
+      case 'node/50':
 
 	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Collections',
 										'href' => 'node/45')), array_slice($breadcrumbs, -1));

@@ -158,42 +158,32 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
   drupal_add_css(drupal_get_path('module', 'islandora_basic_collection') . '/css/islandora_basic_collection.theme.css');
 }
 
+/**
+ * Form function for the discovery interface (i. e. sorting)
+ * @todo Refactor
+ *
+ */
 function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $collection_fields, $sorted_field) {
 
   $form = array('#attributes' => array('id' =>'islandora-discovery-form'));
 
-  /*
-    <form id="islandora-discovery-form" action="/" >
+  $asc_anchor_classes = array('field-sort');
+  $desc_anchor_classes = array('field-sort', 'active');
 
-      <div class="islandora-discovery-control title-sort-control">
+  $params = $_GET;
 
-        <span>Sort by:</span>
-        <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
-        <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
-        <select id="field-sort-select">
+  if(array_key_exists('f', $params) and !empty($params['f'])) {
 
-          <?php foreach($collection_fields as $value => $title): ?>
-	    <option value="<?php print $value; ?>"><?php print $title; ?></option>
-	  <?php endforeach; ?>
-        </select>
-      </div><!-- /.islandora-discovery-control -->
-    </form>
-   */
+    if(!in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"',
+					'cdm.Relation.IsPartOf:"Alumni Publications"'))) {
 
-  /*
-				     '#attributes' => array('class' => array('islandora-discovery-control',
-									     'title-sort-control')),
-
-   */
-
-  if(!array_key_exists('sort', $_GET) or stripos($_GET['sort'], 'asc')) {
+      $asc_anchor_classes = array('field-sort', 'active');
+      $desc_anchor_classes = array('field-sort');
+    }
+  } elseif(!array_key_exists('sort', $params) or stripos($params['sort'], 'asc')) {
 
     $asc_anchor_classes = array('field-sort', 'active');
     $desc_anchor_classes = array('field-sort');
-  } else {
-
-    $asc_anchor_classes = array('field-sort');
-    $desc_anchor_classes = array('field-sort', 'active');
   }
 
   $prefix = '<div class="islandora-discovery-control title-sort-control"><span>Sort by:</span>';
@@ -207,30 +197,10 @@ function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $co
 				     'fragment' => FALSE));
   $suffix = '</div>';
 
-  /*
-  $prefix = '<span>Sort by:</span>
-<a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
-<a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>';
-  */
-
-  /*
-  $form['islandora-discovery-control'] = array('#type' => 'fieldset',
-					       '#attributes' => array('class' => array('islandora-discovery-control',
-												 'title-sort-control')),
-					       'field_sort_select' => array('#type' => 'select',
-									    //'#title' => t('Sort by:'),
-									    '#options' => $collection_fields,
-									    '#default_value' => $sorted_field,
-									    //'#description' => t('Sorting fields'),
-									    '#attributes' => array('id' => 'field-sort-select'),
-									    '#prefix' => $prefix,
-									    ));
-  */
-
   $form['field_sort_select'] = array('#type' => 'select',
 				     '#options' => $collection_fields,
 				     '#default_value' => $sorted_field,
-				     //'#default_value' => 'dc.date.sort',
+
 				     '#attributes' => array('id' => 'field-sort-select'),
 				     '#prefix' => $prefix,
 				     '#suffix' => $suffix,
@@ -352,15 +322,16 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
     $params = $_GET;
 
     if(array_key_exists('f', $params) and !empty($params['f'])) {
+      
+      if(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Historical Photograph Collection"'))) {
 
-      //if($params['f'][0] == 'cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"') {
-      if(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"',
-                                         'cdm.Relation.IsPartOf:"Historical Photograph Collection"'))) {
-	
-        $sorted_field = 'dc.date.sort';
+	$sorted_field = 'dc.date.sort';
+      } elseif(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"'))) {
+
+	$sorted_field = 'dc.date.sort';
       } elseif(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Alumni Publications"'))) {
 
-	$params['sort'] = 'MODS.mods.identifier.local_i asc';
+	$sorted_field = 'MODS.mods.identifier.local_i';
       }
     }
   }
@@ -379,23 +350,4 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
     $variables['islandora_discovery_form'] = drupal_render_children(drupal_get_form('bootstrap_dss_digital_islandora_discovery_form', $collection_fields, $sorted_field));
   }
 
-  /*
-    <form id="islandora-discovery-form" action="/" >
-
-      <div class="islandora-discovery-control title-sort-control">
-
-        <span>Sort by:</span>
-        <a href="#" id="field-sort-asc" class="field-sort active">A&nbsp;to&nbsp;Z</a>
-        <a href="#" id="field-sort-desc" class="field-sort">Z&nbsp;to&nbsp;A</a>
-        <select id="field-sort-select">
-
-          <?php foreach($collection_fields as $value => $title): ?>
-	    <option value="<?php print $value; ?>"><?php print $title; ?></option>
-	  <?php endforeach; ?>
-        </select>
-      </div><!-- /.islandora-discovery-control -->
-    </form>
-  */
-
-  //dpm($variables);
 }
