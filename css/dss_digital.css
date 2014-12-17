@@ -2341,4 +2341,19 @@ header {
 		text-align:left;
 	}
 	
+	.alert-block {
+		
+		display:none;
+	}
+
+	body[class*="page-islandora-object-alumni"] #page-header, body[class*="page-islandora-object-alumni"] #breadcrumb-container, body[class*="page-islandora-object-alumni"] .islandora-book-metadata {
+		
+		display:none;
+	}
+	
+	body[class*="page-islandora-object-alumni"] #navbar, body[class*="page-islandora-object-alumni"] #block-menu-menu-footer-menu {
+		
+		display:none;
+	}
+
 }
