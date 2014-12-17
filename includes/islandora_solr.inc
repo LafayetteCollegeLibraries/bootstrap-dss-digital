@@ -342,23 +342,29 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
 
     $sorted_field = $m[1];
   } else {
-    /**                                                                                                                                                                                                     
-     * If this is a member of the newspaper collection, sort by the publication date                                                                                                                        
-     * Resolves DSSSM-865                                                                                                                                                                                   
-     *                                                                                                                                                                                                      
+
+    /**
+     * If this is a member of the newspaper collection, sort by the publication date
+     * Resolves DSSSM-865
+     *
+     * Also, if this is a member of the historical collection, sort by publication date
+     * @todo Refactor for islandora_dss_solr.module within islandora_dss_solr
+     * Resolves DSSSM-983
      */
     $sorted_field = 'dc.title';
     $params = $_GET;
 
     if(array_key_exists('f', $params) and !empty($params['f'])) {
 
-      if($params['f'][0] == 'cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"') {
-
+      //if($params['f'][0] == 'cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"') {
+      if(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"',
+                                         'cdm.Relation.IsPartOf:"Historical Photograph Collection"'))) {
+	
         $sorted_field = 'dc.date.sort';
       }
     }
   }
-  
+
   /**
    * Work-around for disabling sorting for global repository browsing and searches
    * @todo Render once Solr has indexed the appropriate fields for sorting
