@@ -167,30 +167,42 @@ function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $co
 
   $form = array('#attributes' => array('id' =>'islandora-discovery-form'));
 
-  $asc_anchor_classes = array('field-sort');
-  $desc_anchor_classes = array('field-sort', 'active');
+  $asc_anchor_classes = array('field-sort', 'active');
+  $desc_anchor_classes = array('field-sort');
 
   $params = $_GET;
 
+  // Initially, override the default sorting order using a collection field key
+  // @todo Refactor
   if(array_key_exists('f', $params) and !empty($params['f'])) {
 
-    if(!in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"',
-					'cdm.Relation.IsPartOf:"Alumni Publications"'))) {
+    if(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"',
+				       'cdm.Relation.IsPartOf:"Alumni Publications"'))) {
+      
+      $asc_anchor_classes = array('field-sort');
+      $desc_anchor_classes = array('field-sort', 'active');
+    }
+  }
+  
+  // If the parameter "sort" has been passed in the GET request, further override the default sorting order
+  if(array_key_exists('sort', $params)) {
+
+    if(preg_match('/ desc/', $params['sort'])) {
+
+      $asc_anchor_classes = array('field-sort');
+      $desc_anchor_classes = array('field-sort', 'active');
+    } else {
 
       $asc_anchor_classes = array('field-sort', 'active');
       $desc_anchor_classes = array('field-sort');
     }
-  } elseif(!array_key_exists('sort', $params) or stripos($params['sort'], 'asc')) {
-
-    $asc_anchor_classes = array('field-sort', 'active');
-    $desc_anchor_classes = array('field-sort');
   }
 
   $prefix = '<div class="islandora-discovery-control title-sort-control"><span>Sort by:</span>';
   $prefix .= l('Asc', NULL, array('attributes' => array('class' => $asc_anchor_classes,
-							   'id' => 'field-sort-asc'),
-				     'external' => TRUE,
-				     'fragment' => FALSE));
+							'id' => 'field-sort-asc'),
+				  'external' => TRUE,
+				  'fragment' => FALSE));
   $prefix .= l('Desc', NULL, array('attributes' => array('class' => $desc_anchor_classes,
 							   'id' => 'field-sort-desc'),
 				     'external' => TRUE,
