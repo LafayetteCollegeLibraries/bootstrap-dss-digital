@@ -115,9 +115,6 @@ function bootstrap_dss_digital_menu_link__menu_authentication_cas(&$variables) {
   $variables['element']['#title'] = '<span title="Lafayette College" class="hybridauth-icon hybridauth-icon-hybridauth-32 hybridauth-icon-hybridauth-32-lafayette"></span><span>&nbsp;Lafayette College</span>';
   $variables['element']['#localized_options']['html'] = TRUE;
 
-  dpm($variables);
-
-
   return theme_menu_link($variables);
 }
 
