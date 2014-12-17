@@ -381,7 +381,7 @@ class DssMods extends SimpleXMLElement {
 			    'Date' => array('xpath' => '(//mods:date[@encoding="w3cdtf"] | //mods:dateOrigin[@encoding="w3cdtf"] )[1]',
 					    'facet' => TRUE,
 					    'date' => TRUE,
-					    'field' => 'MODS.mods.relatedItem.part.date.w3cdtf_dts'),
+					    'field' => 'MODS.mods.relatedItem.date.w3cdtf_dts'),
 			    'Publisher' => array('xpath' => './mods:originInfo/mods:publisher',
 						 'facet' => TRUE,
 						 'field' => 'MODS.mods.originInfo.publisher_s'),
