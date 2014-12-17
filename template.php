@@ -1073,7 +1073,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				 'McKelvy House Photograph Collection' => 'node/42',
 				 'Lafayette World War II Casualties' => 'node/43',
 				 'Presidents of Lafayette College' => 'node/41',
-				 'Alumni Publications' => 'node/1'
+				 'Alumni Publications' => 'node/52'
 				 );
 
     $collection_elements = array();
@@ -1336,7 +1336,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       case 'node/34':
       case 'node/42':
       case 'node/43':
-      case 'node/50':
+      case 'node/52':
 
 	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Collections',
 										'href' => 'node/45')), array_slice($breadcrumbs, -1));
