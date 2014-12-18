@@ -2358,7 +2358,7 @@ header {
 	
 	.islandora-pdf-content {
 		
-		height:auto;
+		
 	}
 	
 	.islandora-pdf-content #viewer {
@@ -2366,24 +2366,25 @@ header {
 		
 	}
 	
-	.islandora-pdf-content .page {
+	.islandora-pdf-content div.page {
 	
-		height:100px !important;
+		height:400px !important;
 	}
 	
-	.islandora-pdf-content .canvasWrapper {
+	.islandora-pdf-content div.canvasWrapper {
 		
-		height:100px !important;
+		height:400px !important;
 	}
 	
 	.islandora-pdf-content canvas {
 		
-		display: inline !important;
+		height: inherit !important;
+		width: auto !important;
 	}
 	
 	.islandora-pdf-content .textLayer {
 		
-		display: none;
+		
 	}
 
 }
