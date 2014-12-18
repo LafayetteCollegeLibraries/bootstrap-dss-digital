@@ -828,6 +828,7 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
 function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables) {
 
   $object = $variables['object'];
+  $collection_pid = NULL;
   $collection_label = NULL;
 
   /**
