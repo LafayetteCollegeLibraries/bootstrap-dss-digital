@@ -2361,7 +2361,7 @@ header {
 		height: auto;
 	}
 	
-	/* .islandora-pdf-content #viewer {
+	.islandora-pdf-content #viewer {
 		
 		
 	}
@@ -2385,6 +2385,6 @@ header {
 	.islandora-pdf-content .textLayer {
 		
 		
-	} */
+	}
 
 }
