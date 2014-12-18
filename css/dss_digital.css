@@ -2355,5 +2355,35 @@ header {
 		
 		display:none;
 	}
+	
+	.islandora-pdf-content {
+		
+		height:auto;
+	}
+	
+	.islandora-pdf-content #viewer {
+		
+		
+	}
+	
+	.islandora-pdf-content .page {
+	
+		height:100px !important;
+	}
+	
+	.islandora-pdf-content .canvasWrapper {
+		
+		height:100px !important;
+	}
+	
+	.islandora-pdf-content canvas {
+		
+		display: inline !important;
+	}
+	
+	.islandora-pdf-content .textLayer {
+		
+		display: none;
+	}
 
 }
