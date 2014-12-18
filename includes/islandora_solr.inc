@@ -174,6 +174,9 @@ function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $co
 
   // Initially, override the default sorting order using a collection field key
   // @todo Refactor
+
+  // Disabling this block resolves DSS-419
+  /*
   if(array_key_exists('f', $params) and !empty($params['f'])) {
 
     if(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"',
@@ -183,6 +186,7 @@ function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $co
       $desc_anchor_classes = array('field-sort', 'active');
     }
   }
+  */
   
   // If the parameter "sort" has been passed in the GET request, further override the default sorting order
   if(array_key_exists('sort', $params)) {
