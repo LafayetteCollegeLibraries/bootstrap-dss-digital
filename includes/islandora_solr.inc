@@ -175,19 +175,7 @@ function bootstrap_dss_digital_islandora_discovery_form($form, &$form_state, $co
   // Initially, override the default sorting order using a collection field key
   // @todo Refactor
 
-  // Disabling this block resolves DSS-419
-  /*
-  if(array_key_exists('f', $params) and !empty($params['f'])) {
-
-    if(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"',
-				       'cdm.Relation.IsPartOf:"Alumni Publications"'))) {
-      
-      $asc_anchor_classes = array('field-sort');
-      $desc_anchor_classes = array('field-sort', 'active');
-    }
-  }
-  */
-  
+  // Resolves DSS-419
   // If the parameter "sort" has been passed in the GET request, further override the default sorting order
   if(array_key_exists('sort', $params)) {
 
@@ -345,7 +333,7 @@ function bootstrap_dss_digital_process_islandora_solr_wrapper(&$variables) {
       } elseif(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Newspaper Collection"'))) {
 
 	$sorted_field = 'dc.date.sort';
-      } elseif(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Alumni Publications"'))) {
+      } elseif(in_array($params['f'][0], array('cdm.Relation.IsPartOf:"Lafayette Magazine Collection"'))) {
 
 	$sorted_field = 'MODS.mods.identifier.local_i';
       }
