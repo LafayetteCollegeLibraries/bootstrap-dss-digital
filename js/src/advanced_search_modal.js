@@ -319,7 +319,8 @@
 	  var options = $.extend(options, { direction: 'up' });
 
 	  // Adjust the z-index in order to avoid overlapping issues
-	  that.$element.css('z-index', Math.floor( new Date().getTime() / 10000 % 2 * 100000  ));
+	  // Please note that this *must* consistently exceed 9999 in order to avoid introducing any conflicts with PDF.js core styling properties
+	  that.$element.css('z-index', Math.floor( new Date().getTime() / 10000 % 2 * 1000000 ));
 
 	  // Possible recursion
 	  var e = $.Event('show');
