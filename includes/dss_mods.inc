@@ -372,7 +372,7 @@ class DssMods extends SimpleXMLElement {
 			    'Medium' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title",
 			    );
 
-    case 'Alumni Publications':
+    case 'Lafayette Magazine Collection':
 
       $template_map = array('Title' => "./mods:titleInfo/mods:title",
 			    'Subtitle' => './mods:titleInfo/mods:subTitle',
@@ -511,7 +511,7 @@ class DssMods extends SimpleXMLElement {
 	$element['raw_value'] = $element['value'];
 
 	// Extended handling for the Alumni Publications
-	if($collection_label == 'Alumni Publications') {
+	if($collection_label == 'Lafayette Magazine Collection') {
 
 	  // Implemented in order to ensure that, when relatedItem entities feature volume and issue data, these are appended to the value specifying the title of the entity
 	  if($facet == 'Series') {
@@ -713,7 +713,7 @@ class DssMods extends SimpleXMLElement {
 		$element['date_value'] .= "'s";
 	      }
 	    }
-	  } elseif($collection_label == 'Alumni Publications' and $facet == 'Date') {
+	  } elseif($collection_label == 'Lafayette Magazine Collection' and $facet == 'Date') {
 
 	    $date_elements = $this->xpath('(//mods:date[@qualifier="approximate"] | //mods:dateOrigin[@qualifier="approximate"] )[1]');
 

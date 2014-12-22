@@ -845,7 +845,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     if(in_array('islandora:alumni', $object->getParents())) {
 
       $collection_pid = array_shift($object->getParents());
-      $collection_label = 'Lafayette Alumni Publications Collection';
+      $collection_label = 'Lafayette Magazine Collection';
     }
 
     // Refactor
@@ -1074,7 +1074,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				 'McKelvy House Photograph Collection' => 'node/42',
 				 'Lafayette World War II Casualties' => 'node/43',
 				 'Presidents of Lafayette College' => 'node/41',
-				 'Alumni Publications' => 'node/52'
+				 'Lafayette Magazine Collection' => 'node/52'
 				 );
 
     $collection_elements = array();
