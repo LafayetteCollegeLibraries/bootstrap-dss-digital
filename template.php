@@ -852,10 +852,13 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     // Retrieve the MODS Metadata
     try {
 
-      $mods_str = $object['MODS']->content;
-      $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
+      if(isset($object['MODS'])) {
 
-      $mods_object = new DssMods($mods_str);
+	$mods_str = $object['MODS']->content;
+	$mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
+
+	$mods_object = new DssMods($mods_str);
+      }
     } catch (Exception $e) {
     
       drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
@@ -898,7 +901,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   $variables['mods_object']['drupal_path'] = array('class' => '',
 						   'label' => 'URL',
 						   'value' => $path_alias,
-						   'href' =>  $path_alias);
+						   'href' =>  $path_alias,
+						   'itemprop' => 'url');
 }
 
 function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {
