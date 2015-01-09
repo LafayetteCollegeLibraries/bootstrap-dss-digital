@@ -903,6 +903,32 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 						   'value' => $path_alias,
 						   'href' =>  $path_alias,
 						   'itemprop' => 'url');
+
+  /**
+   * Insert a link to the PDF datastream content for member Objects of the Lafayette Newspaper and Lafayette Magazine Collections
+   *
+   */
+  if(in_array('islandora:alumni', $object->getParents())) {
+
+    $pdf_url = 'http://digital.lafayette.edu/' . "islandora/object/{$object->id}/datastream/OBJ/view";
+
+    $variables['mods_object']['drupal_path'] = array('class' => 'islandora-book-pdf-discovery',
+						     'label' => 'URL',
+						     'value' => $pdf_url,
+						     'href' =>  $pdf_url,
+						     'itemprop' => 'url');
+  } elseif(in_array('islandora:newspaper', $object->getParents())) {
+
+    $pdf_url = 'http://digital.lafayette.edu/' . "islandora/object/{$object->id}/datastream/OBJ/view";
+
+    $variables['mods_object']['drupal_path'] = array('class' => 'islandora-book-pdf-discovery islandora-book-pdf-discovery-newspaper',
+						     'label' => 'URL',
+						     'value' => $pdf_url,
+						     'href' =>  $pdf_url,
+						     'itemprop' => 'url');
+  }
+  dpm($variables);
+
 }
 
 function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {
