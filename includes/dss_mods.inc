@@ -374,22 +374,43 @@ class DssMods extends SimpleXMLElement {
 
     case 'Lafayette Magazine Collection':
 
-      $template_map = array('Title' => "./mods:titleInfo/mods:title",
-			    'Subtitle' => './mods:titleInfo/mods:subTitle',
-			    'Part Of' => './mods:titleInfo/mods:partNumber',
-			    'Author' => './mods:name/mods:displayForm',
+      $template_map = array('Title' => array('xpath' => "./mods:titleInfo/mods:title",
+					     'property' => 'name',
+					     'itemprop' => 'name'),
+			    'Subtitle' => array('xpath' => './mods:titleInfo/mods:subTitle',
+						'property' => 'alternativeHeadline',
+						'itemprop' => 'alternativeHeadline'),
+			    'Part Of' => array('xpath' => './mods:titleInfo/mods:partNumber',
+					       'property' => 'alternativeHeadline',
+					       'itemprop' => 'alternativeHeadline'),
+			    'Author' => array('xpath' => './mods:name/mods:displayForm',
+					      'property' => 'author',
+					      'itemprop' => 'author'),
 			    'Date' => array('xpath' => '(//mods:date[@encoding="w3cdtf"] | //mods:dateOrigin[@encoding="w3cdtf"] )[1]',
 					    'facet' => TRUE,
 					    'date' => TRUE,
-					    'field' => 'MODS.mods.relatedItem.date.w3cdtf_dts'),
+					    'field' => 'MODS.mods.relatedItem.date.w3cdtf_dts',
+					    'property' => 'datePublished',
+					    'itemprop' => 'datePublished'),
 			    'Publisher' => array('xpath' => './mods:originInfo/mods:publisher',
 						 'facet' => TRUE,
-						 'field' => 'MODS.mods.originInfo.publisher_s'),
-			    'Place of Publication' => './mods:originInfo/mods:place/mods:placeTerm',
+						 'field' => 'MODS.mods.originInfo.publisher_s',
+						 'property' => 'publisher',
+						 'itemprop' => 'publisher'),
+			    'Place of Publication' => array('xpath' => './mods:originInfo/mods:place/mods:placeTerm',
+							    'property' => 'contentLocation',
+							    'itemprop' => 'contentLocation'
+							    ),
 			    'Series' => array('xpath' => './mods:relatedItem[@type="host"]/mods:titleInfo/mods:title',
 					      'facet' => TRUE,
-					      'field' => 'MODS.mods.relatedItem.titleInfo.title_ss'),
-			    'Note' => './mods:note[@type="date/sequential designation"]'
+					      'field' => 'MODS.mods.relatedItem.titleInfo.title_ss',
+					      'property' => 'isPartOf',
+					      'itemprop' => 'isPartOf'
+					      ),
+			    'Note' => array('xpath' => './mods:note[@type="date/sequential designation"]',
+					    'property' => 'comment',
+					    'itemprop' => 'comment'
+					    )
 			    );
 
       break;
@@ -444,6 +465,18 @@ class DssMods extends SimpleXMLElement {
 	if(array_key_exists('link', $value)) {
 
 	  $is_link = $value['link'];
+	}
+
+	// Implementing support for RDFa
+	if(array_key_exists('property', $value)) {
+
+	  $property = $value['property'];
+	}
+
+	// Implementing support for schema.org
+	if(array_key_exists('itemprop', $value)) {
+
+	  $itemprop = $value['itemprop'];
 	}
       } else {
 
@@ -734,6 +767,16 @@ class DssMods extends SimpleXMLElement {
 	  $element['href'] = $element['value'];
 	}
 
+	if($property) {
+
+	  $element['property'] = $property;
+	}
+
+	if($itemprop) {
+
+	  $element['itemprop'] = $itemprop;
+	}
+
 	$element['label'] = $facet;
       }
 
@@ -745,213 +788,3 @@ class DssMods extends SimpleXMLElement {
   }
   }
 
-class McKelvyMods extends DssMods {
-
-}
-
-class GeologySlidesEsiMods extends DssMods {
-
-  
-}
-
-class WarCasualtiesMods extends DssMods {
-
-}
-
-class PresidentsMods extends DssMods {
-
-  public function toArray($label_map=array()) {
-
-    $this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-    $this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
-
-    $mods_array = array();
-
-    /*
-    $template_map = array(
-			  // Generic
-			  'Title' => "./mods:titleInfo/mods:title",
-                          'Genre' => "./mods:genre",
-                          'Location' => "./mods:subject/mods:geographic",
-                          'Topic' => "./mods:subject/mods:topic",
-                          'Note' => "./mods:note",
-                          'Publisher' => "./mods:originInfo/mods:publisher",
-                          'Date of Publication' => "(./mods:originInfo/mods:dateOther)[1]",
-                          'Date of Digitization' => "(./mods:originInfo/mods:dateOther)[2]",
-                          'Rights' => "./mods:accessCondition",
-			  );
-    */
-
-    /**
-     *
-     */
-    if((string) $this->xpath("./mods:note[@type='admin']") == 'Presidents of Lafayette College') {
-
-      $template_map = array(
-			  /*
-			   * Presidents
-			   *
-			   */
-			  'Title' => "./mods:titleInfo/mods:title",
-                          'Subject' => array('xpath' => "./mods:subject/mods:topic",
-						 'facet' => true),
-                          'Description' => array('xpath' => "./mods:note",
-						 'facet' => true),
-			  'Publisher' => "./mods:originInfo/mods:publisher",
-			  'Digital Publisher' => array('xpath' => "./mods:name/mods:namePart",
-						       'facet' => true),
-			  'Digitization Date' => array('xpath' => "./mods:originInfo/mods:dateOther",
-						       'facet' => true,
-						       'date' => true),
-			  'Digital Format' => array('xpath' => "./mods:physicalDescription/mods:note",
-						    'facet' => true),
-			  'Source' => array('xpath' => "./mods:relatedItem[@type='original']/mods:titleInfo/mods:title"),
-			  'Language' => array('xpath' => "./mods:language/mods:languageTerm[@type='text']"),
-                          'Rights' => "./mods:accessCondition",
-                          );
-    }
-
-    foreach($template_map as $facet => $value) {
-
-      $is_facet = false;
-      $is_date = false;
-      $is_link = false;
-
-      if(is_array($value)) {
-
-	$xpath = $value['xpath'];
-	$is_facet = $value['facet'];
-
-	if(array_key_exists('date', $value)) {
-
-	  $is_date = $value['date'];
-	}
-
-	if(array_key_exists('link', $value)) {
-
-	  $is_link = $value['link'];
-	}
-      } else {
-
-	$xpath = $value;
-      }
-
-      // Transforming the MODS Document into a PHP Array
-      //
-      $map = function($element) {
-
-        $lang = 'en-US';
-
-        // Need to scrape
-        // Refactor
-        $m = preg_match('/xml\:lang\="(.+)"/', $element->asXML(), $matches);
-
-        if($m) {
-
-          $lang = $matches[1];
-        }
-
-        return array('label' => $element->getName(),
-                     'language' => $lang,
-                     'value' => (string) $element,
-		     //'class' => drupal_strtolower(preg_replace('/[^A-Za-z0-9]/', '-', $element->getName()))
-		     'class' => strtolower(preg_replace('/[^A-Za-z0-9]/', '-', $element->getName()))
-		     );
-      };
-
-      $mods_elements = array_map($map, $this->xpath($xpath));
-
-      for($i = 0; $i < sizeof($mods_elements); $i++) {
-
-	$element = &$mods_elements[$i];
-
-	if($i > 0) {
-
-	  $prev_element = $mods_elements[$i - 1];
-	  if($element['label'] == $prev_element['label'] &&
-	     $element['language'] == $prev_element['language']) {
-	    
-	    $element['class'] .= ' metadata-value-set';
-	  }
-	}
-      }
-
-      // Refactor
-      foreach($mods_elements as $i => &$element) {
-
-	if($is_facet) {
-
-	  if(array_key_exists($facet, $label_map)) {
-
-	    $element['facet'] = $label_map[$facet];
-	  } else {
-
-	    $element['facet'] = $facet;
-	  }
-
-	  if($is_date) {
-
-	    $element['facet_value'] = '[' . $element['value'] . ' TO ' . $element['value'] . ']';
-	  } else {
-	  
-	    $element['facet_value'] = '"' . $element['value'] . '"';
-	  }
-	}
-
-	if($is_date) {
-
-	  $element['date_value'] = gmdate('Y-m-d', strtotime($element['value']));
-	}
-
-	if($is_link) {
-
-	  $element['href'] = $element['value'];
-	}
-	$element['label'] = $facet;
-      }
-
-      $mods_array = array_merge($mods_array, $mods_elements);
-    }
-
-    $collection_elements = array();
-
-    // Filter MODS elements based upon the parent collection
-    if(array_key_exists('', $mods_elements)) {
-
-      switch($mods_elements['Relation.IsPartOf']) {
-
-      case 'Historical Photograph Collection':
-
-	$collection_elements = array(
-				     'Title',
-				     'Genre',
-				     'Description',
-				     'Date of Publication',
-				     'Type',
-				     'Relation.IsPartOf',
-				     'Source',
-				     'Rights',
-				     'Format.Digital',
-				     );
-
-	$_mods_elements = array();
-	foreach($mods_elements as $mods_element) {
-
-	  in_array($mods_element['label'], $collection_elements);
-	  $_mods_elements[] = $mods_element;
-	}
-
-	$mods_elements = $_mods_elements;
-
-	break;
-
-      default:
-      
-	break;
-      }
-    }
-
-
-    return $mods_array;
-  }
-}
