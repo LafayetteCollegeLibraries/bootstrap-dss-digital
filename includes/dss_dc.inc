@@ -16,39 +16,36 @@ class DssDc extends SimpleXMLElement {
     //$this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
     $this->registerXPathNamespace("dc", "http://purl.org/dc/elements/1.1/");
 
-    /*
-      dc:titleTitle
-      dc:datePublication Date
-      dc:coverageCoverage
-      dc:descriptionDescription
-      dc:subjectSubject
-      dc:rightsRights
-      dc:publisherPublisher
-      dc:sourceSource Material
-      dc:typeMedium
-     */
-
     $mods_array = array();
 
     //$relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
 
     $template_map = array(
-			  'Title' => "./dc:title",
+			  'Title' => array('xpath' => "./dc:title",
+					   'itemprop' => 'name'),
 			  'Publication Date' => array('xpath' => "./dc:date[1]",
 						      'facet' => true,
 						      'field' => 'dc.date',
-						      'date' => true),
-			  'Coverage' => "./dc:coverage",
-			  'Description' => "./dc:description",
+						      'date' => true,
+						      'itemprop' => 'datePublished'),
+			  'Coverage' => array('xpath' => "./dc:coverage",
+					      'itemprop' => 'contentLocation'),
+			  'Description' => array('xpath' => "./dc:description",
+						 'itemprop' => 'description'),
 			  'Subject' => array('xpath' => "./dc:subject",
 					     'facet' => true,
-					     'field' => 'dc.subject'),
-			  'Rights' => "./dc:rights",
-			  'Publisher' => "./dc:publisher",
-			  'Source Material' => "./dc:source",
+					     'field' => 'dc.subject',
+					     'itemprop' => 'isPartOf'),
+			  'Rights' => array('xpath' => "./dc:rights",
+					    'itemprop' => 'license'),
+			  'Publisher' => array('xpath' => "./dc:publisher",
+					       'itemprop' => 'publisher'),
+			  'Source Material' => array('xpath' => "./dc:source",
+						     'itemprop' => 'associatedMedia'),
 			  'Medium' => array('xpath' => "./dc:type",
 					    'facet' => true,
-					    'field' => 'dc.type'),
+					    'field' => 'dc.type',
+					    'itemprop' => 'bookFormat'),
 			  );
 
     //$this->xpath("./mods:note[@type='admin']");
@@ -62,7 +59,8 @@ class DssDc extends SimpleXMLElement {
       if(is_array($value)) {
 
 	$xpath = $value['xpath'];
-	$is_facet = $value['facet'];
+
+	$is_facet = array_key_exists('facet', $value) ? $value['facet'] : false;
 
 	/**
 	 * Hard-coded value
@@ -85,6 +83,11 @@ class DssDc extends SimpleXMLElement {
 	if(array_key_exists('link', $value)) {
 
 	  $is_link = $value['link'];
+	}
+
+	if(array_key_exists('itemprop', $value)) {
+
+	  $itemprop = $value['itemprop'];
 	}
       } else {
 
@@ -114,13 +117,8 @@ class DssDc extends SimpleXMLElement {
 		     );
       };
 
-      //dpm($facet);
-      //dpm($xpath);
-
       $mods_elements = array_map($map, $this->xpath($xpath));
-      //dpm($mods_elements);
-      //dpm($label_map);
-
+      
       for($i = 0; $i < sizeof($mods_elements); $i++) {
 
 	$element = &$mods_elements[$i];
@@ -142,8 +140,6 @@ class DssDc extends SimpleXMLElement {
       foreach($mods_elements as $i => &$element) {
 
 	if($is_facet) {
-
-	  //dpm( $facet);
 
 	  /**
 	   * Hard-coded mapping
@@ -170,9 +166,6 @@ class DssDc extends SimpleXMLElement {
 	    $element['facet_value'] = '"' . $element['value'] . '"';
 	  }
 
-	  //dpm(array('trace' => $element['facet']));
-	  //dpm(array('trace' => $element['facet_value']));
-
 	  $facet_params_values = array();
 	  $facet_params = array();
 
@@ -180,13 +173,9 @@ class DssDc extends SimpleXMLElement {
 
 	    $collection_elements = $this->xpath("./mods:note[@type='admin']");
 
-	    //dpm($element['value']);
-	    
-
 	    for($i=0; $i<$collection_facets; $i++) {
 
 	      if($element['value'] != (string) $collection_elements[$i]) {
-		//if(true) {
 
 		$facet_params["f[{$i}]"] = 'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
 	      }
@@ -224,6 +213,12 @@ class DssDc extends SimpleXMLElement {
 
 	  $element['href'] = $element['value'];
 	}
+
+	if($itemprop) {
+
+	  $element['itemprop'] = $itemprop;
+	}
+
 	$element['label'] = $facet;
       }
 
