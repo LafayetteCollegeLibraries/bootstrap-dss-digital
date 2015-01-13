@@ -375,31 +375,40 @@ class DssMods extends SimpleXMLElement {
     case 'Lafayette Magazine Collection':
 
       $template_map = array('Title' => array('xpath' => "./mods:titleInfo/mods:title",
+					     'property' => 'name',
 					     'itemprop' => 'name'),
 			    'Subtitle' => array('xpath' => './mods:titleInfo/mods:subTitle',
+						'property' => 'alternativeHeadline',
 						'itemprop' => 'alternativeHeadline'),
 			    'Part Of' => array('xpath' => './mods:titleInfo/mods:partNumber',
+					       'property' => 'alternativeHeadline',
 					       'itemprop' => 'alternativeHeadline'),
 			    'Author' => array('xpath' => './mods:name/mods:displayForm',
+					      'property' => 'author',
 					      'itemprop' => 'author'),
 			    'Date' => array('xpath' => '(//mods:date[@encoding="w3cdtf"] | //mods:dateOrigin[@encoding="w3cdtf"] )[1]',
 					    'facet' => TRUE,
 					    'date' => TRUE,
 					    'field' => 'MODS.mods.relatedItem.date.w3cdtf_dts',
+					    'property' => 'datePublished',
 					    'itemprop' => 'datePublished'),
 			    'Publisher' => array('xpath' => './mods:originInfo/mods:publisher',
 						 'facet' => TRUE,
 						 'field' => 'MODS.mods.originInfo.publisher_s',
+						 'property' => 'publisher',
 						 'itemprop' => 'publisher'),
 			    'Place of Publication' => array('xpath' => './mods:originInfo/mods:place/mods:placeTerm',
+							    'property' => 'contentLocation',
 							    'itemprop' => 'contentLocation'
 							    ),
 			    'Series' => array('xpath' => './mods:relatedItem[@type="host"]/mods:titleInfo/mods:title',
 					      'facet' => TRUE,
 					      'field' => 'MODS.mods.relatedItem.titleInfo.title_ss',
+					      'property' => 'isPartOf',
 					      'itemprop' => 'isPartOf'
 					      ),
 			    'Note' => array('xpath' => './mods:note[@type="date/sequential designation"]',
+					    'property' => 'comment',
 					    'itemprop' => 'comment'
 					    )
 			    );
@@ -458,14 +467,17 @@ class DssMods extends SimpleXMLElement {
 	  $is_link = $value['link'];
 	}
 
+	// Implementing support for RDFa
+	if(array_key_exists('property', $value)) {
+
+	  $property = $value['property'];
+	}
+
 	// Implementing support for schema.org
 	if(array_key_exists('itemprop', $value)) {
 
 	  $itemprop = $value['itemprop'];
 	}
-
-	// Implementing support for RDFa
-
       } else {
 
 	$xpath = $value;
@@ -753,6 +765,11 @@ class DssMods extends SimpleXMLElement {
 	if($is_link) {
 
 	  $element['href'] = $element['value'];
+	}
+
+	if($property) {
+
+	  $element['property'] = $property;
 	}
 
 	if($itemprop) {

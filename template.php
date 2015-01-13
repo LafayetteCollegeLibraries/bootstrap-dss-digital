@@ -544,6 +544,9 @@ function bootstrap_dss_digital_preprocess_html(&$variables) {
 
   drupal_add_library('system', 'effects.drop');
   drupal_add_library('system', 'effects.slide');
+
+  // attributes_array
+  $variables['attributes_array']['vocab'] = 'http://schema.org/';
 }
 
 /**
@@ -557,6 +560,8 @@ function bootstrap_dss_digital_process_page(&$variables) {
 
     hide($variables['page']['content']['system_main']['search_form']);
   }
+
+
 }
 
 /**
@@ -648,9 +653,6 @@ function bootstrap_dss_digital_theme_registry_alter(&$registry) {
       'template' => 'theme/islandora-basic-collection-wrapper',
       'variables' => array('islandora_object' => NULL),
   */
-
-  //dpm(array_keys($registry));
-  //dpm($registry['islandora_default']);
 }
 
 /**
@@ -1175,7 +1177,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
 	$_breadcrumbs[] = array('title' => 'Browse', 'href' => 'islandora/search/*:*', 'options' => array('query' => $facet_params));
 
-	//dpm(  url('islandora/search/*:*', array('query' => $facet_params)));
 	//$_breadcrumbs[] = array('title' => 'Browse', 'href' => url('islandora/search/*:*', array('query' => $facet_params)));
 	$count++;
 
@@ -1184,7 +1185,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
 	  $collection_content = (string) $collection_element;
 	  $_breadcrumbs[] = array('title' => 'Browse', 'href' => '/islandora/search/*:*?f[0]=cdm.Relation.IsPartOf:"' . $collection_content . '"');
-	  //dpm($collection_content);
 
 	  $count++;
 	  }
@@ -1199,15 +1199,9 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
       if(in_array($title, $eastasia_subcollections)) {
 
-	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'East Asia Image Collection', 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
-	//$_breadcrumbs[] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
-	//$count++;
-
-	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
 	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
       } else {
 
-	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => $title, 'href' => '/islandora/search/cdm.Relation.IsPartOf:"' . $title . '"');
 	$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/cdm.Relation.IsPartOf:"East Asia Image Collection"');
       }
       
@@ -1216,14 +1210,8 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
     } else if(array_key_exists('mdl_prints.description.series', $facets)) { // Home / Collections / [collection name] / [MDL series name] / Search
 
-      //dpm($_breadcrumbs);
       $_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'Collections', 'href' => 'collections');
-      //$_breadcrumbs[] = array('title' => 'Collections', 'href' => 'collections');
       $_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $collection_node_map[$facets['cdm.Relation.IsPartOf']]);
-
-      //$_breadcrumbs[] = array('title' => $facets['mdl_prints.description.series'], 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"' . '?f[1]=mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"');
-      //$_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-      //$_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"' . '?f[1]=mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"');
       $_breadcrumbs[] = array('title' => 'Browse', 'href' => $solr_query, 'options' => array('query' => array('f[0]' => 'cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"',
 													      'f[1]' => 'mdl_prints.description.series:"' . $facets['mdl_prints.description.series'] . '"')));
 
@@ -1237,23 +1225,10 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       // Hierarchical collections
       if(in_array($facets['cdm.Relation.IsPartOf'], $eastasia_subcollections)) {
 
-	//$_breadcrumbs[count($breadcrumbs) - 1] = array('title' => 'East Asia Image Collection', 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[1]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-	//$count++;
-
-	//$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
-
 	$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query, 'options' => array('query' => array('f[0]' => 'cdm.Relation.IsPartOf:"East Asia Image Collection"'
 																			   )));
       } else {
 
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"' . $facets['cdm.Relation.IsPartOf'] . '"');
-
-	//$_breadcrumbs[] = array('title' => "East Asia Image Collection", 'href' => '/islandora/search/' . $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
-	//$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $solr_query . '?f[0]=cdm.Relation.IsPartOf:"East Asia Image Collection"');
-	
 	$_breadcrumbs[] = array('title' => $facets['cdm.Relation.IsPartOf'], 'href' => $collection_node_map[$facets['cdm.Relation.IsPartOf']]);
       }
 
