@@ -884,6 +884,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     }
   }
 
+  global $base_url;
+
   /**
    * Work-around for appended site-generated resource metadata into the Object
    * Refactor (or, ideally, update the MODS when Drush creates or updates the path alias)
@@ -891,13 +893,13 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
    *
    */
 
-  global $base_url;
   // The proper approach (production)
   //$path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
   // The less proper approach (enforce HTTP while ensuring that other linked metadata field values are possibly tunneled through TLS/SSL)
   //$path_alias = str_replace('https', 'http', $base_url) . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
   // Specific to the production environment
-  $path_alias = 'http://digital.lafayette.edu/' . drupal_get_path_alias("islandora/object/{$object->id}");
+
+  $path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
   $variables['mods_object']['drupal_path'] = array('class' => '',
 						   'label' => 'URL',
 						   'value' => $path_alias,
@@ -906,29 +908,19 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
   /**
    * Insert a link to the PDF datastream content for member Objects of the Lafayette Newspaper and Lafayette Magazine Collections
+   * Resolves DSSSM-1129
    *
    */
-  if(in_array('islandora:alumni', $object->getParents())) {
+  if(in_array('islandora:alumni', $object->getParents()) or in_array('islandora:newspaper', $object->getParents())) {
 
-    $pdf_url = 'http://digital.lafayette.edu/' . "islandora/object/{$object->id}/datastream/OBJ/view";
-
-    $variables['mods_object']['drupal_path'] = array('class' => 'islandora-book-pdf-discovery',
-						     'label' => 'URL',
-						     'value' => $pdf_url,
-						     'href' =>  $pdf_url,
-						     'itemprop' => 'url');
-  } elseif(in_array('islandora:newspaper', $object->getParents())) {
-
-    $pdf_url = 'http://digital.lafayette.edu/' . "islandora/object/{$object->id}/datastream/OBJ/view";
-
-    $variables['mods_object']['drupal_path'] = array('class' => 'islandora-book-pdf-discovery islandora-book-pdf-discovery-newspaper',
-						     'label' => 'URL',
-						     'value' => $pdf_url,
-						     'href' =>  $pdf_url,
-						     'itemprop' => 'url');
+    $pdf_path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}/datastream/OBJ/download");
+    
+    $variables['mods_object']['drupal_pdf_path'] = array('class' => 'islandora-book-pdf-discovery',
+							 'label' => 'PDF',
+							 'value' => $pdf_path_alias,
+							 'href' =>  $pdf_path_alias,
+							 'itemprop' => 'url');
   }
-  dpm($variables);
-
 }
 
 function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {
