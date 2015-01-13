@@ -10,6 +10,76 @@
 
 class DssDc extends SimpleXMLElement {
 
+  private function set_namespaces() {
+
+    $this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
+    $this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
+  }
+
+  /**
+   * Retrieve the collection label from within the administrative MODS element
+   *
+   */
+  private function get_collection_label() {
+
+    $this->set_namespaces();
+    $value = '';
+
+    $relation_is_part_of = $this->xpath("./mods:note[@type='admin']");
+    
+    if(!empty($relation_is_part_of)) {
+      
+      $element = array_shift($relation_is_part_of);
+
+      $value = (string) $element;
+
+      // @todo Resolve
+      // This to extract the actual string value from the Object by casting
+      //$this->collection_label = (string) $value;
+    }
+    
+    return $value;
+  }
+
+  /**
+   * Generate a brief description
+   *
+   */
+  public function description() {
+
+    $xpaths = array(
+		    "./dc:title",
+		    "./dc:date[1]",
+		    "./dc:coverage",
+		    "./dc:description",
+		    "./dc:subject",
+		    "./dc:rights",
+		    "./dc:publisher",
+		    "./dc:source",
+		    "./dc:type"
+		    );
+
+    $collection_label = $this->get_collection_label();
+
+    $this->set_namespaces();
+    $values = array();
+      
+    foreach($xpaths as $xpath) {
+
+      $elements = $this->xpath($xpath);
+      
+      if(!empty($elements)) {
+	
+	$element = array_shift($elements);
+	$values[] = (string) $element;
+      }
+    }
+
+    $description = implode(' ', $values);
+
+    return $description;
+  }
+
   public function toArray($label_map=array()) {
 
     $this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
@@ -22,29 +92,46 @@ class DssDc extends SimpleXMLElement {
 
     $template_map = array(
 			  'Title' => array('xpath' => "./dc:title",
+					   'property' => 'name',
 					   'itemprop' => 'name'),
+
 			  'Publication Date' => array('xpath' => "./dc:date[1]",
 						      'facet' => true,
 						      'field' => 'dc.date',
 						      'date' => true,
+						      'property' => 'datePublished',
 						      'itemprop' => 'datePublished'),
+
 			  'Coverage' => array('xpath' => "./dc:coverage",
+					      'property' => 'contentLocation',
 					      'itemprop' => 'contentLocation'),
+
 			  'Description' => array('xpath' => "./dc:description",
+						 'property' => 'description',
 						 'itemprop' => 'description'),
+
 			  'Subject' => array('xpath' => "./dc:subject",
 					     'facet' => true,
 					     'field' => 'dc.subject',
+					     'property' => 'isPartOf',
 					     'itemprop' => 'isPartOf'),
+
 			  'Rights' => array('xpath' => "./dc:rights",
+					    'property' => 'license',
 					    'itemprop' => 'license'),
+
 			  'Publisher' => array('xpath' => "./dc:publisher",
+					       'property' => 'publisher',
 					       'itemprop' => 'publisher'),
+
 			  'Source Material' => array('xpath' => "./dc:source",
+						     'property' => 'associatedMedia',
 						     'itemprop' => 'associatedMedia'),
+
 			  'Medium' => array('xpath' => "./dc:type",
 					    'facet' => true,
 					    'field' => 'dc.type',
+					    'property' => 'bookFormat',
 					    'itemprop' => 'bookFormat'),
 			  );
 
@@ -69,8 +156,6 @@ class DssDc extends SimpleXMLElement {
 	 */
 	if($is_facet && array_key_exists('field', $value)) {
 
-	  //dpm($value['field']);
-
 	  //$facet_field = $value['field'];
 	  $facet_field = $value['field'];
 	}
@@ -85,6 +170,13 @@ class DssDc extends SimpleXMLElement {
 	  $is_link = $value['link'];
 	}
 
+	// Implementing support for RDFa
+	if(array_key_exists('property', $value)) {
+
+	  $property = $value['property'];
+	}
+
+	// Implementing support for schema.org
 	if(array_key_exists('itemprop', $value)) {
 
 	  $itemprop = $value['itemprop'];
@@ -214,6 +306,11 @@ class DssDc extends SimpleXMLElement {
 	  $element['href'] = $element['value'];
 	}
 
+	if($property) {
+
+	  $element['property'] = $property;
+	}
+
 	if($itemprop) {
 
 	  $element['itemprop'] = $itemprop;
@@ -226,8 +323,6 @@ class DssDc extends SimpleXMLElement {
     }
 
     $collection_elements = array();
-
-    //dpm( $mods_array);
 
     return $mods_array;
   }
