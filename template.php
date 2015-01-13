@@ -871,10 +871,17 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   // Extended for additional fields
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
 
-  $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map, $collection_pid, $collection_label) : array();
+  //$variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map, $collection_pid, $collection_label) : array();
+  $mods_array = isset($mods_object) ? $mods_object->toArray($label_map, $collection_pid, $collection_label) : array();
+
+  //dpm($mods_object->toArray($label_map, $collection_pid, $collection_label));
+  //$mods_array = array();
+
   
   $rendered_fields = array();
-  foreach($variables['mods_object'] as $key => &$value) {
+
+  //foreach($variables['mods_object'] as $key => &$value) {
+  foreach($mods_array as $key => &$value) {
 
     if(!in_array($value['label'], $rendered_fields)) {
 
@@ -885,6 +892,20 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
       $value['label'] = '';
     }
   }
+
+  /*
+   * Generate the meta "description" element
+   *
+   */
+  $description = $mods_object->description();
+  $meta_element_description = array('#type' => 'html_tag',
+				    '#tag' => 'meta',
+				    '#attributes' => array('name' =>  'description',
+							   'content' => $description,
+							   )
+				    );
+
+  drupal_add_html_head($meta_element_description, 'meta_element_description');
 
   global $base_url;
 
@@ -902,12 +923,13 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   // Specific to the production environment
 
   $path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  $variables['mods_object']['drupal_path'] = array('class' => '',
-						   'label' => 'URL',
-						   'value' => $path_alias,
-						   'href' =>  $path_alias,
-						   'itemprop' => 'url');
-
+  //$variables['mods_object']['drupal_path'] = array('class' => '',
+  $mods_array['drupal_path'] = array('class' => '',
+				     'label' => 'URL',
+				     'value' => $path_alias,
+				     'href' =>  $path_alias,
+				     'itemprop' => 'url');
+  
   /**
    * Insert a link to the PDF datastream content for member Objects of the Lafayette Newspaper and Lafayette Magazine Collections
    * Resolves DSSSM-1129
@@ -917,12 +939,15 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
     $pdf_path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}/datastream/OBJ/download");
     
-    $variables['mods_object']['drupal_pdf_path'] = array('class' => 'islandora-book-pdf-discovery',
-							 'label' => 'PDF',
-							 'value' => $pdf_path_alias,
-							 'href' =>  $pdf_path_alias,
-							 'itemprop' => 'url');
+    //$variables['mods_object']['drupal_pdf_path'] = array('class' => 'islandora-book-pdf-discovery',
+    $mods_array['drupal_pdf_path'] = array('class' => 'islandora-book-pdf-discovery',
+					   'label' => 'PDF',
+					   'value' => $pdf_path_alias,
+					   'href' =>  $pdf_path_alias,
+					   'itemprop' => 'url');
   }
+
+  $variables['mods_object'] = $mods_array;
 }
 
 function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {

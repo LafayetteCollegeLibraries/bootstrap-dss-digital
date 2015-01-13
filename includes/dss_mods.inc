@@ -10,6 +10,82 @@
 
 class DssMods extends SimpleXMLElement {
 
+  public $collection_label;
+
+  private function set_namespaces() {
+
+    $this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
+    $this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
+  }
+
+  /**
+   * Retrieve the collection label from within the administrative MODS element
+   *
+   */
+  private function get_collection_label() {
+
+    $this->set_namespaces();
+    $value = '';
+
+    $relation_is_part_of = $this->xpath("./mods:note[@type='admin']");
+    
+    if(!empty($relation_is_part_of)) {
+      
+      $element = array_shift($relation_is_part_of);
+
+      $value = (string) $element;
+
+      // @todo Resolve
+      // This to extract the actual string value from the Object by casting
+      //$this->collection_label = (string) $value;
+    }
+    
+    return $value;
+  }
+
+  /**
+   * Generate a brief description
+   *
+   */
+  public function description() {
+
+    $collection_xpath = array(
+			      'Lafayette Magazine Collection' => array('./mods:titleInfo/mods:title',
+								       './mods:titleInfo/mods:subTitle',
+								       './mods:titleInfo/mods:partNumber',
+								       './mods:name/mods:displayForm',
+								       '(//mods:date[@encoding="w3cdtf"] | //mods:dateOrigin[@encoding="w3cdtf"])[1]',
+								       './mods:originInfo/mods:publisher',
+								       './mods:originInfo/mods:place/mods:placeTerm',
+								       './mods:relatedItem[@type="host"]/mods:titleInfo/mods:title'
+								       )
+			      );
+
+    $collection_label = $this->get_collection_label();
+
+    if(array_key_exists($collection_label, $collection_xpath)) {
+
+      $this->set_namespaces();
+      $xpaths = $collection_xpath[$collection_label];
+      $values = array();
+
+      foreach($xpaths as $xpath) {
+
+	$elements = $this->xpath($xpath);
+
+	if(!empty($elements)) {
+
+	  $element = array_shift($elements);
+	  $values[] = (string) $element;
+	}
+      }
+    }
+
+    $description = implode(' ', $values);
+
+    return $description;
+  }
+
   public function toArray($label_map = array(), $collection_pid = NULL, $collection_label = NULL) {
 
     $collection_pid = is_null($collection_pid) ? 'islandora:root' : $collection_pid;
@@ -783,8 +859,10 @@ class DssMods extends SimpleXMLElement {
       $mods_array = array_merge($mods_array, $mods_elements);
     }
 
-    $collection_elements = array();
+    //$collection_elements = array();
+    //$this->mods_array = $mods_array;
+
     return $mods_array;
   }
-  }
 
+  }
