@@ -47,6 +47,8 @@ class DssDc extends SimpleXMLElement {
    */
   public function description() {
 
+    $values = array();
+
     $xpaths = array(
 		    "./dc:title",
 		    "./dc:date[1]",
@@ -306,12 +308,12 @@ class DssDc extends SimpleXMLElement {
 	  $element['href'] = $element['value'];
 	}
 
-	if($property) {
+	if(isset($property)) {
 
 	  $element['property'] = $property;
 	}
 
-	if($itemprop) {
+	if(isset($itemprop)) {
 
 	  $element['itemprop'] = $itemprop;
 	}
