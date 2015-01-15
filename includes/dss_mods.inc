@@ -49,6 +49,8 @@ class DssMods extends SimpleXMLElement {
    */
   public function description() {
 
+    $values = array();
+
     $collection_xpath = array(
 			      'Lafayette Magazine Collection' => array('./mods:titleInfo/mods:title',
 								       './mods:titleInfo/mods:subTitle',
@@ -843,12 +845,12 @@ class DssMods extends SimpleXMLElement {
 	  $element['href'] = $element['value'];
 	}
 
-	if($property) {
+	if(isset($property)) {
 
 	  $element['property'] = $property;
 	}
 
-	if($itemprop) {
+	if(isset($itemprop)) {
 
 	  $element['itemprop'] = $itemprop;
 	}
