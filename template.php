@@ -897,15 +897,21 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
    * Generate the meta "description" element
    *
    */
-  $description = $mods_object->description();
-  $meta_element_description = array('#type' => 'html_tag',
-				    '#tag' => 'meta',
-				    '#attributes' => array('name' =>  'description',
-							   'content' => $description,
-							   )
-				    );
 
-  drupal_add_html_head($meta_element_description, 'meta_element_description');
+  if( method_exists($mods_object, 'description') ) {
+
+    $description = $mods_object->description();
+    $meta_element_description = array('#type' => 'html_tag',
+				      '#tag' => 'meta',
+				      '#attributes' => array('name' =>  'description',
+							     'content' => $description,
+							     )
+				      );
+
+    drupal_add_html_head($meta_element_description, 'meta_element_description');
+  }
+
+
 
   global $base_url;
 
@@ -923,9 +929,9 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   // Specific to the production environment
 
   $path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  //$variables['mods_object']['drupal_path'] = array('class' => '',
-  $mods_array['drupal_path'] = array('class' => '',
-				     'label' => 'URL',
+
+  $mods_array['drupal_path'] = array('class' => 'islandora-book-discovery',
+				     'label' => 'Item URL',
 				     'value' => $path_alias,
 				     'href' =>  $path_alias,
 				     'itemprop' => 'url');
@@ -939,9 +945,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
     $pdf_path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}/datastream/OBJ/download");
     
-    //$variables['mods_object']['drupal_pdf_path'] = array('class' => 'islandora-book-pdf-discovery',
     $mods_array['drupal_pdf_path'] = array('class' => 'islandora-book-pdf-discovery',
-					   'label' => 'PDF',
+					   'label' => 'Download PDF',
 					   'value' => $pdf_path_alias,
 					   'href' =>  $pdf_path_alias,
 					   'itemprop' => 'url');
