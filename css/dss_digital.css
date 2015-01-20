@@ -2358,51 +2358,16 @@ header {
 	 * Styling unique to members of the Lafayette Magazine Collection
 	 *
 	 */
-	/* body[class*="page-islandora-object-alumni"] #page-header, body[class*="page-islandora-object-alumni"] #breadcrumb-container, body[class*="page-islandora-object-alumni"] .islandora-book-metadata {
-		
-		display:none;
-	}
 	
-	body[class*="page-islandora-object-alumni"] #navbar, body[class*="page-islandora-object-alumni"] #block-menu-menu-footer-menu {
+	#printContainer, .grippie {
 		
-		display:none;
+		display:none !important;
 	}
 	
 	.islandora-pdf-content {
 		
-		height: auto;
-		border: 0px;
+		height:65px;
 	}
-	
-	#printContainer canvas { */
-		
-		/* display: block !important; */
-	/* }
-	
-	.islandora-pdf-content #viewer {
-		
-		
-	}
-	
-	.islandora-pdf-content div.page {
-	
-	    
-	}
-	
-	.islandora-pdf-content div.canvasWrapper {
-	
-	
-	}
-	
-	.islandora-pdf-content canvas {
-		
-	
-	}
-	
-	.islandora-pdf-content .textLayer {
-		
-		
-	} */
 
 }
 
@@ -2418,4 +2383,17 @@ header {
 	height: 12px;
 	background: url("http://digital.stage.lafayette.edu/sites/all/modules/islandora_dss_book/files/grippie.png") no-repeat scroll center 3px #dadada;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* hide and style pdf.js print message */
+
+.hidePrintMessage {
+	
+	display:none;
+}
+
+.showPrintMessage {
+	
+	margin:10px;
+	font-size:20px;
 }
