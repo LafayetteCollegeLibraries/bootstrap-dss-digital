@@ -1319,9 +1319,15 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 
 .islandora-solr-facet-token-list {
 	
-	list-style:none;
-	margin-top:12px;
-	margin-left:0px;
+	background-color: #eaeaea;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    list-style: outside none none;
+    margin-left: 0;
+    margin-top: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
 }
 
 .islandora-solr-facet-token {
@@ -1331,6 +1337,7 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 	padding: 1px 6px 3px 5px;
 	height:auto;
 	vertical-align:auto;
+	border: 1px solid #bbbbbb;
 }
 
 .islandora-solr-facet-token:hover {
@@ -1340,7 +1347,8 @@ body > div#islandora-openseadragon > form > #openseadragon-size-transform-contai
 
 .islandora-solr-facet-token > span.close {
 	
-	color: #7E7E7E;
+	color: #bb0407;
+	font-size: 19px;
     opacity: 1;
     float:right;
     margin-top:-1px;
@@ -2346,7 +2354,11 @@ header {
 		display:none;
 	}
 
-	body[class*="page-islandora-object-alumni"] #page-header, body[class*="page-islandora-object-alumni"] #breadcrumb-container, body[class*="page-islandora-object-alumni"] .islandora-book-metadata {
+	/**
+	 * Styling unique to members of the Lafayette Magazine Collection
+	 *
+	 */
+	/* body[class*="page-islandora-object-alumni"] #page-header, body[class*="page-islandora-object-alumni"] #breadcrumb-container, body[class*="page-islandora-object-alumni"] .islandora-book-metadata {
 		
 		display:none;
 	}
@@ -2359,7 +2371,13 @@ header {
 	.islandora-pdf-content {
 		
 		height: auto;
+		border: 0px;
 	}
+	
+	#printContainer canvas { */
+		
+		/* display: block !important; */
+	/* }
 	
 	.islandora-pdf-content #viewer {
 		
@@ -2368,23 +2386,22 @@ header {
 	
 	.islandora-pdf-content div.page {
 	
-		height:400px !important;
+	    
 	}
 	
 	.islandora-pdf-content div.canvasWrapper {
-		
-		height:400px !important;
+	
+	
 	}
 	
 	.islandora-pdf-content canvas {
 		
-		height: inherit !important;
-		width: auto !important;
+	
 	}
 	
 	.islandora-pdf-content .textLayer {
 		
 		
-	}
+	} */
 
 }
