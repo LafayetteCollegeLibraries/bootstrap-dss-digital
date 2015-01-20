@@ -2405,3 +2405,17 @@ header {
 	} */
 
 }
+
+/* style for grippie */
+
+.islandora-pdf-content {
+	
+	border-radius: 0px;
+}
+
+.islandora-pdf-object .grippie {
+	
+	height: 12px;
+	background: url("http://digital.stage.lafayette.edu/sites/all/modules/islandora_dss_book/files/grippie.png") no-repeat scroll center 3px #dadada;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
