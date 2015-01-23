@@ -2421,6 +2421,7 @@ header {
     margin-left: 10px;
     margin-right: 10px;
     width: auto;
+    padding-bottom: 2px;
 }
 
 .pdfHelpLabel {
@@ -2450,6 +2451,16 @@ header {
 	clear:both;
 }
 
+.pdfHelpGrippie {
+	
+	float: left;
+    height: 13px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: auto;
+    padding-top:9px;
+}
+
 .pdfHelpSection {
 	
 	background-color: #f5f5f5;
@@ -2470,7 +2481,7 @@ header {
 #pdfHelpLink {
 	
 	text-align: center;
-	margin-top: 22px;
+	margin-top: 28px;
 	font-size: 16px;
 }
 
