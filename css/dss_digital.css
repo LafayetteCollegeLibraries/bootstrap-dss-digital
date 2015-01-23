@@ -2473,3 +2473,8 @@ header {
 	margin-top: 22px;
 	font-size: 16px;
 }
+
+.islandora-pdf-content {
+	
+	opacity: 1 !important;
+}
