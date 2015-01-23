@@ -2380,9 +2380,14 @@ header {
 
 .islandora-pdf-object .grippie {
 	
-	height: 12px;
-	background: url("http://digital.stage.lafayette.edu/sites/all/modules/islandora_dss_book/files/grippie.png") no-repeat scroll center 3px #dadada;
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+	height: 13px;
+	background-image: url("http://digital.stage.lafayette.edu/sites/all/modules/islandora_dss_book/files/grippie.png"), linear-gradient(to bottom, #525252, #353535);
+	background-repeat: no-repeat;
+	background-position: center;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	border: 1px solid #3c3c3c;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px; 
 }
 
 /* hide and style pdf.js print message */
@@ -2416,6 +2421,7 @@ header {
     margin-left: 10px;
     margin-right: 10px;
     width: auto;
+    padding-bottom: 2px;
 }
 
 .pdfHelpLabel {
@@ -2445,6 +2451,16 @@ header {
 	clear:both;
 }
 
+.pdfHelpGrippie {
+	
+	float: left;
+    height: 13px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: auto;
+    padding-top:9px;
+}
+
 .pdfHelpSection {
 	
 	background-color: #f5f5f5;
@@ -2465,6 +2481,11 @@ header {
 #pdfHelpLink {
 	
 	text-align: center;
-	padding-top: 20px;
+	margin-top: 28px;
 	font-size: 16px;
+}
+
+.islandora-pdf-content {
+	
+	opacity: 1 !important;
 }
