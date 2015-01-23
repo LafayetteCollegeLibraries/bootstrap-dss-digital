@@ -479,12 +479,12 @@ class DssMods extends SimpleXMLElement {
 							    'property' => 'contentLocation',
 							    'itemprop' => 'contentLocation'
 							    ),
-			    'Series' => array('xpath' => './mods:relatedItem[@type="host"]/mods:titleInfo/mods:title',
-					      'facet' => TRUE,
-					      'field' => 'MODS.mods.relatedItem.titleInfo.title_ss',
-					      'property' => 'isPartOf',
-					      'itemprop' => 'isPartOf'
-					      ),
+			    'Publication Title' => array('xpath' => './mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', // Changing this label from "Series" to "Publication Title" in accordance with DSSSM-1177
+							 'facet' => TRUE,
+							 'field' => 'MODS.mods.relatedItem.titleInfo.title_ss',
+							 'property' => 'isPartOf',
+							 'itemprop' => 'isPartOf'
+							 ),
 			    'Note' => array('xpath' => './mods:note[@type="date/sequential designation"]',
 					    'property' => 'comment',
 					    'itemprop' => 'comment'
@@ -625,7 +625,7 @@ class DssMods extends SimpleXMLElement {
 	if($collection_label == 'Lafayette Magazine Collection') {
 
 	  // Implemented in order to ensure that, when relatedItem entities feature volume and issue data, these are appended to the value specifying the title of the entity
-	  if($facet == 'Series') {
+	  if($facet == 'Publication Title') {
 
 	    $volume_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:titleInfo/mods:title[text()="' . $element['raw_value'] . '"]/../../mods:part/mods:text[@type="volume"]');
 
