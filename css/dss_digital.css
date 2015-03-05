@@ -2489,3 +2489,202 @@ header {
 	
 	opacity: 1 !important;
 }
+
+/* style for madagascar collection landing page 
+ * 
+ * @author goodnowt
+ * 
+ * */
+
+.outerImage {
+	
+}
+
+#image1 {
+	
+    margin: 10px 10px 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding:10px;
+    max-width: 510px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#image1 img {
+	
+	width: 510px;
+}
+
+#image1 p {
+	
+	text-align: center;
+}
+
+#image2 {
+	
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    margin: 10px 10px 20px;
+    max-width: 905px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#image2 p {
+	
+	text-align: center;
+}
+
+#image2 img {
+	
+	width: 905px;
+}
+
+.map {
+	
+	clear:both;
+	margin-left: auto;
+	margin-right: auto;
+    background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding:10px;
+    max-width: 905px;
+    margin-bottom: 10px;
+}
+
+.map img {
+    
+    width: 905px;
+}
+
+.map p {
+	
+	text-align: center;
+}
+
+#madagascarThumbs {
+	
+	float:right;
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding: 10px 10px 5px;
+    margin-left: 10px;
+}
+
+#madagascarThumbs p {
+	
+	margin-bottom: 0px;
+	margin-top: 5px;
+	text-align: center;
+}
+
+#madagascarThumbs img {
+	
+	width: 200px;
+}
+
+#madagascarImageBackNav {
+	
+	margin-left:10px;
+	margin-right:10px;
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding: 10px;
+    width: 65px;
+    margin-bottom:10px;
+    font-size:16px;
+    text-align: center;
+}
+
+#madagascarImageBackNav p {
+	
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+#madagascarImage2Nav {
+	
+	margin-left:auto;
+	margin-right:auto;
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding: 10px;
+    width: 130px;
+    margin-bottom:10px;
+    font-size:16px;
+    text-align: center;
+}
+
+#madagascarImage2Nav p {
+	
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+#madagascarImage1Nav {
+	
+	margin-left:auto;
+	margin-right:auto;
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding: 10px;
+    width: 160px;
+    margin-bottom:10px;
+    font-size:16px;
+    text-align: center;
+}
+
+#madagascarImage1Nav p {
+	
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+#madagascarMapNav {
+	
+	margin-left:auto;
+	margin-right:auto;
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding: 10px;
+    max-width: 490px;
+    margin-bottom:10px;
+    font-size:16px;
+    text-align: center;
+}
+
+#madagascarMapNav p {
+	
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+.madagascarMapBackNav {
+	
+	margin-left:auto;
+	margin-right:auto;
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding: 10px;
+    max-width: 180px;
+    margin-bottom:10px;
+    font-size:16px;
+    text-align: center;
+}
+
+.madagascarMapBackNav p {
+	
+	margin-bottom: 0px;
+	text-align: center;
+}
