@@ -40,6 +40,11 @@ and (max-device-width : 1024px) {
     	
     	display:inherit !important;
     }
+    
+    #madagascarMapNav, .madagascarMapBackNav, #madagascarImage2Nav, #madagascarImage1Nav {
+    	
+    	display: auto !important;
+    }
 }
 
 /**

@@ -2621,6 +2621,7 @@ header {
     margin-bottom:10px;
     font-size:16px;
     text-align: center;
+    display: none;
 }
 
 #madagascarImage2Nav p {
@@ -2641,6 +2642,7 @@ header {
     margin-bottom:10px;
     font-size:16px;
     text-align: center;
+    display:none;
 }
 
 #madagascarImage1Nav p {
@@ -2661,6 +2663,7 @@ header {
     margin-bottom:10px;
     font-size:16px;
     text-align: center;
+    display: none;
 }
 
 #madagascarMapNav p {
@@ -2681,6 +2684,7 @@ header {
     margin-bottom:10px;
     font-size:16px;
     text-align: center;
+    display: none;
 }
 
 .madagascarMapBackNav p {
