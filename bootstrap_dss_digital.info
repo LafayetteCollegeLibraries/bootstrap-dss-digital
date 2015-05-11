@@ -36,8 +36,6 @@ regions[hidden]         = 'Hidden'
 scripts[] = 'js/bootstrap.min.js'
 
 scripts[] = 'js/build/bootstrap_helper.min.js'
-scripts[] = 'js/build/advanced_search_modal.min.js'
-; scripts[] = 'js/src/advanced_search_modal.js'
 scripts[] = 'js/build/sharethis_helper.min.js'
 scripts[] = 'js/build/advanced_search_modal_helper.min.js'
 
@@ -64,8 +62,6 @@ stylesheets[all][] = css/slide_panel.css
 
 ; stylesheets[all][] = css/mbExtruder.css
 
-; JavaScript
-stylesheets[all][] = css/modal.css
 stylesheets[all][] = css/sharethis.css
 
 ; Islandora

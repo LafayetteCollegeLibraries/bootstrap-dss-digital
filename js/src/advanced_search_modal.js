@@ -297,6 +297,29 @@
   };
 
   /**
+   * Error alert
+   *
+   */
+  LafayetteDssModal.alertError = function($element, html) {
+
+      //$('<div class="alert alert-block alert-error"><a href="#" data-dismiss="alert" class="close">×</a><h4 class="element-invisible">Error message</h4><ul>' + html + '</ul></div>')
+      $('<div class="alert alert-block alert-error">' + html + '</div>')
+      .hide()
+      .insertAfter(
+		   //$element.parents('.modal-content').children('.modal-header')
+		   $element.find('.modal-content').children('.modal-header')
+		   )
+      .show($.extend('slide', { direction: 'down' }, function() {
+					  
+		  // Render the error message and hide the message within 1.5 seconds
+		  setTimeout(function() {
+			  
+			  $(document).data('LafayetteDssModal.lastForm').parent().find('.alert').hide('slide', { direction: 'up' });
+		      }, 1500 );
+	      }));
+  };
+
+  /**
    * Modal Object
    *
    */
@@ -362,7 +385,6 @@
 	  that.$element.find('form').submit(function(e) {
 
 		  // This handles cases for forms other than the Islandora Solr Advanced Search Form
-
 		  // @todo Refactor for a specific DOM class
 		  if($(this).attr('id') != 'islandora-dss-solr-advanced-search-form') {
 
@@ -370,20 +392,39 @@
 
 		      $(document).data('LafayetteDssModal.lastForm', $(this));
 
-		      if(!$(this).find('.required').filter(function(i, e) {
-
-				  return $(this).val() == '';
-			      }).length) {
+		      // Parse the DOM for any required fields left empty
+		      var hasRequiredFields = $(this).find('.required').filter(function(i, e) {
+			      
+			      return $(this).val() == '';
+			  }).length == 0;
+		      
+		      // If no such fields were found...
+		      if(hasRequiredFields) {
 
 			  $.post($(this).attr('action'), $(this).serialize(), function(data, textStatus) {
 				  
-				  that.hide();
+				  // ...ensure that no errors were found in response to the form submission
+				  var $alertError = $(data).find('.alert-error');
+				  if($alertError.length > 0) {
+
+				      // Update the CAPTCHA token
+				      var $captchaToken = $(data).find('.captcha input[name="captcha_token"]');
+				      that.$element.find('.captcha input[name="captcha_token"]').val( $captchaToken.val() );
+
+				      LafayetteDssModal.alertError( that.$element, $alertError.html() );
+				  } else {
+				  
+				      that.hide();
+				  }
 			      }).fail(function(data) {
 				      
 				      that.hide();
 				  });
 		      } else {
 			  
+			  LafayetteDssModal.alertError( that.$element, '<a href="#" data-dismiss="alert" class="close">×</a><h4 class="element-invisible">Error message</h4><ul><li>Your Name field is required.</li><li>Your E-Mail Address field is required.</li><li>Subject field is required.</li><li>Message field is required.</li></ul>');
+
+			  /*
 			  $('<div class="alert alert-block alert-error"><a href="#" data-dismiss="alert" class="close">×</a><h4 class="element-invisible">Error message</h4><ul><li>Your Name field is required.</li><li>Your E-Mail Address field is required.</li><li>Subject field is required.</li><li>Message field is required.</li></ul></div>').hide().prependTo($(this).prev())
 			      .show($.extend('slide', { direction: 'down' }, function() {
 					  
@@ -393,6 +434,7 @@
 						  $(document).data('LafayetteDssModal.lastForm').parent().find('.alert').hide('slide', { direction: 'up' });
 					      }, 1500 );
 				      }));
+			  */
 		      }	      
 		  }
 	      });

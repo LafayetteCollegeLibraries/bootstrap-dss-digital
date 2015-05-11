@@ -1145,6 +1145,8 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	$mods_doc->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
 	$mods_doc->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
 
+	dpm($mods_doc->asXml());
+
 	/**
 	 * Just use the top-level collection element
 	 *
