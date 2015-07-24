@@ -930,8 +930,19 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
   $path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
 
+  /**
+   * Implements collection-level path relabeling
+   * Resolves DSS-490
+   *
+   */
+  $path_label = 'Item URL';
+  if(in_array('islandora:shakespeare', $object->getParents())) {
+
+    $path_label = 'URL';
+  }
+
   $mods_array['drupal_path'] = array('class' => 'islandora-book-discovery',
-				     'label' => 'Item URL',
+				     'label' => $path_label,
 				     'value' => $path_alias,
 				     'href' =>  $path_alias,
 				     'itemprop' => 'url');

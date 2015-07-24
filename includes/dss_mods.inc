@@ -517,7 +517,7 @@ class DssMods extends SimpleXMLElement {
 							   'field' => 'MODS.mods.name.contrib_editor',
 							   'property' => 'author',
 							   'itemprop' => 'author'),
-			    'Date' => array('xpath' => './mods:originInfo/mods:dateIssued[@encoding="w3cdtf"]',
+			    'Publication Date' => array('xpath' => './mods:originInfo/mods:dateIssued[@encoding="w3cdtf"]',
 					    'facet' => TRUE,
 					    'date' => TRUE,
 					    'field' => 'MODS.mods.relatedItem.date.w3cdtf_dt',
