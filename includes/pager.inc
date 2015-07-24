@@ -127,6 +127,16 @@ function bootstrap_dss_digital_pager_next($variables) {
 
   global $pager_page_array, $pager_total;
 
+  /*
+  dpm( array('trace'));
+  dpm($pager_page_array);
+  dpm($pager_total);
+  dpm($text);
+  dpm($element);
+  dpm($interval);
+  dpm($parameters);
+  */
+
   $output = '';
 
   // If we are anywhere but the last page (for an interval of 1)

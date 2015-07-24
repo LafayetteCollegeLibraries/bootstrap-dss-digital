@@ -491,6 +491,63 @@ class DssMods extends SimpleXMLElement {
 					    )
 			    );
 
+    case 'Shakespeare Bulletin Archive':
+
+      $template_map = array('Title' => array('xpath' => "./mods:titleInfo/mods:title",
+					     'property' => 'name',
+					     'itemprop' => 'name'),
+			    'Subtitle' => array('xpath' => './mods:titleInfo/mods:subTitle',
+						'property' => 'alternativeHeadline',
+						'itemprop' => 'alternativeHeadline'),
+			    'Part Of' => array('xpath' => './mods:titleInfo/mods:partName',
+					       'property' => 'alternativeHeadline',
+					       'itemprop' => 'alternativeHeadline'),
+			    'Editor' => array('xpath' => './mods:name/mods:role/mods:roleTerm[text() = "editor"]/../../mods:displayForm',
+					      'facet' => TRUE,
+					      'field' => 'MODS.mods.name.editor',
+					      'property' => 'author',
+					      'itemprop' => 'author'),
+			    'Co-Editor' => array('xpath' => './mods:name/mods:role/mods:roleTerm[text() = "co-editor"]/../../mods:displayForm',
+						 'facet' => TRUE,
+						 'field' => 'MODS.mods.name.co_editor',
+						 'property' => 'author',
+						 'itemprop' => 'author'),
+			    'Contributing Editor' => array('xpath' => './mods:name/mods:role/mods:roleTerm[text() = "contributing editor"]/../../mods:displayForm',
+							   'facet' => TRUE,
+							   'field' => 'MODS.mods.name.contrib_editor',
+							   'property' => 'author',
+							   'itemprop' => 'author'),
+			    'Date' => array('xpath' => './mods:originInfo/mods:dateIssued[@encoding="w3cdtf"]',
+					    'facet' => TRUE,
+					    'date' => TRUE,
+					    'field' => 'MODS.mods.relatedItem.date.w3cdtf_dt',
+					    'property' => 'datePublished',
+					    'itemprop' => 'datePublished'),
+			    'Publisher' => array('xpath' => './mods:originInfo/mods:publisher',
+						 'facet' => TRUE,
+						 'field' => 'MODS.mods.originInfo.publisher_s',
+						 'property' => 'publisher',
+						 'itemprop' => 'publisher'),
+			    'Place of Publication' => array('xpath' => './mods:originInfo/mods:place/mods:placeTerm',
+							    'property' => 'contentLocation',
+							    'itemprop' => 'contentLocation'
+							    ),
+			    'Frequency of Publication' => array('xpath' => './mods:originInfo/mods:frequency',
+								'property' => 'contentLocation',
+								'itemprop' => 'contentLocation'
+								),
+			    'Publication Title' => array('xpath' => './mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', // Changing this label from "Series" to "Publication Title" in accordance with DSSSM-1177
+							 'facet' => TRUE,
+							 'field' => 'MODS.mods.relatedItem.titleInfo.title_ss',
+							 'property' => 'isPartOf',
+							 'itemprop' => 'isPartOf'
+							 ),
+			    'Note' => array('xpath' => './mods:note[@type="source note"]',
+					    'property' => 'comment',
+					    'itemprop' => 'comment'
+					    )
+			    );
+
       break;
 
     default:
@@ -661,6 +718,46 @@ class DssMods extends SimpleXMLElement {
 
 	      $non_sort_element = array_shift($non_sort_elements);
 	      $element['value'] = (string) $non_sort_element . ' ' . $element['value'];
+	    }
+	  }
+	} elseif($collection_label == 'Shakespeare Bulletin Archive') {
+
+	  // Implemented in order to ensure that, when relatedItem entities feature volume and issue data, these are appended to the value specifying the title of the entity
+	  if($facet == 'Publication Title') {
+
+	    $volume_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:titleInfo/mods:title[text()="' . $element['raw_value'] . '"]/../../mods:part/mods:detail[@type="volume number"]/mods:number');
+
+	    if(!empty($volume_elements)) {
+
+	      $volume_element = array_shift($volume_elements);
+	      $element['value'] .= ' (vol. ' . (string) $volume_element . ')';
+
+	      $issue_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:part/mods:detail[@type="issue number"]/mods:number');
+	    
+	      if(!empty($issue_elements)) {
+
+		$issue_element = array_shift($issue_elements);
+		$element['value'] = rtrim($element['value'], ')');
+		$element['value'] .= ', no. ' . (string) $issue_element . ')';
+	      }
+	    } else {
+
+	      $date_elements = $this->xpath('(//mods:date[@qualifier="approximate"] | //mods:dateOrigin[@qualifier="approximate"] )[1]');
+
+	      if(!empty($date_elements)) {
+
+		$date_element = array_shift($date_elements);
+		//$element['value'] = $date_element;
+		$element['value'] .= ' (' . (string) $date_element . ')';
+	      }
+	    }
+	  } elseif(in_array($facet, array('Editor', 'Co-Editor', 'Contributing Editor'))) {
+
+	    $affiliation_elements = $this->xpath('./mods:name/mods:displayForm[text()="' . $element['raw_value'] . '"]/../mods:affiliation');
+	    if(!empty($affiliation_elements)) {
+
+	      $affiliation_element = array_shift($affiliation_elements);
+	      $element['value'] .= ' (' . (string) $affiliation_element . ')';
 	    }
 	  }
 	}
