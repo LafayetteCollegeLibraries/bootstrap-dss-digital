@@ -119,6 +119,7 @@ class DssMods extends SimpleXMLElement {
       $collection_label = (string) array_shift($relation_is_part_of);
     }
 
+    
 
     switch($collection_label) {
 
@@ -204,6 +205,7 @@ class DssMods extends SimpleXMLElement {
 						     'facet' => true,
 						     'date' => true),
 			    'Contributor.Donor' => "./mods:note[@type='acquisition']",
+			    'Note' => "./mods:note[@type='source note']",
 
 			    /*
 			    'Creator.Digital' => "./mods:note[@type='creation credits']",
