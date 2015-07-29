@@ -1124,7 +1124,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				 'Lafayette World War II Casualties' => 'node/43',
 				 'Presidents of Lafayette College' => 'node/41',
 				 'Lafayette Magazine Collection' => 'node/52',
-				 'Shakespeare Bulletin Archive' => '/'
+				 'Shakespeare Bulletin Archive' => 'node/64'
 				 );
 
     $collection_elements = array();
@@ -1328,6 +1328,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       case 'islandora/object/islandora:mckelvyHouse':
       case 'islandora/object/islandora:warCasualties':
       case 'islandora/object/islandora:presidents':
+      case 'islandora/object/islandora:shakespeare':
 
 	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
 										'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
@@ -1353,6 +1354,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       case 'node/42':
       case 'node/43':
       case 'node/52':
+      case 'node/64':
 
 	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Collections',
 										'href' => 'node/45')), array_slice($breadcrumbs, -1));
