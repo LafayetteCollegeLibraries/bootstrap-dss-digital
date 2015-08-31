@@ -520,11 +520,11 @@ class DssMods extends SimpleXMLElement {
 							   'property' => 'author',
 							   'itemprop' => 'author'),
 			    'Publication Date' => array('xpath' => './mods:originInfo/mods:dateIssued[@encoding="w3cdtf"]',
-					    'facet' => TRUE,
-					    'date' => TRUE,
-					    'field' => 'MODS.mods.relatedItem.date.w3cdtf_dt',
-					    'property' => 'datePublished',
-					    'itemprop' => 'datePublished'),
+							'facet' => TRUE,
+							'date' => TRUE,
+							'field' => 'MODS.mods.relatedItem.date.w3cdtf_dt',
+							'property' => 'datePublished',
+							'itemprop' => 'datePublished'),
 			    'Publisher' => array('xpath' => './mods:originInfo/mods:publisher',
 						 'facet' => TRUE,
 						 'field' => 'MODS.mods.originInfo.publisher_s',
@@ -538,12 +538,12 @@ class DssMods extends SimpleXMLElement {
 								'property' => 'contentLocation',
 								'itemprop' => 'contentLocation'
 								),
-			    'Publication Title' => array('xpath' => './mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', // Changing this label from "Series" to "Publication Title" in accordance with DSSSM-1177
-							 'facet' => TRUE,
-							 'field' => 'MODS.mods.relatedItem.titleInfo.title_ss',
-							 'property' => 'isPartOf',
-							 'itemprop' => 'isPartOf'
-							 ),
+			    'Series' => array('xpath' => './mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', // Changing this label from "Series" to "Publication Title" in accordance with DSSSM-1177
+					      'facet' => TRUE,
+					      'field' => 'MODS.mods.relatedItem.titleInfo.title_ss',
+					      'property' => 'isPartOf',
+					      'itemprop' => 'isPartOf'
+					      ),
 			    'Note' => array('xpath' => './mods:note[@type="source note"]',
 					    'property' => 'comment',
 					    'itemprop' => 'comment'
@@ -725,7 +725,7 @@ class DssMods extends SimpleXMLElement {
 	} elseif($collection_label == 'Shakespeare Bulletin Archive') {
 
 	  // Implemented in order to ensure that, when relatedItem entities feature volume and issue data, these are appended to the value specifying the title of the entity
-	  if($facet == 'Publication Title') {
+	  if($facet == 'Series') {
 
 	    $volume_elements = $this->xpath('./mods:relatedItem[@type="host"]/mods:titleInfo/mods:title[text()="' . $element['raw_value'] . '"]/../../mods:part/mods:detail[@type="volume number"]/mods:number');
 
@@ -923,7 +923,7 @@ class DssMods extends SimpleXMLElement {
 		$element['date_value'] .= "'s";
 	      }
 	    }
-	  } elseif($collection_label == 'Lafayette Magazine Collection' and $facet == 'Date') {
+	  } elseif(($collection_label == 'Lafayette Magazine Collection' and $facet == 'Date') or ($collection_label == 'Shakespeare Bulletin Archive' and $facet == 'Publication Date')) {
 
 	    $date_elements = $this->xpath('(//mods:date[@qualifier="approximate"] | //mods:dateOrigin[@qualifier="approximate"] )[1]');
 
