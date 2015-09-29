@@ -2698,3 +2698,54 @@ header {
 	margin-bottom: 0px;
 	text-align: center;
 }
+
+/* by Thom: style navbar submenus */
+
+.dropdown-menu:before, .dropdown-menu:after {
+	
+	border-bottom-color: #545454 !important;
+}
+
+.dropdown-menu {
+	
+	background-image: linear-gradient(to bottom, #545454, #333333);
+	text-shadow:none;
+	border:0px;
+	box-shadow:none;
+	padding:0px;
+	border-radius:2px;
+	box-shadow: 1px 3px 11px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 1px 3px 11px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 1px 3px 11px rgba(0, 0, 0, 0.5);
+	text-align:left;
+}
+
+.dropdown-menu > li > a {
+	
+	color:#DDDDDD;
+	border-bottom: 1px solid #545454;
+}
+
+.dropdown-menu > li.last > a {
+
+	border-bottom: 0px;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+	
+	color: #545454;
+	background-color: #DDDDDD;
+	background-image:none;
+}
+
+.dropdown-menu > li.first > a:hover, .dropdown-menu > li.first > a:focus {
+	
+	border-top-left-radius:2px;
+	border-top-right-radius:2px;
+}
+
+.dropdown-menu > li.last > a:hover, .dropdown-menu > li.last > a:focus {
+	
+	border-bottom-left-radius:2px;
+	border-bottom-right-radius:2px;
+}
