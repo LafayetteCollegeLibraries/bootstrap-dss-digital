@@ -898,7 +898,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
    *
    */
 
-  if( method_exists($mods_object, 'description') ) {
+  if( isset($mods_object) and method_exists($mods_object, 'description') ) {
 
     $description = $mods_object->description();
     $meta_element_description = array('#type' => 'html_tag',
@@ -930,8 +930,19 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
   $path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
 
+  /**
+   * Implements collection-level path relabeling
+   * Resolves DSS-490
+   *
+   */
+  $path_label = 'Item URL';
+  if(in_array('islandora:shakespeare', $object->getParents())) {
+
+    $path_label = 'URL';
+  }
+
   $mods_array['drupal_path'] = array('class' => 'islandora-book-discovery',
-				     'label' => 'Item URL',
+				     'label' => $path_label,
 				     'value' => $path_alias,
 				     'href' =>  $path_alias,
 				     'itemprop' => 'url');
@@ -1008,9 +1019,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 
 define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 52);
 
-// "Home/Japanese Imperial House Postcard Album/Search"
-//define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 41);
-
 function bootstrap_dss_digital_breadcrumb($variables) {
 
   if(array_key_exists(2, $variables)) {
@@ -1043,18 +1051,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
   $path_segments = explode('/', $path);
 
   $_breadcrumbs = $breadcrumbs;
-
-  /*
-					      'Marquis de Lafayette Prints Collection' => array(
-												'dc.description',
-												'dc.format',
-												'dc.identifier',
-												'dc.rights',
-												'dc.subject',
-												'dc.type'
-												),
-					      'John S. Shelton Earth Science Image Collection' => array('dc.contributor',
-   */
 
   $searched_collection;
   $faceted_collection;
@@ -1113,8 +1109,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
      *
      */
 
-    $collection_node_map = array(
-				 'East Asia Image Collections' => 'node/26',
+    $collection_node_map = array('East Asia Image Collections' => 'node/26',
 				 'East Asia Image Collection' => 'node/26',
 				 'Easton Library Company' => 'node/30',
 				 'Experimental Printmaking Institute Collection' => 'node/31',
@@ -1128,7 +1123,8 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				 'McKelvy House Photograph Collection' => 'node/42',
 				 'Lafayette World War II Casualties' => 'node/43',
 				 'Presidents of Lafayette College' => 'node/41',
-				 'Lafayette Magazine Collection' => 'node/52'
+				 'Lafayette Magazine Collection' => 'node/52',
+				 'Shakespeare Bulletin Archive' => 'node/64'
 				 );
 
     $collection_elements = array();
@@ -1145,7 +1141,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	$mods_doc->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
 	$mods_doc->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
 
-	dpm($mods_doc->asXml());
+	//dpm($mods_doc->asXml());
 
 	/**
 	 * Just use the top-level collection element
@@ -1211,16 +1207,6 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 
 	//$_breadcrumbs[] = array('title' => 'Browse', 'href' => url('islandora/search/*:*', array('query' => $facet_params)));
 	$count++;
-
-	/*
-	  foreach($collection_elements as $collection_element) {
-
-	  $collection_content = (string) $collection_element;
-	  $_breadcrumbs[] = array('title' => 'Browse', 'href' => '/islandora/search/*:*?f[0]=cdm.Relation.IsPartOf:"' . $collection_content . '"');
-
-	  $count++;
-	  }
-	*/
       }
 
       // Accessing via Search This Collection: Home / [collection name] / Search
@@ -1342,6 +1328,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       case 'islandora/object/islandora:mckelvyHouse':
       case 'islandora/object/islandora:warCasualties':
       case 'islandora/object/islandora:presidents':
+      case 'islandora/object/islandora:shakespeare':
 
 	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Digital Collections',
 										'href' => 'islandora/object/islandora:root')), array_slice($breadcrumbs, -1));
@@ -1367,6 +1354,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
       case 'node/42':
       case 'node/43':
       case 'node/52':
+      case 'node/64':
 
 	$_breadcrumbs = array_merge(array_slice($breadcrumbs, 0, -1), array(array('title' => 'Collections',
 										'href' => 'node/45')), array_slice($breadcrumbs, -1));

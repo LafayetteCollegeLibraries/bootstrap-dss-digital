@@ -318,9 +318,6 @@ function bootstrap_dss_digital_pager($variables) {
           );
         }
       }
-      dpm($pager_max);
-      dpm($i);
-      dpm(array('trace1'));
 
       if ($i < $pager_max) {
         $items[] = array(

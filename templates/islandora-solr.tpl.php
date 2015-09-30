@@ -221,6 +221,8 @@
 	</dd>
 
 	<!-- Metadata fields for the purposes of sorting -->
+
+
         <?php foreach($result['solr_doc'] as $key => $value): ?>
           <dt class="grid-solr-label solr-label
               <?php
