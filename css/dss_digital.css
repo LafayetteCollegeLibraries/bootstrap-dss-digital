@@ -2915,7 +2915,8 @@ header {
 
 #howWeLeadIn {
 
-	font-size: 18px;
+	font-size: 22px;
+    font-style: italic;
     margin: 25px 3%;
-    text-align: justify;
+    text-align: center;
 }
