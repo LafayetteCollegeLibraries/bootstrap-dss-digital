@@ -45,7 +45,30 @@ and (max-device-width : 1024px) {
     	
     	display: auto !important;
     }
+    
+    /* .browseRow {
+	
+		margin: 0px !important;
+	}
+	
+	.browseDiv {
+		
+		margin-left: calc((100% - 404px) / 2) !important;
+	} */
+	
+	.browseDiv {
+	
+		width: 340px !important;
+		height: 340px !important;
+	}
+	
+	.browseRow {
+	
+		margin-left: calc((100% - 736px) / 2) !important;
+	}
+
 }
+
 
 /**
  * Smartphone-specific styling
@@ -324,5 +347,15 @@ and (max-device-width : 580px) {
 	margin-top: 1px;
 	width: 36px;
     }
+    
+    .browseRow {
+	
+		margin-left: 0px !important;
+	}
+	
+	.browseDiv {
+		
+		margin-left: calc((100% - 404px) / 2) !important;
+	}
     
 }

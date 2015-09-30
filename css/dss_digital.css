@@ -2188,11 +2188,6 @@ p {
 
 /* by Thom: style updated collections that no longer has quicktabs */
 
-#node-45 {
-	
-	margin:0px;
-}
-
 #digitalScholarship {
 	
 	float:left;
@@ -2763,7 +2758,10 @@ header {
     border-radius: 2px;
     margin-left: auto;
     margin-right: auto;
-    padding:5px;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:5px;
+    padding-bottom:8px;
     width: 100px;
     font-size:20px;
 }
@@ -2777,11 +2775,140 @@ header {
 
 .browseDiv {
 	
-	width: calc((100% - 84px)/2);
-	float: left;
-	padding: 10px;
-	background-color: #f5f5f5;
+	width: 376px;
+	height: 376px;
+	display: inline-table;
     border: 1px solid #aaaaaa;
     border-radius: 2px;
     margin: 10px;
+    background-size: 100% auto;
+}
+
+.browseDiv h2, .browseDiv p {
+
+	padding:10px;
+	margin: 0px;
+}
+
+#dhClass {
+	
+	background-image: url(http://digital.stage.lafayette.edu/sites/all/themes/bootstrap_dss_digital/files/Classes.jpg);
+}
+
+#digiResources {
+	
+	background-image: url(http://digital.stage.lafayette.edu/sites/all/themes/bootstrap_dss_digital/files/Resources.jpg);
+}
+
+#digiSchol {
+	
+	background-image: url(http://digital.stage.lafayette.edu/sites/all/themes/bootstrap_dss_digital/files/Research.jpg);
+}
+
+#lafSpCol {
+	
+	background-image: url(http://digital.stage.lafayette.edu/sites/all/themes/bootstrap_dss_digital/files/SpCol.jpg);
+}
+
+.browseRow {
+	
+	margin-left: calc((100% - 808px) / 2);
+}
+
+.classroomDate {
+
+	margin-left: 1%;
+}
+
+.classIndenter {
+
+	margin-left: 3%;
+}
+
+/* style dhlaf page */
+
+#dhlaflogo {
+
+	float:left;
+	width: 160px;
+	height: auto;
+	margin:15px;
+}
+
+#dhlaf_example {
+
+	float:right;
+	width:120px;
+	height:auto;
+	margin-left:15px;
+	margin-top:0px;
+	margin-bottom: 10px
+}
+
+#block-block-1 {
+
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    margin-left: 1%;
+    margin-right: 0px;
+    padding: 1%;
+    width: 44%;
+    float:left;
+    margin-top: 8px;
+}
+
+#block-block-1 h2 {
+
+	text-align: center;
+	margin-top: 0px;
+}
+
+#block-block-1 p {
+
+	text-align: left;
+}
+
+#block-aggregator-feed-5 {
+
+	float:right;
+	background-color: #f5f5f5;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    margin-right: 1%;
+    padding: 1%;
+    width: 44%;
+}
+
+#block-aggregator-feed-5 h2 {
+
+	margin-top: 0px;
+}
+
+
+.browseText {
+
+	vertical-align: bottom;
+	background-color: rgba(255,255,255,0.90);
+	height: 135px;
+	margin-top: 241px;
+}
+
+.browseText h2 {
+
+	font-size: 25px;
+	padding-bottom: 0px;
+}
+
+.browseText p {
+
+	padding-top: 5px;
+}
+
+#node-66, #node-68, #node-69, #node-70 {
+
+	margin: 0px !important;
 }
