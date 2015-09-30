@@ -772,6 +772,7 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
 
     $mods_object = new DssMods($mods_str);
+
   } catch (Exception $e) {
     
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
@@ -789,6 +790,8 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
    */
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map) : array();
 
+  dpm($variables['mods_object']);
+
   $rendered_fields = array();
   foreach($variables['mods_object'] as $key => &$value) {
 
@@ -801,6 +804,8 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
       $value['label'] = '';
     }
   }
+
+  dpm($variables['mods_object']);
 
   /**
    * Work-around for appended site-generated resource metadata into the Object
@@ -861,6 +866,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
 	$mods_object = new DssMods($mods_str);
       }
+
     } catch (Exception $e) {
     
       drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
@@ -1002,7 +1008,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 					 'title' => 'Grid view',
 					 'href' => url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
 					 'attributes' => array(
-							       'class' => "islandora-view-grid $grid_active",
+							       'class' => "islandora-view-grid shown",
 							       ),
 					 'query' => $query_params + array('display' => 'grid'),
 					 ),
@@ -1010,7 +1016,7 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 					 'title' => 'List view',
 					 'href' => url("islandora/object/{$object->id}/pages", array('absolute' => TRUE)),
 					 'attributes' => array(
-							       'class' => "islandora-view-list $list_active",
+							       'class' => "islandora-view-list shown",
 							       ),
 					 'query' => $query_params + array('display' => 'list'),
 					 ),

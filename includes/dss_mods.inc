@@ -119,7 +119,7 @@ class DssMods extends SimpleXMLElement {
       $collection_label = (string) array_shift($relation_is_part_of);
     }
 
-    
+    dpm($collection_label);
 
     switch($collection_label) {
 
