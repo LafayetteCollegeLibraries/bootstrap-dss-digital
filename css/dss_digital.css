@@ -2912,3 +2912,10 @@ header {
 
 	margin: 0px !important;
 }
+
+#howWeLeadIn {
+
+	font-size: 18px;
+    margin: 25px 3%;
+    text-align: justify;
+}
