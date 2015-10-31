@@ -20,7 +20,7 @@ body{
 }
 
 #block-menu-menu-authentication-cas .menu li {
-http://digital.stage.lafayette.edu/collections/eastasia
+
     width: auto;
     border-right: none;
 }
@@ -2382,7 +2382,7 @@ header {
 .islandora-pdf-object .grippie {
 	
 	height: 13px;
-	background-image: url("http://digital.stage.lafayette.edu/sites/all/modules/islandora_dss_book/files/grippie.png"), linear-gradient(to bottom, #525252, #353535);
+	background-image: url("/sites/all/modules/islandora_dss_book/files/grippie.png"), linear-gradient(to bottom, #525252, #353535);
 	background-repeat: no-repeat;
 	background-position: center;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -2792,22 +2792,22 @@ header {
 
 #dhClass {
 	
-	background-image: url(http://digital.stage.lafayette.edu/sites/all/themes/bootstrap_dss_digital/files/Classes.jpg);
+	background-image: url(/sites/all/themes/bootstrap_dss_digital/files/Classes.jpg);
 }
 
 #digiResources {
 	
-	background-image: url(http://digital.stage.lafayette.edu/sites/all/themes/bootstrap_dss_digital/files/Resources.jpg);
+	background-image: url(/sites/all/themes/bootstrap_dss_digital/files/Resources.jpg);
 }
 
 #digiSchol {
 	
-	background-image: url(http://digital.stage.lafayette.edu/sites/all/themes/bootstrap_dss_digital/files/Research.jpg);
+	background-image: url(/sites/all/themes/bootstrap_dss_digital/files/Research.jpg);
 }
 
 #lafSpCol {
 	
-	background-image: url(http://digital.stage.lafayette.edu/sites/all/themes/bootstrap_dss_digital/files/SpCol.jpg);
+	background-image: url(/sites/all/themes/bootstrap_dss_digital/files/SpCol.jpg);
 }
 
 .browseRow {
