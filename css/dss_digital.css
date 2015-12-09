@@ -221,6 +221,29 @@ html.js body.html footer.footer div.region section#block-menu-menu-footer-menu.b
 	margin-left:0px;
 }
 
+/**
+ * @author griffinj@lafayette.edu
+ * Styling for the "Mapping Memories of Madagascar" Nodeblock
+ *
+ */
+
+.main-container section#block-nodeblock-76.block-nodeblock {
+    background-color: inherit;
+    border: inherit;
+    border-radius: inherit;
+    float: left;
+    width: inherit;
+    margin: 0px;
+    padding: 0px;
+}
+
+#webform-component-story {
+    margin-bottom: 12px;
+}
+
+/**
+ * @author goodnowt@lafayette.edu
+ */
 /* placement of blog RSS block */
 
 html.js body.html div.main-container div.row-fluid section.span12 section#block-aggregator-feed-2.block {
@@ -2545,11 +2568,19 @@ header {
 	width: 905px;
 }
 
+/**
+ * @author goodnowt@lafayette.edu
+ */
+
+/**
+ * @author griffinj@lafayette.edu
+ * Modifying the styling for the integrated maps
+ *
+ */
 .map {
-	
-	clear:both;
-	margin-left: auto;
-	margin-right: auto;
+    clear:both;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #f5f5f5;
     border: 1px solid #aaaaaa;
     border-radius: 2px;
@@ -2557,6 +2588,14 @@ header {
     max-width: 905px;
     margin-bottom: 10px;
 }
+
+#map-madagascar {
+    margin-bottom: 48px;
+}
+
+/**
+ * @author goodnowt@lafayette.edu
+ */
 
 .map img {
     
@@ -2908,15 +2947,34 @@ header {
 	padding-top: 5px;
 }
 
-#node-66, #node-68, #node-69, #node-70 {
-
-	margin: 0px !important;
+#node-66, #node-68, #node-69 {
+    margin: 0px !important;
 }
+
+/**
+ * @author goodnowt@lafayette.edu
+ */
+
+/**
+ * @author griffinj@lafayette.edu
+ * This ensures that the MapFig/Quicktabs integration is offset by 5px
+ *
+ */
+#node-70 {
+    margin: 0px;
+    margin-left: 12px;
+}
+
+/**
+ * @author goodnowt@lafayette.edu
+ */
 
 #howWeLeadIn {
 
-	font-size: 22px;
-    font-style: italic;
+	font-size: 24px;
+    font-style: normal;
+    letter-spacing: 1px;
+    line-height: 25px;
     margin: 25px 3%;
-    text-align: center;
+    text-align: left;
 }
