@@ -35,13 +35,6 @@ function bootstrap_dss_digital_preprocess_islandora_solr(&$variables) {
     ),
   );
 
-  /*
-  if($display == 'grid') {
-
-    $variables['theme_hook_suggestions'][] = 'islandora_solr_grid';
-  }
-  */
-
   $variables['display'] = $display;
 
   //$variables['view_links'] = array($grid_link, $list_link);

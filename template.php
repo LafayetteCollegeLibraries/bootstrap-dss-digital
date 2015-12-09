@@ -93,21 +93,56 @@ function bootstrap_dss_digital_preprocess_node(&$vars) {
 }
 
 /**
- * Implements template_preprocess_hybridauth_widget
- * @griffinj
+ * Theme function for a CAPTCHA element.
+ * @see theme_captcha().
  *
+ * Render it in a fieldset if a description of the CAPTCHA
+ * is available. Render it as is otherwise.
  */
-function bootstrap_dss_digital_preprocess_hybridauth_widget(&$vars) {
-
-  // Refactor
-  $i = 0;
-  foreach (hybridauth_get_enabled_providers() as $provider_id => $provider_name) {
-
-    //$vars['providers'][$i] = preg_replace('/(<\/span>)/', "</span><span>&nbsp;$provider_name</span>", $vars['providers'][$i]);
-    $i++;
+function theme_bootstrap_dss_digital_captcha($variables) {
+  $element = $variables['element'];
+  if (!empty($element['#description']) && isset($element['captcha_widgets'])) {
+    $fieldset = array(
+      '#type' => 'fieldset',
+      '#title' => t(''),
+      '#description' => $element['#description'],
+      '#children' => drupal_render_children($element),
+      '#attributes' => array('class' => array('captcha')),
+    );
+    return theme('fieldset', array('element' => $fieldset));
+  }
+  else {
+    return '<div class="captcha">' . drupal_render_children($element) . '</div>';
   }
 }
 
+/**
+ *
+ */
+function bootstrap_dss_digital_captcha_element_process($element, &$form_state, $complete_form) {
+
+  // Set the theme function.
+  $element['#theme'] = 'bootstrap_dss_digital_captcha';
+  dpm($element);
+
+  return $element;
+}
+
+/**
+ * Implements hook_element_info_alter().
+ *
+ */
+function bootstrap_dss_digital_element_info_alter(&$type) {
+
+  if(array_key_exists('captcha', $type)) {
+    $type['captcha']['#process'][] = 'bootstrap_dss_digital_captcha_element_process';
+  }
+}
+
+/**
+ * Implements hook_user_logout().
+ *
+ */
 function _bootstrap_dss_digital_user_logout($account) {
 
   if (variable_get('user_pictures', 0)) {
@@ -301,33 +336,15 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
     $variables['logout_anchor'] = l(t('Log Out'), 'user/logout');
   }
 
-  // The "Share" link
-  //$variables['share_anchor'] = l(t('Share'), '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
-  /*
-  $variables['share_anchor'] = l('<div class="share-icon"><img src="/sites/all/themes/bootstrap_lafayette_lib_dss/files/ShareIcon.png" /><span>Share</span></div>', '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
-									     'data-target' => '#share-modal',
-																								    'data-width-offset' => '10px',
-									     'data-height-offset' => '28px'
-									     ),
-						       'fragment' => ' ',
-						       //'external' => TRUE));
-						       'external' => TRUE,
-						       'html' => TRUE
-						       ));
-  */
-
   $variables['share_anchor'] = '<a data-toggle="lafayette-dss-modal" data-target="#share-modal" data-width-offset="10px" data-height-offset="28px"><div class="share-icon navbar-icon"><img src="/sites/all/themes/bootstrap_dss_digital/files/ShareIcon.png" /><span>Share</span></div></a>';
 
   // Render thumbnails for authenticated users
   $variables['user_picture'] = '<span class="button-auth-icon"></span>';
 
   if(user_is_logged_in()) {
-
     // For the user thumbnail
     global $user;
 
-    //$user_view = user_view($user);
-    //$variables['user_picture'] = drupal_render($user_view['user_picture']);
     $variables['user_picture'] = _bootstrap_dss_digital_user_logout($user);
   }
 
@@ -336,7 +353,6 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
    *
    */
   // A search button must be passed if this is being viewed with a mobile browser
-
   $search_icon = theme_image(array('path' => drupal_get_path('theme', 'bootstrap_dss_digital') . '/files/SearchIcon.png',
 				   'alt' => t('search the site'),
 				   'attributes' => array()));
@@ -344,26 +360,12 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
   $simple_search_mobile = '<a data-toggle="lafayette-dss-modal" data-target="#advanced-search-modal" data-width-offset="-286px" data-height-offset="28px">
 <div class="simple-search-icon">' . $search_icon . '<span>Search</span></div></a>' . render($variables['page']['simple_search']);
   unset($variables['page']['simple_search']);
-  //$variables['simple_share_mobile_container'] = '<div class="modal-container container"><div id="simple-search-control-container" class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
   $variables['search_container'] = '<div class="modal-container container"><div id="simple-search-control-container" class="modal-control-container container">' . $simple_search_mobile . '</div></div>';
-
 
   // Refactor
   $auth_container = '
      <div class="auth-container modal-container container">
        <div id="auth-control-container" class="modal-control-container container">';
-
-  /*
-    <?php if (!empty($page['auth'])): ?>
-
-    <!-- <div class="auth-icon"><img src="/sites/all/themes/bootstrap_dss_islandora_dev/files/UserIcon.png" /></div> -->
-    <?php print $auth_anchor; ?>
-    <?php else: ?>
-    
-    <div class="auth-icon"><?php print $user_picture; ?></div>
-    <div class="auth-link"><?php print $logout_anchor; ?></div>
-    <?php endif; ?>
-   */
 
   if(!empty($variables['page']['auth'])) {
 
@@ -410,17 +412,10 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 
   $variables['menu_toggle_container'] = $menu_toggle_container;
 
-  /*
-  if(preg_match('/islandora\/search/', current_path())) {
-
-    $variables['lead_content'] = $variables['title'];
-  } else {
-
-    $variables['lead_content'] = l($variables['title'], current_path());
-  }
-  */
-
-  // Carousel
+  /**
+   * @todo Refactor as a theme hook implementation
+   *
+   */
   $variables['carousel'] = '
 
    <!-- Carousel -->
@@ -488,50 +483,10 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
    </a>
 </div>';
     
-  // Adding the tabs for certain nodes
-  /*
-  $eastasia_tabs = quicktabs_load('east_asia_image_collections');
-  $mdl_tabs = quicktabs_load('marquis_de_lafayette_prints_coll');
-
-  $variables['tabs'] = array('eastasia_tabs' => theme('quicktabs', (array) $eastasia_tabs),
-			     'mdl_tabs' => theme('quicktabs', (array) $mdl_tabs));
-  */
-
-
-
-  // Panel
-  /*
-  $slide_panel_container = '
-      <div id="menu" class="menu nav-collapse collapse width">
-        <div class="collapse-inner">
-          <div class="navbar navbar-inverse">
-            <div class="navbar-inner">
-              Menu
-            </div>
-          </div>
-        ' . $variables['page']['slide_panel'] . '
-        </div>
-      </div><!-- /#menu -->
-      <div class="view">
-        <div class="navbar navbar-inverse">
-          <div class="navbar-inner">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#menu">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-        </div><!-- /.view -->
-      </div>
-';
-  */
   $slide_panel_container = '';
-
   $variables['slide_panel_container'] = $slide_panel_container;
 
   $variables['breadcrumb'] = theme('breadcrumb', menu_get_active_trail());
-  //$variables['breadcrumb'] = theme('breadcrumb', menu_get_active_breadcrumb());
-  //$variables['breadcrumb'] = theme('breadcrumb', drupal_get_breadcrumb());
 
   $variables['slide_drawers'] = TRUE;
 }
@@ -565,113 +520,22 @@ function bootstrap_dss_digital_process_page(&$variables) {
 }
 
 /**
- * Template preprocess function for hybridauth_widget.
+ * Implements hook_theme().
+ *
  */
-/*
-function template_preprocess_hybridauth_widget(&$vars, $hook) {
-
-}
-*/
-
-/**
- * Checks whether the user can access the given object.
- *
- * Checks for object existance, accessiblitly, namespace permissions,
- * and user permissions
- *
- * @param string $perm
- *   User permission to test for.
- * @param FedoraObject $object
- *   The object to test, if NULL given the object doesn't exist or is
- *   inaccessible.
- *
- * @return bool
- *   TRUE if the user is allowed to access this object, FALSE otherwise.
- */
-
-/*
-function bootstrap_dss_digital_object_access_callback($perm, $object = NULL) {
-
-  return TRUE;
-}
-*/
-
 function bootstrap_dss_digital_theme($existing, $type, $theme, $path) {
 
-  /*
-  $existing['islandora/object/%islandora_object'] = array(
-							  //'title' => 'Repository',
-							  'title' => 'Digital Collections',
-							  'page callback' => 'islandora_view_object',
-							  'page arguments' => array(2),
-							  'type' => MENU_NORMAL_ITEM,
-							  'access callback' => 'islandora_object_access_callback',
-							  'access arguments' => array(FEDORA_VIEW_OBJECTS, 2),
-							  );
-  */
-
-  /*
-  $registry['islandora/object/%islandora_object']['title'] = 'Digital Collections';
-  //$registry['islandora/object/%islandora_object']['access callback'] = array('bootstrap_dss_digital_object_access_callback', 'islandora_object_access_callback');
-  $registry['islandora/object/%islandora_object']['access callback'] = 'bootstrap_dss_digital_object_access_callback';
-  */
-
   $items = array();
-
-  /*
-  $items['islandora/object/%islandora_object'] = array(
-    'title' => 'Collections',
-    'page callback' => 'islandora_view_object',
-    'page arguments' => array(2),
-    'type' => MENU_NORMAL_ITEM,
-    //'access callback' => 'islandora_object_access_callback',
-    'access callback' => 'bootstrap_dss_digital_object_access_callback',
-    'access arguments' => array(FEDORA_VIEW_OBJECTS, 2),
-  );
-  */
-
-  /*
-  $existing['islandora/object/%islandora_object']['title'] = 'Collections';
-  $existing['islandora/object/%islandora_object']['access callback'] = 'bootstrap_dss_digital_object_access_callback';
-
-  return array('islandora/object/%islandora_object' => $existing['islandora/object/%islandora_object']);
-  */
-
   return $items;
 }
 
-function bootstrap_dss_digital_theme_registry_alter(&$registry) {
-
-  $registry['hybridauth_widget']['file'] = 'template';
-
-  // Work-around
-  //$registry['islandora_basic_collection_wrapper']['preprocess functions'] = array('bootstrap_dss_digital_preprocess_islandora_basic_collection');
-
-  /*
-    'islandora_basic_collection_wrapper' => array(
-      'file' => 'theme/theme.inc',
-      'template' => 'theme/islandora-basic-collection-wrapper',
-      'variables' => array('islandora_object' => NULL),
-  */
-}
-
 /**
- * Implements hook_theme().
+ * Implements hook_theme_registry_alter().
+ *
  */
-/*
-function hybridauth_theme($existing, $type, $theme, $path) {
-  return array(
-    'hybridauth_admin_settings_providers_table' => array(
-      'render element' => 'form',
-      'file' => 'hybridauth.admin.inc',
-    ),
-    'hybridauth_widget' => array(
-      'render element' => 'element',
-      'template' => 'templates/hybridauth_widget',
-      'file' => 'hybridauth.theme.inc',
-    ),
+function bootstrap_dss_digital_theme_registry_alter(&$registry) {
+  $registry['hybridauth_widget']['file'] = 'template';
 }
-*/
 
 /**
  * Please see http://www.php.net/manual/en/function.ip2long.php#82397
@@ -687,6 +551,11 @@ function bootstrap_dss_digital_net_match($CIDR, $IP) {
   return ( ip2long ($IP) & ~((1 << (32 - $mask)) - 1) ) == ip2long ($net);
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ * @see islandora_large_image_preprocess_islandora_large_image().
+ *
+ */
 function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variables) {
 
   /**
@@ -778,10 +647,6 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
   }
 
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
-  //$facet_pages_fields_data = variable_get('islandora_solr_facet_pages_fields_data', array());
-  //$label_map = array();
-
-  //$element['facet'] = $label_map[$facet];
 
   /**
    * Resolves DSS-261
@@ -791,13 +656,9 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
 
   $rendered_fields = array();
   foreach($variables['mods_object'] as $key => &$value) {
-
     if(!in_array($value['label'], $rendered_fields)) {
-
-      //$value['class'] .= ' islandora-inline-metadata-displayed';
       $rendered_fields[] = $value['label'];
     } else {
-
       $value['label'] = '';
     }
   }
@@ -810,11 +671,10 @@ function bootstrap_dss_digital_preprocess_islandora_large_image(array &$variable
    */
 
   global $base_url;
-  // The proper approach (production)
-  //$path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  // The less proper approach (enforce HTTP while ensuring that other linked metadata field values are possibly tunneled through TLS/SSL)
-  //$path_alias = str_replace('https', 'http', $base_url) . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  // Specific to the production environment
+  /**
+   * @todo Refactor
+   *
+   */
   $path_alias = 'http://digital.lafayette.edu/' . drupal_get_path_alias("islandora/object/{$object->id}");
   $variables['mods_object']['drupal_path'] = array('class' => '',
 						   'label' => 'URL',
@@ -871,24 +731,14 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   // Extended for additional fields
   $label_map = array_flip(islandora_solr_get_fields('result_fields', FALSE));
 
-  //$variables['mods_object'] = isset($mods_object) ? $mods_object->toArray($label_map, $collection_pid, $collection_label) : array();
   $mods_array = isset($mods_object) ? $mods_object->toArray($label_map, $collection_pid, $collection_label) : array();
 
-  //dpm($mods_object->toArray($label_map, $collection_pid, $collection_label));
-  //$mods_array = array();
-
-  
   $rendered_fields = array();
 
-  //foreach($variables['mods_object'] as $key => &$value) {
   foreach($mods_array as $key => &$value) {
-
     if(!in_array($value['label'], $rendered_fields)) {
-
-      //$value['class'] .= ' islandora-inline-metadata-displayed';
       $rendered_fields[] = $value['label'];
     } else {
-
       $value['label'] = '';
     }
   }
@@ -897,7 +747,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
    * Generate the meta "description" element
    *
    */
-
   if( isset($mods_object) and method_exists($mods_object, 'description') ) {
 
     $description = $mods_object->description();
@@ -911,8 +760,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
     drupal_add_html_head($meta_element_description, 'meta_element_description');
   }
 
-
-
   global $base_url;
 
   /**
@@ -921,13 +768,6 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
    * Resolves DSS-243
    *
    */
-
-  // The proper approach (production)
-  //$path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  // The less proper approach (enforce HTTP while ensuring that other linked metadata field values are possibly tunneled through TLS/SSL)
-  //$path_alias = str_replace('https', 'http', $base_url) . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
-  // Specific to the production environment
-
   $path_alias = $base_url . '/' . drupal_get_path_alias("islandora/object/{$object->id}");
 
   /**
@@ -966,6 +806,11 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
   $variables['mods_object'] = $mods_array;
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ * @see islandora_book_preprocess_islandora_book_page().
+ *
+ */
 function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables) {
 
   $object = $variables['object'];
@@ -976,18 +821,24 @@ function bootstrap_dss_digital_preprocess_islandora_book_page(array &$variables)
 
     $mods_str = $object['MODS']->content;
 
+    /**
+     * @todo Resolve or refactor
+     *
+     */
     $mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
-    //$mods_str = '<modsCollection>' . $mods_str . '</modsCollection>';
-
     $mods_object = new DssMods($mods_str);
   } catch (Exception $e) {
-    
     drupal_set_message(t('Error retrieving object %s %t', array('%s' => $object->id, '%t' => $e->getMessage())), 'error', FALSE);
   }
 
   $variables['mods_object'] = isset($mods_object) ? $mods_object->toArray() : array();
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ * @see islandora_book_preprocess_islandora_book_pages().
+ *
+ */
 function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables) {
 
   // View Links.
@@ -1017,6 +868,10 @@ function bootstrap_dss_digital_preprocess_islandora_book_pages(array &$variables
 				   );
 }
 
+/**
+ * Implements hook_breadcrumb().
+ *
+ */
 define('BOOTSTRAP_DSS_DIGITAL_BREADCRUMBS_MAX', 52);
 
 function bootstrap_dss_digital_breadcrumb($variables) {
@@ -1062,15 +917,10 @@ function bootstrap_dss_digital_breadcrumb($variables) {
     foreach($_GET as $param_key => $param_value) {
 
       if($param_key != 'q' && $param_key == 'f') {
-
-	//$facets[] = array($param_key => $param_value);
 	foreach($param_value as $facet) {
-
 	  $facet_split = explode(':', $facet);
-	  //$facet_field = $facet_split[0];
 	  $facet_field = array_shift($facet_split);
 	  $facet_value = implode(':', $facet_split);
-	  //$facets[$facet_field] = $facet_value;
 
 	  if(!array_key_exists($facet_field, $facets) and preg_match('/"(.+?)"/', $facet_value, $facet_value_match)) {
 
@@ -1124,30 +974,22 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				 'Lafayette World War II Casualties' => 'node/43',
 				 'Presidents of Lafayette College' => 'node/41',
 				 'Lafayette Magazine Collection' => 'node/52',
-				 'Shakespeare Bulletin Archive' => '/'
+				 'Shakespeare Bulletin Archive' => '/',
+				 'Mapping Memories of Madagascar' => 'node/75'
 				 );
 
     $collection_elements = array();
 
     if(isset($object) and isset($object['MODS'])) {
-
-      //$this->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
-      //$this->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
-      //$relation_is_part_of_value = (string) array_shift($this->xpath("./mods:note[@type='admin']"));
-
       try {
-
 	$mods_doc = new SimpleXMLElement($object['MODS']->content);
 	$mods_doc->registerXPathNamespace("xml", "http://www.w3.org/XML/1998/namespace");
 	$mods_doc->registerXPathNamespace("mods", "http://www.loc.gov/mods/v3"); //http://www.loc.gov/mods/v3
-
-	//dpm($mods_doc->asXml());
 
 	/**
 	 * Just use the top-level collection element
 	 *
 	 */
-	//$collection_elements = array_merge($collection_elements, array_map($map, $mods_doc->xpath("./mods:note[@type='admin']")));
 	$collection_elements = array_merge($collection_elements, array(array('cdm.Relation.IsPartOf' => array_shift($mods_doc->xpath("./mods:note[@type='admin']")))));
 
 	// For MDL
@@ -1176,41 +1018,19 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 	$_breadcrumbs[] = array('title' => $top_collection, 'href' => $collection_node_map[$top_collection]);
 	$count++;
 
-	//$facet_params = '?';
-	//for($i=0; $i<$count($collection_elements); $i++) {
 	$facet_params = array();
 
 	$i=0;
-	//foreach($collection_elements as $collection_facet => $facet_value) {
 	foreach($collection_elements as $collection_facet => $facets) {
-
-	  //$facet_params .= "f[{$i}]=" . $collection_facet . '"' . $facet_value . '"';
-	  //'cdm.Relation.IsPartOf' . ':"' . (string) $collection_elements[$i] . '"';
-
 	  foreach($facets as $facet => $facet_value) {
-
-	    /*
-	      $facet_params .= "f[{$i}]=" . $facet . ':"' . $facet_value . '"';
-	      //if($i < count($facet_params - 1)) {
-	      if($i < count($collection_elements) - 1) {
-
-	      $facet_params .= '&';
-	      }
-	    */
-
 	    $facet_params["f[{$i}]"] = $facet . ':"' . $facet_value . '"';
 	    $i++;
 	  }
 	}
 
 	$_breadcrumbs[] = array('title' => 'Browse', 'href' => 'islandora/search/*:*', 'options' => array('query' => $facet_params));
-
-	//$_breadcrumbs[] = array('title' => 'Browse', 'href' => url('islandora/search/*:*', array('query' => $facet_params)));
 	$count++;
       }
-
-      // Accessing via Search This Collection: Home / [collection name] / Search
-      //if(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
     } elseif(preg_match('/cdm\.Relation\.IsPartOf\:"(.+?)"/', $solr_query, $m)) {
 
       $title = $m[1];

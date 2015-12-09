@@ -34,14 +34,6 @@ function bootstrap_dss_digital_form_alter(&$form, $form_state, $form_id) {
      * @see islandora_dss_solr_theme()
      *
      */
-    /*
-  case 'islandora_solr_advanced_search_form':
-
-    // Push/append a theming callback on to the array of theming callbacks for the individual form element
-    $form['#theme'] = array('bootstrap_dss_digital_islandora_solr_advanced_search_form');
-    break;
-    */
-
   case 'islandora_solr_simple_search_form':
 
     $form['simple']['#attributes']['id'] = 'islandora-simple-search-wrapper';
@@ -51,16 +43,11 @@ function bootstrap_dss_digital_form_alter(&$form, $form_state, $form_id) {
     $form['simple']['islandora_simple_search_query']['#value'] = 'Search...';
     $form['simple']['islandora_simple_search_query']['#default_value'] = 'Search...';
 
-    // Insert the glyphicon for searching
-    //$form['simple']['submit']['#value'] = '<span class="icon-large"></span>';
-
     // Default to site-scoped search
     $form['simple']['submit']['#value'] = 'Search this site';
 
     // Append a button for repository-scoped search
-    $form['simple']['submit-1'] = array(
-					'#value' => 'Search the collections',
-					);
+    $form['simple']['submit-1'] = array('#value' => 'Search the collections');
 
     // Providing a div wrapper for styling
     $form['simple']['submit']['#prefix'] = '<div class="islandora-simple-search-button-container">';
@@ -69,18 +56,16 @@ function bootstrap_dss_digital_form_alter(&$form, $form_state, $form_id) {
     $form['simple']['submit-1']['#prefix'] = '<div class="islandora-simple-search-button-1-container">';
     $form['simple']['submit-1']['#suffix'] = '</div>';
 
-    //$form['simple']['submit']['#class'][] = 'icon-search';
-
-    /*
-    $form['simple']['#suffix'] = l('Advanced Search', '/', array('attributes' => array('data-toggle' => 'modal'),
-								 'class' => array('btn', 'btn-primary', 'btn-lg'),
-								 'fragment' => 'advanced-search-modal'));
-    */
-    //$form['simple']['#suffix'] = '<a href="#advanced-search-modal" data-toggle="lafayette-dss-modal">Advanced Search</a>';
-
-    
-    
     break;
+  }
+
+  /**
+   * Modify the CAPTCHA markup
+   * Resolves DSS-817
+   *
+   */
+  if(array_key_exists('captcha', $form)) {
+    dpm($form);
   }
 }
 

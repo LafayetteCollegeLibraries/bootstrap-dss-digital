@@ -609,22 +609,32 @@ html.js body.html header#navbar.navbar div.navbar-inner div.container div.nav-co
 	margin-top:3px;
 }
 
-/* set width of div around search, log in, and share */
-
-div.auth-share-container.container {
-
-    /**
-     * Disabled by James
-     */
-    /* width: 368px; */
-}
-
 /* get rid of margin below search fields in advanced search window */
 
 .control-group {
 	
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }
+
+/**
+ * @author goodnowt@lafayette.edu
+ *
+ */
+
+/**
+ * @author griffinj@lafayette.edu
+ *
+ *
+ */
+.control-group#edit-captcha-form--2 {
+
+    margin-bottom: 10px;
+}
+
+/**
+ * @author goodnowt@lafayette.edu
+ *
+ */
 
 /* set margin below Boolean operators in advanced search window */ 
 
