@@ -205,6 +205,7 @@ class DssMods extends SimpleXMLElement {
 						     'facet' => true,
 						     'date' => true),
 			    'Contributor.Donor' => "./mods:note[@type='acquisition']",
+			    'Editor' => '//mods:name/mods:role/mods:roleTerm[@valueURI="http://id.loc.gov/vocabulary/relators/edt"]/../../mods:displayForm',
 			    'Note' => "./mods:note[@type='source note']",
 
 			    /*
@@ -212,8 +213,7 @@ class DssMods extends SimpleXMLElement {
 			    'Publisher.Digital' => "./mods:note[@type='statement of responsibility']",
 			    //'Rights.Digital' => "./mods:accessCondition",
 			    'Format.Digital' => "./mods:note[@type='digital format']",
-			    */
-
+			    */ // 			    'Editor' => '//mods:name/mods:role/mods:roleTerm[@valueURI="http://id.loc.gov/vocabulary/relators/edt"]/../../mods:displayForm',
 
 			    );
 
@@ -643,7 +643,11 @@ class DssMods extends SimpleXMLElement {
 		     );
       };
 
+      dpm($xpath);
+
       $mods_elements = array_map($map, $this->xpath($xpath));
+
+      dpm($mods_elements);
 
       for($i = 0; $i < sizeof($mods_elements); $i++) {
 

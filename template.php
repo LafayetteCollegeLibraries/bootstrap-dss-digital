@@ -287,20 +287,6 @@ function bootstrap_dss_digital_preprocess_page(&$variables) {
 						     'attributes' => array()));
   }
 
-  // The "Log In" link
-  //$variables['auth_anchor'] = l(t('Log In'), '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
-  /*
-  $variables['auth_anchor'] = l('<div class="auth-icon"><img src="/sites/all/themes/bootstrap_lafayette_lib_dss/files/UserIcon.png" /><span>Log In</span></div>', '', array('attributes' => array('data-toggle' => 'lafayette-dss-modal',
-														    'data-target' => '#auth-modal',
-																								  'data-width-offset' => '10px',
-														    'data-height-offset' => '28px'),
-											      'fragment' => ' ',
-											      //'external' => TRUE));
-											      'external' => TRUE,
-											      'html' => TRUE
-											      ));
-  */
-
   /**
    * Disabled for the initial release of the site
    * @todo Re-integrate for cases requiring Facebook and Twitter authentication
@@ -710,6 +696,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
       $collection_label = 'Lafayette Magazine Collection';
     }
 
+    dpm('trace');
+
     // Refactor
     // Retrieve the MODS Metadata
     try {
@@ -718,6 +706,8 @@ function bootstrap_dss_digital_preprocess_islandora_book_book(array &$variables)
 
 	$mods_str = $object['MODS']->content;
 	$mods_str = preg_replace('/<\?xml .*?\?>/', '', $mods_str);
+	
+	dpm($mods_str);
 
 	$mods_object = new DssMods($mods_str);
       }
@@ -974,7 +964,7 @@ function bootstrap_dss_digital_breadcrumb($variables) {
 				 'Lafayette World War II Casualties' => 'node/43',
 				 'Presidents of Lafayette College' => 'node/41',
 				 'Lafayette Magazine Collection' => 'node/52',
-				 'Shakespeare Bulletin Archive' => '/',
+				 'Shakespeare Bulletin Archive' => 'node/64',
 				 'Mapping Memories of Madagascar' => 'node/75'
 				 );
 
